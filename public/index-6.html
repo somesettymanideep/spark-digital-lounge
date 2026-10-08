@@ -28,7 +28,7 @@
             /* Home 6 only: transparent overlay becomes a white sticky header. */
             .bs-header-2-area.sea-header {
                 --sea-header-foreground: var(--bs-clr-white-1);
-                --sea-header-top-space: 22px;
+                --sea-header-top-space: 32px;
                 position: fixed;
                 top: 0;
                 z-index: 100;
@@ -46,6 +46,11 @@
             }
             .sea-header .bs-header-2-action-link .bs-offcanvas-btn-1 .line {
                 background: var(--sea-header-foreground);
+            }
+            @media (max-width: 767px) {
+                .bs-header-2-area.sea-header {
+                    --sea-header-top-space: 16px;
+                }
             }
             @media (prefers-reduced-motion: reduce) {
                 .bs-header-2-area.sea-header {
