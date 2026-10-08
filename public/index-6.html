@@ -96,17 +96,37 @@
                 grid-template-columns: 1fr;
             }
             /* the brand block (logo, heading, intro, socials) leads the footer columns */
+            /* 12-part grid: the logo block takes 4 parts,
+               About / Products / Inspiration / Contact take the other 8 */
             .bs-footer-2-widgets {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
                 align-items: flex-start;
                 gap: 28px;
             }
             .bs-footer-2-brand {
-                flex: 0 1 340px;
+                grid-column: span 4;
             }
             .bs-footer-2-widgets .bs-footer-1-widget {
-                flex: 0 1 auto;
+                grid-column: span 2;
                 min-width: 0;
-                max-width: 200px;
+                max-width: none;
+            }
+            @media only screen and (max-width: 991px) {
+                .bs-footer-2-widgets {
+                    gap: 30px 24px;
+                }
+                .bs-footer-2-brand {
+                    grid-column: span 12;
+                }
+                .bs-footer-2-widgets .bs-footer-1-widget {
+                    grid-column: span 6;
+                }
+            }
+            @media only screen and (max-width: 575px) {
+                .bs-footer-2-widgets .bs-footer-1-widget {
+                    grid-column: span 12;
+                }
             }
             .bs-footer-2-brand .bs-footer-2-logo {
                 display: inline-block;
@@ -135,10 +155,9 @@
                 font-size: 14px;
                 margin-top: 0;
             }
-            @media only screen and (max-width: 767px) {
-                .bs-footer-2-brand {
-                    flex: 1 1 100%;
-                }
+            .bs-footer-2-brand .title,
+            .bs-footer-2-brand .disc {
+                max-width: none;
             }
 
             /* Hero: the slider image sits right under the header,

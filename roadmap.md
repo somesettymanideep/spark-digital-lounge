@@ -21,3 +21,4 @@
 - [x] Apply the Home 2 footer (dark bg, marquee lines, name/email/message form, link columns, gallery, copyright) to Home 6 with the white SEA logo and teal terms strip.
 - [x] Remove the footer's gallery images and contact form, and move the SEA logo below the copyright line.
 - [x] Move the footer logo, heading, paragraph and social links into a left brand block ahead of the About column, with About / Products / Inspiration / Contact in one row to its right.
+- [x] Set the footer to a 12-part grid: the logo block spans 4 parts, About / Products / Inspiration / Contact span the other 8.
