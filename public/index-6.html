@@ -91,14 +91,48 @@
             .bs-footer-2-top-content-link .bg-color {
                 background: linear-gradient(90deg, #2f99ae 0%, #2f99ae 86%, rgba(47, 153, 174, 0) 100%);
             }
-            /* the footer keeps its links and text only: no gallery, no form, logo at the bottom */
+            /* the footer keeps its links and text only: no gallery, no form */
             .bs-footer-2-top {
                 grid-template-columns: 1fr;
             }
-            .bs-footer-2-logo {
+            /* the brand block (logo, heading, intro, socials) leads the footer columns */
+            .bs-footer-2-widgets {
+                align-items: flex-start;
+            }
+            .bs-footer-2-brand {
+                flex: 0 1 400px;
+            }
+            .bs-footer-2-brand .bs-footer-2-logo {
                 display: inline-block;
-                margin-top: 20px;
+                margin-top: 0;
+                margin-bottom: 26px;
+            }
+            .bs-footer-2-brand .title {
+                font-size: 30px;
+                line-height: 1.25;
+                margin-bottom: 14px;
+                max-width: 400px;
+            }
+            .bs-footer-2-brand .disc {
+                line-height: 23px;
+                margin-bottom: 26px;
+                max-width: 400px;
+            }
+            .bs-footer-2-brand .bs-footer-2-top-content-social {
+                gap: 14px 26px;
                 margin-bottom: 0;
+            }
+            .bs-footer-2-brand .bs-footer-2-top-content-social .link {
+                font-size: 17px;
+            }
+            .bs-footer-2-brand .bs-footer-2-top-content-social .link i {
+                font-size: 14px;
+                margin-top: 0;
+            }
+            @media only screen and (max-width: 767px) {
+                .bs-footer-2-brand {
+                    flex: 1 1 100%;
+                }
             }
 
             /* Hero: the slider image sits right under the header,
@@ -1406,24 +1440,6 @@
 
                             <!-- left-content -->
                             <div class="bs-footer-2-top-content">
-                                <h5 class="bs-h-2 title" data-cursor="-opaque">Inspiring Presence of Design 
-                                    Thanks to Indoor Plants</h5>
-                                <p class="bs-p-1 disc">A profound design process eventually makes the patron, the architect, and every occasional visitor in the building a slightly better human being.</p>
-
-                                <div class="bs-footer-2-top-content-social">
-                                    <a href="#" aria-label="name" class="link bs-h-2">
-                                        instagram <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                    <a href="#" aria-label="name" class="link bs-h-2">
-                                        linkedin <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                    <a href="#" aria-label="name" class="link bs-h-2">
-                                        twitter <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                    <a href="#" aria-label="name" class="link bs-h-2">
-                                        facebook <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                </div>
 
                                 <ul class="bs-footer-2-top-content-link wa-list-style-none">
                                     <li class="bg-color wa-clip-left-right"></li>
@@ -1447,6 +1463,31 @@
 
                         <!-- footer-widgets -->
                         <div class="bs-footer-2-widgets mb-50 ">
+
+                            <!-- brand -->
+                            <div class="bs-footer-2-top-content bs-footer-2-brand">
+                                <a href="index-6.html" aria-label="SEA - Studio for Eclectic Architecture" class="bs-footer-2-logo" data-cursor="-opaque">
+                                    <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture">
+                                </a>
+                                <h5 class="bs-h-2 title" data-cursor="-opaque">Inspiring Presence of Design 
+                                    Thanks to Indoor Plants</h5>
+                                <p class="bs-p-1 disc">A profound design process eventually makes the patron, the architect, and every occasional visitor in the building a slightly better human being.</p>
+
+                                <div class="bs-footer-2-top-content-social">
+                                    <a href="#" aria-label="name" class="link bs-h-2">
+                                        instagram <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                    <a href="#" aria-label="name" class="link bs-h-2">
+                                        linkedin <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                    <a href="#" aria-label="name" class="link bs-h-2">
+                                        twitter <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                    <a href="#" aria-label="name" class="link bs-h-2">
+                                        facebook <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
 
                             <!-- single-widget -->
                             <div class="bs-footer-1-widget">
@@ -1618,11 +1659,6 @@
                                 <span class="bg-color wa-clip-right-left"></span>
                             </p>
                         </div>
-
-                        <!-- logo -->
-                        <a href="index-6.html" aria-label="SEA - Studio for Eclectic Architecture" class="bs-footer-2-logo" data-cursor="-opaque">
-                            <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture">
-                        </a>
                         
                     </div>
                 </div>
