@@ -28,10 +28,12 @@
             /* Home 6 only: transparent overlay becomes a white sticky header. */
             .bs-header-2-area.sea-header {
                 --sea-header-foreground: var(--bs-clr-white-1);
+                --sea-header-top-space: 32px;
                 position: fixed;
                 top: 0;
                 z-index: 100;
                 background: transparent;
+                padding-top: var(--sea-header-top-space);
                 transition: background-color 0.25s ease;
             }
             .bs-header-2-area.sea-header.is-scrolled {
@@ -44,6 +46,11 @@
             }
             .sea-header .bs-header-2-action-link .bs-offcanvas-btn-1 .line {
                 background: var(--sea-header-foreground);
+            }
+            @media (max-width: 767px) {
+                .bs-header-2-area.sea-header {
+                    --sea-header-top-space: 16px;
+                }
             }
             @media (prefers-reduced-motion: reduce) {
                 .bs-header-2-area.sea-header {
@@ -281,15 +288,6 @@
             <section class="bs-hero-4-area wa-p-relative pt-90 wa-fix">
                 <div class="container bs-container-2">
                     <div class="bs-hero-4-content">
-                        <h1 class="bs-hero-4-title bs-h-4 wa-split-y cd-headline clip " data-split-delay="1s">
-                            Architecture & Design Bureau Based in                                         
-                            <span class="cd-words-wrapper single-headline">
-                                <b class="is-visible">canada</b>
-                                <b>australia</b>
-                                <b>france</b>
-                                <b>Singapore</b>
-                            </span>
-                        </h1>
                         <div class="inner-div">
                             <p class="bs-p-4 bs-hero-4-disc wa-split-y" data-split-delay="1.6s">Architectural styles and trends evolve over time, influenced by cultural shifts, technological advancements, and changing societal needs.</p>
                         </div>
