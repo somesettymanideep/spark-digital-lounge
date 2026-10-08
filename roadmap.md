@@ -9,3 +9,4 @@
 - [x] Set header spacing to 15px at the top, 7px top and 7px bottom while sticky.
 - [x] Remove the "Architectural styles and trends evolve over time..." intro line.
 - [x] Remove the hero section's background layer so the photo runs straight into the next section.
+- [x] Replace the "about us" paragraph with the SEA studio description.
