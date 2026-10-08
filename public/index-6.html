@@ -235,6 +235,19 @@
             .sea-portfolio-btn {
                 margin-left: 0;
             }
+            .sea-portfolio-btn .sea-pdf-icon {
+                display: inline-flex;
+                align-items: center;
+                font-size: 17px;
+                color: var(--bs-clr-pr-1);
+                margin-right: 10px;
+                transition: color .3s;
+            }
+            .sea-portfolio-btn:hover .sea-pdf-icon,
+            .sea-portfolio-btn:active .sea-pdf-icon,
+            .sea-portfolio-btn:focus-visible .sea-pdf-icon {
+                color: var(--bs-clr-white-1);
+            }
             /* Expertise: studio name as two-line watermark */
             .bs-expertise-4-title {
                 font-size: clamp(44px, 7.6vw, 96px);
@@ -562,17 +575,6 @@
 
                             <div class="inner-div">
                                 <p class="bs-p-4 disc wa-fadeInUp">Studio for Eclectic Architecture is a dynamic firm offering various design solutions. Our core services encompass architecture, interiors, and landscape, ensuring a comprehensive approach to every project we undertake. We specialize in creating unique designs for residential homes, commercial spaces, villas, apartments, layouts, and resorts, providing tailored solutions that reflect functionality and aesthetic appeal.</p>
-                                <div class="btn-wrap wa-fadeInUp">
-                                    <a href="about.html" aria-label="name" class="bs-pr-btn-2">
-                                        <span class="text" data-back="know about us" data-front="know about us"></span>
-                                        <span class="line-1" ></span>
-                                        <span class="line-2" ></span>
-                                        <span class="box box-1" ></span>
-                                        <span class="box box-2" ></span>
-                                        <span class="box box-3" ></span>
-                                        <span class="box box-4" ></span>
-                                    </a>
-                                </div>
                             </div>
     
                             <div class="sea-about-awards wa-fadeInUp">
@@ -590,9 +592,9 @@
                                 <div class="sea-portfolio">
                                     <h4 class="sea-portfolio-title">Download Portfolio</h4>
                                     <div class="sea-portfolio-buttons">
-                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="text" data-back="Architecture" data-front="Architecture"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
-                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="text" data-back="Interior" data-front="Interior"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
-                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="text" data-back="Landscape" data-front="Landscape"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
+                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="sea-pdf-icon"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="text" data-back="Architecture" data-front="Architecture"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
+                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="sea-pdf-icon"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="text" data-back="Interior" data-front="Interior"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
+                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="sea-pdf-icon"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="text" data-back="Landscape" data-front="Landscape"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
                                     </div>
                                 </div>
                             </div>
