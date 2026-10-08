@@ -91,6 +91,15 @@
             .bs-footer-2-top-content-link .bg-color {
                 background: linear-gradient(90deg, #2f99ae 0%, #2f99ae 86%, rgba(47, 153, 174, 0) 100%);
             }
+            /* the footer keeps its links and text only: no gallery, no form, logo at the bottom */
+            .bs-footer-2-top {
+                grid-template-columns: 1fr;
+            }
+            .bs-footer-2-logo {
+                display: inline-block;
+                margin-top: 20px;
+                margin-bottom: 0;
+            }
 
             /* Hero: the slider image sits right under the header,
                the headline and intro move beneath it */
@@ -1392,11 +1401,6 @@
                 <div class="container bs-container-1">
                     <div class="bs-footer-2-wrap pt-130">
 
-                        <!-- logo -->
-                        <a href="index-6.html" aria-label="SEA - Studio for Eclectic Architecture" class="bs-footer-2-logo" data-cursor="-opaque">
-                            <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture">
-                        </a>
-
                         <!-- footer-top -->
                         <div class="bs-footer-2-top mb-90">
 
@@ -1439,26 +1443,6 @@
                                 </ul>
                             </div>
 
-                            <form action="#" class="bs-form-1 bs-footer-2-top-form">
-    
-    
-                                <div class="bs-form-1-item">
-                                    <input class="bs-form-1-item-input " type="text" aria-label="name" placeholder="name ..." >
-                                </div>
-                                
-                                <div class="bs-form-1-item">
-                                    <input class="bs-form-1-item-input " type="email" aria-label="name" placeholder="email ...">
-                                </div>
-                                <div class="bs-form-1-item ">
-                                    <textarea class="bs-form-1-item-input " name="message" id="message" placeholder="message ..."></textarea>
-                                </div>
-
-                                <div class="bs-form-1-item " >
-                                    <button class="form-btn-2" type="submit" aria-label="name">
-                                        send now
-                                    </button>
-                                </div>
-                            </form>
                         </div>
 
                         <!-- footer-widgets -->
@@ -1619,23 +1603,6 @@
                             </div>
                             
 
-                            <!-- single-widget -->
-                            <div class="bs-footer-1-widget">
-                                <div class="bs-footer-2-gallery">
-                                    <a href="assets/img/footer/f2-g-img-1.png" class="popup-img img-item" data-cursor-text="View">
-                                        <img src="assets/img/footer/f2-g-img-1.png" alt="">
-                                    </a>
-                                    <a href="assets/img/footer/f2-g-img-2.png" class="popup-img img-item" data-cursor-text="View">
-                                        <img src="assets/img/footer/f2-g-img-2.png" alt="">
-                                    </a>
-                                    <a href="assets/img/footer/f2-g-img-3.png" class="popup-img img-item" data-cursor-text="View">
-                                        <img src="assets/img/footer/f2-g-img-3.png" alt="">
-                                    </a>
-                                    <a href="assets/img/footer/f2-g-img-4.png" class="popup-img img-item" data-cursor-text="View">
-                                        <img src="assets/img/footer/f2-g-img-4.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
                             
 
         
@@ -1651,6 +1618,11 @@
                                 <span class="bg-color wa-clip-right-left"></span>
                             </p>
                         </div>
+
+                        <!-- logo -->
+                        <a href="index-6.html" aria-label="SEA - Studio for Eclectic Architecture" class="bs-footer-2-logo" data-cursor="-opaque">
+                            <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture">
+                        </a>
                         
                     </div>
                 </div>
