@@ -160,6 +160,26 @@
                 max-width: none;
             }
 
+            /* the scrolling headline stays readable over the render:
+               a soft warm veil along the banner's bottom edge */
+            .bs-video-4-content::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 210px;
+                background: linear-gradient(to top,
+                    rgba(237, 234, 227, 0.88) 0%,
+                    rgba(237, 234, 227, 0.52) 42%,
+                    rgba(237, 234, 227, 0) 100%);
+                pointer-events: none;
+                z-index: 1;
+            }
+            .bs-video-4-text {
+                z-index: 2;
+            }
+
             /* Hero: the slider image sits right under the header,
                the headline and intro move beneath it */
             .bs-hero-4-area {
