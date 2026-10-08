@@ -15,3 +15,6 @@
 - [x] Remove the "modern Design" and "quality work" icons, titles and paragraphs from the About section.
 - [x] Add the Awards block and Download Portfolio buttons (teal design) under the About section paragraph.
 - [x] Restyle the Download Portfolio buttons to match the "know about us" button design.
+
+- [x] Remove the four member cards from the Home 6 team section.
+- [x] Show "Studio for Eclectic / Architecture" as the two-line studio name in place of "barsi architecture".

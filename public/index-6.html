@@ -235,6 +235,24 @@
             .sea-portfolio-btn {
                 margin-left: 0;
             }
+            /* Expertise: studio name as two-line watermark */
+            .bs-expertise-4-title {
+                font-size: clamp(44px, 7.6vw, 96px);
+                letter-spacing: .01em;
+            }
+            .bs-expertise-4-title > span {
+                display: block;
+                white-space: nowrap;
+            }
+            .bs-expertise-4-title > span:nth-child(2) {
+                margin-top: -0.12em;
+            }
+            @media (max-width: 575px) {
+                .bs-expertise-4-title {
+                    font-size: clamp(28px, 8.4vw, 46px);
+                }
+            }
+
             @media (max-width: 575px) {
                 .sea-award {
                     flex-direction: column;
@@ -785,86 +803,6 @@
                         </div>
                     </div>
 
-                    <!-- member -->
-                    <div class="bs-team-4-member">
-
-                        <!-- single-member -->
-                        <div class="bs-team-4-member-single">
-                            <div class="member-img wa-fix wa-img-cover">
-                                <a href="team-details.html" data-cursor-text="Details">
-                                    <img src="assets/img/team/t4-img-1.png" alt="">
-                                </a>
-                            </div>
-                            <div class="content">
-                                <h4 class="bs-h-4 name">
-                                    <a href="team-details.html" aria-label="name">eleanor pena</a>
-                                </h4>
-                                <p class="bs-p-4 bio">Sr. Architect</p>
-                                <span class="line-1"></span>
-                                <span class="line-2"></span>
-                                <span class="line-3"></span>
-                                <span class="line-4"></span>
-                            </div>
-                        </div>
-
-                        <!-- single-member -->
-                        <div class="bs-team-4-member-single">
-                            <div class="member-img wa-fix wa-img-cover">
-                                <a href="team-details.html" data-cursor-text="Details">
-                                    <img src="assets/img/team/t4-img-2.png" alt="">
-                                </a>
-                            </div>
-                            <div class="content">
-                                <h4 class="bs-h-4 name">
-                                    <a href="team-details.html" aria-label="name">Leslie Alexander</a>
-                                </h4>
-                                <p class="bs-p-4 bio">Architect designer</p>
-                                <span class="line-1"></span>
-                                <span class="line-2"></span>
-                                <span class="line-3"></span>
-                                <span class="line-4"></span>
-                            </div>
-                        </div>
-
-                        <!-- single-member -->
-                        <div class="bs-team-4-member-single">
-                            <div class="member-img wa-fix wa-img-cover">
-                                <a href="team-details.html" data-cursor-text="Details">
-                                    <img src="assets/img/team/t4-img-3.png" alt="">
-                                </a>
-                            </div>
-                            <div class="content">
-                                <h4 class="bs-h-4 name">
-                                    <a href="team-details.html" aria-label="name">Kristin Watson</a>
-                                </h4>
-                                <p class="bs-p-4 bio">marketing</p>
-                                <span class="line-1"></span>
-                                <span class="line-2"></span>
-                                <span class="line-3"></span>
-                                <span class="line-4"></span>
-                            </div>
-                        </div>
-
-                        <!-- single-member -->
-                        <div class="bs-team-4-member-single">
-                            <div class="member-img wa-fix wa-img-cover">
-                                <a href="team-details.html" data-cursor-text="Details">
-                                    <img src="assets/img/team/t4-img-4.png" alt="">
-                                </a>
-                            </div>
-                            <div class="content">
-                                <h4 class="bs-h-4 name">
-                                    <a href="team-details.html" aria-label="name">Dianne Russell</a>
-                                </h4>
-                                <p class="bs-p-4 bio">JR. Architect</p>
-                                <span class="line-1"></span>
-                                <span class="line-2"></span>
-                                <span class="line-3"></span>
-                                <span class="line-4"></span>
-                            </div>
-                        </div>
-
-                    </div>
 
                     
                 </div>
@@ -877,7 +815,7 @@
 
                     <div class="bs-expertise-4-wrap">
                         <h3 class="bs-h-4 bs-expertise-4-title">
-                            <span class="wa-split-up wa-capitalize-hidden" >barsi</span>
+                            <span class="wa-split-up wa-capitalize-hidden">Studio for Eclectic</span>
                             <span class="wa-split-up wa-capitalize-hidden" data-split-delay="1s">Architecture</span>
                         </h3>
 
