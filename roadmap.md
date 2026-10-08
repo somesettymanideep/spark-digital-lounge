@@ -6,3 +6,6 @@
 - [x] Remove the creative ideas / Uniqueness / High Efficiency / Best Solution section.
 - [x] Copy the team member section into the About page.
 - [x] Add top space to the header and remove the "Architecture & Design Bureau Based in..." hero headline.
+- [x] Set header spacing to 15px at the top, 7px top and 7px bottom while sticky.
+- [x] Remove the "Architectural styles and trends evolve over time..." intro line.
+- [x] Remove the hero section's background layer so the photo runs straight into the next section.
