@@ -21,7 +21,14 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- SEA brand logo sizing, this page only -->
         <style>
-            .bs-header-4-logo img {
+            /* Home 2 header: keep it in normal flow so the hero
+               slider still displays right below the header */
+            .bs-header-2-area {
+                position: relative;
+                top: 0;
+                background: #fff;
+            }
+            .bs-header-logo-1 img {
                 display: block;
                 width: auto;
                 max-width: 100%;
