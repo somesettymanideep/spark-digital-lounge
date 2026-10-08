@@ -13,3 +13,4 @@
 - [x] Shorten the "about us" heading and align the paragraph with its left edge.
 - [x] Add the uploaded video to the About section's right side, compress it, and verify autoplay and sound controls.
 - [x] Remove the "modern Design" and "quality work" icons, titles and paragraphs from the About section.
+- [x] Add the Awards block and Download Portfolio buttons (teal design) under the About section paragraph.
