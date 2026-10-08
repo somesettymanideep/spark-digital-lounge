@@ -235,6 +235,19 @@
             .sea-portfolio-btn {
                 margin-left: 0;
             }
+            .sea-portfolio-btn .sea-pdf-icon {
+                display: inline-flex;
+                align-items: center;
+                font-size: 17px;
+                color: var(--bs-clr-pr-1);
+                margin-right: 10px;
+                transition: color .3s;
+            }
+            .sea-portfolio-btn:hover .sea-pdf-icon,
+            .sea-portfolio-btn:active .sea-pdf-icon,
+            .sea-portfolio-btn:focus-visible .sea-pdf-icon {
+                color: var(--bs-clr-white-1);
+            }
             /* Expertise: studio name as two-line watermark */
             .bs-expertise-4-title {
                 font-size: clamp(44px, 7.6vw, 96px);
