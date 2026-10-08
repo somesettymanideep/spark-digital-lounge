@@ -228,33 +228,19 @@
             .sea-portfolio-buttons {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 14px;
+                column-gap: 44px;
+                row-gap: 48px;
             }
             .sea-portfolio-btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 10px;
-                padding: 14px 26px;
-                border-radius: 999px;
-                background: var(--bs-clr-pr-1);
-                color: var(--bs-clr-white-1);
-                font-size: 14px;
-                font-weight: 600;
-                letter-spacing: .06em;
-                text-transform: uppercase;
-                transition: background .3s var(--bs-cube-2), transform .3s var(--bs-cube-2);
-            }
-            .sea-portfolio-btn:hover {
-                background: #267e91;
-                transform: translateY(-2px);
-                color: var(--bs-clr-white-1);
+                margin-left: 0;
             }
             @media (max-width: 575px) {
                 .sea-award {
                     flex-direction: column;
                 }
-                .sea-portfolio-btn {
-                    padding: 12px 20px;
+                .sea-portfolio-buttons {
+                    column-gap: 40px;
+                    row-gap: 44px;
                 }
             }
         </style>
@@ -562,9 +548,9 @@
                                 <div class="sea-portfolio">
                                     <h4 class="sea-portfolio-title">Download Portfolio</h4>
                                     <div class="sea-portfolio-buttons">
-                                        <a href="#" class="sea-portfolio-btn"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i><span>Architecture</span></a>
-                                        <a href="#" class="sea-portfolio-btn"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i><span>Interior</span></a>
-                                        <a href="#" class="sea-portfolio-btn"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i><span>Landscape</span></a>
+                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="text" data-back="Architecture" data-front="Architecture"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
+                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="text" data-back="Interior" data-front="Interior"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
+                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="text" data-back="Landscape" data-front="Landscape"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
                                     </div>
                                 </div>
                             </div>
