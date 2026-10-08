@@ -174,6 +174,89 @@
                 outline: 3px solid var(--bs-clr-pr-1);
                 outline-offset: 3px;
             }
+
+            /* About: awards + portfolio downloads */
+            .sea-about-awards {
+                margin-top: 48px;
+            }
+            .sea-award {
+                display: flex;
+                align-items: flex-start;
+                gap: 18px;
+            }
+            .sea-award-icon {
+                flex: 0 0 auto;
+                width: 64px;
+                height: 64px;
+                border-radius: 50%;
+                background: rgba(47, 153, 174, .12);
+                color: var(--bs-clr-pr-1);
+                display: grid;
+                place-items: center;
+                font-size: 26px;
+            }
+            .sea-award-title {
+                font-size: 22px;
+                font-weight: 700;
+                letter-spacing: .12em;
+                text-transform: uppercase;
+                color: var(--bs-clr-pr-1);
+                margin-bottom: 8px;
+            }
+            .sea-award-sub {
+                text-transform: uppercase;
+                letter-spacing: .04em;
+                color: #7a7a7a;
+                margin-bottom: 12px;
+            }
+            .sea-award-text strong {
+                font-weight: 700;
+                color: var(--bs-clr-black-1);
+            }
+            .sea-award-divider {
+                border: 0;
+                border-top: 1px solid rgba(0, 0, 0, .14);
+                width: 220px;
+                max-width: 50%;
+                margin: 34px 0;
+            }
+            .sea-portfolio-title {
+                font-size: 24px;
+                letter-spacing: -0.02em;
+                margin-bottom: 20px;
+            }
+            .sea-portfolio-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+            .sea-portfolio-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 14px 26px;
+                border-radius: 999px;
+                background: var(--bs-clr-pr-1);
+                color: var(--bs-clr-white-1);
+                font-size: 14px;
+                font-weight: 600;
+                letter-spacing: .06em;
+                text-transform: uppercase;
+                transition: background .3s var(--bs-cube-2), transform .3s var(--bs-cube-2);
+            }
+            .sea-portfolio-btn:hover {
+                background: #267e91;
+                transform: translateY(-2px);
+                color: var(--bs-clr-white-1);
+            }
+            @media (max-width: 575px) {
+                .sea-award {
+                    flex-direction: column;
+                }
+                .sea-portfolio-btn {
+                    padding: 12px 20px;
+                }
+            }
         </style>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -464,6 +547,28 @@
                                 </div>
                             </div>
     
+                            <div class="sea-about-awards wa-fadeInUp">
+                                <div class="sea-award">
+                                    <div class="sea-award-icon">
+                                        <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="sea-award-body">
+                                        <h3 class="sea-award-title">Awards</h3>
+                                        <p class="sea-award-sub">The India Design Awards 2024.</p>
+                                        <p class="sea-award-text">Our firm has been awarded the prestigious title of<br><strong>"Outstanding Firm for Innovative Designs"</strong></p>
+                                    </div>
+                                </div>
+                                <hr class="sea-award-divider">
+                                <div class="sea-portfolio">
+                                    <h4 class="sea-portfolio-title">Download Portfolio</h4>
+                                    <div class="sea-portfolio-buttons">
+                                        <a href="#" class="sea-portfolio-btn"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i><span>Architecture</span></a>
+                                        <a href="#" class="sea-portfolio-btn"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i><span>Interior</span></a>
+                                        <a href="#" class="sea-portfolio-btn"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i><span>Landscape</span></a>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="illus wa-clip-left-right">
                                 <img src="assets/img/about/a4-illus-1.png" alt="">
                             </div>
