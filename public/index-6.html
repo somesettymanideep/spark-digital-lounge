@@ -160,6 +160,34 @@
                 max-width: none;
             }
 
+            /* the scrolling headline stays readable over the render:
+               the banner's lower edge is softly blurred and lightened,
+               so the dark letters sit on a calm base */
+            .bs-video-4-content::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 215px;
+                -webkit-backdrop-filter: blur(9px) saturate(0.9) brightness(1.08);
+                backdrop-filter: blur(9px) saturate(0.9) brightness(1.08);
+                background: linear-gradient(to top,
+                    rgba(237, 234, 227, 0.50) 0%,
+                    rgba(237, 234, 227, 0.28) 45%,
+                    rgba(237, 234, 227, 0) 100%);
+                -webkit-mask-image: linear-gradient(to top, #000 0%, #000 34%, transparent 100%);
+                mask-image: linear-gradient(to top, #000 0%, #000 34%, transparent 100%);
+                pointer-events: none;
+                z-index: 1;
+            }
+            /* the whole headline sits inside the banner instead of
+               being sliced off at its bottom edge */
+            .bs-video-4-text {
+                bottom: 10px;
+                z-index: 2;
+            }
+
             /* Hero: the slider image sits right under the header,
                the headline and intro move beneath it */
             .bs-hero-4-area {
@@ -698,7 +726,7 @@
             <!-- video-start -->
             <section class="bs-video-4-area">
                 <div class="bs-video-4-content wa-p-relative wa-fix wa-img-cover">
-                    <img class="wa-parallax-img" src="assets/img/video/v4-img-1.png" alt="">
+                    <img class="wa-parallax-img" src="/__l5e/assets-v1/9363d996-4d40-41db-9ac7-9dc2c2b8f966/video-luxury-architecture.jpg" alt="SEA colonnade pavilion with curved ribs and terracotta seating">
 
                     <div class="bs-video-4-text">
                         <div class="bs-video-4-marquee-active">
