@@ -19,3 +19,4 @@
 - [x] Remove the four member cards from the Home 6 team section.
 - [x] Show "Studio for Eclectic / Architecture" as the two-line studio name in place of "barsi architecture".
 - [x] Apply the Home 2 footer (dark bg, marquee lines, name/email/message form, link columns, gallery, copyright) to Home 6 with the white SEA logo and teal terms strip.
+- [x] Remove the footer's gallery images and contact form, and move the SEA logo below the copyright line.
