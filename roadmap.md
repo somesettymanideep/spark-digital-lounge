@@ -10,3 +10,4 @@
 - [x] Remove the "Architectural styles and trends evolve over time..." intro line.
 - [x] Remove the hero section's background layer so the photo runs straight into the next section.
 - [x] Replace the "about us" paragraph with the SEA studio description.
+- [x] Shorten the "about us" heading and align the paragraph with its left edge.
