@@ -161,18 +161,24 @@
             }
 
             /* the scrolling headline stays readable over the render:
-               a soft warm veil along the banner's bottom edge */
+               the banner's lower edge is softly blurred and lightened,
+               so the dark letters sit on a calm base */
             .bs-video-4-content::after {
                 content: "";
                 position: absolute;
                 left: 0;
                 right: 0;
                 bottom: 0;
-                height: 210px;
+                height: 340px;
+                -webkit-backdrop-filter: blur(14px) saturate(0.85) brightness(1.12);
+                backdrop-filter: blur(14px) saturate(0.85) brightness(1.12);
                 background: linear-gradient(to top,
-                    rgba(237, 234, 227, 0.88) 0%,
-                    rgba(237, 234, 227, 0.52) 42%,
+                    rgba(237, 234, 227, 0.62) 0%,
+                    rgba(237, 234, 227, 0.40) 40%,
+                    rgba(237, 234, 227, 0.12) 72%,
                     rgba(237, 234, 227, 0) 100%);
+                -webkit-mask-image: linear-gradient(to top, #000 0%, #000 55%, transparent 100%);
+                mask-image: linear-gradient(to top, #000 0%, #000 55%, transparent 100%);
                 pointer-events: none;
                 z-index: 1;
             }
