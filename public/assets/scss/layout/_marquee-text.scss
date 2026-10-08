@@ -1,0 +1,56 @@
+/*
+    25. marquee-text
+*/
+
+
+/* 
+    marquee-text-1-start
+*/
+
+.bs-marquee-text-1 {
+    &-wrap {
+        display: flex;
+        gap: 50px;
+        .title {
+            font-size: 125px;
+            text-transform: uppercase;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            -webkit-text-stroke: 1px #c9c9c9;
+            -webkit-text-fill-color: transparent;
+
+            @media #{$xxxl} {
+                font-size: 110px;
+            }
+
+            @media #{$xxl} {
+                font-size: 100px;
+            }
+
+            @media #{$xl} {
+                font-size: 90px;
+            }
+
+            @media #{$lg} {
+                font-size: 80px;
+            }
+
+            @media #{$md} {
+                font-size: 70px;
+            }
+
+            @media #{$xs} {
+                font-size: 50px;
+            }
+
+            @media #{$sm} {
+                font-size: 60px;
+            }
+        }
+    }
+}
+
+/* 
+    marquee-text-1-end
+*/

@@ -1,0 +1,105 @@
+/*
+    48. contact-page
+*/
+
+/* 
+    contact-6-start
+*/
+.bs-contact-6 {
+    &-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 85px;
+        align-items: center;
+
+        @media #{$xl,$lg} {
+            gap: 40px;
+        }
+
+        @media #{$md,$xs} {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &-img {
+        height: 825px;
+
+        @media #{$md} {
+            height: 500px;
+        }
+
+        @media #{$xs} {
+            height: 400px;
+        }
+    }
+
+    &-content {
+        .bs-form-1-item {
+            &-label {
+                font-size: 14px;
+                font-weight: 400;
+                opacity: 1;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+            }
+
+            &-input {
+                color: #888888;
+
+                &:is(textarea) {
+                    height: 70px;
+                }
+            }
+
+            .bs-btn-1 {
+                width: unset;
+                justify-content: center;
+
+                .text {
+                    color: var(--bs-clr-white-1);
+                }
+                .icon {
+                    color: var(--bs-clr-white-1); 
+                }
+
+                &:hover {
+                    .text {
+                        color: var(--bs-clr-pr-1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.bs-contact-page-map {
+    width: 100%;
+    height: 690px;
+    filter: grayscale(1);
+
+    @media #{$lg} {
+        height: 500px;
+    }
+
+    @media #{$md} {
+        height: 400px;
+    }
+
+    @media #{$xs} {
+        height: 300px;
+    }
+
+    @media #{$sm} {
+        height: 350px;
+    }
+
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* 
+    contact-6-end
+*/

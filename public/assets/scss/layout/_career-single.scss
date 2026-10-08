@@ -1,0 +1,260 @@
+/*
+    46. career-single
+*/
+
+/* 
+    career-single-start
+*/
+
+.bs-career-single {
+    &-content {
+        max-width: 730px;
+
+        @media #{$md,$xs} {
+            margin-bottom: 50px;
+        }
+    
+        h1,h2,h3,h4,h5,h6 {
+            font-family: var(--bs-font-pr-1);
+            color: #000;
+            line-height: 1.230;
+            margin-bottom: 16px;
+            font-weight: 700;
+
+            &:not(:first-child) {
+                margin-top: 45px;
+            }
+        }
+        
+        p,span,li {
+            font-family: var(--bs-font-pr-1);
+            color: #444444;
+            font-size: 18px;
+            line-height: 28px;
+        }
+
+        h1 {
+            font-size: 36px;
+            @media #{$lg} {
+                font-size: 34px;
+            }
+            @media #{$md} {
+                font-size: 30px;
+            }
+
+            @media #{$xs} {
+                font-size: 22px;
+            }
+
+            @media #{$sm} {
+                font-size: 26px;
+            }
+        }
+
+        h2 {
+            font-size: 32px;
+
+            @media #{$md} {
+                font-size: 30px;
+            }
+
+            @media #{$xs} {
+                font-size: 22px;
+            }
+
+            @media #{$sm} {
+                font-size: 26px;
+            }
+        }
+
+        h3 {
+            font-size: 26px;
+
+            @media #{$xs} {
+                font-size: 22px;
+            }
+
+            @media #{$sm} {
+                font-size: 26px;
+            }
+        }
+
+        h4 {
+            font-size: 28px;
+
+            @media #{$xs} {
+                font-size: 22px;
+            }
+
+            @media #{$sm} {
+                font-size: 26px;
+            }
+        }
+
+        h5 {
+            font-size: 22px;
+
+            @media #{$xs} {
+                font-size: 18px;
+            }
+        }
+
+        h6 {
+            font-size: 18px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 0;
+            margin-top: 40px;
+
+            li {
+                position: relative;
+                z-index: 1;
+                padding-left: 30px;
+
+                &::after {
+                    content: "";
+                    background-image: url(../img/illus/check-icon.svg);
+                    position: absolute;
+                    left: 0;
+                    top: 4px;
+                    width: 18px;
+                    height: 18px;
+                }
+
+                &:not(:last-child) {
+                    margin-bottom: 13px;
+                }
+            }
+        }
+
+    }
+
+    &-sidebar {
+        background: #F7F6F1;
+        padding: 48px 52px;
+
+        @media #{$lg} {
+            padding: 40px 20px;
+        }
+
+        @media #{$xs} {
+            padding: 40px 20px;
+        }
+
+        @media #{$sm} {
+            padding: 40px;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 40px;
+        }
+
+        &-list {
+            li {
+                font-family: var(--bs-font-1);
+                color: #000;
+                font-size: 18px;
+                line-height: 28px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                border-bottom: 1px solid #DFE1E5;
+                padding-bottom: 17px;
+                
+                &:not(:last-child) {
+                    margin-bottom: 18px;
+                }
+    
+                span {
+                    opacity: 72%;
+                    margin-left: auto;
+                }
+                
+            }
+        }
+
+        &-btn {
+            width: 100%;
+            text-align: center;
+            border: 2px solid var(--fx-clr-pr-1);
+            background: transparent;
+            padding: 17px 27px;
+
+            .text {
+                &::before {
+                    color: var(--fx-clr-pr-1);
+                }
+            }
+
+            &:hover {
+                background: var(--fx-clr-pr-1);
+            }
+        }
+    }
+
+    &-form { 
+        &-box {
+            .box-icon {
+                width: 92px;
+                height: 92px;
+                border-radius: 50%;
+                background-color: rgb(0 0 0 / 8%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        grid-template-columns: 1fr;
+        gap: 20px;
+
+        .bs-form-1-item {
+            &-label {
+                font-size: 14px;
+                font-weight: 400;
+                opacity: 56%;
+            }
+            &-input {
+                border-bottom: 1px solid #CED3CA;
+                font-size: 16px;
+                padding: 0;
+                color: #000;
+                font-weight: 400;
+            }
+
+            .bs-btn-1 {
+                width: 100%;
+                justify-content: center;
+            }
+
+            &::after {
+                height: 1px;
+            }
+
+
+
+            &:focus-within {
+                .bs-form-1-item-label {
+                    opacity: 1;
+                }
+                &::after {
+                    transform: scaleX(1);
+                }
+            }
+
+            &:last-child {
+                margin-top: 10px;
+            }
+        }
+
+    }
+}
+
+/* 
+    career-single-end
+*/

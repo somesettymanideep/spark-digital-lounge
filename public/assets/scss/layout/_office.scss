@@ -1,0 +1,259 @@
+/*
+    40. office
+*/
+
+
+/* 
+    office-1-start
+*/
+.bs-office-1 {
+    &-area {
+        @media #{$xl,$lg,$md,$xs} {
+            padding-top: 50px;
+        }
+    }
+    &-wrap {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 50px;
+        align-items: center;
+        margin-right: -170px;
+
+        @media #{$xxxl} {
+            margin-right: -60px;
+        }
+
+        @media #{$xxl} {
+            margin-right: 0px;
+            grid-template-columns: 1fr .5fr;
+        }
+
+        @media #{$xl} {
+            grid-template-columns: 1fr .2fr;
+            margin-right: 0px;
+            align-items: end;
+        }
+
+        @media #{$lg,$md,$xs} {
+            grid-template-columns: 1fr;
+            margin-right: 0px;
+            align-items: end;
+        }
+    }
+
+    &-left {
+        @media #{$xl,$lg,$md,$xs} {
+            padding-bottom: 50px;
+        }
+    }
+
+    &-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 60px;
+
+        @media #{$xxxl,$xxl,$xl,$lg,$md} {
+            gap: 30px;
+        }
+
+        @media #{$xs} {
+            gap: 30px;
+            grid-template-columns: 1fr;
+        }
+
+        @media #{$sm} {
+            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    &-card {
+
+        &:not(:last-child) {
+            padding-right: 60px;
+            border-right: 1px solid #BBBBBB;
+            @media #{$xxxl,$xxl,$xl,$lg} {
+                padding-right: 30px;
+            }
+            @media #{$md,$xs} {
+                padding-right: 0px;
+                border-right: none;
+            }
+        }
+
+        .card-img {
+            height: 140px;
+            margin-bottom: 25px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            font-family: var(--bs-font-2);
+            margin-bottom: 7px;
+        }
+
+        .disc {
+            font-family: var(--bs-font-2);
+            margin-bottom: 6px;
+        }
+        
+        .link {
+            display: block;
+            font-family: var(--bs-font-2);
+            font-weight: 500;
+            text-transform: capitalize;
+            transition: .4s var(--bs-cube-2);
+
+            &:hover {
+                color: var(--bs-clr-pr-1);
+                transform: translateX(3px);
+            }
+
+            &:not(:last-child) {
+                margin-bottom: 16px;
+            }
+
+            &:last-child {
+                font-size: 15px;
+            }
+        }
+    }
+
+    &-bg-img {
+
+        @media #{$lg,$md,$xs} {
+            max-width: 400px;
+        }
+
+    }
+}
+
+
+
+
+
+/* 
+    office-1-end
+*/
+
+
+/* 
+    follow-us-3-start
+*/
+.bs-follow-3 {
+
+    &-sec-title {
+        .bs-subtitle-1 {
+            display: flex;
+            align-items: center ;
+            justify-content: center;
+        }
+    }
+
+    &-link {
+        .link-elm {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--bs-font-2);
+            text-transform: capitalize;
+            font-size: 47px;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            gap: 45px;
+            color: #212121;
+            padding: 35px  0;
+            padding-right: 110px;
+
+            @media #{$xl,$lg,$md} {
+                font-size: 36px;
+                padding-right: 0;
+            }
+
+            @media #{$xs} {
+                font-size: 30px;
+                padding-right: 0;
+            }
+
+            &:not(:last-child) {
+                border-bottom: 1px solid #212121;
+            }
+
+            .icon {
+                transition: .4s var(--bs-cube-2);
+            }
+
+            .text {
+                margin-right: auto;
+                transition: .4s var(--bs-cube-2);
+            }
+
+            .arrow {
+                font-size: 32px;
+                transform: rotate(-45deg);
+                transition: .4s var(--bs-cube-2);
+            }
+
+            &:hover {
+                .arrow {
+                    color: var(--bs-clr-pr-1);
+                    transform: rotate(0);
+                }
+                .text {
+                    color: var(--bs-clr-pr-1);
+                }
+                .icon {
+                    color: var(--bs-clr-pr-1);
+                }
+            }
+        }
+    }
+}
+
+/* 
+    follow-us-3-end
+*/
+
+/* 
+    office-3-start
+*/
+.bs-office-3 {
+    &-area {
+        background-color: #eef4eb;
+    
+        .bs-office-1-left {
+            max-width: 1065px;
+            padding-bottom: 0;
+        }
+
+        .bs-office-1-card {
+            padding-bottom: 70px;
+        }
+
+    }
+
+    &-line {
+        width: 100%;
+        height: 1px;
+        background: #BBBBBB;
+    }
+
+    &-bg-img {
+        width: 28%;
+        text-align: right;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+
+        @media #{$xl,$lg,$md,$xs} {
+            display: none;
+        }
+    }
+}
+/* 
+    office-3-end
+*/
+

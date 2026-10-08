@@ -1,0 +1,63 @@
+/*
+    49. error-page
+*/
+
+
+.bs-error-page {
+    &-wrap {
+        padding-top: 150px;
+        background-repeat: no-repeat;
+        padding-bottom: 160px;
+
+        @media #{$xs} {
+            padding-top: 0px;
+            background-repeat: no-repeat;
+            padding-bottom: 0px;
+        }
+    }
+
+    &-content {
+        max-width: 600px;
+        margin-left: auto;
+
+        .title-1 {
+            font-size: 76px;
+            font-weight: 400;
+
+            @media #{$xs} {
+                font-size: 30px;
+            }
+        }
+
+        .title-2 {
+            font-size: 90px;
+            color: var(--bs-clr-pr-1);
+            margin-bottom: 17px;
+
+            @media #{$xs} {
+                font-size: 30px;
+            }
+        }
+
+        .disc {
+            max-width: 418px;
+            margin-bottom: 32px;
+        }
+
+        .bs-btn-1 {
+            background: var(--bs-clr-black-1);
+
+            .shape {
+                background: var(--bs-clr-pr-1);
+            }
+
+            .icon i:nth-child(2) {
+                color: var(--bs-clr-white-1);
+            }
+
+            &:hover {
+                color: var(--bs-clr-white-1);
+            }
+        }
+    }
+}

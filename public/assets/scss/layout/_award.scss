@@ -1,0 +1,403 @@
+/*
+    23. award
+*/
+
+
+/* 
+    award-1-start
+*/
+.bs-award-1 {
+
+    &-sec-title {
+        .bs-subtitle-1  {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-transform: unset;
+        }
+    }
+
+    &-item {
+        &-wrap {
+            display: flex;
+            justify-content: space-between;
+            gap: 65px;
+            align-items: center;
+
+            @media #{$lg} {
+                gap: 20px;
+            }
+
+            @media #{$md,$xs} {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+        }
+
+        border-top: 1px solid #A9A9A9;
+        padding: 24px 0;
+
+        .content-wrap {
+            position: relative;
+            z-index: 1;
+        }
+
+        
+        .item-logo {
+            max-width: 170px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .item-img {
+            max-width: 222px;
+            height: 62px;
+            width: 100%;
+        }
+        
+        .item-date {
+            flex: 0 0 auto;
+            font-family: var(--bs-font-2);
+            max-width: 174px;
+            width: 100%;
+            
+            i {
+                color: #5C5C5C;
+                margin-right: 5px;
+            }
+        }
+
+        .item-disc {
+            color: #7a7a7a;
+            font-family: var(--bs-font-2);
+            line-height: 24px;
+        }
+
+        .project-img {
+            max-width: 145px;
+            width: 100%;
+        }
+
+        .item-title {
+            font-size: 28px;
+            letter-spacing: -0.03em;
+            margin-bottom: 23px;
+        }
+        
+        .secend-content {
+            position: absolute;
+            bottom: -24px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: end;
+            gap: 55px;
+            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+            transition: var(--bs-cube-1);
+            transition-delay: 0s;
+
+
+            @media #{$lg} {
+                gap: 20px;
+            }
+
+
+            @media #{$md,$xs} {
+                display: none;
+            }
+
+            .item-disc {
+                margin-bottom: 30px;
+            }
+        }
+
+        
+        .first-content {
+            display: flex;
+            align-items: center;
+            gap: 70px;
+            transition: var(--bs-cube-1);
+            transition-delay: .3s;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+            @media #{$lg,$md} {
+                gap: 20px;
+            }
+
+            @media #{$xs} {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+
+        &:hover {
+            .first-content {
+                @media #{$over,$xxxl,$xxl,$xl,$lg} {
+                    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+                    transition-delay: 0s;
+                }
+
+            }
+            .secend-content {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                transition-delay: .3s;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* 
+    award-1-end
+*/
+
+
+/* 
+    award-5-start
+*/
+.bs-award-5 {
+    &-area {
+        background-color: #F5F5F5;
+        border-radius: 24px;
+        max-width: 1720px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @media #{$md,$xs} {
+            padding-bottom: 100px;
+        }
+    }
+
+    &-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1.52fr;
+        gap: 66px;
+
+        @media #{$lg} {
+            gap: 40px;
+        }
+
+        @media #{$md,$xs} {
+            gap: 50px;
+            grid-template-columns: 1fr ;
+        }
+    }
+
+    &-img {
+        max-width: 428px;
+        height: 540px;
+        
+        @media #{$lg,$md} {
+            height: 440px;
+        }
+        
+        @media #{$xs} {
+            height: 400px;
+        }
+    }
+
+    &-item {
+        &-single {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            border-radius: 6px;
+            border: 1px solid rgb(6 6 6 / 20%);
+            padding: 18px 28px;
+            gap: 32px;
+            transition: .4s var(--bs-cube-2);
+
+            &:not(:last-child) {
+                margin-bottom: 20px;
+            }
+
+            @media #{$xs} {
+                flex-wrap: wrap;
+            }
+
+            @media #{$sm} {
+                flex-wrap: nowrap;
+            }
+            .year {
+                font-size: 48px;
+                line-height: 1;
+                font-weight: 800;
+                opacity: 8%;
+                transition: .4s var(--bs-cube-2);
+
+                @media #{$lg,$md,$xs} {
+                    font-size: 36px;
+                }
+            }
+
+            .title {
+                font-size: 24px;
+                font-weight: 400;
+                transition: .4s var(--bs-cube-2);
+
+                @media #{$lg,$md,$xs} {
+                    font-size: 22px;
+                }
+            }
+
+            .icon {
+                margin-left: auto;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                border: 1px solid var(--bs-clr-black-2);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--bs-clr-black-2);
+                font-size: 18px;
+                opacity: 72%;
+                transform: rotate(-45deg);
+                transition: .4s var(--bs-cube-2);
+                flex: 0 0 auto;
+            }
+
+            .item-img {
+                position: absolute;
+                opacity: 0;
+                z-index: 1;
+
+            }
+
+            &:hover {
+                background-color: var(--bs-clr-h-4);
+                z-index: 2;
+                .year , .title{
+                    color: var(--bs-clr-white-1);
+                    opacity: 1;
+                }
+
+                .icon {
+                    color: var(--bs-clr-white-1);
+                    border-color: var(--bs-clr-white-1);
+                    opacity: 1;
+                }
+            }
+            
+        }
+    }
+}
+
+
+
+
+/* 
+    award-5-end
+*/
+
+/* 
+    award-6-start
+*/
+.bs-award-6 {
+
+    &-area {
+        margin-top: -300px;
+    }
+
+    &-wrap {
+        background: #F7F6F1;
+        padding: 62px 68px;
+
+        @media #{$xs} {
+            padding: 62px 30px;
+        }
+
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 26px;
+
+            @media #{$md} {
+                font-size: 34px;
+            }
+
+            @media #{$xs} {
+                font-size: 40px;
+            }
+        }
+        .disc {
+            margin-bottom: 64px;
+        }
+    }
+
+    &-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 95px;
+
+        @media #{$xl} {
+            gap: 30px;
+        }
+
+        @media #{$lg} {
+            gap: 30px;
+            grid-template-columns: 1fr 1fr 1fr ;
+        }
+
+        @media #{$md} {
+            gap: 30px;
+            grid-template-columns: 1fr 1fr ;
+        }
+
+        @media #{$xs} {
+            gap: 30px;
+            grid-template-columns: 1fr ;
+        }
+
+        &-single {
+            .icon {
+                width: 52px;
+                height: 52px;
+                background: rgb(0 0 0 / 6%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4px;
+                font-size: 30px;
+                color: #000;
+            }
+
+            .top {
+                display: flex;
+                align-items: end;
+                justify-content: space-between;
+                gap: 30px;
+                border-bottom: 1px solid rgb(29 29 61 / 20%);
+                padding-bottom: 20px;
+                margin-bottom: 18px;
+            }
+
+            .item-disc {
+                font-size: 20px;
+            }
+
+            .year {
+                font-size: 32px;
+                font-weight: 700;
+                line-height: 1;
+                color: rgb(0 0 0 / 16%);
+            }
+        }
+    }
+    
+}
+
+/* 
+    award-6-end
+*/

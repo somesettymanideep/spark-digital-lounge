@@ -1,0 +1,293 @@
+/*
+    43. team-details
+*/
+
+
+/* 
+    team-details-1-start
+*/
+.bs-team-details {
+    &-area {
+        padding-top: 100px;
+    }
+    &-person {
+        display: grid;
+        grid-template-columns: 1fr 1.27fr;
+        gap: 100px;
+        margin-top: 60px;
+
+        @media #{$xl,$lg} {
+            gap: 50px;
+        }
+
+        @media #{$md,$xs} {
+            gap: 50px;
+            grid-template-columns: 1fr ;
+        }
+
+        &-img {
+            height: 820px;
+
+            img {
+                object-position: top;
+            }
+
+            @media #{$md} {
+                height: 600px;
+            }
+
+            @media #{$xs} {
+                height: 400px;
+            }
+
+            @media #{$sm} {
+                height: 500px;
+            }
+        }
+
+        &-social {
+            background: #fff;
+            border: 1px solid #EEEEEE;
+            display: inline-flex;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: -12px 12px 36px rgb(0 0 0 / 12%);
+        
+            a {
+                display: inline-flex;
+                width: 50px;
+                height: 50px;
+                justify-content: center;
+                align-items: center;
+                font-size: 18px;
+                color: #000;
+                transition: all .3s var(--bs-cube-2);
+
+                &:not(:last-child) {
+                    border-right: 1px solid #EEEEEE;
+                }
+        
+                &:hover {
+                    color: var(--bs-clr-pr-1);
+                }
+            }
+        }
+
+        &-info {
+
+            .person-name {
+                font-size: 48px;
+                font-weight: 700;
+                line-height: 1.16;
+                margin-bottom: 10px;
+
+                @media #{$xl} {
+                    font-size: 40px;
+                }
+
+                @media #{$lg} {
+                    font-size: 36px;
+                }
+
+                @media #{$md} {
+                    font-size: 32px;
+                }
+
+                @media #{$xs} {
+                    font-size: 24px;
+                }
+
+                @media #{$sm} {
+                    font-size: 28px;
+                }
+
+
+            }
+
+            .person-bio {
+                font-size: 20px;
+                font-weight: 500;
+                color: var(--bs-clr-pr-1);
+                margin-bottom: 29px;
+            }
+
+            
+            .person-disc {
+                margin-bottom: 29px;
+            }
+
+            .person-degi {
+                margin-bottom: 30px;
+
+                li {
+                    font-family: var(--bs-font-1);
+                    text-transform: capitalize;
+                    font-size: 18px;
+                    line-height: 28px;
+                    color: #444444;
+
+                    &:not(:last-child) {
+                        margin-bottom: 17px;
+                    }
+
+                    b {
+                        color: #000;
+                        font-weight: 500;
+                        display: inline-block;
+                        width: 20%;
+
+                        @media #{$lg,$md,$xs} {
+                            width: 30%;
+                        }
+                    }
+                }
+            }
+
+            .info-subtitle {
+                font-size: 24px;
+                margin-bottom: 17px;
+            }
+            
+            
+        }
+    }
+
+    &-disc {
+        background: #1D1D3D;
+        padding-top: 200px;
+        margin-top: -100px;
+        padding-bottom: 375px;
+
+        @media #{$md,$xs} {
+            margin-top: 100px;
+            padding-top: 100px;
+        }
+
+        &-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 180px;
+
+            @media #{$xl,$lg} {
+                gap: 60px;
+            }
+
+            @media #{$md,$xs} {
+                gap: 60px;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        &-content {
+            .title {
+                font-size: 40px;
+                margin-bottom: 17px;
+                color: var(--bs-clr-white-1);
+
+                @media #{$md} {
+                    font-size: 36px;
+                }
+
+                @media #{$xs} {
+                    font-size: 22px;
+                }
+
+                @media #{$sm} {
+                    font-size: 28px;
+                }
+            }
+
+            .disc {
+                color: var(--bs-clr-white-1);
+                opacity: 80%;
+                &:not(:last-child) {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+
+        &-skill {
+            > .title {
+                font-size: 40px;
+                margin-bottom: 17px;
+                color: var(--bs-clr-white-1);
+
+                @media #{$md} {
+                    font-size: 36px;
+                }
+
+                @media #{$xs} {
+                    font-size: 22px;
+                }
+
+                @media #{$sm} {
+                    font-size: 28px;
+                }
+            }
+
+            .disc {
+                color: var(--bs-clr-white-1);
+                opacity: 80%;
+                margin-bottom: 35px;
+            }
+
+
+        }
+
+    }
+    
+    &-contact {
+        margin-top: -338px;
+
+        &-row {
+            background: #F6F6F6;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            border-radius: 16px;
+            overflow: hidden;
+
+            @media #{$md,$xs} {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        &-form {
+            padding: 64px;
+
+            @media #{$lg,$md,$xs} {
+                padding: 64px 30px;
+            }
+
+            .title {
+                color: #000;
+                font-size: 32px;
+                line-height: 1.12;
+                margin-bottom: 40px;
+
+                
+                @media #{$lg} {
+                    font-size: 30px;
+                }
+
+                @media #{$xs} {
+                    font-size: 22px;
+                }
+
+                @media #{$sm} {
+                    font-size: 26px;
+                }
+
+            }
+
+            .fx-form-1-input {
+                background: transparent;
+            }
+        }
+    }
+}
+
+
+
+/* 
+    team-details-1-end
+*/

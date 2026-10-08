@@ -1,0 +1,131 @@
+
+
+@font-face {
+    font-family: "flaticon_barsi";
+    src: url("../fonts/flaticon_barsi.woff2?84b98d2768256259aeb7ee1582429b12") format("woff2"),
+url("../fonts/flaticon_barsi.woff?84b98d2768256259aeb7ee1582429b12") format("woff"),
+url("../fonts/flaticon_barsi.eot?84b98d2768256259aeb7ee1582429b12#iefix") format("embedded-opentype"),
+url("../fonts/flaticon_barsi.ttf?84b98d2768256259aeb7ee1582429b12") format("truetype"),
+url("../fonts/flaticon_barsi.svg?84b98d2768256259aeb7ee1582429b12#flaticon_barsi") format("svg")
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_barsi !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-arrow-pointing-to-left:before {
+    content: "\f101";
+}
+.flaticon-phone-call:before {
+    content: "\f102";
+}
+.flaticon-telephone:before {
+    content: "\f103";
+}
+.flaticon-play-button:before {
+    content: "\f104";
+}
+.flaticon-quote:before {
+    content: "\f105";
+}
+.flaticon-house:before {
+    content: "\f106";
+}
+.flaticon-denver:before {
+    content: "\f107";
+}
+.flaticon-quotation:before {
+    content: "\f108";
+}
+.flaticon-worker:before {
+    content: "\f109";
+}
+.flaticon-construction:before {
+    content: "\f10a";
+}
+.flaticon-play:before {
+    content: "\f10b";
+}
+.flaticon-left:before {
+    content: "\f10c";
+}
+.flaticon-architect:before {
+    content: "\f10d";
+}
+.flaticon-next:before {
+    content: "\f10e";
+}
+.flaticon-next-1:before {
+    content: "\f10f";
+}
+.flaticon-right-arrow:before {
+    content: "\f110";
+}
+.flaticon-play-button-1:before {
+    content: "\f111";
+}
+.flaticon-blueprint:before {
+    content: "\f112";
+}
+.flaticon-mail:before {
+    content: "\f113";
+}
+.flaticon-right-arrows:before {
+    content: "\f114";
+}
+.flaticon-property-insurance:before {
+    content: "\f115";
+}
+.flaticon-costumer:before {
+    content: "\f116";
+}
+.flaticon-real-estate:before {
+    content: "\f117";
+}
+.flaticon-achievement:before {
+    content: "\f118";
+}
+.flaticon-blueprint-1:before {
+    content: "\f119";
+}
+.flaticon-goodwill:before {
+    content: "\f11a";
+}
+.flaticon-star:before {
+    content: "\f11b";
+}
+.flaticon-mechanic:before {
+    content: "\f11c";
+}
+.flaticon-maintenance:before {
+    content: "\f11d";
+}
+.flaticon-minimalist:before {
+    content: "\f11e";
+}
+.flaticon-house-measurement:before {
+    content: "\f11f";
+}
+.flaticon-insurance:before {
+    content: "\f120";
+}
+.flaticon-top-right:before {
+    content: "\f121";
+}
+.flaticon-electrical:before {
+    content: "\f122";
+}
+.flaticon-check:before {
+    content: "\f123";
+}
+.flaticon-goodwill-1:before {
+    content: "\f124";
+}
+
