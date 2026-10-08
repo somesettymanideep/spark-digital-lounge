@@ -239,8 +239,31 @@
                     flex-direction: column;
                 }
                 .sea-portfolio-buttons {
-                    column-gap: 40px;
-                    row-gap: 44px;
+                    column-gap: 30px;
+                    row-gap: 40px;
+                }
+                .sea-portfolio-btn .line-1::after,
+                .sea-portfolio-btn .line-1::before,
+                .sea-portfolio-btn .line-2::after,
+                .sea-portfolio-btn .line-2::before {
+                    width: 8px;
+                    height: 8px;
+                }
+                .sea-portfolio-btn .line-1::after {
+                    left: -8px;
+                    top: -8px;
+                }
+                .sea-portfolio-btn .line-1::before {
+                    right: -8px;
+                    bottom: -8px;
+                }
+                .sea-portfolio-btn .line-2::after {
+                    right: -8px;
+                    top: -8px;
+                }
+                .sea-portfolio-btn .line-2::before {
+                    left: -8px;
+                    bottom: -8px;
                 }
             }
         </style>
