@@ -4,6 +4,6 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 // Redirect / to the template's home page.
 export const Route = createFileRoute("/")({
   beforeLoad: () => {
-    throw redirect({ href: "/index.html" });
+    throw redirect({ href: "/index-6.html" });
   },
 });
