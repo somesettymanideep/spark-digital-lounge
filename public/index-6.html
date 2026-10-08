@@ -4,8 +4,12 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Barsi - Architecture & Interior WordPress Theme</title>
-        <meta name="description" content="">
+        <title>SEA — Studio for Eclectic Architecture</title>
+        <meta name="description" content="Explore architecture and interior design by SEA — Studio for Eclectic Architecture.">
+        <meta property="og:title" content="SEA — Studio for Eclectic Architecture">
+        <meta property="og:description" content="Explore architecture and interior design by SEA — Studio for Eclectic Architecture.">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary_large_image">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" type="image/png" href="/favicon.png">
         <!-- Place favicon.ico in the root directory -->
@@ -21,12 +25,36 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- SEA brand logo sizing, this page only -->
         <style>
-            /* Home 2 header: keep it in normal flow so the hero
-               slider still displays right below the header */
-            .bs-header-2-area.wa_sticky_header {
-                position: relative;
+            /* Home 6 only: transparent overlay becomes a white sticky header. */
+            .bs-header-2-area.sea-header {
+                --sea-header-foreground: var(--bs-clr-white-1);
+                position: fixed;
                 top: 0;
-                background: #fff;
+                z-index: 100;
+                background: transparent;
+                transition: background-color 0.25s ease;
+            }
+            .bs-header-2-area.sea-header.is-scrolled {
+                --sea-header-foreground: var(--bs-clr-black-1);
+                background: var(--bs-clr-white-1);
+            }
+            .sea-header .bs-main-navigation .navbar-nav > li > a,
+            .sea-header .bs-social-1 .link {
+                color: var(--sea-header-foreground);
+            }
+            .sea-header .bs-header-2-action-link .bs-offcanvas-btn-1 .line {
+                background: var(--sea-header-foreground);
+            }
+            .sea-header .bs-header-logo-1 img {
+                filter: brightness(0) invert(1);
+            }
+            .sea-header.is-scrolled .bs-header-logo-1 img {
+                filter: none;
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .bs-header-2-area.sea-header {
+                    transition: none;
+                }
             }
             .bs-header-logo-1 img {
                 display: block;
@@ -92,6 +120,18 @@
                 background: #cfe7ec;
             }
         </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var header = document.querySelector('.sea-header');
+                if (!header) return;
+                function updateHeader() {
+                    header.classList.toggle('is-scrolled', window.scrollY > 24);
+                }
+                updateHeader();
+                window.addEventListener('scroll', updateHeader, { passive: true });
+                window.addEventListener('pageshow', updateHeader);
+            });
+        </script>
     </head>
 
     <body class="bs-home-4">
@@ -108,7 +148,7 @@
             <!-- end preloader -->
 
             <!-- header-start -->
-            <header class="bs-header-2-area wa_sticky_header">
+            <header class="bs-header-2-area sea-header">
                 <div class="bs-header-2-row d-flex align-items-center justify-content-between">
 
                     <!-- logo -->
@@ -220,7 +260,7 @@
                         </div>
 
                         <!-- offcanvas-btn -->
-                        <button type="button" aria-label="name" class="bs-offcanvas-btn-1  offcanvas_toggle">
+                        <button type="button" aria-label="Open menu" class="bs-offcanvas-btn-1  offcanvas_toggle">
                             <span class="line"></span>
                             <span class="line"></span>
                             <span class="line"></span>
