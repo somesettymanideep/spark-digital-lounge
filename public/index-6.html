@@ -45,12 +45,6 @@
             .sea-header .bs-header-2-action-link .bs-offcanvas-btn-1 .line {
                 background: var(--sea-header-foreground);
             }
-            .sea-header .bs-header-logo-1 img {
-                filter: brightness(0) invert(1);
-            }
-            .sea-header.is-scrolled .bs-header-logo-1 img {
-                filter: none;
-            }
             @media (prefers-reduced-motion: reduce) {
                 .bs-header-2-area.sea-header {
                     transition: none;
@@ -107,6 +101,18 @@
             }
             .bs-hero-4-area > .bs-hero-4-bg {
                 height: 100%;
+            }
+            /* Replace Home 4's upward slide with Home 3's strip reveal and zoom. */
+            .bs-home-4 .bs-hero-4-slider-img .swiper-container .swiper-slide .bs-hero-4-slider-img-item .main-img img {
+                transform: none;
+                transform-origin: left;
+                transition: none;
+            }
+            .bs-hero-4-slider-img-item .main-img {
+                overflow: hidden;
+            }
+            .bs-home-4 .bs-hero-4-slider-img-item::after {
+                content: none;
             }
             .bs-hero-4-big-title {
                 display: none;
@@ -303,22 +309,6 @@
                                         <div class="main-img wa-img-cover">
                                             <img src="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" alt="Vedanta grand entrance gate">
                                         </div>
-                                        <!-- trusted -->
-                                        <div class="bs-hero-4-slider-img-item-trusted">
-                                            <h5 class="bs-h-4 title">trusted</h5>
-                                            <p class="bs-p-4 ratting" >
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                4.8 view
-                                            </p>
-
-                                            <p class="bs-p-4 disc">
-                                                discover the architectural
-                                            </p>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -328,22 +318,6 @@
                                         <div class="main-img wa-img-cover">
                                             <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Garden villa landscape">
                                         </div>
-                                        <!-- trusted -->
-                                        <div class="bs-hero-4-slider-img-item-trusted">
-                                            <h5 class="bs-h-4 title">trusted</h5>
-                                            <p class="bs-p-4 ratting" >
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                4.8 view
-                                            </p>
-
-                                            <p class="bs-p-4 disc">
-                                                discover the architectural
-                                            </p>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -352,22 +326,6 @@
                                     <div class="bs-hero-4-slider-img-item ">
                                         <div class="main-img wa-img-cover">
                                             <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Modern residential tower">
-                                        </div>
-                                        <!-- trusted -->
-                                        <div class="bs-hero-4-slider-img-item-trusted">
-                                            <h5 class="bs-h-4 title">trusted</h5>
-                                            <p class="bs-p-4 ratting" >
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                4.8 view
-                                            </p>
-
-                                            <p class="bs-p-4 disc">
-                                                discover the architectural
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -1727,6 +1685,39 @@
         <script src="assets/js/lenis.min.js"></script>
         <script src="assets/js/ScrollTrigger.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script>
+            // Start after the template creates its Swiper and dismisses the preloader.
+            window.addEventListener('load', function () {
+                window.setTimeout(function () {
+                    var element = document.querySelector('.bs-h4-img-active');
+                    var slider = element && element.swiper;
+                    if (!slider || !window.gsap) return;
+                    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+                    var animation;
+                    function revealImage(delay) {
+                        if (animation) animation.kill();
+                        var frames = element.querySelectorAll('.main-img');
+                        var images = element.querySelectorAll('.main-img img');
+                        gsap.set(frames, { clearProps: 'clipPath' });
+                        gsap.set(images, { clearProps: 'transform' });
+                        if (reducedMotion.matches) return;
+                        var slide = slider.slides[slider.activeIndex];
+                        var frame = slide && slide.querySelector('.main-img');
+                        var image = frame && frame.querySelector('img');
+                        if (!frame || !image) return;
+                        animation = gsap.timeline({ defaults: { ease: 'ease1' }, delay: delay });
+                        animation.fromTo(frame,
+                            { clipPath: 'polygon(25% 0%,25% 0%,25% 100%,50% 100%,50% 0%,50% 0%,50% 100%,100% 100%,100% 0%,100% 0%,100% 100%,25% 100%)' },
+                            { clipPath: 'polygon(25% 0%,0% 0%,0% 100%,50% 100%,50% 0%,23% 0%,24% 100%,100% 100%,100% 0%,46% 0%,45% 100%,25% 100%)', duration: 1.2, clearProps: 'clipPath' }
+                        );
+                        animation.fromTo(image, { scale: 1.2 }, { scale: 1, duration: 2, clearProps: 'transform' }, '<');
+                    }
+                    revealImage(0.4);
+                    slider.on('slideChangeTransitionStart', function () { revealImage(0); });
+                    reducedMotion.addEventListener('change', function () { revealImage(0); });
+                }, 1100);
+            });
+        </script>
     </body>
 </html>
 
