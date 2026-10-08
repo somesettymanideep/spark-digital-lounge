@@ -1,0 +1,62 @@
+/*
+    09. preloader
+*/
+
+
+/* 
+	preloader-css-start
+*/
+
+.lw-preloader {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	width: 100%;
+	z-index: 99999999;
+    overflow: hidden;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	background-color: var(--bs-clr-white-1);
+	transition: all 1s cubic-bezier(0.55, 0.085, 0, 0.99);
+
+
+	&::after {
+		content: "";
+		width: 200px;
+		height: 110px;
+		border: 2px solid var(--bs-clr-pr-1);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		transition: all 1s cubic-bezier(0.55, 0.085, 0, 0.99);
+	}
+	&-content {
+		overflow: hidden;
+		width: 200px;
+		transition: all 1s cubic-bezier(0.55, 0.085, 0, 0.99);
+	}
+	
+
+	&:is(.preloaded) {
+		&::after {
+			width: 0px;
+		}
+		.lw-preloader-content {
+			width: 0px;
+		}
+	}
+
+
+}
+
+
+
+
+
+
+/* 
+	preloader-css-end
+*/

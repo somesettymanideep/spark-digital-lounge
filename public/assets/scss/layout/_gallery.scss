@@ -1,0 +1,144 @@
+/*
+    35. gallery
+*/
+
+
+/* 
+    gallery-2-start
+*/
+.bs-gallery-2 {
+
+
+
+    &-wrap {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        gap: 20px;
+        align-items: start;
+        perspective: 2000px;
+        transform-style: preserve-3d;
+
+        @media #{$lg,$md} {
+            grid-template-columns: 1fr 1.5fr;
+        }
+
+        @media #{$xs} {
+            grid-template-columns: 1fr;
+        }
+
+        .left {
+            display: grid;
+            gap: 20px;
+        }
+
+        .meddle {
+            display: grid;
+            gap: 20px;
+        
+            &-row {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 20px;
+                align-items: end;
+        
+                &-2 {
+                    display: grid;
+                    grid-template-columns: 1fr 2fr;
+                    gap: 20px;
+                }
+                
+            }
+            
+
+        }
+
+        .right {
+            display: grid;
+            align-self: center;
+            gap: 80px;
+
+            @media #{$lg,$md} {
+                gap: 20px;
+                grid-template-columns: 1fr 1fr;
+                grid-column-start: 1;
+                grid-column-end: -1;
+                align-items: center;
+            }
+
+            @media #{$xs} {
+                gap: 20px;
+            }
+        }
+
+        .bs-btn-1 {
+            border: 1px solid var(--bs-clr-black-1);
+            background: transparent;
+            color: var(--bs-clr-black-1);
+
+            .shape {
+                background: var(--bs-clr-pr-1);
+            }
+
+            .icon {
+                i {
+                    &:nth-child(2) {
+                        color: var(--bs-clr-black-1);
+                    }
+                }
+            }
+
+            &:hover {
+                border-color: transparent;
+            }
+        }
+    }
+
+    &-sec-title  {
+  
+        .bs-sec-title-1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+
+            @media #{$xxl} {
+                font-size: 55px;
+            }
+        
+            @media #{$xl} {
+                font-size: 50px;
+            }
+        
+            @media #{$lg} {
+                font-size: 45px;
+            }
+        
+            @media #{$md} {
+                font-size: 40px;
+            }
+        
+            @media #{$xs} {
+                font-size: 30px;
+            }
+        
+            @media #{$sm} {
+                font-size: 35px;
+            }
+        }
+    }
+
+    &-img {
+        width: 100%;
+        height: 270px;
+
+        &:is(.xs-size) {
+            height: 230px;
+        }
+
+        &:is(.sm-size) {
+            height: 357px;
+        }
+    }
+}
+
+/* 
+    gallery-2-end
+*/

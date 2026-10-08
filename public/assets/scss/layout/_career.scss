@@ -1,0 +1,175 @@
+/*
+    45. career
+*/
+
+/* 
+    career-page-start
+*/
+.bs-career {
+    &-sec-title {
+        max-width: 975px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 32px;
+
+        @media #{$md} {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media #{$xs} {
+            grid-template-columns: 1fr;
+        }
+
+        @media #{$sm} {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        &-single {
+            border: 1px solid #DBDBDB;
+            border-radius: 8px;
+            padding: 43px 48px;
+
+            @media #{$xl,$lg,$md,$xs} {
+                padding: 34px 20px;
+            }
+            
+            .item-icon {
+                width: 52px;
+                margin-bottom: 24px;
+            }
+
+            .item-title {
+                font-size: 20px;
+                margin-bottom: 16px;
+            }
+
+            .item-disc {
+                font-size: 16px;
+                line-height: 26px;
+            }
+
+            &:hover {
+                .item-icon {
+                    svg {
+                        animation: jackInTheBox 1s;
+                    }
+                    i {
+                        animation: jackInTheBox 1s;
+                    }
+                }
+            }
+        }
+        
+    }
+    
+}
+/* 
+    career-page-end
+*/
+/* 
+    career-offer-start
+*/
+.bs-career-offer {
+    &-area {
+        background-color: #EEF3EC;
+    }
+
+    &-sec-title {
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: auto;
+
+        .bs-sec-title-1 {
+            margin-bottom: 23px;
+        }
+    }
+
+    &-accordion {
+        max-width: 1058px;
+        margin-left: auto;
+        margin-right: auto;
+
+        .bs-accordion-item {
+            padding: 0;
+            margin-bottom: 0;
+            border-color: #BEBEBE;
+
+            &:nth-child(1) {
+                border-top: 1px solid #BEBEBE;
+            }
+
+            .item-title {
+                font-size: 32px;
+                font-weight: 500;
+                padding: 45px 0;
+
+                @media #{$md} {
+                    font-size: 28px; 
+                }
+
+                @media #{$xs} {
+                    font-size: 22px; 
+                }
+
+                @media #{$md} {
+                    font-size: 24px; 
+                }
+
+                .icon {
+                    font-size: 15px;
+                    width: 32px;
+                    height: 32px;
+                    border: 1.5px solid #000;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            .item-body {
+                padding-bottom: 48px;
+                .item-list {
+                    display: flex;
+                    gap: 120px;
+                    margin-top: -8px;
+                    margin-bottom: 26px;
+
+                    @media #{$md} {
+                        gap: 30px;
+                    }
+
+                    @media #{$xs} {
+                        gap: 30px;
+                        flex-wrap: wrap;
+                    }
+
+                    li {
+                        text-transform: capitalize;
+
+                        span {
+                            font-size: 22px;
+                            font-weight: 500;
+                            display: block;
+                        }
+                    }
+                }
+
+                p {
+                    padding-left: 0;
+                    font-weight: 400;
+                    padding-bottom: 30px;
+                }
+                
+            }
+        }
+    }
+}
+/* 
+    career-offer-end
+*/

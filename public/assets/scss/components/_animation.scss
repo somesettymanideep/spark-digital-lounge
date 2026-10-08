@@ -1,0 +1,69 @@
+/*
+    10. animation
+*/
+
+/* 
+    wa-wow-start
+*/
+.jarallax {
+    position: relative;
+    z-index: 0;
+}
+.jarallax > .jarallax-img,
+picture.jarallax-img img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+
+.wa-img-split {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 400px;
+    cursor: pointer;
+
+    img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+        opacity: 0;
+        transition: all 1s;
+    }
+    div {
+        position: absolute;
+        z-index: 1;
+        background-repeat: no-repeat;
+        transform: rotateY(50deg) scale(0.5);
+        opacity: 0;
+        transform-origin: bottom;
+        transition: all 1s cubic-bezier(0.71, 0.05, 0.09, 0.91);
+    }
+
+    // &:is(.active) {
+    //     div {
+    //         opacity: 1;
+    //         transform: rotate(0deg) translateY(0);
+    //     }
+    // }
+
+    // &:hover {
+    //     div {
+    //         opacity: 1;
+    //         transform: rotate(0deg) translateY(0);
+    //     }
+    // }
+}
+
+/* 
+    wa-wow-end
+*/

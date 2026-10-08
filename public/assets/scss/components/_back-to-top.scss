@@ -1,0 +1,77 @@
+/*
+    13. back-to-top
+*/
+
+/* 
+    start-back-to-top
+*/
+
+.wa-back-to-top {
+    position: fixed;
+    right: 1.5%;
+    bottom: -12.5%;
+    z-index: 4;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #000;
+    transform: rotate(45deg);
+    background-color: #fff;
+    transition: .3s;
+    cursor: pointer;
+
+    @media #{$xs} {
+        right: 3%;
+    }
+
+    &::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: 1px solid #000;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: .3s;
+        opacity: 0;
+    }
+
+    &-text {
+        transform: rotate(-45deg);
+        width: 100%;
+        height: 100%;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        transition: .3s;
+    }
+      
+    &:is(.active) {
+        bottom: 2.5%;
+
+
+
+        &:hover {
+            bottom: 3.5%;
+            .wa-back-to-top-text {
+                transform: rotate(-45deg) translateY(5px);
+            }
+            &::after {
+                top: 5px;
+                left: 5px;
+                opacity: .5;
+            }
+        }
+    }
+}
+
+
+
+
+
+/* 
+    start-back-to-end
+*/

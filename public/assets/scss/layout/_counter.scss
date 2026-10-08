@@ -1,0 +1,71 @@
+/*
+    36. counter
+*/
+
+
+/* 
+    counter-2-start
+*/
+.bs-counter-2 {
+    &-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 70px;
+
+        @media #{$xl,$lg,$md,$xs} {
+            gap: 40px;
+        }
+
+        .shape {
+            font-size: 30px;
+            margin-top: 4%;
+
+            @media #{$md,$xs} {
+                display: none;
+            }
+        }
+    }
+
+    &-item {
+        .item-number {
+            font-size: 150px;
+            font-weight: 500;
+            line-height: 1;
+            margin-bottom: 10px;
+
+            @media #{$xxl} {
+                font-size: 130px;
+            }
+
+            @media #{$xl} {
+                font-size: 110px;
+            }
+
+            @media #{$lg} {
+                font-size: 90px;
+            }
+
+            @media #{$md} {
+                font-size: 70px;
+            }
+
+            @media #{$xs} {
+                font-size: 50px;
+            }
+        }
+
+        .item-disc {
+            font-size: 20px;
+            line-height: 24px;
+            text-transform: capitalize;
+            color: #081421;
+            max-width: 140px;
+        }
+    }
+}
+
+
+/* 
+    counter-2-end
+*/

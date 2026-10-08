@@ -1,0 +1,42 @@
+/*
+    24. brand
+*/
+
+/* 
+    brand-4-start
+*/
+.bs-brand-4 {
+    &-wrap {
+        display: inline-flex;
+        gap: 32px;
+        width: 100%;
+        flex: 0 0 auto;
+    }
+
+    &-item {
+        max-width: 280px;
+        width: 100%;
+        height: 120px;
+        border: 1px solid #DDDDDD;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        flex: 0 0 auto;
+        overflow: hidden;
+        transition: .4s var(--bs-cube-2);
+        background-color: #fff;
+
+        &:hover{
+            img {
+                animation: zoomInDown2 1s;
+            }
+            transform: scale(.9);
+        }
+        
+    }
+}
+/* 
+    brand-4-end
+*/
