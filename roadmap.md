@@ -11,3 +11,4 @@
 - [x] Remove the hero section's background layer so the photo runs straight into the next section.
 - [x] Replace the "about us" paragraph with the SEA studio description.
 - [x] Shorten the "about us" heading and align the paragraph with its left edge.
+- [x] Add the uploaded video to the About section's right side, compress it, and verify autoplay and sound controls.

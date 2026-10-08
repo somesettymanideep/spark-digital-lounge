@@ -131,6 +131,49 @@
             .bs-about-4-content .inner-div {
                 padding-left: 0;
             }
+            .bs-about-4-right.sea-about-media {
+                margin-right: 0;
+                min-width: 0;
+            }
+            .sea-about-video-wrap {
+                position: relative;
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                overflow: hidden;
+                background: var(--bs-clr-black-1);
+            }
+            .sea-about-video-wrap video {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+            .sea-video-controls {
+                position: absolute;
+                right: 14px;
+                bottom: 14px;
+                display: flex;
+                gap: 8px;
+            }
+            .sea-video-control {
+                display: grid;
+                place-items: center;
+                width: 44px;
+                height: 44px;
+                border: 0;
+                border-radius: 50%;
+                background: var(--bs-clr-white-1);
+                color: var(--bs-clr-black-1);
+                cursor: pointer;
+            }
+            .sea-video-control:hover {
+                background: var(--bs-clr-pr-1);
+                color: var(--bs-clr-white-1);
+            }
+            .sea-video-control:focus-visible {
+                outline: 3px solid var(--bs-clr-pr-1);
+                outline-offset: 3px;
+            }
         </style>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -142,6 +185,36 @@
                 updateHeader();
                 window.addEventListener('scroll', updateHeader, { passive: true });
                 window.addEventListener('pageshow', updateHeader);
+            });
+            document.addEventListener('DOMContentLoaded', function () {
+                var video = document.getElementById('sea-about-video');
+                var sound = document.getElementById('sea-video-sound');
+                var playback = document.getElementById('sea-video-playback');
+                if (!video || !sound || !playback) return;
+                function updateControls() {
+                    var soundLabel = video.muted ? 'Turn sound on' : 'Turn sound off';
+                    sound.setAttribute('aria-label', soundLabel);
+                    sound.setAttribute('title', soundLabel);
+                    sound.setAttribute('aria-pressed', String(!video.muted));
+                    sound.querySelector('i').className = video.muted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+                    var playLabel = video.paused ? 'Play video' : 'Pause video';
+                    playback.setAttribute('aria-label', playLabel);
+                    playback.setAttribute('title', playLabel);
+                    playback.querySelector('i').className = video.paused ? 'fa-solid fa-play' : 'fa-solid fa-pause';
+                }
+                sound.addEventListener('click', function () {
+                    video.muted = !video.muted;
+                    updateControls();
+                });
+                playback.addEventListener('click', function () {
+                    if (video.paused) video.play().catch(updateControls);
+                    else video.pause();
+                });
+                video.addEventListener('volumechange', updateControls);
+                video.addEventListener('play', updateControls);
+                video.addEventListener('pause', updateControls);
+                updateControls();
+                video.play().catch(updateControls);
             });
         </script>
     </head>
@@ -423,24 +496,17 @@
                             </div>
                         </div>
                         
-                        <div class="bs-about-4-right">
-
-                            <div class="bs-about-4-project wa-bg-default wa-parallax-item-right-left" data-background="assets/img/about/a4-bg-img-1.png" >
-                                <div class="icon">
-                                    <i class="flaticon-right-arrow flaticon"></i>
+                        <div class="bs-about-4-right sea-about-media">
+                            <div class="sea-about-video-wrap">
+                                <video id="sea-about-video" autoplay muted loop playsinline preload="metadata" poster="/__l5e/assets-v1/842a08cc-d750-4657-b955-19a99697baee/sea-about-poster.jpg" aria-label="Studio for Eclectic Architecture video">
+                                    <source src="/__l5e/assets-v1/4f4d5bef-3fde-428e-a411-ee61b9648f6d/sea-about.mp4" type="video/mp4">
+                                    <source src="/__l5e/assets-v1/e94db62c-5af6-4a18-b958-95523319777e/sea-about.webm" type="video/webm">
+                                    Your browser does not support video playback.
+                                </video>
+                                <div class="sea-video-controls">
+                                    <button type="button" id="sea-video-playback" class="sea-video-control" aria-label="Pause video" title="Pause video"><i class="fa-solid fa-pause" aria-hidden="true"></i></button>
+                                    <button type="button" id="sea-video-sound" class="sea-video-control" aria-label="Turn sound on" title="Turn sound on" aria-pressed="false"><i class="fa-solid fa-volume-xmark" aria-hidden="true"></i></button>
                                 </div>
-                                <h4 class="bs-h-4 title">
-                                    <a href="projects-3.html" aria-label="name">see projects</a>
-                                </h4>
-                                <p class="bs-p-4 disc">discover the architecture and design projects team with Barsi prater.</p>
-                            </div>
-
-                            <div class="bs-about-4-img wa-fix wa-img-cover">
-                                <img class="wa-parallax-img" src="assets/img/about/a4-img-1.png" alt="">
-                            </div>
-
-                            <div class="illus-2">
-                                <img  src="assets/img/about/a4-illus-2.png" alt="">
                             </div>
                         </div>
                     </div>
