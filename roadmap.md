@@ -36,3 +36,4 @@
 - [x] Rename the Vastu section's label to "vastu shastra" in #01707f and set the VASTU SHASTRA heading to #081f2c.
 - [x] Add a left gutter on phones so the sticky social rail never sits on top of the words.
 - [x] Replace the services strip with six cards (architectural, interior, landscape, structural, project management, BIM), sized so all six fit the window and clear the social rail.
+- [x] Remove the three percentage bars from the why choose us section, set its label to #01707f and its heading to #081f2c, and keep the words fully on screen and clear of the social rail.
