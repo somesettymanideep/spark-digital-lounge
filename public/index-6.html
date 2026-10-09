@@ -739,6 +739,20 @@
             .bs-services-4-item-single:nth-child(6) .default-content {
                 background-color: #243236;
             }
+            /* the section's own near-black backdrop becomes the brand's deep
+               navy; the template's faint texture sits on top of it untouched */
+            .bs-services-4-area {
+                background-color: #081f2c;
+            }
+            /* the decorative frame beside the cards is drawn in the section's
+               backdrop colour, so it follows the same change on wide screens */
+            @media (min-width: 1400px) {
+                .bs-services-4-img {
+                    border-right-color: #081f2c;
+                    border-top-color: #081f2c;
+                }
+            }
+
 
             /* Architectural back-to-top: a small elevation-drawing tile —
                drafting corner marks, a section arrow and a teal plumb-line
