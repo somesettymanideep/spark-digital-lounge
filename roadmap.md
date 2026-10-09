@@ -41,3 +41,4 @@
 
 - [x] Add an architectural scroll-to-top button (drafting tile with corner marks, section arrow and scroll-fill line).
 - [x] Change the services section backdrop from near-black to #081f2c, with the decorative frame's borders following it.
+- [x] Apply the uploaded teal wireframe drawing as the projects section's background image on Home 6.
