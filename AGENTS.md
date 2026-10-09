@@ -16,3 +16,4 @@
 - Home 6 uses a page-local scroll listener and header state class instead of the shared direction-sensitive sticky plugin, so its header remains visible in both scroll directions without affecting sibling pages.
 - Home 6 applies its image reveal through page-local GSAP animations attached to the existing Swiper, overriding the template's vertical translation only on that page and honoring reduced motion.
 - Home 6 About media uses native inline video and page-local playback controls, with muted autoplay to satisfy browser autoplay policies.
+- Home 6 Vastu tile overlays use one page-local CSS animation with staggered delays, so only one top-row tile turns at a time and reduced motion disables the turns.
