@@ -172,6 +172,51 @@
             .bs-team-4-img img {
                 object-fit: contain;
             }
+            /* the mandala's first tile auto-flips to reveal the second
+               dining render, then flips back — a seamless card turn */
+            .sea-vastu-flip {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 33.3333%;
+                height: 33.3333%;
+                z-index: 2;
+                perspective: 900px;
+            }
+            .sea-vastu-flip-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transform-style: preserve-3d;
+                animation: sea-autoflip 8s ease-in-out infinite;
+            }
+            @keyframes sea-autoflip {
+                0%, 32%   { transform: rotateY(0deg); }
+                45%, 85%  { transform: rotateY(180deg); }
+                98%, 100% { transform: rotateY(360deg); }
+            }
+            .sea-vastu-flip-face {
+                position: absolute;
+                inset: 0;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+            }
+            .sea-vastu-flip-front {
+                background-image: url("/__l5e/assets-v1/6c60986f-7be4-4b0d-9931-c75b94cad614/vastu-mandala-ordered.jpg");
+                background-size: 300% 300%;
+                background-position: 0 0;
+            }
+            .sea-vastu-flip-back {
+                transform: rotateY(180deg);
+                background-image: url("/__l5e/assets-v1/289e1131-c4b5-43ed-a20e-7d66d24c131b/vastu-flip-dining.jpg");
+                background-size: cover;
+                background-position: center;
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .sea-vastu-flip-inner {
+                    animation: none;
+                }
+            }
 
             /* the scrolling headline stays readable over the render:
                the banner's lower edge is softly blurred and lightened,
@@ -1104,6 +1149,12 @@
                         <!-- right-img -->
                         <div class="bs-team-4-img wa-fix wa-img-cover wa-clip-left-right">
                             <img src="/__l5e/assets-v1/6c60986f-7be4-4b0d-9931-c75b94cad614/vastu-mandala-ordered.jpg" alt="Complete Vastu Shastra mandala assembled from nine tiles in the supplied row order">
+                            <div class="sea-vastu-flip" aria-hidden="true">
+                                <div class="sea-vastu-flip-inner">
+                                    <div class="sea-vastu-flip-face sea-vastu-flip-front"></div>
+                                    <div class="sea-vastu-flip-face sea-vastu-flip-back"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
