@@ -367,6 +367,20 @@
                 margin-right: 0;
                 min-width: 0;
             }
+            /* About us: the label reads in deep teal, the heading in near-black navy. */
+            .bs-about-4-area > .container > .bs-subtitle-4 .text {
+                color: #01707f;
+            }
+            .bs-about-4-content .title {
+                color: #081f2c;
+            }
+            /* at laptop widths the container's left edge falls under the sticky
+               social rail, so give the About section a left gutter there */
+            @media (min-width: 992px) and (max-width: 1399px) {
+                .bs-about-4-area .container.bs-container-2 {
+                    padding-left: 62px;
+                }
+            }
             .sea-about-video-wrap {
                 position: relative;
                 width: 100%;
