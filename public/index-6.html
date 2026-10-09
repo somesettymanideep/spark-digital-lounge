@@ -411,6 +411,61 @@
                     bottom: -8px;
                 }
             }
+
+            /* the floating service tags under the big studio name:
+               solid brand-teal pills with white words, no tick icons */
+            .bs-expertise-4-box .single-tag-item {
+                text-transform: none;
+            }
+            .bs-expertise-4-box .single-tag-item .text {
+                background: #057584;
+                color: var(--bs-clr-white-1);
+            }
+            /* the tags drift and lean, so the drifting area is kept well
+               inside the visible window — a pill then never gets sliced off
+               at the section's edges */
+            .bs-expertise-4-box {
+                margin-top: -245px;
+                margin-left: 180px;
+                margin-right: 180px;
+            }
+            @media (max-width: 767px) {
+                .bs-expertise-4-area {
+                    padding-bottom: 34px;
+                }
+                .bs-expertise-4-wrap {
+                    height: auto;
+                    overflow: visible;
+                }
+                .bs-expertise-4-title {
+                    position: static;
+                    transform: none;
+                    font-size: 29px;
+                    margin-bottom: 26px;
+                }
+                .bs-expertise-4-title > span:nth-child(2) {
+                    margin-top: -6px;
+                }
+                .bs-expertise-4-box {
+                    height: auto;
+                    margin: 0;
+                    overflow: visible;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 12px;
+                }
+                .bs-expertise-4-box .single-tag {
+                    position: static !important;
+                    transform: none !important;
+                }
+                .bs-expertise-4-box .single-tag-item {
+                    font-size: 15px;
+                }
+                .bs-expertise-4-box .single-tag-item .text {
+                    padding: 10px 22px;
+                }
+            }
         </style>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -422,6 +477,28 @@
                 updateHeader();
                 window.addEventListener('scroll', updateHeader, { passive: true });
                 window.addEventListener('pageshow', updateHeader);
+            });
+            /* on a phone the service tags are laid out as a plain stacked list,
+               so the floating physics must never take over their positions */
+            document.addEventListener('DOMContentLoaded', function () {
+                var scene = document.querySelector('.bs-expertise-4-box[txa-matter-scene]');
+                if (!scene) return;
+                var phone = window.matchMedia('(max-width: 767px)');
+                var physicsStarted = !phone.matches;
+                function calmTags() {
+                    var inst = window.jQuery && jQuery.data(scene, 'plugin_txaThrowable');
+                    if (inst && inst.destroy) inst.destroy();
+                    scene.removeAttribute('txa-matter-scene');
+                }
+                function floatTags() {
+                    if (physicsStarted) return;
+                    scene.setAttribute('txa-matter-scene', 'true');
+                    if (window.jQuery && jQuery.fn.txaThrowable) jQuery(scene).txaThrowable();
+                    physicsStarted = true;
+                }
+                function applyLayout() { phone.matches ? calmTags() : floatTags(); }
+                if (phone.matches) calmTags();
+                if (phone.addEventListener) phone.addEventListener('change', applyLayout);
             });
             document.addEventListener('DOMContentLoaded', function () {
                 var video = document.getElementById('sea-about-video');
@@ -941,57 +1018,38 @@
 
                             <div class="single-tag" txa-matter-item>
                                 <span class="single-tag-item bs-p-4" >
-                                    <span class="icon has-clr-3">
-                                        <i class="flaticon-check flaticon"></i>
-                                    </span>
-                                    <span class="text">Interior Design</span>
+                                    <span class="text">ARCHITECTURAL DESIGN</span>
                                 </span>
                             </div>
 
                             <div class="single-tag" txa-matter-item>
                                 <span class="single-tag-item bs-p-4" >
-                                    <span class="text">3D Modeling</span>
-                                    <span class="icon has-clr-3">
-                                        <i class="flaticon-check flaticon"></i>
-                                    </span>
-                                </span>
-        
-                            </div>
-
-                            <div class="single-tag" txa-matter-item>
-                                <span class="single-tag-item bs-p-4" >
-                                    <span class="icon has-clr-3">
-                                        <i class="flaticon-check flaticon"></i>
-                                    </span>
-                                    <span class="text">Commercial Design</span>
+                                    <span class="text">INTERIOR DESIGN</span>
                                 </span>
                             </div>
 
                             <div class="single-tag" txa-matter-item>
-                                <span class="single-tag-item bs-p-4 " >
-                                    <span class="text">Residential Interior</span>
-                                    <span class="icon has-clr-2">
-                                        <i class="flaticon-check flaticon"></i>
-                                    </span>
-                               </span>
+                                <span class="single-tag-item bs-p-4" >
+                                    <span class="text">LANDSCAPE DESIGN</span>
+                                </span>
                             </div>
 
                             <div class="single-tag" txa-matter-item>
                                 <span class="single-tag-item bs-p-4" >
-                                    <span class="text">space planning</span>
-                                    <span class="icon">
-                                        <i class="flaticon-check flaticon"></i>
-                                    </span>
-                               </span>
+                                    <span class="text">STRUCTURAL DESIGN</span>
+                                </span>
                             </div>
 
                             <div class="single-tag" txa-matter-item>
                                 <span class="single-tag-item bs-p-4" >
-                                    <span class="icon">
-                                        <i class="flaticon-check flaticon"></i>
-                                    </span>
-                                    <span class="text">home decoration</span>
-                               </span>
+                                    <span class="text">PROJECT MANAGEMENT</span>
+                                </span>
+                            </div>
+
+                            <div class="single-tag" txa-matter-item>
+                                <span class="single-tag-item bs-p-4" >
+                                    <span class="text">BIM SERVICES</span>
+                                </span>
                             </div>
                             
     
