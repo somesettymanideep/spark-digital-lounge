@@ -17,6 +17,4 @@
 - Home 6 applies its image reveal through page-local GSAP animations attached to the existing Swiper, overriding the template's vertical translation only on that page and honoring reduced motion.
 - Home 6 About media uses native inline video and page-local playback controls, with muted autoplay to satisfy browser autoplay policies.
 - Home 6 Vastu tile overlays share one page-local CSS animation with nonoverlapping row-order slots, so only one of the nine tiles is active at a time and reduced motion disables the turns.
-- Home 6 sizes its services accordion page-locally (the open card takes a viewport-based clamp, the folded cards split the remainder) so the row always fits the window instead of the template's fixed card widths.
-- Home 6 clears its sticky social rail with a page-local left gutter on the sections and footer, sized per breakpoint so it only appears where the window's own side padding is narrower than the rail; the header and hero keep their own spacing.
-- Home 6's why-choose-us band drops the template's video and progress columns page-locally: the heading spans the row, the four feature circles centre beneath it, and that heading panel stretches past both window edges so no background photo strip shows beside it.
+- Home 6 sizes its services accordion page-locally (the open card takes a viewport-based clamp, the folded cards split the remainder) and gives that section a left gutter where the sticky social rail would otherwise sit under it, so the row always fits the window instead of the template's fixed card widths.
