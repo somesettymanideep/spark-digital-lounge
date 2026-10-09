@@ -25,4 +25,3 @@
 - [x] Add the uploaded interior render to the "luxury Architecture" scrolling banner on Home 6 and keep the headline readable.
 - [x] Change the team member section heading to "VASTU SHASTRA" with the Vastu paragraph and a "read more" button.
 - [x] Rename the floating tags under the studio name to the six SEA services, on solid #057584 pills with white words and no tick icons.
-- [x] Drop the "team member" label, set the Vastu heading as one letter per line with the copy beside it, and zoom the section image out a little.
