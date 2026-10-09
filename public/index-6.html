@@ -704,6 +704,61 @@
                     padding-left: 46px;
                 }
             }
+            /* the services strip now carries six services, so the heading
+               block sits above a full-width row of folded cards: the open
+               card takes a share of the width and the five closed ones split
+               whatever is left, so nothing runs off the edge */
+            .bs-services-4-wrap {
+                display: block;
+            }
+            .bs-services-4-content {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-end;
+                gap: 22px 60px;
+                margin-bottom: 46px;
+            }
+            .bs-services-4-content .title {
+                flex: 1 1 460px;
+                margin-bottom: 0;
+            }
+            .bs-services-4-content .disc {
+                flex: 1 1 360px;
+                margin-bottom: 0;
+            }
+            .bs-services-4-content .btn-wrap {
+                flex: 0 0 auto;
+            }
+            @media (min-width: 992px) {
+                .bs-services-4-item {
+                    --sea-svc-open: clamp(300px, 38vw, 560px);
+                }
+                .bs-services-4-item-single {
+                    width: calc((100% - var(--sea-svc-open)) / 5);
+                    min-width: 56px;
+                    padding: 68px 12px;
+                }
+                .bs-services-4-item-single.active {
+                    width: var(--sea-svc-open);
+                }
+            }
+            @media (min-width: 1800px) {
+                .bs-services-4-wrap {
+                    margin-right: 0;
+                }
+            }
+            /* the three extra folded cards keep the template's grey ladder
+               and finish it in deep teal */
+            .bs-services-4-item-single:nth-child(4) .default-content {
+                background-color: #3C4B4F;
+            }
+            .bs-services-4-item-single:nth-child(5) .default-content {
+                background-color: #2F3E42;
+            }
+            .bs-services-4-item-single:nth-child(6) .default-content {
+                background-color: #243236;
+            }
+
         </style>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -1112,7 +1167,7 @@
 
                     <div class="bs-services-4-wrap">
 
-                        <!-- left-content -->
+                        <!-- heading block -->
                         <div class="bs-services-4-content">
 
                             <h2 class="bs-sec-title-4 title wa-split-right wa-capitalize" data-cursor="-opaque">Transforming Visions into Timeless Architecture.</h2>
@@ -1132,26 +1187,26 @@
                             </div>
                         </div>
 
-                        <!-- right-item -->
+                        <!-- service cards -->
                         <div class="bs-services-4-item">
 
                             <!-- single-item -->
                             <div class="bs-services-4-item-single wa-bg-default active " data-background="assets/img/services/s4-card-bg.png">
                                 <div class="active-content">
                                     <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">architectural design</a>
+                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">ARCHITECTURAL DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/s4-img-2.png" alt="">
+                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Architectural design">
                                     </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-3">Our architectural design services combine innovative concepts with functional solutions to create spaces that inspire and perform.</p>
+                                    <p class="bs-p-4 disc wa-line-limit has-line-3">From concept to construction drawings, we shape buildings that answer to their site, their climate and the way you live.</p>
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/s4-img-2.png" alt="">
+                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="">
                                     </div>
                                     <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        architectural design
+                                        ARCHITECTURAL DESIGN
                                     </h4>
                                 </div>
                             </div>
@@ -1160,19 +1215,19 @@
                             <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
                                 <div class="active-content">
                                     <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">Modern home interior</a>
+                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">INTERIOR DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/s4-img-3.png" alt="">
+                                        <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="Interior design">
                                     </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-3">Our architectural design services combine innovative concepts with functional solutions to create spaces that inspire and perform.</p>
+                                    <p class="bs-p-4 disc wa-line-limit has-line-3">Layouts, materials, lighting and joinery resolved as one — rooms that feel considered from the first step inside.</p>
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/s4-img-3.png" alt="">
+                                        <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="">
                                     </div>
                                     <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        Modern home interior
+                                        INTERIOR DESIGN
                                     </h4>
                                 </div>
                             </div>
@@ -1181,19 +1236,19 @@
                             <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
                                 <div class="active-content">
                                     <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">Resilient Structures</a>
+                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">LANDSCAPE DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/s4-img-4.png" alt="">
+                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Landscape design">
                                     </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-3">Our architectural design services combine innovative concepts with functional solutions to create spaces that inspire and perform.</p>
+                                    <p class="bs-p-4 disc wa-line-limit has-line-3">Courtyards, gardens and outdoor rooms planned around shade, water and planting, so the outside belongs to the house.</p>
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/s4-img-4.png" alt="">
+                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="">
                                     </div>
                                     <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        Resilient Structures
+                                        LANDSCAPE DESIGN
                                     </h4>
                                 </div>
                             </div>
@@ -1202,19 +1257,61 @@
                             <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
                                 <div class="active-content">
                                     <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">Interior <br> Design</a>
+                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">STRUCTURAL DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/s4-img-5.png" alt="">
+                                        <img src="/__l5e/assets-v1/9363d996-4d40-41db-9ac7-9dc2c2b8f966/video-luxury-architecture.jpg" alt="Structural design">
                                     </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-3">Our architectural design services combine innovative concepts with functional solutions to create spaces that inspire and perform.</p>
+                                    <p class="bs-p-4 disc wa-line-limit has-line-3">Framing and foundation solutions coordinated with the architecture, so bold spans stay buildable and economical.</p>
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/s4-img-5.png" alt="">
+                                        <img src="/__l5e/assets-v1/9363d996-4d40-41db-9ac7-9dc2c2b8f966/video-luxury-architecture.jpg" alt="">
                                     </div>
                                     <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        Interior Design
+                                        STRUCTURAL DESIGN
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <!-- single-item -->
+                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
+                                <div class="active-content">
+                                    <h4 class="bs-h-1 title">
+                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">PROJECT MANAGEMENT</a>
+                                    </h4>
+                                    <div class="main-img wa-fix wa-img-cover">
+                                        <img src="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" alt="Project management">
+                                    </div>
+                                    <p class="bs-p-4 disc wa-line-limit has-line-3">Schedules, budgets, consultants and site reviews kept in one place, with clear reporting at every stage.</p>
+                                </div>
+                                <div class="default-content">
+                                    <div class="img-2 wa-fix wa-img-cover">
+                                        <img src="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" alt="">
+                                    </div>
+                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
+                                        PROJECT MANAGEMENT
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <!-- single-item -->
+                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
+                                <div class="active-content">
+                                    <h4 class="bs-h-1 title">
+                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">BIM SERVICES</a>
+                                    </h4>
+                                    <div class="main-img wa-fix wa-img-cover">
+                                        <img src="/__l5e/assets-v1/6c60986f-7be4-4b0d-9931-c75b94cad614/vastu-mandala-ordered.jpg" alt="BIM services">
+                                    </div>
+                                    <p class="bs-p-4 disc wa-line-limit has-line-3">Coordinated 3D models, clash checks and quantity take-offs that keep drawings, vendors and site on the same page.</p>
+                                </div>
+                                <div class="default-content">
+                                    <div class="img-2 wa-fix wa-img-cover">
+                                        <img src="/__l5e/assets-v1/6c60986f-7be4-4b0d-9931-c75b94cad614/vastu-mandala-ordered.jpg" alt="">
+                                    </div>
+                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
+                                        BIM SERVICES
                                     </h4>
                                 </div>
                             </div>
