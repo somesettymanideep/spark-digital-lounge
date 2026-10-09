@@ -43,3 +43,4 @@
 - [x] Change the services section backdrop from near-black to #081f2c, with the decorative frame's borders following it.
 - [x] Set the "Get In Touch With Us Today!" form panel's background to #e9f3f4.
 - [x] Set the projects section's background to #e8f2f4.
+- [x] Set the About section's "about us" label to #01707f and its heading to #081f2c.
