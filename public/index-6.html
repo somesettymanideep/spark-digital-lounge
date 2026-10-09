@@ -772,19 +772,20 @@
             }
 
 
-            /* Architectural back-to-top: a small elevation-drawing tile —
-               drafting corner marks, a section arrow and a teal plumb-line
-               that fills with scroll progress */
+            /* Architectural back-to-top: a drafting-sheet tile — teal
+               registration corners, an inner sheet border, a graduated level
+               scale that fills with scroll progress, and a section arrow
+               inside a compass ring */
             .wa-back-to-top.sea-top-btn {
-                width: 54px;
-                height: 54px;
+                width: 56px;
+                height: 56px;
                 right: 28px;
-                bottom: -90px;
+                bottom: -96px;
                 transform: none;
-                border: 1px solid rgba(255, 255, 255, .18);
+                border: 1px solid rgba(255, 255, 255, .16);
                 background: #081f2c;
                 border-radius: 2px;
-                transition: bottom .45s var(--bs-cube-2, ease), transform .3s, background-color .3s;
+                transition: bottom .45s var(--bs-cube-2, ease), transform .3s, background-color .3s, border-color .3s;
             }
             .wa-back-to-top.sea-top-btn::after {
                 display: none;
@@ -795,79 +796,125 @@
             .wa-back-to-top.sea-top-btn:hover {
                 transform: translateY(-4px);
                 background-color: #01707f;
+                border-color: rgba(255, 255, 255, .42);
             }
+            /* inner sheet border */
+            .sea-top-sheet {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                bottom: 8px;
+                left: 8px;
+                border: 1px solid rgba(255, 255, 255, .12);
+                pointer-events: none;
+                transition: border-color .3s;
+            }
+            .wa-back-to-top.sea-top-btn:hover .sea-top-sheet {
+                border-color: rgba(255, 255, 255, .3);
+            }
+            /* corner registration marks */
             .sea-top-corner {
                 position: absolute;
-                width: 8px;
-                height: 8px;
-                border: 0 solid #01707f;
+                width: 10px;
+                height: 10px;
+                border: 0 solid #2f99ae;
                 transition: border-color .3s;
             }
             .sea-top-corner.c1 {
-                top: 4px;
-                left: 4px;
-                border-top-width: 1px;
-                border-left-width: 1px;
+                top: 3px;
+                left: 3px;
+                border-top-width: 1.5px;
+                border-left-width: 1.5px;
             }
             .sea-top-corner.c2 {
-                top: 4px;
-                right: 4px;
-                border-top-width: 1px;
-                border-right-width: 1px;
+                top: 3px;
+                right: 3px;
+                border-top-width: 1.5px;
+                border-right-width: 1.5px;
             }
             .sea-top-corner.c3 {
-                bottom: 4px;
-                left: 4px;
-                border-bottom-width: 1px;
-                border-left-width: 1px;
+                bottom: 3px;
+                left: 3px;
+                border-bottom-width: 1.5px;
+                border-left-width: 1.5px;
             }
             .sea-top-corner.c4 {
-                bottom: 4px;
-                right: 4px;
-                border-bottom-width: 1px;
-                border-right-width: 1px;
+                bottom: 3px;
+                right: 3px;
+                border-bottom-width: 1.5px;
+                border-right-width: 1.5px;
             }
             .wa-back-to-top.sea-top-btn:hover .sea-top-corner {
-                border-color: rgba(255, 255, 255, .85);
+                border-color: #fff;
             }
-            .sea-top-arrow {
+            /* graduated level scale: fills bottom-up with scroll progress */
+            .sea-top-scale {
                 position: absolute;
-                left: 50%;
-                top: 50%;
-                width: 1px;
-                height: 20px;
-                background: #fff;
-                transform: translate(-50%, -50%);
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                background: rgba(255, 255, 255, .1);
+                overflow: hidden;
+                pointer-events: none;
             }
-            .sea-top-arrow::before {
+            .sea-top-scale::after {
                 content: "";
                 position: absolute;
                 top: 0;
-                left: -4px;
-                width: 9px;
-                height: 9px;
-                border-top: 1px solid #fff;
-                border-left: 1px solid #fff;
-                transform: rotate(45deg);
-                transform-origin: top left;
-            }
-            .sea-top-arrow::after {
-                content: "";
-                position: absolute;
-                top: 22px;
+                right: 0;
+                bottom: 0;
                 left: 0;
-                height: 8px;
-                border-left: 1px dashed rgba(255, 255, 255, .55);
+                background: repeating-linear-gradient(to top, rgba(255, 255, 255, .45) 0 1px, transparent 1px 9px);
             }
-            .sea-top-progress {
+            .sea-top-scale-fill {
                 position: absolute;
                 left: 0;
                 bottom: 0;
-                width: 3px;
+                width: 100%;
                 height: 0;
-                background: #01707f;
+                background: #2f99ae;
+                transition: height .15s linear;
             }
-            .wa-back-to-top.sea-top-btn:hover .sea-top-progress {
+            /* section arrow inside a compass ring */
+            .sea-top-mark {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 34px;
+                height: 34px;
+                transform: translate(-50%, -50%);
+                transition: transform .3s;
+                pointer-events: none;
+            }
+            .sea-top-mark .ring {
+                stroke: rgba(255, 255, 255, .25);
+                transition: stroke .3s;
+            }
+            .sea-top-mark .shaft {
+                stroke: #fff;
+            }
+            .sea-top-mark .head {
+                fill: #fff;
+            }
+            .sea-top-mark .datum {
+                stroke: #2f99ae;
+                transition: stroke .3s;
+            }
+            .sea-top-mark .datum-2 {
+                stroke: rgba(255, 255, 255, .62);
+                transition: stroke .3s;
+            }
+            .wa-back-to-top.sea-top-btn:hover .sea-top-mark {
+                transform: translate(-50%, -54%);
+            }
+            .wa-back-to-top.sea-top-btn:hover .sea-top-mark .ring {
+                stroke: rgba(255, 255, 255, .55);
+            }
+            .wa-back-to-top.sea-top-btn:hover .sea-top-mark .datum {
+                stroke: #fff;
+            }
+            .wa-back-to-top.sea-top-btn:hover .sea-top-scale-fill {
                 background: #fff;
             }
             @media (max-width: 575px) {
@@ -878,6 +925,23 @@
                 }
                 .wa-back-to-top.sea-top-btn.active {
                     bottom: 18px;
+                }
+                .sea-top-sheet {
+                    top: 6px;
+                    right: 6px;
+                    bottom: 6px;
+                    left: 6px;
+                }
+                .sea-top-corner {
+                    width: 8px;
+                    height: 8px;
+                }
+                .sea-top-scale {
+                    width: 3px;
+                }
+                .sea-top-mark {
+                    width: 30px;
+                    height: 30px;
                 }
             }
         /* contact form panel: pale teal backdrop */
@@ -963,12 +1027,12 @@
                 updateControls();
                 video.play().catch(updateControls);
             });
-            /* back-to-top: the teal plumb-line fills with scroll progress,
-               like a level marker on an elevation drawing */
+            /* back-to-top: the graduated level scale fills with scroll
+               progress, like a level marker on an elevation drawing */
             document.addEventListener('DOMContentLoaded', function () {
                 var btn = document.querySelector('.sea-top-btn');
                 if (!btn) return;
-                var fill = btn.querySelector('.sea-top-progress');
+                var fill = btn.querySelector('.sea-top-scale-fill');
                 function updateTopProgress() {
                     var max = document.documentElement.scrollHeight - window.innerHeight;
                     var p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
@@ -2540,12 +2604,19 @@
 
             <!-- back-to-top-button-start -->
             <div class="wa-back-to-top sea-top-btn" role="button" tabindex="0" aria-label="Back to top">
+                <span class="sea-top-sheet" aria-hidden="true"></span>
                 <span class="sea-top-corner c1" aria-hidden="true"></span>
                 <span class="sea-top-corner c2" aria-hidden="true"></span>
                 <span class="sea-top-corner c3" aria-hidden="true"></span>
                 <span class="sea-top-corner c4" aria-hidden="true"></span>
-                <span class="sea-top-progress" aria-hidden="true"></span>
-                <span class="sea-top-arrow" aria-hidden="true"></span>
+                <span class="sea-top-scale" aria-hidden="true"><span class="sea-top-scale-fill"></span></span>
+                <svg class="sea-top-mark" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
+                    <circle class="ring" cx="22" cy="22" r="14" fill="none" stroke-width="1" stroke-dasharray="2.5 3.5"></circle>
+                    <line class="shaft" x1="22" y1="29" x2="22" y2="15" stroke-width="1.4"></line>
+                    <path class="head" d="M22 8 L26.8 15.5 L17.2 15.5 Z"></path>
+                    <line class="datum" x1="15" y1="29" x2="29" y2="29" stroke-width="1.4"></line>
+                    <line class="datum-2" x1="18" y1="33" x2="26" y2="33" stroke-width="1.2"></line>
+                </svg>
             </div>
             <!-- back-to-top-button-end --> 
 
