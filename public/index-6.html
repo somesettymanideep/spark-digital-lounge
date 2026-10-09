@@ -421,13 +421,47 @@
                 background: #057584;
                 color: var(--bs-clr-white-1);
             }
-            /* the tags float and tilt, so the drifting area sits a little
-               above and inside the visible window — a tilted pill then never
-               gets sliced off at the section's edges */
+            /* the tags drift and lean, so the drifting area is kept well
+               inside the visible window — a pill then never gets sliced off
+               at the section's edges */
             .bs-expertise-4-box {
                 margin-top: -245px;
-                margin-left: 28px;
-                margin-right: 28px;
+                margin-left: 180px;
+                margin-right: 180px;
+            }
+            @media (max-width: 767px) {
+                .bs-expertise-4-wrap {
+                    height: auto;
+                    overflow: visible;
+                }
+                .bs-expertise-4-title {
+                    position: static;
+                    transform: none;
+                    font-size: 34px;
+                    margin-bottom: 26px;
+                }
+                .bs-expertise-4-title > span:nth-child(2) {
+                    margin-top: -6px;
+                }
+                .bs-expertise-4-box {
+                    height: auto;
+                    margin: 0;
+                    overflow: visible;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 12px;
+                }
+                .bs-expertise-4-box .single-tag {
+                    position: static !important;
+                    transform: none !important;
+                }
+                .bs-expertise-4-box .single-tag-item {
+                    font-size: 15px;
+                }
+                .bs-expertise-4-box .single-tag-item .text {
+                    padding: 10px 22px;
+                }
             }
         </style>
         <script>
