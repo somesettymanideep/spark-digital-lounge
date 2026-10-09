@@ -740,6 +740,114 @@
                 background-color: #243236;
             }
 
+            /* Architectural back-to-top: a small elevation-drawing tile —
+               drafting corner marks, a section arrow and a teal plumb-line
+               that fills with scroll progress */
+            .wa-back-to-top.sea-top-btn {
+                width: 54px;
+                height: 54px;
+                right: 28px;
+                bottom: -90px;
+                transform: none;
+                border: 1px solid rgba(255, 255, 255, .18);
+                background: #081f2c;
+                border-radius: 2px;
+                transition: bottom .45s var(--bs-cube-2, ease), transform .3s, background-color .3s;
+            }
+            .wa-back-to-top.sea-top-btn::after {
+                display: none;
+            }
+            .wa-back-to-top.sea-top-btn.active {
+                bottom: 28px;
+            }
+            .wa-back-to-top.sea-top-btn:hover {
+                transform: translateY(-4px);
+                background-color: #01707f;
+            }
+            .sea-top-corner {
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                border: 0 solid #01707f;
+                transition: border-color .3s;
+            }
+            .sea-top-corner.c1 {
+                top: 4px;
+                left: 4px;
+                border-top-width: 1px;
+                border-left-width: 1px;
+            }
+            .sea-top-corner.c2 {
+                top: 4px;
+                right: 4px;
+                border-top-width: 1px;
+                border-right-width: 1px;
+            }
+            .sea-top-corner.c3 {
+                bottom: 4px;
+                left: 4px;
+                border-bottom-width: 1px;
+                border-left-width: 1px;
+            }
+            .sea-top-corner.c4 {
+                bottom: 4px;
+                right: 4px;
+                border-bottom-width: 1px;
+                border-right-width: 1px;
+            }
+            .wa-back-to-top.sea-top-btn:hover .sea-top-corner {
+                border-color: rgba(255, 255, 255, .85);
+            }
+            .sea-top-arrow {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 1px;
+                height: 20px;
+                background: #fff;
+                transform: translate(-50%, -50%);
+            }
+            .sea-top-arrow::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -4px;
+                width: 9px;
+                height: 9px;
+                border-top: 1px solid #fff;
+                border-left: 1px solid #fff;
+                transform: rotate(45deg);
+                transform-origin: top left;
+            }
+            .sea-top-arrow::after {
+                content: "";
+                position: absolute;
+                top: 22px;
+                left: 0;
+                height: 8px;
+                border-left: 1px dashed rgba(255, 255, 255, .55);
+            }
+            .sea-top-progress {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 3px;
+                height: 0;
+                background: #01707f;
+            }
+            .wa-back-to-top.sea-top-btn:hover .sea-top-progress {
+                background: #fff;
+            }
+            @media (max-width: 575px) {
+                .wa-back-to-top.sea-top-btn {
+                    width: 48px;
+                    height: 48px;
+                    right: 16px;
+                }
+                .wa-back-to-top.sea-top-btn.active {
+                    bottom: 18px;
+                }
+            }
         </style>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -818,6 +926,29 @@
                 video.addEventListener('pause', updateControls);
                 updateControls();
                 video.play().catch(updateControls);
+            });
+            /* back-to-top: the teal plumb-line fills with scroll progress,
+               like a level marker on an elevation drawing */
+            document.addEventListener('DOMContentLoaded', function () {
+                var btn = document.querySelector('.sea-top-btn');
+                if (!btn) return;
+                var fill = btn.querySelector('.sea-top-progress');
+                function updateTopProgress() {
+                    var max = document.documentElement.scrollHeight - window.innerHeight;
+                    var p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+                    fill.style.height = (p * 100).toFixed(2) + '%';
+                    fill.style.display = p > 0.04 ? 'block' : 'none';
+                }
+                updateTopProgress();
+                window.addEventListener('scroll', updateTopProgress, { passive: true });
+                window.addEventListener('resize', updateTopProgress);
+                window.addEventListener('pageshow', updateTopProgress);
+                btn.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        btn.click();
+                    }
+                });
             });
         </script>
     </head>
@@ -2372,8 +2503,13 @@
             <!-- search-popup-end -->  
 
             <!-- back-to-top-button-start -->
-            <div class="wa-back-to-top ">
-                <span class="wa-back-to-top-text">Top</span>
+            <div class="wa-back-to-top sea-top-btn" role="button" tabindex="0" aria-label="Back to top">
+                <span class="sea-top-corner c1" aria-hidden="true"></span>
+                <span class="sea-top-corner c2" aria-hidden="true"></span>
+                <span class="sea-top-corner c3" aria-hidden="true"></span>
+                <span class="sea-top-corner c4" aria-hidden="true"></span>
+                <span class="sea-top-progress" aria-hidden="true"></span>
+                <span class="sea-top-arrow" aria-hidden="true"></span>
             </div>
             <!-- back-to-top-button-end --> 
 
