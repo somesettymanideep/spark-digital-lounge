@@ -39,7 +39,7 @@
 - [x] Remove the photo from the "luxury Architecture" scrolling banner, leaving a plain strip with the headline.
 - [x] Remove the whole "luxury Architecture" scrolling headline section from Home 6.
 
-- [x] Add an architectural scroll-to-top button (drafting tile with corner marks, section arrow and scroll-fill line).
+- [x] Architectural scroll-to-top button (drafting sheet: registration corners, inner sheet border, graduated level scale that fills with scroll, section arrow in a dashed compass ring, datum baselines).
 - [x] Change the services section backdrop from near-black to #081f2c, with the decorative frame's borders following it.
 - [x] Set the "Get In Touch With Us Today!" form panel's background to #e9f3f4.
 - [x] Set the projects section's background to #e8f2f4.
