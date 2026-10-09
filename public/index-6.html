@@ -742,6 +742,14 @@
                     width: var(--sea-svc-open);
                 }
             }
+            /* the sticky social rail is 46px wide, so wherever the page's own
+               side padding is narrower the cards would sit under it — this
+               section gets a matching left gutter instead */
+            @media (min-width: 576px) and (max-width: 1199px) {
+                .bs-services-4-area .container.bs-container-2 {
+                    padding-left: 62px;
+                }
+            }
             @media (min-width: 1800px) {
                 .bs-services-4-wrap {
                     margin-right: 0;
