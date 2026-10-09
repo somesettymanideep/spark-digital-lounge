@@ -30,5 +30,6 @@
 - [x] Set the projects label to #01707f and the recent works headline to #081f2c on Home 6.
 - [x] Add a sticky left social rail (Facebook, Instagram, LinkedIn, YouTube) with brand colors and hover labels, shown after the hero.
 - [x] Auto-flip the Vastu section's first tile to reveal the uploaded dining render and flip back.
+- [x] Add the uploaded bedroom, courtyard and bathroom renders as second-row flip faces, tiles turning one after another.
 - [x] Rename the Vastu section's label to "vastu shastra" in #01707f and set the VASTU SHASTRA heading to #081f2c.
 - [x] Add a left gutter on phones so the sticky social rail never sits on top of the words.
