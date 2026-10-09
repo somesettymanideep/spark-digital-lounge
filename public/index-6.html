@@ -743,11 +743,33 @@
                 }
             }
             /* the sticky social rail is 46px wide, so wherever the page's own
-               side padding is narrower the cards would sit under it — this
-               section gets a matching left gutter instead */
-            @media (min-width: 576px) and (max-width: 1199px) {
-                .bs-services-4-area .container.bs-container-2 {
-                    padding-left: 62px;
+               side padding leaves less than that between the window edge and
+               the words, the sections and footer get just enough extra left
+               gutter to clear it. The header sits above the rail and the hero
+               is behind it, so both keep their own spacing. */
+            @media (min-width: 576px) and (max-width: 767px) {
+                section:not(.bs-hero-4-area) .container, footer .container {
+                    padding-left: max(12px, calc(332px - 50vw));
+                }
+            }
+            @media (min-width: 768px) and (max-width: 991px) {
+                section:not(.bs-hero-4-area) .container, footer .container {
+                    padding-left: max(12px, calc(422px - 50vw));
+                }
+            }
+            @media (min-width: 992px) and (max-width: 1199px) {
+                section:not(.bs-hero-4-area) .container, footer .container {
+                    padding-left: max(12px, calc(542px - 50vw));
+                }
+            }
+            @media (min-width: 1200px) and (max-width: 1399px) {
+                section:not(.bs-hero-4-area) .container, footer .container {
+                    padding-left: max(12px, calc(632px - 50vw));
+                }
+            }
+            @media (min-width: 1400px) and (max-width: 1599px) {
+                section:not(.bs-hero-4-area) .container, footer .container {
+                    padding-left: max(12px, calc(722px - 50vw));
                 }
             }
             @media (min-width: 1800px) {
@@ -765,6 +787,38 @@
             }
             .bs-services-4-item-single:nth-child(6) .default-content {
                 background-color: #243236;
+            }
+
+            /* with the play button and the three progress lines gone, the
+               heading block takes the whole row instead of leaving a column
+               of empty space beside it, the four feature circles drop into a
+               centred row under it, and the pinned stretch of scroll is
+               shortened to suit the shorter block */
+            @media (min-width: 992px) {
+                .bs-choose-4-wrap {
+                    grid-template-columns: 1fr;
+                }
+                .bs-choose-4-right {
+                    padding-top: 0;
+                }
+                .bs-choose-4-feature {
+                    margin-top: 0;
+                    justify-content: center;
+                }
+                .bs-choose-4-content-height {
+                    height: 900px;
+                }
+            }
+            /* the heading block now runs the whole row, so its dark panel has to
+               reach the window's right edge instead of stopping with the text,
+               and the paragraph is allowed a little more measure to fill the row */
+            .bs-choose-4-content::after {
+                left: -100vw;
+                right: -100vw;
+                width: auto;
+            }
+            .bs-choose-4-content .disc {
+                max-width: min(100%, 720px);
             }
 
         </style>
@@ -1510,42 +1564,6 @@
         
                                     <p class="bs-p-4 disc wa-fadeInUp">A trusted expert in architectural design and innovation, our team member brings a wealth of knowledge and creativity to every project. Their commitment to excellence.</p>
         
-                                    <div class="bs-choose-4-progress">
-        
-                                        <!-- single-item -->
-                                        <div class="bs-choose-4-progress-item">
-                                            <h5 class="bs-p-1 progress-title" style="width: 84%;">
-                                                <span >renovation</span>
-                                                <span class="counter">84</span>%
-                                            </h5>
-                                            <div class="progress-line">
-                                                <div class="progress-line-fill wa-progress" style="width: 84%;"></div>
-                                            </div>
-                                        </div>
-        
-                                        <!-- single-item -->
-                                        <div class="bs-choose-4-progress-item">
-                                            <h5 class="bs-p-1 progress-title" style="width: 72%;">
-                                                <span >architecture</span>
-                                                <span class="counter">72</span>%
-                                            </h5>
-                                            <div class="progress-line">
-                                                <div class="progress-line-fill wa-progress" style="width: 72%;"></div>
-                                            </div>
-                                        </div>
-        
-                                        <!-- single-item -->
-                                        <div class="bs-choose-4-progress-item">
-                                            <h5 class="bs-p-1 progress-title" style="width: 96%;">
-                                                <span >interior</span>
-                                                <span class="counter">96</span>%
-                                            </h5>
-                                            <div class="progress-line">
-                                                <div class="progress-line-fill wa-progress" style="width: 96%;"></div>
-                                            </div>
-                                        </div>
-        
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1553,16 +1571,6 @@
 
 
 
-                        <!-- right-play-btn -->
-                        <div class="bs-choose-4-right d-flex justify-content-center align-items-center">
-
-                            <a href="https://www.youtube.com/watch?v=TdTudAOl37s" aria-label="name" class="bs-play-btn-4 wa-magnetic popup-video">
-                                <span class="icon wa-magnetic-btn">
-                                    <i class="flaticon-play flaticon"></i>
-                                </span>
-                            </a>
-
-                        </div>
                     </div>
 
                     <div class="bs-choose-4-feature">
