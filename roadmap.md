@@ -23,3 +23,4 @@
 - [x] Move the footer logo, heading, paragraph and social links into a left brand block ahead of the About column, with About / Products / Inspiration / Contact in one row to its right.
 - [x] Set the footer to a 12-part grid: the logo block spans 4 parts, About / Products / Inspiration / Contact span the other 8.
 - [x] Add the uploaded interior render to the "luxury Architecture" scrolling banner on Home 6 and keep the headline readable.
+- [x] Change the team member section heading to "VASTU SHASTRA" with the Vastu paragraph and a "read more" button.
