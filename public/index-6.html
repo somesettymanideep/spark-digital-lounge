@@ -188,7 +188,7 @@
                 width: 100%;
                 height: 100%;
                 transform-style: preserve-3d;
-                animation: sea-autoflip 18s ease-in-out infinite;
+                animation: sea-autoflip 36s ease-in-out infinite;
             }
             .sea-vastu-flip-2 {
                 left: 33.3333%;
@@ -235,6 +235,45 @@
             }
             .sea-vastu-flip-3 .sea-vastu-flip-back {
                 background-image: url("/__l5e/assets-v1/7797fbd9-d5e6-4e07-96ac-becd4db8415c/vastu-flip-pooja.jpg");
+            }
+            /* second row: same turn-taking, staggered after the top row */
+            .sea-vastu-flip-4 {
+                top: 33.3333%;
+            }
+            .sea-vastu-flip-5 {
+                top: 33.3333%;
+                left: 33.3333%;
+            }
+            .sea-vastu-flip-6 {
+                top: 33.3333%;
+                left: 66.6666%;
+            }
+            .sea-vastu-flip-4 .sea-vastu-flip-inner {
+                animation-delay: 18s;
+            }
+            .sea-vastu-flip-5 .sea-vastu-flip-inner {
+                animation-delay: 24s;
+            }
+            .sea-vastu-flip-6 .sea-vastu-flip-inner {
+                animation-delay: 30s;
+            }
+            .sea-vastu-flip-4 .sea-vastu-flip-front {
+                background-position: 0 50%;
+            }
+            .sea-vastu-flip-5 .sea-vastu-flip-front {
+                background-position: 50% 50%;
+            }
+            .sea-vastu-flip-6 .sea-vastu-flip-front {
+                background-position: 100% 50%;
+            }
+            .sea-vastu-flip-4 .sea-vastu-flip-back {
+                background-image: url("/__l5e/assets-v1/9c9b9a65-4ee2-4748-afb0-c3726e82ef6f/vastu-flip-bedroom.jpg");
+            }
+            .sea-vastu-flip-5 .sea-vastu-flip-back {
+                background-image: url("/__l5e/assets-v1/62f6760f-80c0-4b64-9483-31f94a676b12/vastu-flip-courtyard.jpg");
+            }
+            .sea-vastu-flip-6 .sea-vastu-flip-back {
+                background-image: url("/__l5e/assets-v1/97579e66-4899-438f-9ea2-001f4fb09967/vastu-flip-bathroom.jpg");
             }
             @media (prefers-reduced-motion: reduce) {
                 .sea-vastu-flip-inner {
@@ -1200,6 +1239,24 @@
                                 </div>
                             </div>
                             <div class="sea-vastu-flip sea-vastu-flip-3" aria-hidden="true">
+                                <div class="sea-vastu-flip-inner">
+                                    <div class="sea-vastu-flip-face sea-vastu-flip-front"></div>
+                                    <div class="sea-vastu-flip-face sea-vastu-flip-back"></div>
+                                </div>
+                            </div>
+                            <div class="sea-vastu-flip sea-vastu-flip-4" aria-hidden="true">
+                                <div class="sea-vastu-flip-inner">
+                                    <div class="sea-vastu-flip-face sea-vastu-flip-front"></div>
+                                    <div class="sea-vastu-flip-face sea-vastu-flip-back"></div>
+                                </div>
+                            </div>
+                            <div class="sea-vastu-flip sea-vastu-flip-5" aria-hidden="true">
+                                <div class="sea-vastu-flip-inner">
+                                    <div class="sea-vastu-flip-face sea-vastu-flip-front"></div>
+                                    <div class="sea-vastu-flip-face sea-vastu-flip-back"></div>
+                                </div>
+                            </div>
+                            <div class="sea-vastu-flip sea-vastu-flip-6" aria-hidden="true">
                                 <div class="sea-vastu-flip-inner">
                                     <div class="sea-vastu-flip-face sea-vastu-flip-front"></div>
                                     <div class="sea-vastu-flip-face sea-vastu-flip-back"></div>
