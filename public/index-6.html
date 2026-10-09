@@ -450,38 +450,71 @@
                 margin-bottom: 44px;
             }
             .sea-award {
+                --sea-award-surface: oklch(0.975 0.009 220);
+                --sea-award-circle: oklch(0.83 0.06 215);
+                --sea-award-accent: oklch(0.57 0.105 220);
+                --sea-award-rule: oklch(0.83 0.025 225);
+                --sea-award-muted: oklch(0.63 0.025 255);
+                --sea-award-ink: oklch(0.22 0.025 260);
                 display: flex;
                 align-items: flex-start;
-                gap: 18px;
+                gap: 30px;
+                padding: 19px 24px 19px 17px;
+                border-radius: 28px;
+                background: var(--sea-award-surface);
             }
             .sea-award-icon {
                 flex: 0 0 auto;
-                width: 64px;
-                height: 64px;
+                width: 82px;
+                height: 82px;
                 border-radius: 50%;
-                background: rgba(47, 153, 174, .12);
-                color: var(--bs-clr-pr-1);
+                background: var(--sea-award-circle);
+                color: var(--sea-award-accent);
                 display: grid;
                 place-items: center;
-                font-size: 26px;
+            }
+            .sea-award-icon svg {
+                width: 47px;
+                height: 47px;
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 2.6;
+                stroke-linecap: square;
+                stroke-linejoin: round;
+            }
+            .sea-award-body {
+                min-width: 0;
+                flex: 1;
+                padding-left: 31px;
+                border-left: 1px solid var(--sea-award-rule);
             }
             .sea-award-title {
                 font-size: 22px;
                 font-weight: 700;
-                letter-spacing: .12em;
+                line-height: 1.25;
+                letter-spacing: 0;
                 text-transform: uppercase;
-                color: var(--bs-clr-pr-1);
-                margin-bottom: 8px;
+                color: var(--sea-award-accent);
+                margin: 0 0 2px;
             }
             .sea-award-sub {
                 text-transform: uppercase;
-                letter-spacing: .04em;
-                color: #7a7a7a;
-                margin-bottom: 12px;
+                font-size: 19px;
+                line-height: 1.4;
+                letter-spacing: 0;
+                color: var(--sea-award-muted);
+                margin: 0 0 5px;
+            }
+            .sea-award-text {
+                font-size: 19px;
+                line-height: 1.4;
+                letter-spacing: 0;
+                color: var(--sea-award-ink);
+                margin: 0;
             }
             .sea-award-text strong {
                 font-weight: 700;
-                color: var(--bs-clr-black-1);
+                color: var(--sea-award-ink);
             }
             .sea-award-divider {
                 border: 0;
@@ -537,7 +570,27 @@
 
             @media (max-width: 575px) {
                 .sea-award {
-                    flex-direction: column;
+                    gap: 14px;
+                    padding: 18px 16px;
+                    border-radius: 24px;
+                }
+                .sea-award-icon {
+                    width: 54px;
+                    height: 54px;
+                }
+                .sea-award-icon svg {
+                    width: 34px;
+                    height: 34px;
+                }
+                .sea-award-body {
+                    padding-left: 14px;
+                }
+                .sea-award-title {
+                    font-size: 20px;
+                }
+                .sea-award-sub,
+                .sea-award-text {
+                    font-size: 15px;
                 }
                 .sea-portfolio-buttons {
                     column-gap: 30px;
@@ -1330,7 +1383,7 @@
                             <div class="sea-about-awards wa-fadeInUp">
                                 <div class="sea-award">
                                     <div class="sea-award-icon">
-                                        <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+                                        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 4h14v6c0 7-3 11-7 11s-7-4-7-11V4Z"/><path d="M9 6H3c0 9 4 13 10 13M23 6h6c0 9-4 13-10 13M16 21v7M11 29h10"/></svg>
                                     </div>
                                     <div class="sea-award-body">
                                         <h3 class="sea-award-title">Awards</h3>
