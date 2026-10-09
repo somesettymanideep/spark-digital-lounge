@@ -39,3 +39,5 @@
 - [x] Remove the photo from the "luxury Architecture" scrolling banner, leaving a plain strip with the headline.
 - [x] Remove the whole "luxury Architecture" scrolling headline section from Home 6.
 
+- [x] Add an architectural scroll-to-top button (drafting tile with corner marks, section arrow and scroll-fill line).
+- [x] Change the services section backdrop from near-black to #081f2c, with the decorative frame's borders following it.
