@@ -421,6 +421,14 @@
                 background: #057584;
                 color: var(--bs-clr-white-1);
             }
+            /* the tags float and tilt, so the drifting area sits a little
+               above and inside the visible window — a tilted pill then never
+               gets sliced off at the section's edges */
+            .bs-expertise-4-box {
+                margin-top: -245px;
+                margin-left: 28px;
+                margin-right: 28px;
+            }
         </style>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
