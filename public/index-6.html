@@ -746,8 +746,7 @@
                side padding is narrower the cards would sit under it — this
                section gets a matching left gutter instead */
             @media (min-width: 576px) and (max-width: 1199px) {
-                .bs-services-4-area .container.bs-container-2,
-                .bs-choose-4-area .container.bs-container-2 {
+                .bs-services-4-area .container.bs-container-2 {
                     padding-left: 62px;
                 }
             }
@@ -766,33 +765,6 @@
             }
             .bs-services-4-item-single:nth-child(6) .default-content {
                 background-color: #243236;
-            }
-
-            /* the why choose us block: the three percentage bars are gone,
-               and the label and headline now wear the studio's teal and
-               near-black — so the panel behind them turns light, otherwise
-               both would disappear into this section's dark photo */
-            .bs-choose-4-content::after {
-                background: #F7F6F1;
-            }
-            /* the template shrinks this column and slides it off to the left
-               as you scroll, which pushed the headline past the window edge —
-               here it stays put so the words are always fully on screen */
-            .bs-choose-4-content {
-                transform: none !important;
-            }
-            .bs-choose-4-subtitle {
-                border-color: rgba(1, 112, 127, .35);
-            }
-            .bs-choose-4-subtitle .text {
-                color: #01707f;
-            }
-            .bs-choose-4-content .title {
-                color: #081f2c;
-            }
-            .bs-choose-4-content .disc {
-                color: #4A4A4A;
-                opacity: 1;
             }
 
         </style>
@@ -1538,6 +1510,42 @@
         
                                     <p class="bs-p-4 disc wa-fadeInUp">A trusted expert in architectural design and innovation, our team member brings a wealth of knowledge and creativity to every project. Their commitment to excellence.</p>
         
+                                    <div class="bs-choose-4-progress">
+        
+                                        <!-- single-item -->
+                                        <div class="bs-choose-4-progress-item">
+                                            <h5 class="bs-p-1 progress-title" style="width: 84%;">
+                                                <span >renovation</span>
+                                                <span class="counter">84</span>%
+                                            </h5>
+                                            <div class="progress-line">
+                                                <div class="progress-line-fill wa-progress" style="width: 84%;"></div>
+                                            </div>
+                                        </div>
+        
+                                        <!-- single-item -->
+                                        <div class="bs-choose-4-progress-item">
+                                            <h5 class="bs-p-1 progress-title" style="width: 72%;">
+                                                <span >architecture</span>
+                                                <span class="counter">72</span>%
+                                            </h5>
+                                            <div class="progress-line">
+                                                <div class="progress-line-fill wa-progress" style="width: 72%;"></div>
+                                            </div>
+                                        </div>
+        
+                                        <!-- single-item -->
+                                        <div class="bs-choose-4-progress-item">
+                                            <h5 class="bs-p-1 progress-title" style="width: 96%;">
+                                                <span >interior</span>
+                                                <span class="counter">96</span>%
+                                            </h5>
+                                            <div class="progress-line">
+                                                <div class="progress-line-fill wa-progress" style="width: 96%;"></div>
+                                            </div>
+                                        </div>
+        
+                                    </div>
                                 </div>
                             </div>
                         </div>
