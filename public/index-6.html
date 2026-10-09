@@ -822,17 +822,42 @@
                     margin-right: 0;
                 }
             }
-            /* the three extra folded cards keep the template's grey ladder
-               and finish it in deep teal */
+            /* the folded cards wear the brand's teal ladder, pale to deep,
+               in the order the services appear */
+            .bs-services-4-item-single:nth-child(1) .default-content {
+                background-color: #b4d5da;
+            }
+            .bs-services-4-item-single:nth-child(2) .default-content {
+                background-color: #82bac1;
+            }
+            .bs-services-4-item-single:nth-child(3) .default-content {
+                background-color: #509ea8;
+            }
             .bs-services-4-item-single:nth-child(4) .default-content {
-                background-color: #3C4B4F;
+                background-color: #1e8290;
             }
             .bs-services-4-item-single:nth-child(5) .default-content {
-                background-color: #2F3E42;
+                background-color: #046976;
             }
             .bs-services-4-item-single:nth-child(6) .default-content {
-                background-color: #243236;
+                background-color: #03515c;
             }
+            /* the sideways service names are white in the template, which
+               disappears on the three pale folds — those read in the brand's
+               deep navy instead, the deep folds keep white */
+            .bs-services-4-item-single:nth-child(1) .title-2,
+            .bs-services-4-item-single:nth-child(2) .title-2,
+            .bs-services-4-item-single:nth-child(3) .title-2 {
+                color: #081f2c;
+            }
+            /* the small folded photo is greyed out in the template; on the
+               pale folds it goes a touch darker so it holds its own */
+            .bs-services-4-item-single:nth-child(1) .img-2 img,
+            .bs-services-4-item-single:nth-child(2) .img-2 img,
+            .bs-services-4-item-single:nth-child(3) .img-2 img {
+                filter: grayscale(1) brightness(0.82);
+            }
+
             /* the section's own near-black backdrop becomes the brand's deep
                navy; the template's faint texture sits on top of it untouched */
             .bs-services-4-area {
