@@ -1,5 +1,7 @@
 # Homepage updates
 
+- [x] Add the uploaded living-room and pooja photos to top-row tiles two and three, flipping tiles one after another.
+
 - [x] Keep the original teal header logo on all backgrounds.
 - [x] Remove the hero's Trusted badges.
 - [x] Apply Home 3's image reveal and zoom to the three-image slider and verify playback.
