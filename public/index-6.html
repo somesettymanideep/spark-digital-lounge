@@ -746,7 +746,8 @@
                side padding is narrower the cards would sit under it — this
                section gets a matching left gutter instead */
             @media (min-width: 576px) and (max-width: 1199px) {
-                .bs-services-4-area .container.bs-container-2 {
+                .bs-services-4-area .container.bs-container-2,
+                .bs-choose-4-area .container.bs-container-2 {
                     padding-left: 62px;
                 }
             }
@@ -773,6 +774,12 @@
                both would disappear into this section's dark photo */
             .bs-choose-4-content::after {
                 background: #F7F6F1;
+            }
+            /* the template shrinks this column and slides it off to the left
+               as you scroll, which pushed the headline past the window edge —
+               here it stays put so the words are always fully on screen */
+            .bs-choose-4-content {
+                transform: none !important;
             }
             .bs-choose-4-subtitle {
                 border-color: rgba(1, 112, 127, .35);
