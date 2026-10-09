@@ -45,3 +45,5 @@
 - [x] Set the projects section's background to #e8f2f4.
 - [x] Set the About section's "about us" label to #01707f and its heading to #081f2c, with a laptop-width left gutter so the sticky social rail clears the heading.
 - Footer Home 6: original SEA logo on white 5px-radius chip; "about" column → "quick links" (home, about, vastu shastra, projects, contact); "products" → "services" (six service names); inspiration column removed; contact → "corporate office" spanning 4 grid parts with address (Google Maps link), naresh@s4eaindia.com, +91 9000299600. Playwright-verified desktop + phone, no overflow.
+
+- [x] Set the six services cards\u2019 folded backgrounds to #b4d5da, #82bac1, #509ea8, #1e8290, #046976, #03515c in card order, with the three pale folds labelled in #081f2c so their names stay readable.
