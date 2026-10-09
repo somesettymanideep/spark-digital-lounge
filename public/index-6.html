@@ -84,8 +84,6 @@
                 max-width: 100%;
                 height: auto;
                 max-height: 64px;
-                /* the footer is near-black, so the mark reads there in white */
-                filter: brightness(0) invert(1);
             }
             /* the terms strip gradient is hard-coded orange in the shared CSS */
             .bs-footer-2-top-content-link .bg-color {
@@ -96,8 +94,8 @@
                 grid-template-columns: 1fr;
             }
             /* the brand block (logo, heading, intro, socials) leads the footer columns */
-            /* 12-part grid: the logo block takes 4 parts,
-               About / Products / Inspiration / Contact take the other 8 */
+            /* 12-part grid: the logo block takes 4 parts, quick links and
+               services take 2 each, corporate office takes the last 4 */
             .bs-footer-2-widgets {
                 display: grid;
                 grid-template-columns: repeat(12, 1fr);
@@ -112,6 +110,9 @@
                 min-width: 0;
                 max-width: none;
             }
+            .bs-footer-2-widgets .bs-footer-1-widget.sea-footer-office {
+                grid-column: span 4;
+            }
             @media only screen and (max-width: 991px) {
                 .bs-footer-2-widgets {
                     gap: 30px 24px;
@@ -121,6 +122,9 @@
                 }
                 .bs-footer-2-widgets .bs-footer-1-widget {
                     grid-column: span 6;
+                }
+                .bs-footer-2-widgets .bs-footer-1-widget.sea-footer-office {
+                    grid-column: span 12;
                 }
             }
             @media only screen and (max-width: 575px) {
@@ -132,6 +136,13 @@
                 display: inline-block;
                 margin-top: 0;
                 margin-bottom: 26px;
+                /* the original teal mark sits on a small white rounded chip */
+                background: #ffffff;
+                border-radius: 5px;
+                padding: 10px 16px;
+            }
+            .bs-footer-2-brand .bs-footer-2-logo img {
+                filter: none;
             }
             .bs-footer-2-brand .title {
                 font-size: 28px;
