@@ -26,3 +26,4 @@
 - [x] Change the team member section heading to "VASTU SHASTRA" with the Vastu paragraph and a "read more" button.
 - [x] Rename the floating tags under the studio name to the six SEA services, on solid #057584 pills with white words and no tick icons.
 - [x] Set the projects label to #01707f and the recent works headline to #081f2c on Home 6.
+- [x] Add a sticky left social rail (Facebook, Instagram, LinkedIn, YouTube) with brand colors and hover labels, shown after the hero.
