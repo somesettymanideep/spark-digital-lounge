@@ -84,8 +84,6 @@
                 max-width: 100%;
                 height: auto;
                 max-height: 64px;
-                /* the footer is near-black, so the mark reads there in white */
-                filter: brightness(0) invert(1);
             }
             /* the terms strip gradient is hard-coded orange in the shared CSS */
             .bs-footer-2-top-content-link .bg-color {
@@ -96,8 +94,8 @@
                 grid-template-columns: 1fr;
             }
             /* the brand block (logo, heading, intro, socials) leads the footer columns */
-            /* 12-part grid: the logo block takes 4 parts,
-               About / Products / Inspiration / Contact take the other 8 */
+            /* 12-part grid: the logo block takes 4 parts, quick links and
+               services take 2 each, corporate office takes the last 4 */
             .bs-footer-2-widgets {
                 display: grid;
                 grid-template-columns: repeat(12, 1fr);
@@ -112,6 +110,9 @@
                 min-width: 0;
                 max-width: none;
             }
+            .bs-footer-2-widgets .bs-footer-1-widget.sea-footer-office {
+                grid-column: span 4;
+            }
             @media only screen and (max-width: 991px) {
                 .bs-footer-2-widgets {
                     gap: 30px 24px;
@@ -121,6 +122,9 @@
                 }
                 .bs-footer-2-widgets .bs-footer-1-widget {
                     grid-column: span 6;
+                }
+                .bs-footer-2-widgets .bs-footer-1-widget.sea-footer-office {
+                    grid-column: span 12;
                 }
             }
             @media only screen and (max-width: 575px) {
@@ -132,6 +136,25 @@
                 display: inline-block;
                 margin-top: 0;
                 margin-bottom: 26px;
+                /* the original teal mark sits on a small white rounded chip */
+                background: #ffffff;
+                border-radius: 5px;
+                padding: 10px 16px;
+            }
+            .bs-footer-2-brand .bs-footer-2-logo img {
+                filter: none;
+            }
+            /* the corporate-office block: long address wraps beside its icon */
+            .bs-footer-1-menu.sea-office-list li a {
+                align-items: flex-start;
+            }
+            .bs-footer-1-menu.sea-office-list li a i {
+                margin-top: 5px;
+            }
+            @media only screen and (max-width: 991px) {
+                .bs-footer-1-menu.sea-office-list li a {
+                    padding-right: 14px;
+                }
             }
             .bs-footer-2-brand .title {
                 font-size: 28px;
@@ -2239,42 +2262,36 @@
 
                             <!-- single-widget -->
                             <div class="bs-footer-1-widget">
-                                <h5 class="bs-footer-1-widget-title">about<span>.</span></h5>
+                                <h5 class="bs-footer-1-widget-title">quick links<span>.</span></h5>
                                 <ul class="bs-footer-1-menu has-footer-2 wa-list-style-none">
+                                    <li>
+                                        <a href="index-6.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            home
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="about.html">
                                             <i class="fa-solid fa-angle-right"></i>
-                                            who we are
+                                            about
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="work-process.html">
+                                        <a href="index-6.html">
                                             <i class="fa-solid fa-angle-right"></i>
-                                            what we do
+                                            vastu shastra
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="career-page.html">
+                                        <a href="index-6.html">
                                             <i class="fa-solid fa-angle-right"></i>
-                                            After Care
+                                            projects
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="services-details.html">
+                                        <a href="index-6.html">
                                             <i class="fa-solid fa-angle-right"></i>
-                                            Sustainability
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="services-details.html">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            Welbeng
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="services-details.html">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            Delivery and Aftersales policy
+                                            contact
                                         </a>
                                     </li>
                                 </ul>
@@ -2282,110 +2299,68 @@
     
                             <!-- single-widget -->
                             <div class="bs-footer-1-widget">
-                                <h5 class="bs-footer-1-widget-title">products<span>.</span></h5>
+                                <h5 class="bs-footer-1-widget-title">services<span>.</span></h5>
                                 <ul class="bs-footer-1-menu has-footer-2 wa-list-style-none">
                                     <li>
-                                        <a href="projects-2.html">
+                                        <a href="services-details.html">
                                             <i class="fa-solid fa-angle-right"></i>
-                                            All Products
+                                            architectural design
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="project-details.html">
+                                        <a href="services-details.html">
                                             <i class="fa-solid fa-angle-right"></i>
-                                            New designs
+                                            interior design
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="project-details.html">
+                                        <a href="services-details.html">
                                             <i class="fa-solid fa-angle-right"></i>
-                                            CAD Blocks
+                                            landscape design
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="project-details.html">
+                                        <a href="services-details.html">
                                             <i class="fa-solid fa-angle-right"></i>
-                                            Moodboards
+                                            structural design
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="project-details.html">
+                                        <a href="services-details.html">
                                             <i class="fa-solid fa-angle-right"></i>
-                                            Finishes
+                                            project management
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="services-details.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            bim services
                                         </a>
                                     </li>
                                 </ul>
                             </div>
     
-                            <!-- single-widget -->
-                            <div class="bs-footer-1-widget">
-                                <h5 class="bs-footer-1-widget-title">inspiration<span>.</span></h5>
-                                <ul class="bs-footer-1-menu has-footer-2 wa-list-style-none">
-                                    <li>
-                                        <a href="projects-2.html">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            Projects
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-2.html">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            Blog
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="testimonial.html">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            Videos
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="project-details.html">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            Specification Guide
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="project-details.html">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            Bamboo Configurator
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="project-details.html">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            Colony Configurator
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
     
                             <!-- single-widget -->
-                            <div class="bs-footer-1-widget">
-                                <h5 class="bs-footer-1-widget-title">contact<span>.</span></h5>
-                                <ul class="bs-footer-1-menu has-footer-2 wa-list-style-none">
+                            <div class="bs-footer-1-widget sea-footer-office">
+                                <h5 class="bs-footer-1-widget-title">corporate office<span>.</span></h5>
+                                <ul class="bs-footer-1-menu has-footer-2 wa-list-style-none sea-office-list">
                                     <li>
-                                        <a href="#">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            United Kingdom
+                                        <a href="https://maps.google.com/?q=Vasavi+MPM+Grand,+Ameerpet,+Hyderabad" target="_blank" rel="noopener">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            #1215, 11th Floor, Vasavi MPM Grand, Yellareddy Guda, Ameerpet, Hyderabad, Telangana - 500 073
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            North America
+                                        <a href="mailto:naresh@s4eaindia.com">
+                                            <i class="fa-solid fa-envelope"></i>
+                                            naresh@s4eaindia.com
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            Frovi Showeooms
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="career-page.html">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            Careers
+                                        <a href="tel:+919000299600">
+                                            <i class="fa-solid fa-phone"></i>
+                                            +91 9000299600
                                         </a>
                                     </li>
                                 </ul>
