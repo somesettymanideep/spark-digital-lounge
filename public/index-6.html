@@ -144,12 +144,48 @@
             .bs-footer-2-brand .bs-footer-2-logo img {
                 filter: none;
             }
-            /* the corporate-office block: long address wraps beside its icon */
+            /* the contact info / offices block: addresses formatted with clear hierarchy */
+            .bs-footer-1-menu.sea-office-list li {
+                margin-bottom: 16px;
+            }
+            .bs-footer-1-menu.sea-office-list li:last-child {
+                margin-bottom: 0;
+            }
             .bs-footer-1-menu.sea-office-list li a {
                 align-items: flex-start;
+                display: flex;
+                gap: 12px;
+                line-height: 1.5;
             }
             .bs-footer-1-menu.sea-office-list li a i {
-                margin-top: 5px;
+                margin-top: 4px;
+                color: #2f99ae;
+                flex-shrink: 0;
+                font-size: 14px;
+            }
+            .bs-footer-1-menu.sea-office-list .office-text {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+            .bs-footer-1-menu.sea-office-list .office-heading {
+                font-size: 12px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: #5eead4;
+            }
+            .bs-footer-1-menu.sea-office-list .office-desc {
+                color: rgba(255, 255, 255, 0.75);
+                font-size: 13.5px;
+                line-height: 1.5;
+                transition: color 0.25s ease;
+            }
+            .bs-footer-1-menu.sea-office-list li a:hover .office-desc {
+                color: #ffffff;
+            }
+            .bs-footer-2-copyright-mail {
+                word-break: break-word;
             }
             @media only screen and (max-width: 991px) {
                 .bs-footer-1-menu.sea-office-list li a {
@@ -873,176 +909,334 @@
             }
 
 
-            /* Architectural back-to-top: a drafting-sheet tile — teal
-               registration corners, an inner sheet border, a graduated level
-               scale that fills with scroll progress, and a section arrow
-               inside a compass ring */
-            .wa-back-to-top.sea-top-btn {
-                width: 56px;
-                height: 56px;
-                right: 28px;
-                bottom: -96px;
+            /* =========================================================
+               ARCHITECTURAL ELEVATION THEODOLITE — SCROLL-TO-TOP
+               A high-precision surveying transit instrument with:
+               - Live elevation datum readout (altimeter badge)
+               - Radial azimuth compass bezel (360° graduation ticks)
+               - Circular blueprint progress gauge (SVG arc)
+               - Architectural elevation benchmark symbol & datum lines
+               - Precision drafting corner registration brackets
+               - Kinetic elevator ascent launch feedback
+               ========================================================= */
+            .wa-back-to-top.sea-arch-scroll-top {
+                position: fixed;
+                right: 32px;
+                bottom: 32px;
+                z-index: 999;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 0;
+                margin: 0;
+                background: transparent;
+                border: none;
                 transform: none;
-                border: 1px solid rgba(255, 255, 255, .16);
-                background: #081f2c;
-                border-radius: 2px;
-                transition: bottom .45s var(--bs-cube-2, ease), transform .3s, background-color .3s, border-color .3s;
-            }
-            .wa-back-to-top.sea-top-btn::after {
-                display: none;
-            }
-            .wa-back-to-top.sea-top-btn.active {
-                bottom: 28px;
-            }
-            .wa-back-to-top.sea-top-btn:hover {
-                transform: translateY(-4px);
-                background-color: #01707f;
-                border-color: rgba(255, 255, 255, .42);
-            }
-            /* inner sheet border */
-            .sea-top-sheet {
-                position: absolute;
-                top: 8px;
-                right: 8px;
-                bottom: 8px;
-                left: 8px;
-                border: 1px solid rgba(255, 255, 255, .12);
+                cursor: pointer;
+                outline: none;
+                opacity: 0;
+                visibility: hidden;
                 pointer-events: none;
-                transition: border-color .3s;
+                transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             }
-            .wa-back-to-top.sea-top-btn:hover .sea-top-sheet {
-                border-color: rgba(255, 255, 255, .3);
+            .wa-back-to-top.sea-arch-scroll-top::after {
+                display: none !important;
             }
-            /* corner registration marks */
-            .sea-top-corner {
-                position: absolute;
-                width: 10px;
-                height: 10px;
-                border: 0 solid #2f99ae;
-                transition: border-color .3s;
+            .wa-back-to-top.sea-arch-scroll-top.active,
+            .wa-back-to-top.sea-arch-scroll-top.is-visible {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+                transform: translateY(0);
             }
-            .sea-top-corner.c1 {
-                top: 3px;
-                left: 3px;
-                border-top-width: 1.5px;
-                border-left-width: 1.5px;
+
+            /* Readout chip / altimeter elevation badge */
+            .sea-arch-readout {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                height: 36px;
+                padding: 0 12px;
+                background: rgba(8, 31, 44, 0.92);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(47, 153, 174, 0.38);
+                border-radius: 4px;
+                color: #e6f6f8;
+                font-family: var(--bs-body-font, 'Space Grotesk', monospace);
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), inset 0 0 12px rgba(47, 153, 174, 0.08);
+                transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+                user-select: none;
+                white-space: nowrap;
+                position: relative;
             }
-            .sea-top-corner.c2 {
-                top: 3px;
-                right: 3px;
-                border-top-width: 1.5px;
-                border-right-width: 1.5px;
-            }
-            .sea-top-corner.c3 {
-                bottom: 3px;
-                left: 3px;
-                border-bottom-width: 1.5px;
-                border-left-width: 1.5px;
-            }
-            .sea-top-corner.c4 {
-                bottom: 3px;
-                right: 3px;
-                border-bottom-width: 1.5px;
-                border-right-width: 1.5px;
-            }
-            .wa-back-to-top.sea-top-btn:hover .sea-top-corner {
-                border-color: #fff;
-            }
-            /* graduated level scale: fills bottom-up with scroll progress */
-            .sea-top-scale {
-                position: absolute;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                width: 4px;
-                background: rgba(255, 255, 255, .1);
-                overflow: hidden;
-                pointer-events: none;
-            }
-            .sea-top-scale::after {
+            .sea-arch-readout::after {
                 content: "";
                 position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                background: repeating-linear-gradient(to top, rgba(255, 255, 255, .45) 0 1px, transparent 1px 9px);
-            }
-            .sea-top-scale-fill {
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                height: 0;
-                background: #2f99ae;
-                transition: height .15s linear;
-            }
-            /* section arrow inside a compass ring */
-            .sea-top-mark {
-                position: absolute;
-                left: 50%;
+                right: -5px;
                 top: 50%;
-                width: 34px;
-                height: 34px;
-                transform: translate(-50%, -50%);
-                transition: transform .3s;
+                transform: translateY(-50%) rotate(45deg);
+                width: 8px;
+                height: 8px;
+                background: rgba(8, 31, 44, 0.92);
+                border-top: 1px solid rgba(47, 153, 174, 0.38);
+                border-right: 1px solid rgba(47, 153, 174, 0.38);
+            }
+            .sea-arch-readout-coord {
+                color: #2f99ae;
+                font-size: 9px;
+                font-weight: 700;
+                letter-spacing: 0.16em;
+                padding-right: 5px;
+                border-right: 1px solid rgba(255, 255, 255, 0.18);
+            }
+            .sea-arch-readout-val {
+                color: #ffffff;
+                font-variant-numeric: tabular-nums;
+                transition: opacity 0.2s ease, transform 0.2s ease;
+            }
+            .sea-arch-readout-label {
+                display: none;
+                color: #5eead4;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-readout {
+                background: rgba(1, 112, 127, 0.45);
+                border-color: rgba(94, 234, 212, 0.7);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 14px rgba(47, 153, 174, 0.45);
+                transform: translateX(-3px);
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-readout::after {
+                background: #0b3442;
+                border-color: rgba(94, 234, 212, 0.7);
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-readout-val {
+                display: none;
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-readout-label {
+                display: inline-block;
+            }
+
+            /* Circular Theodolite Instrument Housing */
+            .sea-arch-dial {
+                position: relative;
+                width: 62px;
+                height: 62px;
+                border-radius: 50%;
+                background: #081f2c;
+                background-image: radial-gradient(rgba(47, 153, 174, 0.22) 1px, transparent 1px);
+                background-size: 6px 6px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                box-shadow: 0 8px 26px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(47, 153, 174, 0.25);
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-dial {
+                transform: translateY(-4px) scale(1.04);
+                background-color: #051a26;
+                border-color: rgba(94, 234, 212, 0.75);
+                box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6), 0 0 24px rgba(47, 153, 174, 0.55), 0 0 0 1px rgba(94, 234, 212, 0.5);
+            }
+
+            /* Drafting corner brackets around the circular housing */
+            .sea-arch-bracket {
+                position: absolute;
+                width: 9px;
+                height: 9px;
+                border: 0 solid rgba(47, 153, 174, 0.55);
                 pointer-events: none;
+                transition: border-color 0.3s ease, transform 0.3s ease;
             }
-            .sea-top-mark .ring {
-                stroke: rgba(255, 255, 255, .25);
-                transition: stroke .3s;
+            .sea-arch-bracket.b-tl {
+                top: -3px;
+                left: -3px;
+                border-top-width: 1.5px;
+                border-left-width: 1.5px;
             }
-            .sea-top-mark .shaft {
-                stroke: #fff;
+            .sea-arch-bracket.b-tr {
+                top: -3px;
+                right: -3px;
+                border-top-width: 1.5px;
+                border-right-width: 1.5px;
             }
-            .sea-top-mark .head {
-                fill: #fff;
+            .sea-arch-bracket.b-bl {
+                bottom: -3px;
+                left: -3px;
+                border-bottom-width: 1.5px;
+                border-left-width: 1.5px;
             }
-            .sea-top-mark .datum {
+            .sea-arch-bracket.b-br {
+                bottom: -3px;
+                right: -3px;
+                border-bottom-width: 1.5px;
+                border-right-width: 1.5px;
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-bracket {
+                border-color: #5eead4;
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-bracket.b-tl { transform: translate(-2px, -2px); }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-bracket.b-tr { transform: translate(2px, -2px); }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-bracket.b-bl { transform: translate(-2px, 2px); }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-bracket.b-br { transform: translate(2px, 2px); }
+
+            /* SVG Instrument */
+            .sea-arch-instrument {
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                overflow: visible;
+            }
+            .sea-arch-housing {
+                fill: none;
+                stroke: rgba(255, 255, 255, 0.12);
+                stroke-width: 1px;
+            }
+            .sea-arch-back-glow {
+                opacity: 0.35;
+                transition: opacity 0.3s ease;
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-back-glow {
+                opacity: 0.85;
+            }
+            .sea-arch-track {
+                fill: none;
+                stroke: rgba(255, 255, 255, 0.14);
+                stroke-width: 2.2px;
+                stroke-dasharray: 2.5 3;
+            }
+            .sea-arch-progress {
+                fill: none;
+                stroke-width: 2.6px;
+                stroke-linecap: round;
+                transform-origin: 32px 32px;
+                transform: rotate(-90deg);
+                stroke-dasharray: 163.36;
+                stroke-dashoffset: 163.36;
+                transition: stroke-dashoffset 0.12s linear;
+                filter: drop-shadow(0 0 4px rgba(47, 153, 174, 0.7));
+            }
+            .sea-arch-inner-ring {
+                fill: none;
+                stroke: rgba(255, 255, 255, 0.08);
+                stroke-width: 0.75px;
+                stroke-dasharray: 1.5 2.5;
+            }
+            .sea-arch-ticks line {
+                stroke: rgba(255, 255, 255, 0.35);
+                stroke-width: 0.9px;
+                stroke-linecap: round;
+            }
+            .sea-arch-ticks .sea-tick-major {
                 stroke: #2f99ae;
-                transition: stroke .3s;
+                stroke-width: 1.5px;
             }
-            .sea-top-mark .datum-2 {
-                stroke: rgba(255, 255, 255, .62);
-                transition: stroke .3s;
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-ticks line {
+                stroke: rgba(255, 255, 255, 0.65);
             }
-            .wa-back-to-top.sea-top-btn:hover .sea-top-mark {
-                transform: translate(-50%, -54%);
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-ticks .sea-tick-major {
+                stroke: #5eead4;
             }
-            .wa-back-to-top.sea-top-btn:hover .sea-top-mark .ring {
-                stroke: rgba(255, 255, 255, .55);
+            .sea-arch-crosshairs line {
+                stroke: rgba(47, 153, 174, 0.55);
+                stroke-width: 0.9px;
+                stroke-linecap: round;
             }
-            .wa-back-to-top.sea-top-btn:hover .sea-top-mark .datum {
-                stroke: #fff;
+            .sea-reticle-center {
+                fill: #2f99ae;
+                transition: fill 0.3s ease;
             }
-            .wa-back-to-top.sea-top-btn:hover .sea-top-scale-fill {
-                background: #fff;
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-reticle-center {
+                fill: #5eead4;
             }
-            @media (max-width: 575px) {
-                .wa-back-to-top.sea-top-btn {
-                    width: 48px;
-                    height: 48px;
-                    right: 16px;
+            .sea-arch-north {
+                font-family: var(--bs-body-font, monospace);
+                font-size: 6px;
+                font-weight: 700;
+                fill: #2f99ae;
+                letter-spacing: 0.05em;
+                transition: fill 0.3s ease;
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-north {
+                fill: #5eead4;
+            }
+
+            /* Benchmark Elevation Datum Symbol */
+            .sea-arch-datum-symbol {
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .sea-datum-arrow {
+                fill: #ffffff;
+                transition: fill 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+            }
+            .sea-datum-ground {
+                stroke: #2f99ae;
+                stroke-linecap: round;
+                transition: stroke 0.3s ease;
+            }
+            .sea-datum-ground.g1 { stroke-width: 1.5px; }
+            .sea-datum-ground.g2 { stroke-width: 1.2px; stroke: rgba(47, 153, 174, 0.85); }
+            .sea-datum-ground.g3 { stroke-width: 1px; stroke: rgba(47, 153, 174, 0.6); }
+
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-datum-arrow {
+                fill: #5eead4;
+                transform: translateY(-2.5px);
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-datum-ground {
+                stroke: #5eead4;
+            }
+
+            /* Kinetic Ascending Launch State (Triggered on click) */
+            .wa-back-to-top.sea-arch-scroll-top.is-ascending .sea-datum-arrow {
+                transform: translateY(-22px) scale(0.8);
+                opacity: 0;
+                transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2), opacity 0.3s ease;
+            }
+            .wa-back-to-top.sea-arch-scroll-top.is-ascending .sea-arch-progress {
+                stroke-dashoffset: 163.36 !important;
+                transition: stroke-dashoffset 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            }
+
+            /* Responsive queries */
+            @media (max-width: 767px) {
+                .wa-back-to-top.sea-arch-scroll-top {
+                    right: 18px;
+                    bottom: 20px;
+                    gap: 8px;
                 }
-                .wa-back-to-top.sea-top-btn.active {
-                    bottom: 18px;
+                .sea-arch-dial {
+                    width: 52px;
+                    height: 52px;
                 }
-                .sea-top-sheet {
-                    top: 6px;
-                    right: 6px;
-                    bottom: 6px;
-                    left: 6px;
-                }
-                .sea-top-corner {
-                    width: 8px;
-                    height: 8px;
-                }
-                .sea-top-scale {
-                    width: 3px;
-                }
-                .sea-top-mark {
-                    width: 30px;
+                .sea-arch-readout {
                     height: 30px;
+                    padding: 0 9px;
+                    font-size: 10px;
+                }
+                .sea-arch-readout-coord {
+                    font-size: 8px;
+                }
+            }
+            @media (max-width: 480px) {
+                .sea-arch-readout {
+                    display: none; /* Keep ultra-clean on smallest screens */
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .wa-back-to-top.sea-arch-scroll-top,
+                .sea-arch-dial,
+                .sea-datum-arrow,
+                .sea-arch-progress {
+                    transition: none !important;
                 }
             }
         /* contact form panel: pale teal backdrop */
@@ -1128,28 +1322,82 @@
                 updateControls();
                 video.play().catch(updateControls);
             });
-            /* back-to-top: the graduated level scale fills with scroll
-               progress, like a level marker on an elevation drawing */
+            /* Architectural Elevation Altimeter:
+               Tracks scroll depth, computes vertical building elevation,
+               animates circular theodolite arc, and manages launch to datum ±0.00 */
             document.addEventListener('DOMContentLoaded', function () {
-                var btn = document.querySelector('.sea-top-btn');
+                var btn = document.querySelector('.sea-arch-scroll-top');
                 if (!btn) return;
-                var fill = btn.querySelector('.sea-top-scale-fill');
-                function updateTopProgress() {
-                    var max = document.documentElement.scrollHeight - window.innerHeight;
-                    var p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
-                    fill.style.height = (p * 100).toFixed(2) + '%';
-                    fill.style.display = p > 0.04 ? 'block' : 'none';
+                var progressCircle = btn.querySelector('.sea-arch-progress');
+                var valEl = btn.querySelector('.sea-arch-readout-val');
+                var circumference = 163.36; // 2 * Math.PI * 26
+                var isAscending = false;
+
+                function updateArchitecturalAltimeter() {
+                    var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+                    var maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+                    var ratio = maxScroll > 0 ? Math.min(Math.max(scrollY / maxScroll, 0), 1) : 0;
+
+                    // Toggle visibility threshold (show smoothly past 280px)
+                    if (scrollY > 280) {
+                        btn.classList.add('is-visible');
+                    } else {
+                        btn.classList.remove('is-visible');
+                        if (scrollY < 40 && isAscending) {
+                            isAscending = false;
+                            btn.classList.remove('is-ascending');
+                        }
+                    }
+
+                    // Progress arc stroke-dashoffset
+                    if (!isAscending && progressCircle) {
+                        var offset = circumference * (1 - ratio);
+                        progressCircle.style.strokeDashoffset = offset.toFixed(2);
+                    }
+
+                    // Dynamic Elevation Datum calculation
+                    if (valEl) {
+                        if (ratio <= 0.01) {
+                            valEl.textContent = '±0.00m';
+                        } else {
+                            // Scale elevation up to structural apex (+68.4m)
+                            var elevation = (ratio * 68.4).toFixed(1);
+                            valEl.textContent = '+' + elevation + 'm';
+                        }
+                    }
                 }
-                updateTopProgress();
-                window.addEventListener('scroll', updateTopProgress, { passive: true });
-                window.addEventListener('resize', updateTopProgress);
-                window.addEventListener('pageshow', updateTopProgress);
+
+                function ascendToDatum(e) {
+                    if (e) e.preventDefault();
+                    isAscending = true;
+                    btn.classList.add('is-ascending');
+
+                    if ('scrollBehavior' in document.documentElement.style) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else if (window.jQuery) {
+                        window.jQuery('html, body').animate({ scrollTop: 0 }, 900, 'swing');
+                    } else {
+                        window.scrollTo(0, 0);
+                    }
+
+                    setTimeout(function () {
+                        isAscending = false;
+                        btn.classList.remove('is-ascending');
+                        updateArchitecturalAltimeter();
+                    }, 950);
+                }
+
+                btn.addEventListener('click', ascendToDatum);
                 btn.addEventListener('keydown', function (e) {
                     if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        btn.click();
+                        ascendToDatum(e);
                     }
                 });
+
+                window.addEventListener('scroll', updateArchitecturalAltimeter, { passive: true });
+                window.addEventListener('resize', updateArchitecturalAltimeter);
+                window.addEventListener('pageshow', updateArchitecturalAltimeter);
+                updateArchitecturalAltimeter();
             });
         </script>
     </head>
@@ -2231,7 +2479,7 @@
             <!-- contact-end -->
 
             <!-- brand-start -->
-            <div class="bs-brand-4-area wa-fix mb-130">
+            <div class="bs-brand-4-area wa-fix mb-50">
                 <div class="bs-brand-4-marquee-active">
                     <div class="bs-brand-4-wrap wa-fix">
                         <div class="bs-brand-4-item">
@@ -2282,10 +2530,10 @@
                 </div>
 
                 <div class="container bs-container-1">
-                    <div class="bs-footer-2-wrap pt-130">
+                    <div class="bs-footer-2-wrap pt-60">
 
                         <!-- footer-top -->
-                        <div class="bs-footer-2-top mb-90">
+                        <div class="bs-footer-2-top mb-40">
 
                             <!-- left-content -->
                             <div class="bs-footer-2-top-content">
@@ -2421,24 +2669,42 @@
     
                             <!-- single-widget -->
                             <div class="bs-footer-1-widget sea-footer-office">
-                                <h5 class="bs-footer-1-widget-title">corporate office<span>.</span></h5>
+                                <h5 class="bs-footer-1-widget-title">contact info<span>.</span></h5>
                                 <ul class="bs-footer-1-menu has-footer-2 wa-list-style-none sea-office-list">
                                     <li>
                                         <a href="https://maps.google.com/?q=Vasavi+MPM+Grand,+Ameerpet,+Hyderabad" target="_blank" rel="noopener">
                                             <i class="fa-solid fa-location-dot"></i>
-                                            #1215, 11th Floor, Vasavi MPM Grand, Yellareddy Guda, Ameerpet, Hyderabad, Telangana - 500 073
+                                            <span class="office-text">
+                                                <span class="office-heading">Corporate Office</span>
+                                                <span class="office-desc">#1215, 11th Floor, Vasavi MPM Grand, Yellareddy Guda, Ameerpet, Hyderabad, Telangana - 500 073</span>
+                                            </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="mailto:naresh@s4eaindia.com">
-                                            <i class="fa-solid fa-envelope"></i>
-                                            naresh@s4eaindia.com
+                                        <a href="https://maps.google.com/?q=Sri+Sai+Nilayam,+Chandramoulipuram,+BENZ+Circle,+Vijayawada" target="_blank" rel="noopener">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <span class="office-text">
+                                                <span class="office-heading">Branch Office</span>
+                                                <span class="office-desc">Flat No: 101, Sri Sai Nilayam, Chandramoulipuram, ADJ. HDFC Bank, BENZ Circle, Vijayawada, Andhra Pradesh 520 010</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://maps.google.com/?q=Sri+Sai+Ram+Nilayam,+Chandramoulipuram,+Adj+Hdfc+Bank,+Benz+Circle,+Vijayawada" target="_blank" rel="noopener">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <span class="office-text">
+                                                <span class="office-heading">Bangalore</span>
+                                                <span class="office-desc">NO 40-14-5/2, Flat No - 101, Sri Sai Ram Nilayam, Chandramoulipuram, Adj Hdfc Bank, Benz Circle, Vijayawada -520010</span>
+                                            </span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="tel:+919000299600">
                                             <i class="fa-solid fa-phone"></i>
-                                            +91 9000299600
+                                            <span class="office-text">
+                                                <span class="office-heading">Phone</span>
+                                                <span class="office-desc">+91 9000299600</span>
+                                            </span>
                                         </a>
                                     </li>
                                 </ul>
@@ -2451,8 +2717,8 @@
                         </div>        
                         
                         <div class="bs-footer-2-copyright mb-40">
-                            <a href="#" aria-label="name" class="bs-footer-2-copyright-mail bs-h-1">
-                                Hello<span>@</span>example.com
+                            <a href="mailto:naresh@s4eaindia.com" aria-label="naresh@s4eaindia.com" class="bs-footer-2-copyright-mail bs-h-1">
+                                naresh<span>@</span>s4eaindia.com
                             </a>
 
                             <p class="bs-footer-2-copyright-text bs-p-1">
@@ -2656,20 +2922,90 @@
             <!-- search-popup-end -->  
 
             <!-- back-to-top-button-start -->
-            <div class="wa-back-to-top sea-top-btn" role="button" tabindex="0" aria-label="Back to top">
-                <span class="sea-top-sheet" aria-hidden="true"></span>
-                <span class="sea-top-corner c1" aria-hidden="true"></span>
-                <span class="sea-top-corner c2" aria-hidden="true"></span>
-                <span class="sea-top-corner c3" aria-hidden="true"></span>
-                <span class="sea-top-corner c4" aria-hidden="true"></span>
-                <span class="sea-top-scale" aria-hidden="true"><span class="sea-top-scale-fill"></span></span>
-                <svg class="sea-top-mark" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-                    <circle class="ring" cx="22" cy="22" r="14" fill="none" stroke-width="1" stroke-dasharray="2.5 3.5"></circle>
-                    <line class="shaft" x1="22" y1="29" x2="22" y2="15" stroke-width="1.4"></line>
-                    <path class="head" d="M22 8 L26.8 15.5 L17.2 15.5 Z"></path>
-                    <line class="datum" x1="15" y1="29" x2="29" y2="29" stroke-width="1.4"></line>
-                    <line class="datum-2" x1="18" y1="33" x2="26" y2="33" stroke-width="1.2"></line>
-                </svg>
+            <div class="sea-arch-scroll-top wa-back-to-top" role="button" tabindex="0" aria-label="Ascend to Top (Ground Datum ±0.00)">
+                <!-- Architectural datum readout chip (altimeter elevation badge) -->
+                <div class="sea-arch-readout" aria-hidden="true">
+                    <span class="sea-arch-readout-coord">ELEV</span>
+                    <span class="sea-arch-readout-val">±0.00m</span>
+                    <span class="sea-arch-readout-label">ASCEND ▲</span>
+                </div>
+
+                <!-- Theodolite instrument dial casing -->
+                <div class="sea-arch-dial">
+                    <!-- Precision architectural corner registration brackets -->
+                    <span class="sea-arch-bracket b-tl" aria-hidden="true"></span>
+                    <span class="sea-arch-bracket b-tr" aria-hidden="true"></span>
+                    <span class="sea-arch-bracket b-bl" aria-hidden="true"></span>
+                    <span class="sea-arch-bracket b-br" aria-hidden="true"></span>
+
+                    <!-- SVG Theodolite Instrument & Elevation Benchmark -->
+                    <svg class="sea-arch-instrument" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                        <defs>
+                            <linearGradient id="seaArchGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#01707f" />
+                                <stop offset="50%" stop-color="#2f99ae" />
+                                <stop offset="100%" stop-color="#5eead4" />
+                            </linearGradient>
+                            <radialGradient id="seaArchGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="rgba(47, 153, 174, 0.3)" />
+                                <stop offset="100%" stop-color="transparent" />
+                            </radialGradient>
+                        </defs>
+
+                        <!-- Surveyor compass housing ring -->
+                        <circle class="sea-arch-housing" cx="32" cy="32" r="30" />
+
+                        <!-- Subtle radial glow behind dial -->
+                        <circle class="sea-arch-back-glow" cx="32" cy="32" r="26" fill="url(#seaArchGlow)" />
+
+                        <!-- Circular blueprint guide track (dashed hairline) -->
+                        <circle class="sea-arch-track" cx="32" cy="32" r="26" />
+
+                        <!-- Circular dynamic elevation progress arc -->
+                        <circle class="sea-arch-progress" cx="32" cy="32" r="26" stroke="url(#seaArchGradient)" />
+
+                        <!-- Inner concentric surveyor ring -->
+                        <circle class="sea-arch-inner-ring" cx="32" cy="32" r="20" />
+
+                        <!-- Azimuth graduation ticks (every 30 deg, major on 90 deg axes) -->
+                        <g class="sea-arch-ticks">
+                            <line x1="32" y1="3" x2="32" y2="7.5" class="sea-tick-major" />
+                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(30 32 32)" />
+                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(60 32 32)" />
+                            <line x1="32" y1="3" x2="32" y2="7.5" transform="rotate(90 32 32)" class="sea-tick-major" />
+                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(120 32 32)" />
+                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(150 32 32)" />
+                            <line x1="32" y1="3" x2="32" y2="7.5" transform="rotate(180 32 32)" class="sea-tick-major" />
+                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(210 32 32)" />
+                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(240 32 32)" />
+                            <line x1="32" y1="3" x2="32" y2="7.5" transform="rotate(270 32 32)" class="sea-tick-major" />
+                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(300 32 32)" />
+                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(330 32 32)" />
+                        </g>
+
+                        <!-- Drafting crosshairs (plumb line & horizontal datum) -->
+                        <g class="sea-arch-crosshairs">
+                            <line x1="32" y1="9" x2="32" y2="14" />
+                            <line x1="32" y1="50" x2="32" y2="55" />
+                            <line x1="9" y1="32" x2="14" y2="32" />
+                            <line x1="50" y1="32" x2="55" y2="32" />
+                            <circle class="sea-reticle-center" cx="32" cy="32" r="1.2" />
+                        </g>
+
+                        <!-- North indicator at apex -->
+                        <text x="32" y="11.5" class="sea-arch-north" text-anchor="middle">N</text>
+
+                        <!-- Architectural Benchmark Elevation Datum Marker (Upward arrow + ground datum lines) -->
+                        <g class="sea-arch-datum-symbol">
+                            <!-- Precision upward elevation chevron / triangle -->
+                            <polygon class="sea-datum-arrow" points="32,16 40,25 35,25 35,34 29,34 29,25 24,25" />
+                            <!-- Ground Datum baseline and stepped sub-lines (Iconic architectural datum mark ±0.00) -->
+                            <line class="sea-datum-ground g1" x1="20" y1="38" x2="44" y2="38" />
+                            <line class="sea-datum-ground g2" x1="24" y1="41" x2="40" y2="41" />
+                            <line class="sea-datum-ground g3" x1="28" y1="44" x2="36" y2="44" />
+                        </g>
+                    </svg>
+                </div>
             </div>
             <!-- back-to-top-button-end --> 
 
