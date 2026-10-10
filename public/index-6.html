@@ -1384,6 +1384,260 @@
         .bs-contact-4-form {
             background-color: #e9f3f4;
         }
+
+        /* Testimonials section layout based on architectural design mockup */
+        .sea-testimonial-section {
+            position: relative;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            margin-top: 0 !important;
+            padding-top: 90px !important;
+            padding-bottom: 80px !important;
+            background-color: #f7fafc !important;
+            background-image: 
+                linear-gradient(rgba(47, 153, 174, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(47, 153, 174, 0.08) 1px, transparent 1px) !important;
+            background-size: 34px 34px !important;
+            overflow: hidden;
+        }
+        .sea-testimonial-section::before {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 1px solid rgba(47, 153, 174, 0.16);
+            box-shadow: 0 0 0 28px rgba(47, 153, 174, 0.04), 0 0 0 56px rgba(47, 153, 174, 0.02);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .sea-testimonial-section::after {
+            content: "";
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 1px dashed rgba(47, 153, 174, 0.14);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .sea-testimonial-header {
+            margin-bottom: 45px;
+            position: relative;
+            z-index: 1;
+        }
+        .sea-testimonial-subtitle,
+        .sea-testimonial-subtitle * {
+            font-family: var(--bs-font-1), "Albert Sans", sans-serif !important;
+        }
+        .sea-testimonial-subtitle {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #2f99ae !important;
+            margin-bottom: 14px;
+        }
+        .sea-testimonial-subtitle .sea-subtitle-line {
+            display: inline-block;
+            width: 46px;
+            height: 1.5px;
+            background-color: #2f99ae;
+        }
+        .sea-testimonial-title,
+        .sea-testimonial-title * {
+            font-family: var(--bs-font-1), "Albert Sans", sans-serif !important;
+        }
+        .sea-testimonial-title {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            color: #081f2c !important;
+            margin: 0;
+        }
+        .sea-testimonial-title .sea-clr-teal,
+        .sea-testimonial-title .sea-clr-teal * {
+            color: #2f99ae !important;
+        }
+        @media (max-width: 991px) {
+            .sea-testimonial-title {
+                font-size: 38px;
+            }
+        }
+        @media (max-width: 575px) {
+            .sea-testimonial-title {
+                font-size: 30px;
+            }
+        }
+        .sea-testimonial-slider {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            position: relative;
+            z-index: 1;
+        }
+        .sea-t4-active {
+            overflow: hidden !important;
+            padding: 10px 2px 25px 2px !important;
+        }
+        .sea-testimonial-card {
+            background: #ffffff;
+            border: 1px solid rgba(47, 153, 174, 0.24);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(8, 31, 44, 0.05);
+            padding: 22px;
+            display: grid;
+            grid-template-columns: 210px 1fr;
+            gap: 24px;
+            align-items: center;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .sea-testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(8, 31, 44, 0.08);
+            border-color: rgba(47, 153, 174, 0.45);
+        }
+        @media (max-width: 1199px) and (min-width: 768px) {
+            .sea-testimonial-card {
+                grid-template-columns: 140px 1fr;
+                gap: 16px;
+                padding: 16px;
+            }
+        }
+        @media (max-width: 575px) {
+            .sea-testimonial-card {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding: 18px;
+            }
+        }
+        .sea-card-media {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        @media (max-width: 1199px) and (min-width: 768px) {
+            .sea-card-media {
+                height: 200px;
+            }
+        }
+        @media (max-width: 575px) {
+            .sea-card-media {
+                height: 200px;
+            }
+        }
+        .sea-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px;
+            transition: transform 0.5s ease;
+        }
+        .sea-testimonial-card:hover .sea-card-media img {
+            transform: scale(1.05);
+        }
+        .sea-card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+        }
+        .sea-card-stars {
+            display: flex;
+            gap: 5px;
+            color: #2f99ae;
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+        .sea-card-comment {
+            color: #1e293b;
+            font-size: 15px;
+            line-height: 1.62;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        @media (max-width: 1199px) and (min-width: 768px) {
+            .sea-card-comment {
+                font-size: 13.5px;
+                line-height: 1.55;
+                margin-bottom: 14px;
+            }
+        }
+        .sea-card-author-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #081f2c;
+            margin-bottom: 3px;
+            line-height: 1.25;
+        }
+        @media (max-width: 1199px) and (min-width: 768px) {
+            .sea-card-author-name {
+                font-size: 16px;
+            }
+        }
+        .sea-card-author-role {
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #2f99ae;
+            margin: 0;
+            line-height: 1.3;
+        }
+        @media (max-width: 1199px) and (min-width: 768px) {
+            .sea-card-author-role {
+                font-size: 12.5px;
+            }
+        }
+        .sea-testimonial-slider-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        .sea-testimonial-slider-btn .btn-elm {
+            text-transform: uppercase;
+            font-size: 13.5px;
+            letter-spacing: 2.5px;
+            font-weight: 600;
+            color: #081f2c;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: opacity 0.3s ease, color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+        }
+        .sea-testimonial-slider-btn .btn-elm:hover {
+            opacity: 1;
+            color: #2f99ae;
+        }
+        .sea-testimonial-slider-btn .pagination {
+            max-width: 240px;
+            width: 100%;
+        }
+        .sea-testimonial-slider-btn .bs-t4-pagination {
+            height: 3px !important;
+            background: rgba(47, 153, 174, 0.2) !important;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .sea-testimonial-slider-btn .swiper-pagination-progressbar-fill {
+            background: #2f99ae !important;
+            border-radius: 3px;
+        }
         </style>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -2427,148 +2681,127 @@
             <!-- project-end -->
 
             <!-- testimonial-start -->
-            <section class="bs-testimonial-4-area wa-fix wa-p-relative pt-125 pb-50">
-
-                <div class="bs-testimonial-4-bg" data-background="assets/img/testimonial/t4-bg.png"></div>
+            <section class="bs-testimonial-4-area sea-testimonial-section wa-fix wa-p-relative">
 
                 <div class="container bs-container-2">
-                    <div class="bs-testimonial-4-content">
-                        <h5 class="bs-subtitle-4 ">
-                            <span class="text">testimonial</span>
-                            <span class="icon">
-                                <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="">
-                            </span>
-                        </h5>
-                        <div class="inner-div">
-                            <h2 class="bs-sec-title-4 title wa-split-right wa-capitalize" data-cursor="-opaque">See What Our Valued Customers Say Our Services.</h2>
+                    <div class="sea-testimonial-header">
+                        <div class="sea-testimonial-subtitle wa-fadeInUp">
+                            <span>TESTIMONIALS</span>
+                            <span class="sea-subtitle-line"></span>
+                        </div>
+                        <h2 class="sea-testimonial-title bs-sec-title-4 wa-split-right" data-cursor="-opaque">
+                            What Our <span class="sea-clr-teal">Clients Say</span><br>
+                            About SEA
+                        </h2>
+                    </div>
 
-                            <div class="btn-wrap">
-                                <a href="testimonial.html" aria-label="name" class="bs-pr-btn-2">
-                                    <span class="text" data-back="view all more" data-front="view all more"></span>
-                                    <span class="line-1"></span>
-                                    <span class="line-2"></span>
-                                    <span class="box box-1"></span>
-                                    <span class="box box-2"></span>
-                                    <span class="box box-3"></span>
-                                    <span class="box box-4"></span>
-                                </a>
+                    <div class="bs-testimonial-4-slider sea-testimonial-slider wa-fadeInUp">
+                        <div class="swiper-container wa-fix sea-t4-active">
+                            <div class="swiper-wrapper">
+
+                                <!-- single-slider (Card 1) -->
+                                <div class="swiper-slide">
+                                    <div class="sea-testimonial-card">
+                                        <div class="sea-card-media">
+                                            <img src="assets/img/projects/p5-img-5.png" alt="Luxury Villa Architecture">
+                                        </div>
+                                        <div class="sea-card-body">
+                                            <div class="sea-card-stars">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <p class="sea-card-comment">“Working with SEA Studio was a fantastic experience. Their expertise, professionalism, and commitment to quality were evident every step of the way.”</p>
+                                            <h4 class="sea-card-author-name">Kristin Watson</h4>
+                                            <p class="sea-card-author-role">Project Manager</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- single-slider (Card 2) -->
+                                <div class="swiper-slide">
+                                    <div class="sea-testimonial-card">
+                                        <div class="sea-card-media">
+                                            <img src="assets/img/projects/p5-img-2.png" alt="Modern Studio & Commercial Architecture">
+                                        </div>
+                                        <div class="sea-card-body">
+                                            <div class="sea-card-stars">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <p class="sea-card-comment">“The team truly understood our needs and created a functional yet stunning space that we are proud of.”</p>
+                                            <h4 class="sea-card-author-name">Ralph Edwards</h4>
+                                            <p class="sea-card-author-role">Marketing Manager</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- single-slider (Card 3) -->
+                                <div class="swiper-slide">
+                                    <div class="sea-testimonial-card">
+                                        <div class="sea-card-media">
+                                            <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Garden Villa Architecture">
+                                        </div>
+                                        <div class="sea-card-body">
+                                            <div class="sea-card-stars">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <p class="sea-card-comment">“The team’s ability to turn our vision into a reality exceeded all expectations. Their attention to detail and innovative designs made our project truly unique.”</p>
+                                            <h4 class="sea-card-author-name">Albert Flores</h4>
+                                            <p class="sea-card-author-role">Commercial Project Manager</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- single-slider (Card 4) -->
+                                <div class="swiper-slide">
+                                    <div class="sea-testimonial-card">
+                                        <div class="sea-card-media">
+                                            <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Modern Residential Tower">
+                                        </div>
+                                        <div class="sea-card-body">
+                                            <div class="sea-card-stars">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <p class="sea-card-comment">“Their innovative approach to sustainable design was impressive. We are proud to have a space that not only looks great but also respects the environment.”</p>
+                                            <h4 class="sea-card-author-name">Darrell Steward</h4>
+                                            <p class="sea-card-author-role">Real Estate Director</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-
                         </div>
                     </div>
-                </div>
 
-                <div class="bs-testimonial-4-slider wa-fadeInUp">
-                    <div class="swiper-container wa-fix bs-t4-active">
-                        <div class="swiper-wrapper">
-
-                            <!-- single-slider -->
-                            <div class="swiper-slide">
-                                <div class="bs-testimonial-4-slider-item">
-                                    <div class="item-img wa-fix wa-img-cover">
-                                        <img src="assets/img/testimonial/t4-author-1.png" alt="">
-                                    </div>
-                                    <div class="content">
-                                        <div class="bs-star-1">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <p class="bs-p-4 comment">"The team’s ability to turn our vision into a reality exceeded all expectations. Their attention to detail and innovative designs made our project truly unique."</p>
-                                        
-                                        <h4 class="bs-p-4 name">albert flores</h4>
-                                        <h4 class="bs-p-4 bio">Commercial Project Manager</h4>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- single-slider -->
-                            <div class="swiper-slide">
-                                <div class="bs-testimonial-4-slider-item">
-                                    <div class="item-img wa-fix wa-img-cover">
-                                        <img src="assets/img/testimonial/t4-author-2.png" alt="">
-                                    </div>
-                                    <div class="content">
-                                        <div class="bs-star-1">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <p class="bs-p-4 comment">"Working with this architectural firm was a fantastic experience. Their expertise, professionalism, and commitment to quality were evident every step of the way."</p>
-                                        
-                                        <h4 class="bs-p-4 name">Kristin Watson</h4>
-                                        <h4 class="bs-p-4 bio">Project Manager</h4>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- single-slider -->
-                            <div class="swiper-slide">
-                                <div class="bs-testimonial-4-slider-item">
-                                    <div class="item-img wa-fix wa-img-cover">
-                                        <img src="assets/img/testimonial/t4-author-3.png" alt="">
-                                    </div>
-                                    <div class="content">
-                                        <div class="bs-star-1">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <p class="bs-p-4 comment">"We couldn’t be more thrilled with the design! The team truly understood our needs and created a functional yet stunning space that we are proud of."</p>
-                                        
-                                        <h4 class="bs-p-4 name">Ralph Edwards</h4>
-                                        <h4 class="bs-p-4 bio">marketing manager</h4>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- single-slider -->
-                            <div class="swiper-slide">
-                                <div class="bs-testimonial-4-slider-item">
-                                    <div class="item-img wa-fix wa-img-cover">
-                                        <img src="assets/img/testimonial/t4-author-4.png" alt="">
-                                    </div>
-                                    <div class="content">
-                                        <div class="bs-star-1">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <p class="bs-p-4 comment">"Their innovative approach to sustainable design was impressive. We are proud to have a space that not only looks great but also respects the environment."</p>
-                                        
-                                        <h4 class="bs-p-4 name">Darrell Steward</h4>
-                                        <h4 class="bs-p-4 bio">manager</h4>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container ">
-                    <div class="bs-testimonial-4-slider-btn wa-fadeInUp">
-                        <div class="btn-elm bs-t4-prev">
+                    <div class="sea-testimonial-slider-btn wa-fadeInUp">
+                        <div class="btn-elm bs-t4-prev" role="button" aria-label="Previous review">
                             <i class="fa-solid fa-angle-left"></i>
                             prev
                         </div>
-                        <div class="pagination  wa-p-relative">
+                        <div class="pagination wa-p-relative">
                             <div class="bs-t4-pagination"></div>
                         </div>
-                        <div class="btn-elm bs-t4-next">
+                        <div class="btn-elm bs-t4-next" role="button" aria-label="Next review">
                             next
                             <i class="fa-solid fa-angle-right"></i>
                         </div>
                     </div>
                 </div>
+
             </section>
             <!-- testimonial-end -->
 
@@ -3214,6 +3447,67 @@
         <script src="assets/js/ScrollTrigger.min.js"></script>
         <script src="assets/js/main.js"></script>
         <script>
+            // Initialize SEA Testimonial Slideshow (2 slides from medium to extra large devices)
+            function initSeaTestimonials() {
+                var el = document.querySelector('.sea-t4-active');
+                if (!el || typeof Swiper === 'undefined') return;
+                if (el.swiper) return;
+                new Swiper(el, {
+                    loop: true,
+                    speed: 850,
+                    spaceBetween: 28,
+                    autoplay: {
+                        delay: 4500,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
+                    },
+                    pagination: {
+                        el: ".bs-t4-pagination",
+                        type: "progressbar",
+                    },
+                    navigation: {
+                        nextEl: ".bs-t4-next",
+                        prevEl: ".bs-t4-prev",
+                    },
+                    breakpoints: {
+                        0: {
+                            slidesPerView: 1,
+                            spaceBetween: 16,
+                        },
+                        576: {
+                            slidesPerView: 1,
+                            spaceBetween: 20,
+                        },
+                        768: {
+                            slidesPerView: 2,
+                            spaceBetween: 20,
+                        },
+                        992: {
+                            slidesPerView: 2,
+                            spaceBetween: 24,
+                        },
+                        1200: {
+                            slidesPerView: 2,
+                            spaceBetween: 28,
+                        },
+                        1400: {
+                            slidesPerView: 2,
+                            spaceBetween: 32,
+                        },
+                        1600: {
+                            slidesPerView: 2,
+                            spaceBetween: 32,
+                        },
+                    },
+                });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initSeaTestimonials);
+            } else {
+                initSeaTestimonials();
+            }
+            window.addEventListener('load', initSeaTestimonials);
+
             // Start after the template creates its Swiper and dismisses the preloader.
             window.addEventListener('load', function () {
                 window.setTimeout(function () {
