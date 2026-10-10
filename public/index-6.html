@@ -23,8 +23,23 @@
         <link rel="stylesheet" href="assets/css/animate.css">
         <link rel="stylesheet" href="assets/css/magnific-popup.css">
         <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="assets/css/sea-cursor.css">
         <!-- SEA brand logo sizing, this page only -->
         <style>
+            /* Hero slider bi-parting sliding door transition seams */
+            .sea-sliding-door-seam {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: linear-gradient(180deg, rgba(0, 140, 158, 0.2) 0%, rgba(0, 140, 158, 0.95) 20%, #ffffff 50%, rgba(0, 140, 158, 0.95) 80%, rgba(0, 140, 158, 0.2) 100%);
+                box-shadow: 0 0 14px rgba(0, 140, 158, 0.8), 0 0 3px #ffffff;
+                pointer-events: none;
+                z-index: 10;
+                opacity: 0;
+                transform: translateX(-50%);
+                will-change: left, opacity;
+            }
             /* Home 6 only: transparent overlay becomes a white sticky header. */
             .bs-header-2-area.sea-header {
                 --sea-header-foreground: var(--bs-clr-white-1);
@@ -3515,6 +3530,7 @@
         <script src="assets/js/lenis.min.js"></script>
         <script src="assets/js/ScrollTrigger.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/sea-cursor.js"></script>
         <script>
             // Initialize SEA Testimonial Slideshow (2 slides from medium to extra large devices)
             function initSeaTestimonials() {
@@ -3585,23 +3601,73 @@
                     if (!slider || !window.gsap) return;
                     var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
                     var animation;
+
+                    // Ensure bi-parting sliding door seams exist inside the slider element
+                    var seamLeft = element.querySelector('.sea-sliding-door-seam.is-left');
+                    var seamRight = element.querySelector('.sea-sliding-door-seam.is-right');
+                    if (!seamLeft) {
+                        seamLeft = document.createElement('div');
+                        seamLeft.className = 'sea-sliding-door-seam is-left';
+                        element.appendChild(seamLeft);
+                    }
+                    if (!seamRight) {
+                        seamRight = document.createElement('div');
+                        seamRight.className = 'sea-sliding-door-seam is-right';
+                        element.appendChild(seamRight);
+                    }
+
                     function revealImage(delay) {
                         if (animation) animation.kill();
                         var frames = element.querySelectorAll('.main-img');
                         var images = element.querySelectorAll('.main-img img');
                         gsap.set(frames, { clearProps: 'clipPath' });
                         gsap.set(images, { clearProps: 'transform' });
+                        gsap.set([seamLeft, seamRight], { opacity: 0 });
+
                         if (reducedMotion.matches) return;
                         var slide = slider.slides[slider.activeIndex];
                         var frame = slide && slide.querySelector('.main-img');
                         var image = frame && frame.querySelector('img');
                         if (!frame || !image) return;
+
+                        // Architectural bi-parting sliding door transition
                         animation = gsap.timeline({ defaults: { ease: 'ease1' }, delay: delay });
+
+                        // Start with doors meeting at center line (50%)
+                        gsap.set([seamLeft, seamRight], { left: '50%', opacity: 1 });
+
+                        // Part doors from center (50%) outward to 0% and 100%
                         animation.fromTo(frame,
-                            { clipPath: 'polygon(25% 0%,25% 0%,25% 100%,50% 100%,50% 0%,50% 0%,50% 100%,100% 100%,100% 0%,100% 0%,100% 100%,25% 100%)' },
-                            { clipPath: 'polygon(25% 0%,0% 0%,0% 100%,50% 100%,50% 0%,23% 0%,24% 100%,100% 100%,100% 0%,46% 0%,45% 100%,25% 100%)', duration: 1.2, clearProps: 'clipPath' }
+                            { clipPath: 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)' },
+                            { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', duration: 1.35, clearProps: 'clipPath' }
                         );
-                        animation.fromTo(image, { scale: 1.2 }, { scale: 1, duration: 2, clearProps: 'transform' }, '<');
+
+                        // Left door seam glides from 50% to 0%
+                        animation.fromTo(seamLeft,
+                            { left: '50%' },
+                            { left: '0%', duration: 1.35 },
+                            '<'
+                        );
+
+                        // Right door seam glides from 50% to 100%
+                        animation.fromTo(seamRight,
+                            { left: '50%' },
+                            { left: '100%', duration: 1.35 },
+                            '<'
+                        );
+
+                        // Seams smoothly fade away as doors reach the frame pockets
+                        animation.to([seamLeft, seamRight],
+                            { opacity: 0, duration: 0.28, ease: 'power1.out' },
+                            '-=0.28'
+                        );
+
+                        // Architectural push/settle into the space
+                        animation.fromTo(image,
+                            { scale: 1.12 },
+                            { scale: 1, duration: 1.8, clearProps: 'transform' },
+                            '<'
+                        );
                     }
                     revealImage(0.4);
                     slider.on('slideChangeTransitionStart', function () { revealImage(0); });
