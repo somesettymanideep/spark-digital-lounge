@@ -1439,6 +1439,25 @@
         .bs-contact-4-form {
             margin-top: 0;
         }
+        /* the panel runs the full width under the render, fields in two columns */
+        @media (min-width: 992px) {
+            .bs-contact-4-wrap {
+                grid-template-columns: minmax(0, 1fr);
+                margin-right: 0;
+            }
+            .bs-contact-4-form {
+                padding: 58px 60px 48px;
+            }
+            .bs-contact-4-form .bs-form-1 {
+                grid-template-columns: 1fr 1fr;
+                gap: 38px 46px;
+            }
+            .bs-contact-4-form .bs-form-1-item:nth-child(3),
+            .bs-contact-4-form .bs-form-1-item:nth-child(4),
+            .bs-contact-4-form .bs-form-1-item:last-child {
+                grid-column: 1 / -1;
+            }
+        }
         @media (max-width: 991px) {
             .bs-contact-4-area {
                 padding-top: 60px;
