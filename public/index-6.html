@@ -443,11 +443,26 @@
                     padding-left: 62px;
                 }
             }
+            /* About: framed architectural video */
+            .sea-about-video-frame {
+                position: relative;
+                padding: 10px;
+                background: #ffffff;
+                border: 2px solid rgba(47, 153, 174, 0.35);
+                border-radius: 8px;
+                box-shadow: 0 16px 40px rgba(8, 31, 44, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+            .sea-about-video-frame:hover {
+                border-color: rgba(1, 112, 127, 0.6);
+                box-shadow: 0 20px 45px rgba(8, 31, 44, 0.12);
+            }
             .sea-about-video-wrap {
                 position: relative;
                 width: 100%;
                 aspect-ratio: 16 / 9;
                 overflow: hidden;
+                border-radius: 5px;
                 background: var(--bs-clr-black-1);
             }
             .sea-about-video-wrap video {
@@ -483,10 +498,9 @@
                 outline-offset: 3px;
             }
 
-            /* About: awards + portfolio downloads */
+            /* About: awards */
             .sea-about-awards {
-                margin-top: 48px;
-                margin-bottom: 44px;
+                margin-top: 36px;
             }
             .sea-award {
                 --sea-award-surface: oklch(0.975 0.009 220);
@@ -512,15 +526,13 @@
                 color: var(--sea-award-accent);
                 display: grid;
                 place-items: center;
+                box-shadow: inset 0 0 12px rgba(47, 153, 174, 0.12);
             }
-            .sea-award-icon svg {
-                width: 47px;
-                height: 47px;
-                fill: none;
-                stroke: currentColor;
-                stroke-width: 2.6;
-                stroke-linecap: square;
-                stroke-linejoin: round;
+            .sea-award-icon .sea-award-img {
+                width: 48px;
+                height: 48px;
+                object-fit: contain;
+                display: block;
             }
             .sea-award-body {
                 min-width: 0;
@@ -563,12 +575,15 @@
                 max-width: 50%;
                 margin: 34px 0;
             }
+            .sea-portfolio-under-video {
+                margin-top: 28px;
+            }
             .sea-portfolio-title {
-                font-size: 22px;
+                font-size: 20px;
                 font-weight: 700;
                 letter-spacing: -0.01em;
                 color: #081f2c;
-                margin-bottom: 18px;
+                margin-bottom: 16px;
             }
             .sea-portfolio-buttons {
                 display: flex;
@@ -1675,7 +1690,7 @@
                             <div class="sea-about-awards wa-fadeInUp">
                                 <div class="sea-award">
                                     <div class="sea-award-icon">
-                                        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 4h14v6c0 7-3 11-7 11s-7-4-7-11V4Z"/><path d="M9 6H3c0 9 4 13 10 13M23 6h6c0 9-4 13-10 13M16 21v7M11 29h10"/></svg>
+                                        <img src="assets/img/award/sea-award-trophy.png" alt="Award trophy icon" class="sea-award-img">
                                     </div>
                                     <div class="sea-award-body">
                                         <h3 class="sea-award-title">Awards</h3>
@@ -1683,29 +1698,32 @@
                                         <p class="sea-award-text">Our firm has been awarded the prestigious title of<br><strong>"Outstanding Firm for Innovative Designs"</strong></p>
                                     </div>
                                 </div>
-                                <hr class="sea-award-divider">
-                                <div class="sea-portfolio">
-                                    <h4 class="sea-portfolio-title">Download Portfolio</h4>
-                                    <div class="sea-portfolio-buttons">
-                                        <a href="#" class="sea-portfolio-btn" aria-label="Download Architecture Portfolio (PDF)"><span class="sea-pdf-badge"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="sea-portfolio-btn-name">Architecture</span><span class="sea-portfolio-btn-dl"><i class="fa-solid fa-arrow-down"></i></span></a>
-                                        <a href="#" class="sea-portfolio-btn" aria-label="Download Interior Portfolio (PDF)"><span class="sea-pdf-badge"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="sea-portfolio-btn-name">Interior</span><span class="sea-portfolio-btn-dl"><i class="fa-solid fa-arrow-down"></i></span></a>
-                                        <a href="#" class="sea-portfolio-btn" aria-label="Download Landscape Portfolio (PDF)"><span class="sea-pdf-badge"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="sea-portfolio-btn-name">Landscape</span><span class="sea-portfolio-btn-dl"><i class="fa-solid fa-arrow-down"></i></span></a>
-                                    </div>
-                                </div>
                             </div>
     
                         </div>
                         
                         <div class="bs-about-4-right sea-about-media">
-                            <div class="sea-about-video-wrap">
-                                <video id="sea-about-video" autoplay muted loop playsinline preload="metadata" poster="/__l5e/assets-v1/842a08cc-d750-4657-b955-19a99697baee/sea-about-poster.jpg" aria-label="Studio for Eclectic Architecture video">
-                                    <source src="/__l5e/assets-v1/4f4d5bef-3fde-428e-a411-ee61b9648f6d/sea-about.mp4" type="video/mp4">
-                                    <source src="/__l5e/assets-v1/e94db62c-5af6-4a18-b958-95523319777e/sea-about.webm" type="video/webm">
-                                    Your browser does not support video playback.
-                                </video>
-                                <div class="sea-video-controls">
-                                    <button type="button" id="sea-video-playback" class="sea-video-control" aria-label="Pause video" title="Pause video"><i class="fa-solid fa-pause" aria-hidden="true"></i></button>
-                                    <button type="button" id="sea-video-sound" class="sea-video-control" aria-label="Turn sound on" title="Turn sound on" aria-pressed="false"><i class="fa-solid fa-volume-xmark" aria-hidden="true"></i></button>
+                            <div class="sea-about-video-frame">
+                                <div class="sea-about-video-wrap">
+                                    <video id="sea-about-video" autoplay muted loop playsinline preload="metadata" poster="/__l5e/assets-v1/842a08cc-d750-4657-b955-19a99697baee/sea-about-poster.jpg" aria-label="Studio for Eclectic Architecture video">
+                                        <source src="/__l5e/assets-v1/4f4d5bef-3fde-428e-a411-ee61b9648f6d/sea-about.mp4" type="video/mp4">
+                                        <source src="/__l5e/assets-v1/e94db62c-5af6-4a18-b958-95523319777e/sea-about.webm" type="video/webm">
+                                        Your browser does not support video playback.
+                                    </video>
+                                    <div class="sea-video-controls">
+                                        <button type="button" id="sea-video-playback" class="sea-video-control" aria-label="Pause video" title="Pause video"><i class="fa-solid fa-pause" aria-hidden="true"></i></button>
+                                        <button type="button" id="sea-video-sound" class="sea-video-control" aria-label="Turn sound on" title="Turn sound on" aria-pressed="false"><i class="fa-solid fa-volume-xmark" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Download Portfolio Section (shifted to bottom of video) -->
+                            <div class="sea-portfolio sea-portfolio-under-video wa-fadeInUp">
+                                <h4 class="sea-portfolio-title">Download Portfolio</h4>
+                                <div class="sea-portfolio-buttons">
+                                    <a href="#" class="sea-portfolio-btn" aria-label="Download Architecture Portfolio (PDF)"><span class="sea-pdf-badge"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="sea-portfolio-btn-name">Architecture</span><span class="sea-portfolio-btn-dl"><i class="fa-solid fa-arrow-down"></i></span></a>
+                                    <a href="#" class="sea-portfolio-btn" aria-label="Download Interior Portfolio (PDF)"><span class="sea-pdf-badge"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="sea-portfolio-btn-name">Interior</span><span class="sea-portfolio-btn-dl"><i class="fa-solid fa-arrow-down"></i></span></a>
+                                    <a href="#" class="sea-portfolio-btn" aria-label="Download Landscape Portfolio (PDF)"><span class="sea-pdf-badge"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="sea-portfolio-btn-name">Landscape</span><span class="sea-portfolio-btn-dl"><i class="fa-solid fa-arrow-down"></i></span></a>
                                 </div>
                             </div>
                         </div>
@@ -1904,7 +1922,7 @@
                         <!-- left-content -->
                         <div class="bs-team-4-content">
 
-                            <h2 class="bs-sec-title-4 title wa-split-right wa-capitalize" data-cursor="-opaque">Harmonizing Architecture with Cosmic Energies and Well-Being.</h2>
+                            <h2 class="bs-sec-title-4 title wa-split-right wa-capitalize" data-cursor="-opaque">Harmonizing Cosmic Energies.</h2>
 
                             <p class="bs-p-4 disc wa-fadeInUp">Vastu Shastra, an ancient Indian architectural science, is more than just a set of guidelines for constructing buildings. It is a holistic approach to designing spaces that aligns the physical, spiritual, and emotional well-being of its inhabitants with the natural energies around them.</p>
 
