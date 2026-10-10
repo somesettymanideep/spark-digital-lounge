@@ -51,4 +51,5 @@
 - [x] Replace the form section's right-side photo with the newly uploaded dome render (contact-dome-3.jpg, 1920x801, CDN 97e81362-51d0-4983-8b11-52680426b08b); old contact-dome-2.jpg removed from the page. Playwright-verified at 1700/1280/1015/768/390, no console errors, no horizontal overflow.
 - [x] Hero section slider moves with an architectural bi-parting sliding door transition (center parting with glowing hairline door meeting stiles and smooth depth push).
 - [x] Animated flying parrot cursor for SEA website (colorful tropical plumage in SEA brand palette, aerodynamic flight physics, heading orientation flip, banking pitch tilt, sinusoidal lift bobbing, dynamic wing flap frequencies, glowing teal flight trail, hover states for nav, project orbit, buttons, and idle).
-
+- [x] Set Why Choose Us section feature icon background color to #007890 (visionary design, unyielding excellence, seamless functionality, time-tested trust).
+- [x] Dedicated full image container banner section for "500+ trusted partners all over the world." with uploaded dome render (contact-dome-3.jpg, CDN 97e81362-51d0-4983-8b11-52680426b08b) as the panoramic background image, smooth GSAP parallax scrolling, high-contrast dark architectural overlay, and centered typography directly crowning the brand marquee.
