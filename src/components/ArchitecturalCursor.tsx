@@ -93,7 +93,7 @@ export const ArchitecturalCursor: React.FC = () => {
         const spawnX = x - nx * 18 + px * spread;
         const spawnY = y - ny * 18 + py * spread;
         const colors = ["#00E5FF", "#008C9E", "#006F80", "#FFFFFF", "#FFD166"];
-        const color = colors[Math.floor(Math.random() * colors.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)] ?? "#008C9E";
 
         trail.push({
           x: spawnX,
@@ -200,7 +200,7 @@ export const ArchitecturalCursor: React.FC = () => {
 
     const handleMouseOut = (e: MouseEvent) => {
       const rel = e.relatedTarget as HTMLElement | null;
-      if (rel && rel.closest) {
+      if (rel) {
         handleMouseOver({ target: rel } as any);
       } else {
         setCursorState("default");
@@ -270,9 +270,11 @@ export const ArchitecturalCursor: React.FC = () => {
 
         for (let i = trail.length - 1; i >= 0; i--) {
           const p = trail[i];
+          if (!p) continue;
           p.x += p.vx;
           p.y += p.vy;
           p.life -= p.decay;
+
 
           if (p.life <= 0) {
             trail.splice(i, 1);
