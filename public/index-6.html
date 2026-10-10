@@ -777,6 +777,11 @@
             .bs-team-4-content .title {
                 color: #081f2c;
             }
+            /* Vastu Shastra and Studio for Eclectic Architecture large text sections */
+            .bs-team-4-area,
+            .bs-expertise-4-area {
+                background-color: #f5fafd;
+            }
 
             /* sticky left social rail — appears once the page is scrolled
                past the hero, each icon in its original brand colour, and
@@ -873,20 +878,84 @@
                 flex: 1 1 360px;
                 margin-bottom: 0;
             }
-            .bs-services-4-content .btn-wrap {
-                flex: 0 0 auto;
-            }
             @media (min-width: 992px) {
                 .bs-services-4-item {
-                    --sea-svc-open: clamp(300px, 38vw, 560px);
+                    --sea-svc-open: clamp(320px, 38vw, 560px);
                 }
                 .bs-services-4-item-single {
                     width: calc((100% - var(--sea-svc-open)) / 5);
                     min-width: 56px;
-                    padding: 68px 12px;
+                    padding: 60px 12px;
                 }
                 .bs-services-4-item-single.active {
                     width: var(--sea-svc-open);
+                    padding: 48px 32px 40px;
+                }
+            }
+            .bs-services-4-item-single .title {
+                font-size: 26px;
+                line-height: 1.25;
+                margin-bottom: 16px;
+            }
+            .bs-services-4-item-single .title a {
+                color: #081f2c;
+                transition: color 0.3s ease;
+            }
+            .bs-services-4-item-single .title a:hover {
+                color: #01707f;
+            }
+            .bs-services-4-item-single .main-img {
+                height: 210px;
+                margin-bottom: 16px;
+                border-radius: 4px;
+            }
+            .bs-services-4-item-single .disc {
+                margin-bottom: 0;
+                line-height: 1.6;
+                font-size: 15px;
+                color: #4b5563 !important;
+            }
+            .bs-services-4-item-single.active .active-content,
+            .bs-services-4-item-single:is(.active) .active-content {
+                opacity: 1 !important;
+            }
+            .bs-services-4-item-single.active .title,
+            .bs-services-4-item-single:is(.active) .title {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                transition-delay: 0s !important;
+            }
+            .bs-services-4-item-single.active .disc,
+            .bs-services-4-item-single:is(.active) .disc {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                transition-delay: 0.1s !important;
+                color: #4b5563 !important;
+            }
+            .bs-services-4-item-single .service-btn-wrap {
+                margin-top: 24px;
+                opacity: 0;
+                transform: translateY(6px);
+                transition: opacity 0.35s ease, transform 0.35s ease;
+            }
+            .bs-services-4-item-single.active .service-btn-wrap,
+            .bs-services-4-item-single:is(.active) .service-btn-wrap {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                transition-delay: 0.15s !important;
+            }
+            @media (max-width: 991px) {
+                .bs-services-4-item-single {
+                    padding: 36px 24px;
+                }
+                .bs-services-4-item-single .active-content {
+                    opacity: 1 !important;
+                }
+                .bs-services-4-item-single .title,
+                .bs-services-4-item-single .disc,
+                .bs-services-4-item-single .service-btn-wrap {
+                    opacity: 1 !important;
+                    transform: translateY(0) !important;
                 }
             }
             /* the sticky social rail is 46px wide, so wherever the page's own
@@ -1737,9 +1806,6 @@
 
             <!-- services-start -->
             <section class="bs-services-4-area pt-100 wa-fix " data-background="assets/img/services/s4-bg.png">
-                <div class="bs-services-4-img wa-fix wa-img-cover wa-slideInLeft">
-                    <img src="assets/img/services/s4-img-1.png" alt="">
-                </div>
                 <div class="container bs-container-2">
                     <h5 class="bs-subtitle-4 bs-services-4-subtitle">
                         <span class="text">services</span>
@@ -1756,18 +1822,6 @@
                             <h2 class="bs-sec-title-4 title wa-split-right wa-capitalize" data-cursor="-opaque">Transforming Visions into Timeless Architecture.</h2>
 
                             <p class="bs-p-4 disc wa-fadeInUp">At Barsi, we design spaces that blend innovation, functionality, and timeless aesthetics, creating environments that inspire and elevate daily living.</p>
-
-                            <div class="btn-wrap wa-fadeInUp">
-                                <a href="services-4.html" aria-label="name" class="bs-pr-btn-2">
-                                    <span class="text" data-back="view all services" data-front="view all services"></span>
-                                    <span class="line-1"></span>
-                                    <span class="line-2"></span>
-                                    <span class="box box-1"></span>
-                                    <span class="box box-2"></span>
-                                    <span class="box box-3"></span>
-                                    <span class="box box-4"></span>
-                                </a>
-                            </div>
                         </div>
 
                         <!-- service cards -->
@@ -1777,12 +1831,23 @@
                             <div class="bs-services-4-item-single wa-bg-default active " data-background="assets/img/services/s4-card-bg.png">
                                 <div class="active-content">
                                     <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">ARCHITECTURAL DESIGN</a>
+                                        <a href="services-details.html" aria-label="ARCHITECTURAL DESIGN" class="wa-line-limit has-line-2">ARCHITECTURAL DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
                                         <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Architectural design">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-3">From concept to construction drawings, we shape buildings that answer to their site, their climate and the way you live.</p>
+                                    <div class="service-btn-wrap">
+                                        <a href="services-details.html" aria-label="Read more about ARCHITECTURAL DESIGN" class="bs-pr-btn-2">
+                                            <span class="text" data-back="read more" data-front="read more"></span>
+                                            <span class="line-1"></span>
+                                            <span class="line-2"></span>
+                                            <span class="box box-1"></span>
+                                            <span class="box box-2"></span>
+                                            <span class="box box-3"></span>
+                                            <span class="box box-4"></span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
@@ -1798,12 +1863,23 @@
                             <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
                                 <div class="active-content">
                                     <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">INTERIOR DESIGN</a>
+                                        <a href="services-details.html" aria-label="INTERIOR DESIGN" class="wa-line-limit has-line-2">INTERIOR DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
                                         <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="Interior design">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-3">Layouts, materials, lighting and joinery resolved as one — rooms that feel considered from the first step inside.</p>
+                                    <div class="service-btn-wrap">
+                                        <a href="services-details.html" aria-label="Read more about INTERIOR DESIGN" class="bs-pr-btn-2">
+                                            <span class="text" data-back="read more" data-front="read more"></span>
+                                            <span class="line-1"></span>
+                                            <span class="line-2"></span>
+                                            <span class="box box-1"></span>
+                                            <span class="box box-2"></span>
+                                            <span class="box box-3"></span>
+                                            <span class="box box-4"></span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
@@ -1819,12 +1895,23 @@
                             <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
                                 <div class="active-content">
                                     <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">LANDSCAPE DESIGN</a>
+                                        <a href="services-details.html" aria-label="LANDSCAPE DESIGN" class="wa-line-limit has-line-2">LANDSCAPE DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
                                         <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Landscape design">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-3">Courtyards, gardens and outdoor rooms planned around shade, water and planting, so the outside belongs to the house.</p>
+                                    <div class="service-btn-wrap">
+                                        <a href="services-details.html" aria-label="Read more about LANDSCAPE DESIGN" class="bs-pr-btn-2">
+                                            <span class="text" data-back="read more" data-front="read more"></span>
+                                            <span class="line-1"></span>
+                                            <span class="line-2"></span>
+                                            <span class="box box-1"></span>
+                                            <span class="box box-2"></span>
+                                            <span class="box box-3"></span>
+                                            <span class="box box-4"></span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
@@ -1840,12 +1927,23 @@
                             <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
                                 <div class="active-content">
                                     <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">STRUCTURAL DESIGN</a>
+                                        <a href="services-details.html" aria-label="STRUCTURAL DESIGN" class="wa-line-limit has-line-2">STRUCTURAL DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
                                         <img src="/__l5e/assets-v1/9363d996-4d40-41db-9ac7-9dc2c2b8f966/video-luxury-architecture.jpg" alt="Structural design">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-3">Framing and foundation solutions coordinated with the architecture, so bold spans stay buildable and economical.</p>
+                                    <div class="service-btn-wrap">
+                                        <a href="services-details.html" aria-label="Read more about STRUCTURAL DESIGN" class="bs-pr-btn-2">
+                                            <span class="text" data-back="read more" data-front="read more"></span>
+                                            <span class="line-1"></span>
+                                            <span class="line-2"></span>
+                                            <span class="box box-1"></span>
+                                            <span class="box box-2"></span>
+                                            <span class="box box-3"></span>
+                                            <span class="box box-4"></span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
@@ -1861,12 +1959,23 @@
                             <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
                                 <div class="active-content">
                                     <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">PROJECT MANAGEMENT</a>
+                                        <a href="services-details.html" aria-label="PROJECT MANAGEMENT" class="wa-line-limit has-line-2">PROJECT MANAGEMENT</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
                                         <img src="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" alt="Project management">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-3">Schedules, budgets, consultants and site reviews kept in one place, with clear reporting at every stage.</p>
+                                    <div class="service-btn-wrap">
+                                        <a href="services-details.html" aria-label="Read more about PROJECT MANAGEMENT" class="bs-pr-btn-2">
+                                            <span class="text" data-back="read more" data-front="read more"></span>
+                                            <span class="line-1"></span>
+                                            <span class="line-2"></span>
+                                            <span class="box box-1"></span>
+                                            <span class="box box-2"></span>
+                                            <span class="box box-3"></span>
+                                            <span class="box box-4"></span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
@@ -1882,12 +1991,23 @@
                             <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
                                 <div class="active-content">
                                     <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="name" class="wa-line-limit has-line-2">BIM SERVICES</a>
+                                        <a href="services-details.html" aria-label="BIM SERVICES" class="wa-line-limit has-line-2">BIM SERVICES</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
                                         <img src="/__l5e/assets-v1/6c60986f-7be4-4b0d-9931-c75b94cad614/vastu-mandala-ordered.jpg" alt="BIM services">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-3">Coordinated 3D models, clash checks and quantity take-offs that keep drawings, vendors and site on the same page.</p>
+                                    <div class="service-btn-wrap">
+                                        <a href="services-details.html" aria-label="Read more about BIM SERVICES" class="bs-pr-btn-2">
+                                            <span class="text" data-back="read more" data-front="read more"></span>
+                                            <span class="line-1"></span>
+                                            <span class="line-2"></span>
+                                            <span class="box box-1"></span>
+                                            <span class="box box-2"></span>
+                                            <span class="box box-3"></span>
+                                            <span class="box box-4"></span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
@@ -2084,43 +2204,6 @@
                                     <h2 class="bs-sec-title-4 title wa-split-right wa-capitalize" data-cursor="-opaque">Trusted Expert in Architectural Design and Innovation.</h2>
         
                                     <p class="bs-p-4 disc wa-fadeInUp">A trusted expert in architectural design and innovation, our team member brings a wealth of knowledge and creativity to every project. Their commitment to excellence.</p>
-        
-                                    <div class="bs-choose-4-progress">
-        
-                                        <!-- single-item -->
-                                        <div class="bs-choose-4-progress-item">
-                                            <h5 class="bs-p-1 progress-title" style="width: 84%;">
-                                                <span >renovation</span>
-                                                <span class="counter">84</span>%
-                                            </h5>
-                                            <div class="progress-line">
-                                                <div class="progress-line-fill wa-progress" style="width: 84%;"></div>
-                                            </div>
-                                        </div>
-        
-                                        <!-- single-item -->
-                                        <div class="bs-choose-4-progress-item">
-                                            <h5 class="bs-p-1 progress-title" style="width: 72%;">
-                                                <span >architecture</span>
-                                                <span class="counter">72</span>%
-                                            </h5>
-                                            <div class="progress-line">
-                                                <div class="progress-line-fill wa-progress" style="width: 72%;"></div>
-                                            </div>
-                                        </div>
-        
-                                        <!-- single-item -->
-                                        <div class="bs-choose-4-progress-item">
-                                            <h5 class="bs-p-1 progress-title" style="width: 96%;">
-                                                <span >interior</span>
-                                                <span class="counter">96</span>%
-                                            </h5>
-                                            <div class="progress-line">
-                                                <div class="progress-line-fill wa-progress" style="width: 96%;"></div>
-                                            </div>
-                                        </div>
-        
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2575,16 +2658,13 @@
                                     <li class="bg-color wa-clip-left-right"></li>
 
                                     <li>
-                                        <a href="#" aria-label="name">uk terms & conditions</a>
+                                        <a href="#" aria-label="Terms & Conditions">terms & conditions</a>
                                     </li>
                                     <li>
-                                        <a href="#" aria-label="name">terms & conditions</a>
+                                        <a href="#" aria-label="Privacy Policy">privacy policy</a>
                                     </li>
                                     <li>
-                                        <a href="#" aria-label="name">privacy policy</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" aria-label="name">cookie policy</a>
+                                        <a href="#" aria-label="Refund Policy">refund policy</a>
                                     </li>
                                 </ul>
                             </div>
