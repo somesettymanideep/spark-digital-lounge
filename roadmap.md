@@ -48,3 +48,5 @@
 
 - [x] Set the six services cards' folded backgrounds to #b4d5da, #82bac1, #509ea8, #1e8290, #046976, #03515c in card order, with the three pale folds labelled in #081f2c so their names stay readable.
 - [x] Add the uploaded dome render (contact-dome.jpg) as a wide image beside the "Get In Touch" form (460px desktop, 340px tablet, 240px phone), replacing the old right-side photo.
+- [x] Replace the form section's right-side photo with the newly uploaded dome render (contact-dome-3.jpg, 1920x801, CDN 97e81362-51d0-4983-8b11-52680426b08b); old contact-dome-2.jpg removed from the page. Playwright-verified at 1700/1280/1015/768/390, no console errors, no horizontal overflow.
+
