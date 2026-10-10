@@ -783,7 +783,13 @@
                 background-color: #f5fafd;
             }
 
-            /* Why Choose Us section: subtitle #2f99ae, heading #081f2c, cards #e8f2f4 */
+            /* Why Choose Us section: white background on content area, subtitle #2f99ae, heading #081f2c, cards #e8f2f4 */
+            .bs-choose-4-content::after {
+                background: #ffffff !important;
+            }
+            .bs-choose-4-subtitle {
+                border-color: rgba(47, 153, 174, 0.35) !important;
+            }
             .bs-choose-4-subtitle .text {
                 color: #2f99ae !important;
             }
@@ -1385,7 +1391,7 @@
             background-color: #e9f3f4;
         }
 
-        /* Testimonials section layout based on architectural design mockup */
+        /* Testimonials section layout with Nordic line-sketch background overlays */
         .sea-testimonial-section {
             position: relative;
             margin-left: 0 !important;
@@ -1394,87 +1400,105 @@
             padding-top: 90px !important;
             padding-bottom: 80px !important;
             background-color: #f7fafc !important;
-            background-image: 
-                linear-gradient(rgba(47, 153, 174, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(47, 153, 174, 0.08) 1px, transparent 1px) !important;
-            background-size: 34px 34px !important;
+            background-image: none !important;
             overflow: hidden;
         }
-        .sea-testimonial-section::before {
-            content: "";
+        .sea-testi-bg-shape {
             position: absolute;
-            bottom: -80px;
-            left: -80px;
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            border: 1px solid rgba(47, 153, 174, 0.16);
-            box-shadow: 0 0 0 28px rgba(47, 153, 174, 0.04), 0 0 0 56px rgba(47, 153, 174, 0.02);
+            bottom: 0;
             pointer-events: none;
             z-index: 0;
+            user-select: none;
         }
-        .sea-testimonial-section::after {
-            content: "";
-            position: absolute;
-            top: -40px;
-            right: -40px;
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            border: 1px dashed rgba(47, 153, 174, 0.14);
-            pointer-events: none;
-            z-index: 0;
+        .sea-testi-bg-left {
+            left: 0;
+            max-width: 440px;
+            width: 34%;
+            opacity: 0.35;
         }
-        .sea-testimonial-header {
-            margin-bottom: 45px;
-            position: relative;
-            z-index: 1;
+        .sea-testi-bg-left img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            object-position: left bottom;
         }
-        .sea-testimonial-subtitle,
-        .sea-testimonial-subtitle * {
-            font-family: var(--bs-font-1), "Albert Sans", sans-serif !important;
+        .sea-testi-bg-right {
+            right: 0;
+            max-width: 500px;
+            width: 40%;
+            opacity: 0.35;
         }
-        .sea-testimonial-subtitle {
-            display: inline-flex;
-            align-items: center;
-            gap: 14px;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: #2f99ae !important;
-            margin-bottom: 14px;
-        }
-        .sea-testimonial-subtitle .sea-subtitle-line {
-            display: inline-block;
-            width: 46px;
-            height: 1.5px;
-            background-color: #2f99ae;
-        }
-        .sea-testimonial-title,
-        .sea-testimonial-title * {
-            font-family: var(--bs-font-1), "Albert Sans", sans-serif !important;
-        }
-        .sea-testimonial-title {
-            font-size: 48px;
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -0.025em;
-            color: #081f2c !important;
-            margin: 0;
-        }
-        .sea-testimonial-title .sea-clr-teal,
-        .sea-testimonial-title .sea-clr-teal * {
-            color: #2f99ae !important;
+        .sea-testi-bg-right img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            object-position: right bottom;
         }
         @media (max-width: 991px) {
-            .sea-testimonial-title {
-                font-size: 38px;
+            .sea-testi-bg-left {
+                width: 38%;
+                opacity: 0.22;
+            }
+            .sea-testi-bg-right {
+                width: 44%;
+                opacity: 0.22;
             }
         }
         @media (max-width: 575px) {
-            .sea-testimonial-title {
-                font-size: 30px;
+            .sea-testi-bg-left {
+                width: 55%;
+                opacity: 0.15;
+            }
+            .sea-testi-bg-right {
+                width: 60%;
+                opacity: 0.15;
+            }
+        }
+        .bs-testimonial-4-content {
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .sea-testimonial-section .bs-subtitle-4 {
+            font-family: var(--bs-font-1) !important;
+            border-bottom: 1px solid rgba(47, 153, 174, 0.25);
+            margin-bottom: 35px;
+        }
+        .sea-testimonial-section .bs-subtitle-4 .text {
+            color: #2f99ae;
+        }
+        .bs-testimonial-4-content .title,
+        .bs-testimonial-4-content .title * {
+            font-family: var(--bs-font-1) !important;
+        }
+        .bs-testimonial-4-content .title {
+            font-size: 52px;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: #081f2c !important;
+            line-height: 1.1;
+            margin-bottom: 0;
+            max-width: 800px;
+        }
+        .bs-testimonial-4-content .title .sea-clr-teal,
+        .bs-testimonial-4-content .title .sea-clr-teal * {
+            color: #2f99ae !important;
+        }
+        @media only screen and (min-width: 992px) and (max-width: 1199px) {
+            .bs-testimonial-4-content .title {
+                font-size: 48px;
+            }
+        }
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            .bs-testimonial-4-content .title {
+                font-size: 42px;
+            }
+        }
+        @media (max-width: 767px) {
+            .bs-testimonial-4-content .title {
+                font-size: 32px;
             }
         }
         .sea-testimonial-slider {
@@ -2682,16 +2706,25 @@
 
             <!-- testimonial-start -->
             <section class="bs-testimonial-4-area sea-testimonial-section wa-fix wa-p-relative">
+                <!-- Background sketch overlays: 1st image on left, 2nd image on right -->
+                <div class="sea-testi-bg-shape sea-testi-bg-left" aria-hidden="true">
+                    <img src="assets/img/testimonial/bg-overlay7.png" alt="">
+                </div>
+                <div class="sea-testi-bg-shape sea-testi-bg-right" aria-hidden="true">
+                    <img src="assets/img/testimonial/bg-overlay6.png" alt="">
+                </div>
 
                 <div class="container bs-container-2">
-                    <div class="sea-testimonial-header">
-                        <div class="sea-testimonial-subtitle wa-fadeInUp">
-                            <span>TESTIMONIALS</span>
-                            <span class="sea-subtitle-line"></span>
-                        </div>
-                        <h2 class="sea-testimonial-title bs-sec-title-4 wa-split-right" data-cursor="-opaque">
-                            What Our <span class="sea-clr-teal">Clients Say</span><br>
-                            About SEA
+                    <h5 class="bs-subtitle-4">
+                        <span class="text">testimonials</span>
+                        <span class="icon">
+                            <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="">
+                        </span>
+                    </h5>
+
+                    <div class="bs-testimonial-4-content">
+                        <h2 class="bs-sec-title-4 title wa-split-right wa-capitalize" data-cursor="-opaque">
+                            What Our <span class="sea-clr-teal">Clients Say</span><br>About SEA
                         </h2>
                     </div>
 
