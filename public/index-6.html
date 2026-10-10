@@ -220,6 +220,9 @@
             }
 
             /* the Vastu section's paragraph and right-side mandala framing */
+            .bs-team-4-content .vastu-more {
+                margin-top: 16px;
+            }
             .bs-team-4-img {
                 position: relative;
                 height: auto;
@@ -496,8 +499,9 @@
                 align-items: flex-start;
                 gap: 30px;
                 padding: 19px 24px 19px 17px;
-                border-radius: 28px;
+                border-radius: 5px;
                 background: var(--sea-award-surface);
+                border: 1px solid rgba(47, 153, 174, 0.2);
             }
             .sea-award-icon {
                 flex: 0 0 auto;
@@ -560,31 +564,75 @@
                 margin: 34px 0;
             }
             .sea-portfolio-title {
-                font-size: 24px;
-                letter-spacing: -0.02em;
-                margin-bottom: 20px;
+                font-size: 22px;
+                font-weight: 700;
+                letter-spacing: -0.01em;
+                color: #081f2c;
+                margin-bottom: 18px;
             }
             .sea-portfolio-buttons {
                 display: flex;
                 flex-wrap: wrap;
-                column-gap: 58px;
-                row-gap: 48px;
+                gap: 14px;
             }
             .sea-portfolio-btn {
-                margin-left: 0;
-            }
-            .sea-portfolio-btn .sea-pdf-icon {
                 display: inline-flex;
                 align-items: center;
-                font-size: 17px;
-                color: var(--bs-clr-pr-1);
-                margin-right: 10px;
-                transition: color .3s;
+                gap: 12px;
+                padding: 12px 22px;
+                background: #f4f9fa;
+                border: 1px solid rgba(47, 153, 174, 0.32);
+                border-radius: 5px;
+                color: #081f2c;
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: 0.01em;
+                transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
             }
-            .sea-portfolio-btn:hover .sea-pdf-icon,
-            .sea-portfolio-btn:active .sea-pdf-icon,
-            .sea-portfolio-btn:focus-visible .sea-pdf-icon {
-                color: var(--bs-clr-white-1);
+            .sea-portfolio-btn .sea-pdf-badge {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                border-radius: 4px;
+                background: rgba(1, 112, 127, 0.1);
+                color: #01707f;
+                font-size: 15px;
+                transition: all 0.25s ease;
+            }
+            .sea-portfolio-btn .sea-portfolio-btn-name {
+                color: #081f2c;
+                font-weight: 600;
+                transition: color 0.25s ease;
+            }
+            .sea-portfolio-btn .sea-portfolio-btn-dl {
+                display: inline-flex;
+                align-items: center;
+                font-size: 13px;
+                color: #2f99ae;
+                margin-left: 2px;
+                transition: transform 0.25s ease, color 0.25s ease;
+            }
+            .sea-portfolio-btn:hover {
+                background: #081f2c;
+                border-color: #01707f;
+                color: #ffffff;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(8, 31, 44, 0.18);
+            }
+            .sea-portfolio-btn:hover .sea-pdf-badge {
+                background: rgba(94, 234, 212, 0.2);
+                color: #5eead4;
+            }
+            .sea-portfolio-btn:hover .sea-portfolio-btn-name {
+                color: #ffffff;
+            }
+            .sea-portfolio-btn:hover .sea-portfolio-btn-dl {
+                color: #5eead4;
+                transform: translateY(2px);
             }
             /* Expertise: studio name as two-line watermark */
             .bs-expertise-4-title {
@@ -608,7 +656,7 @@
                 .sea-award {
                     gap: 14px;
                     padding: 18px 16px;
-                    border-radius: 24px;
+                    border-radius: 5px;
                 }
                 .sea-award-icon {
                     width: 54px;
@@ -629,31 +677,12 @@
                     font-size: 15px;
                 }
                 .sea-portfolio-buttons {
-                    column-gap: 30px;
-                    row-gap: 40px;
+                    gap: 10px;
                 }
-                .sea-portfolio-btn .line-1::after,
-                .sea-portfolio-btn .line-1::before,
-                .sea-portfolio-btn .line-2::after,
-                .sea-portfolio-btn .line-2::before {
-                    width: 8px;
-                    height: 8px;
-                }
-                .sea-portfolio-btn .line-1::after {
-                    left: -8px;
-                    top: -8px;
-                }
-                .sea-portfolio-btn .line-1::before {
-                    right: -8px;
-                    bottom: -8px;
-                }
-                .sea-portfolio-btn .line-2::after {
-                    right: -8px;
-                    top: -8px;
-                }
-                .sea-portfolio-btn .line-2::before {
-                    left: -8px;
-                    bottom: -8px;
+                .sea-portfolio-btn {
+                    width: 100%;
+                    justify-content: space-between;
+                    padding: 12px 18px;
                 }
             }
 
@@ -725,15 +754,13 @@
                 background-color: #e8f2f4;
             }
 
-            /* the vastu shastra label reads in deep teal, the VASTU SHASTRA
+            /* the vastu shastra label reads in deep teal, the section
                headline in near-black navy */
             .bs-team-4-subtitle .text {
                 color: #01707f;
             }
             .bs-team-4-content .title {
                 color: #081f2c;
-                text-transform: uppercase !important;
-                letter-spacing: 0.04em;
             }
 
             /* sticky left social rail — appears once the page is scrolled
@@ -912,23 +939,23 @@
 
 
             /* =========================================================
-               ARCHITECTURAL ELEVATION THEODOLITE — SCROLL-TO-TOP
-               A high-precision surveying transit instrument with:
-               - Live elevation datum readout (altimeter badge)
-               - Radial azimuth compass bezel (360° graduation ticks)
-               - Circular blueprint progress gauge (SVG arc)
-               - Architectural elevation benchmark symbol & datum lines
-               - Precision drafting corner registration brackets
-               - Kinetic elevator ascent launch feedback
+               ARCHITECT'S DRAFTING SET SQUARE (TRIANGLE RULER) — SCROLL-TO-TOP
+               A precision architectural drafting instrument featuring:
+               - Upward-pointing 45° drafting triangle set square geometry
+               - Engraved millimeter / centimeter architectural scale graduations (1:100)
+               - Central circular drafting stencil aperture with dynamic blueprint progress arc
+               - Architectural elevation datum benchmark symbol (▲ over ground level ±0.00)
+               - Floating elevation datum readout capsule with smooth ascend launch
                ========================================================= */
             .wa-back-to-top.sea-arch-scroll-top {
                 position: fixed;
-                right: 32px;
-                bottom: 32px;
+                right: 28px;
+                bottom: 28px;
                 z-index: 999;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                gap: 12px;
+                justify-content: center;
                 padding: 0;
                 margin: 0;
                 background: transparent;
@@ -952,258 +979,258 @@
                 transform: translateY(0);
             }
 
-            /* Readout chip / altimeter elevation badge */
-            .sea-arch-readout {
+            /* Floating Architectural Elevation Datum Tooltip */
+            .sea-tri-tooltip {
+                position: absolute;
+                bottom: calc(100% + 8px);
+                left: 50%;
+                transform: translateX(-50%) translateY(5px);
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
                 display: inline-flex;
                 align-items: center;
-                gap: 6px;
-                height: 36px;
-                padding: 0 12px;
-                background: rgba(8, 31, 44, 0.92);
+                gap: 5px;
+                height: 26px;
+                padding: 0 10px;
+                background: rgba(8, 31, 44, 0.94);
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
-                border: 1px solid rgba(47, 153, 174, 0.38);
+                border: 1px solid rgba(47, 153, 174, 0.45);
                 border-radius: 4px;
                 color: #e6f6f8;
                 font-family: var(--bs-body-font, 'Space Grotesk', monospace);
-                font-size: 11px;
+                font-size: 10px;
                 font-weight: 600;
-                letter-spacing: 0.1em;
+                letter-spacing: 0.08em;
                 text-transform: uppercase;
-                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), inset 0 0 12px rgba(47, 153, 174, 0.08);
-                transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
-                user-select: none;
                 white-space: nowrap;
-                position: relative;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(47, 153, 174, 0.1);
+                transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+                user-select: none;
+                z-index: 10;
             }
-            .sea-arch-readout::after {
+            .sea-tri-tooltip::after {
                 content: "";
                 position: absolute;
-                right: -5px;
-                top: 50%;
-                transform: translateY(-50%) rotate(45deg);
-                width: 8px;
-                height: 8px;
-                background: rgba(8, 31, 44, 0.92);
-                border-top: 1px solid rgba(47, 153, 174, 0.38);
-                border-right: 1px solid rgba(47, 153, 174, 0.38);
+                bottom: -4px;
+                left: 50%;
+                transform: translateX(-50%) rotate(45deg);
+                width: 7px;
+                height: 7px;
+                background: rgba(8, 31, 44, 0.94);
+                border-bottom: 1px solid rgba(47, 153, 174, 0.45);
+                border-right: 1px solid rgba(47, 153, 174, 0.45);
             }
-            .sea-arch-readout-coord {
+            .sea-tt-tag {
                 color: #2f99ae;
-                font-size: 9px;
+                font-size: 8.5px;
                 font-weight: 700;
-                letter-spacing: 0.16em;
-                padding-right: 5px;
+                letter-spacing: 0.12em;
+                padding-right: 4px;
                 border-right: 1px solid rgba(255, 255, 255, 0.18);
             }
-            .sea-arch-readout-val {
+            .sea-tt-val {
                 color: #ffffff;
                 font-variant-numeric: tabular-nums;
-                transition: opacity 0.2s ease, transform 0.2s ease;
             }
-            .sea-arch-readout-label {
+            .sea-tt-action {
                 display: none;
                 color: #5eead4;
                 font-weight: 700;
-                letter-spacing: 0.12em;
+                letter-spacing: 0.1em;
             }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-readout {
-                background: rgba(1, 112, 127, 0.45);
-                border-color: rgba(94, 234, 212, 0.7);
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 14px rgba(47, 153, 174, 0.45);
-                transform: translateX(-3px);
+
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-tri-tooltip,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-tri-tooltip {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+                border-color: rgba(94, 234, 212, 0.75);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 12px rgba(47, 153, 174, 0.4);
             }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-readout::after {
-                background: #0b3442;
-                border-color: rgba(94, 234, 212, 0.7);
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-tri-tooltip::after,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-tri-tooltip::after {
+                border-color: rgba(94, 234, 212, 0.75);
             }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-readout-val {
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-tt-val,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-tt-val {
                 display: none;
             }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-readout-label {
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-tt-action,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-tt-action {
                 display: inline-block;
             }
 
-            /* Circular Theodolite Instrument Housing */
-            .sea-arch-dial {
+            /* Triangle Instrument Wrapper */
+            .sea-tri-wrapper {
                 position: relative;
                 width: 62px;
                 height: 62px;
-                border-radius: 50%;
-                background: #081f2c;
-                background-image: radial-gradient(rgba(47, 153, 174, 0.22) 1px, transparent 1px);
-                background-size: 6px 6px;
-                border: 1px solid rgba(255, 255, 255, 0.18);
-                box-shadow: 0 8px 26px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(47, 153, 174, 0.25);
-                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                flex-shrink: 0;
+                filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
             }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-dial {
-                transform: translateY(-4px) scale(1.04);
-                background-color: #051a26;
-                border-color: rgba(94, 234, 212, 0.75);
-                box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6), 0 0 24px rgba(47, 153, 174, 0.55), 0 0 0 1px rgba(94, 234, 212, 0.5);
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-tri-wrapper,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-tri-wrapper {
+                transform: translateY(-5px);
+                filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 16px rgba(47, 153, 174, 0.5));
             }
 
-            /* Drafting corner brackets around the circular housing */
-            .sea-arch-bracket {
-                position: absolute;
-                width: 9px;
-                height: 9px;
-                border: 0 solid rgba(47, 153, 174, 0.55);
-                pointer-events: none;
-                transition: border-color 0.3s ease, transform 0.3s ease;
-            }
-            .sea-arch-bracket.b-tl {
-                top: -3px;
-                left: -3px;
-                border-top-width: 1.5px;
-                border-left-width: 1.5px;
-            }
-            .sea-arch-bracket.b-tr {
-                top: -3px;
-                right: -3px;
-                border-top-width: 1.5px;
-                border-right-width: 1.5px;
-            }
-            .sea-arch-bracket.b-bl {
-                bottom: -3px;
-                left: -3px;
-                border-bottom-width: 1.5px;
-                border-left-width: 1.5px;
-            }
-            .sea-arch-bracket.b-br {
-                bottom: -3px;
-                right: -3px;
-                border-bottom-width: 1.5px;
-                border-right-width: 1.5px;
-            }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-bracket {
-                border-color: #5eead4;
-            }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-bracket.b-tl { transform: translate(-2px, -2px); }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-bracket.b-tr { transform: translate(2px, -2px); }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-bracket.b-bl { transform: translate(-2px, 2px); }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-bracket.b-br { transform: translate(2px, 2px); }
-
-            /* SVG Instrument */
-            .sea-arch-instrument {
+            /* SVG Instrument Geometry */
+            .sea-tri-instrument {
                 width: 100%;
                 height: 100%;
                 pointer-events: none;
                 overflow: visible;
             }
-            .sea-arch-housing {
-                fill: none;
-                stroke: rgba(255, 255, 255, 0.12);
-                stroke-width: 1px;
+
+            /* Set square acrylic body */
+            .sea-tri-body {
+                fill: url(#seaTriBodyGrad);
+                stroke: rgba(47, 153, 174, 0.45);
+                stroke-width: 1.2px;
+                stroke-linejoin: round;
+                transition: stroke 0.3s ease;
             }
-            .sea-arch-back-glow {
-                opacity: 0.35;
-                transition: opacity 0.3s ease;
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-tri-body,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-tri-body {
+                stroke: rgba(94, 234, 212, 0.85);
             }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-back-glow {
-                opacity: 0.85;
-            }
-            .sea-arch-track {
-                fill: none;
-                stroke: rgba(255, 255, 255, 0.14);
-                stroke-width: 2.2px;
-                stroke-dasharray: 2.5 3;
-            }
-            .sea-arch-progress {
-                fill: none;
-                stroke-width: 2.6px;
-                stroke-linecap: round;
-                transform-origin: 32px 32px;
-                transform: rotate(-90deg);
-                stroke-dasharray: 163.36;
-                stroke-dashoffset: 163.36;
-                transition: stroke-dashoffset 0.12s linear;
-                filter: drop-shadow(0 0 4px rgba(47, 153, 174, 0.7));
-            }
-            .sea-arch-inner-ring {
+
+            /* Inner drafting bevel hairline */
+            .sea-tri-bevel {
                 fill: none;
                 stroke: rgba(255, 255, 255, 0.08);
-                stroke-width: 0.75px;
-                stroke-dasharray: 1.5 2.5;
+                stroke-width: 0.6px;
+                stroke-linejoin: round;
+                stroke-dasharray: 2 1.5;
             }
-            .sea-arch-ticks line {
+
+            /* Architectural Scale Graduations (Ticks) */
+            .sea-tri-ticks line {
                 stroke: rgba(255, 255, 255, 0.35);
-                stroke-width: 0.9px;
+                stroke-width: 0.85px;
                 stroke-linecap: round;
+                transition: stroke 0.3s ease;
             }
-            .sea-arch-ticks .sea-tick-major {
+            .sea-tri-ticks .sea-tick-major {
                 stroke: #2f99ae;
-                stroke-width: 1.5px;
+                stroke-width: 1.1px;
             }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-ticks line {
+            .sea-tri-ticks .sea-tick-center {
+                stroke: #5eead4;
+                stroke-width: 1.3px;
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-tri-ticks line,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-tri-ticks line {
                 stroke: rgba(255, 255, 255, 0.65);
             }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-ticks .sea-tick-major {
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-tri-ticks .sea-tick-major,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-tri-ticks .sea-tick-major {
                 stroke: #5eead4;
             }
-            .sea-arch-crosshairs line {
-                stroke: rgba(47, 153, 174, 0.55);
-                stroke-width: 0.9px;
-                stroke-linecap: round;
-            }
-            .sea-reticle-center {
-                fill: #2f99ae;
-                transition: fill 0.3s ease;
-            }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-reticle-center {
-                fill: #5eead4;
-            }
-            .sea-arch-north {
-                font-family: var(--bs-body-font, monospace);
-                font-size: 6px;
+
+            /* Engraved technical text */
+            .sea-tri-text {
+                font-family: var(--bs-body-font, 'Space Grotesk', monospace);
+                fill: rgba(47, 153, 174, 0.85);
                 font-weight: 700;
-                fill: #2f99ae;
-                letter-spacing: 0.05em;
+                letter-spacing: 0.08em;
+                user-select: none;
                 transition: fill 0.3s ease;
             }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-arch-north {
+            .sea-tri-scale {
+                font-size: 5px;
+            }
+            .sea-tri-deg {
+                font-size: 4px;
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-tri-text,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-tri-text {
                 fill: #5eead4;
             }
 
-            /* Benchmark Elevation Datum Symbol */
-            .sea-arch-datum-symbol {
-                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            /* Central Circular Stencil Aperture */
+            .sea-aperture-bg {
+                fill: #061924;
+                stroke: rgba(47, 153, 174, 0.3);
+                stroke-width: 1px;
+                transition: stroke 0.3s ease;
             }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-aperture-bg,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-aperture-bg {
+                stroke: rgba(94, 234, 212, 0.6);
+            }
+            .sea-aperture-glow {
+                opacity: 0.4;
+                transition: opacity 0.3s ease;
+            }
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-aperture-glow,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-aperture-glow {
+                opacity: 0.9;
+            }
+            .sea-aperture-track {
+                fill: none;
+                stroke: rgba(255, 255, 255, 0.12);
+                stroke-width: 2px;
+                stroke-dasharray: 2 2;
+            }
+            .sea-aperture-progress {
+                fill: none;
+                stroke-width: 2.4px;
+                stroke-linecap: round;
+                transform-origin: 32px 35px;
+                transform: rotate(-90deg);
+                stroke-dasharray: 81.68;
+                stroke-dashoffset: 81.68;
+                transition: stroke-dashoffset 0.12s linear;
+                filter: drop-shadow(0 0 3px rgba(94, 234, 212, 0.8));
+            }
+            .sea-aperture-crosshairs line {
+                stroke: rgba(47, 153, 174, 0.45);
+                stroke-width: 0.75px;
+            }
+
+            /* Architectural Elevation Benchmark Symbol */
             .sea-datum-arrow {
                 fill: #ffffff;
                 transition: fill 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-                filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+                filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
             }
-            .sea-datum-ground {
+            .sea-datum-line {
                 stroke: #2f99ae;
                 stroke-linecap: round;
                 transition: stroke 0.3s ease;
             }
-            .sea-datum-ground.g1 { stroke-width: 1.5px; }
-            .sea-datum-ground.g2 { stroke-width: 1.2px; stroke: rgba(47, 153, 174, 0.85); }
-            .sea-datum-ground.g3 { stroke-width: 1px; stroke: rgba(47, 153, 174, 0.6); }
+            .sea-datum-line.d-l1 { stroke-width: 1.3px; }
+            .sea-datum-line.d-l2 { stroke-width: 1.1px; stroke: rgba(47, 153, 174, 0.8); }
+            .sea-datum-line.d-l3 { stroke-width: 0.9px; stroke: rgba(47, 153, 174, 0.55); }
 
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-datum-arrow {
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-datum-arrow,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-datum-arrow {
                 fill: #5eead4;
-                transform: translateY(-2.5px);
+                transform: translateY(-2px);
             }
-            .wa-back-to-top.sea-arch-scroll-top:hover .sea-datum-ground {
+            .wa-back-to-top.sea-arch-scroll-top:hover .sea-datum-line,
+            .wa-back-to-top.sea-arch-scroll-top:focus-visible .sea-datum-line {
                 stroke: #5eead4;
+            }
+
+            .sea-tri-dot {
+                fill: rgba(47, 153, 174, 0.7);
             }
 
             /* Kinetic Ascending Launch State (Triggered on click) */
             .wa-back-to-top.sea-arch-scroll-top.is-ascending .sea-datum-arrow {
-                transform: translateY(-22px) scale(0.8);
+                transform: translateY(-18px) scale(0.7);
                 opacity: 0;
-                transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2), opacity 0.3s ease;
+                transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2), opacity 0.25s ease;
             }
-            .wa-back-to-top.sea-arch-scroll-top.is-ascending .sea-arch-progress {
-                stroke-dashoffset: 163.36 !important;
+            .wa-back-to-top.sea-arch-scroll-top.is-ascending .sea-aperture-progress {
+                stroke-dashoffset: 81.68 !important;
                 transition: stroke-dashoffset 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
             }
 
@@ -1211,33 +1238,23 @@
             @media (max-width: 767px) {
                 .wa-back-to-top.sea-arch-scroll-top {
                     right: 18px;
-                    bottom: 20px;
-                    gap: 8px;
+                    bottom: 18px;
                 }
-                .sea-arch-dial {
-                    width: 52px;
-                    height: 52px;
+                .sea-tri-wrapper {
+                    width: 54px;
+                    height: 54px;
                 }
-                .sea-arch-readout {
-                    height: 30px;
-                    padding: 0 9px;
-                    font-size: 10px;
-                }
-                .sea-arch-readout-coord {
-                    font-size: 8px;
-                }
-            }
-            @media (max-width: 480px) {
-                .sea-arch-readout {
-                    display: none; /* Keep ultra-clean on smallest screens */
+                .sea-tri-tooltip {
+                    display: none; /* Mobile stays clean & compact */
                 }
             }
 
             @media (prefers-reduced-motion: reduce) {
                 .wa-back-to-top.sea-arch-scroll-top,
-                .sea-arch-dial,
+                .sea-tri-wrapper,
                 .sea-datum-arrow,
-                .sea-arch-progress {
+                .sea-aperture-progress,
+                .sea-tri-tooltip {
                     transition: none !important;
                 }
             }
@@ -1324,24 +1341,24 @@
                 updateControls();
                 video.play().catch(updateControls);
             });
-            /* Architectural Elevation Altimeter:
-               Tracks scroll depth, computes vertical building elevation,
-               animates circular theodolite arc, and manages launch to datum ±0.00 */
+            /* Architect's Drafting Set Square Instrument:
+               Tracks scroll depth, computes vertical building elevation datum,
+               animates circular drafting aperture arc, and launches smooth ascent to datum ±0.00 */
             document.addEventListener('DOMContentLoaded', function () {
                 var btn = document.querySelector('.sea-arch-scroll-top');
                 if (!btn) return;
-                var progressCircle = btn.querySelector('.sea-arch-progress');
-                var valEl = btn.querySelector('.sea-arch-readout-val');
-                var circumference = 163.36; // 2 * Math.PI * 26
+                var progressCircle = btn.querySelector('.sea-aperture-progress');
+                var valEl = btn.querySelector('.sea-tt-val');
+                var circumference = 81.68; // 2 * Math.PI * 13
                 var isAscending = false;
 
-                function updateArchitecturalAltimeter() {
+                function updateArchitecturalInstrument() {
                     var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
                     var maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
                     var ratio = maxScroll > 0 ? Math.min(Math.max(scrollY / maxScroll, 0), 1) : 0;
 
-                    // Toggle visibility threshold (show smoothly past 280px)
-                    if (scrollY > 280) {
+                    // Toggle visibility threshold
+                    if (scrollY > 260) {
                         btn.classList.add('is-visible');
                     } else {
                         btn.classList.remove('is-visible');
@@ -1385,7 +1402,7 @@
                     setTimeout(function () {
                         isAscending = false;
                         btn.classList.remove('is-ascending');
-                        updateArchitecturalAltimeter();
+                        updateArchitecturalInstrument();
                     }, 950);
                 }
 
@@ -1396,10 +1413,10 @@
                     }
                 });
 
-                window.addEventListener('scroll', updateArchitecturalAltimeter, { passive: true });
-                window.addEventListener('resize', updateArchitecturalAltimeter);
-                window.addEventListener('pageshow', updateArchitecturalAltimeter);
-                updateArchitecturalAltimeter();
+                window.addEventListener('scroll', updateArchitecturalInstrument, { passive: true });
+                window.addEventListener('resize', updateArchitecturalInstrument);
+                window.addEventListener('pageshow', updateArchitecturalInstrument);
+                updateArchitecturalInstrument();
             });
         </script>
     </head>
@@ -1670,15 +1687,11 @@
                                 <div class="sea-portfolio">
                                     <h4 class="sea-portfolio-title">Download Portfolio</h4>
                                     <div class="sea-portfolio-buttons">
-                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="sea-pdf-icon"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="text" data-back="Architecture" data-front="Architecture"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
-                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="sea-pdf-icon"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="text" data-back="Interior" data-front="Interior"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
-                                        <a href="#" class="bs-pr-btn-2 sea-portfolio-btn"><span class="sea-pdf-icon"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="text" data-back="Landscape" data-front="Landscape"></span><span class="line-1"></span><span class="line-2"></span><span class="box box-1"></span><span class="box box-2"></span><span class="box box-3"></span><span class="box box-4"></span></a>
+                                        <a href="#" class="sea-portfolio-btn" aria-label="Download Architecture Portfolio (PDF)"><span class="sea-pdf-badge"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="sea-portfolio-btn-name">Architecture</span><span class="sea-portfolio-btn-dl"><i class="fa-solid fa-arrow-down"></i></span></a>
+                                        <a href="#" class="sea-portfolio-btn" aria-label="Download Interior Portfolio (PDF)"><span class="sea-pdf-badge"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="sea-portfolio-btn-name">Interior</span><span class="sea-portfolio-btn-dl"><i class="fa-solid fa-arrow-down"></i></span></a>
+                                        <a href="#" class="sea-portfolio-btn" aria-label="Download Landscape Portfolio (PDF)"><span class="sea-pdf-badge"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span><span class="sea-portfolio-btn-name">Landscape</span><span class="sea-portfolio-btn-dl"><i class="fa-solid fa-arrow-down"></i></span></a>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="illus wa-clip-left-right">
-                                <img src="assets/img/about/a4-illus-1.png" alt="">
                             </div>
     
                         </div>
@@ -1891,9 +1904,11 @@
                         <!-- left-content -->
                         <div class="bs-team-4-content">
 
-                            <h2 class="bs-sec-title-4 title wa-split-right" data-cursor="-opaque">VASTU SHASTRA</h2>
+                            <h2 class="bs-sec-title-4 title wa-split-right wa-capitalize" data-cursor="-opaque">Harmonizing Architecture with Cosmic Energies and Well-Being.</h2>
 
-                            <p class="bs-p-4 disc wa-fadeInUp">An ancient Indian architectural science harmonizing spatial geometry and cosmic energies to cultivate profound balance, vitality, and well-being.</p>
+                            <p class="bs-p-4 disc wa-fadeInUp">Vastu Shastra, an ancient Indian architectural science, is more than just a set of guidelines for constructing buildings. It is a holistic approach to designing spaces that aligns the physical, spiritual, and emotional well-being of its inhabitants with the natural energies around them.</p>
+
+                            <p class="bs-p-4 disc vastu-more wa-fadeInUp">Rooted in traditional Indian principles, Vastu offers a profound connection between architecture and the cosmic forces that govern our lives, making it a vital foundation for harmonious living.</p>
 
                             <div class="btn-wrap wa-fadeInUp">
                                 <a href="team-4.html" aria-label="name" class="bs-pr-btn-2">
@@ -2923,87 +2938,117 @@
 
             <!-- back-to-top-button-start -->
             <div class="sea-arch-scroll-top wa-back-to-top" role="button" tabindex="0" aria-label="Ascend to Top (Ground Datum ±0.00)">
-                <!-- Architectural datum readout chip (altimeter elevation badge) -->
-                <div class="sea-arch-readout" aria-hidden="true">
-                    <span class="sea-arch-readout-coord">ELEV</span>
-                    <span class="sea-arch-readout-val">±0.00m</span>
-                    <span class="sea-arch-readout-label">ASCEND ▲</span>
+                <!-- Architectural floating datum readout tooltip -->
+                <div class="sea-tri-tooltip" aria-hidden="true">
+                    <span class="sea-tt-tag">DATUM</span>
+                    <span class="sea-tt-val">±0.00m</span>
+                    <span class="sea-tt-action">ASCEND ▲</span>
                 </div>
 
-                <!-- Theodolite instrument dial casing -->
-                <div class="sea-arch-dial">
-                    <!-- Precision architectural corner registration brackets -->
-                    <span class="sea-arch-bracket b-tl" aria-hidden="true"></span>
-                    <span class="sea-arch-bracket b-tr" aria-hidden="true"></span>
-                    <span class="sea-arch-bracket b-bl" aria-hidden="true"></span>
-                    <span class="sea-arch-bracket b-br" aria-hidden="true"></span>
-
-                    <!-- SVG Theodolite Instrument & Elevation Benchmark -->
-                    <svg class="sea-arch-instrument" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                <!-- Architect's Precision Drafting Set Square Instrument -->
+                <div class="sea-tri-wrapper">
+                    <svg class="sea-tri-instrument" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
                         <defs>
-                            <linearGradient id="seaArchGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <!-- Triangle body metallic / acrylic glass gradient -->
+                            <linearGradient id="seaTriBodyGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+                                <stop offset="0%" stop-color="#0b2c3d" stop-opacity="0.96" />
+                                <stop offset="100%" stop-color="#051722" stop-opacity="0.98" />
+                            </linearGradient>
+                            <!-- Progress stroke gradient -->
+                            <linearGradient id="seaTriProgressGrad" x1="0%" y1="100%" x2="100%" y2="0%">
                                 <stop offset="0%" stop-color="#01707f" />
                                 <stop offset="50%" stop-color="#2f99ae" />
                                 <stop offset="100%" stop-color="#5eead4" />
                             </linearGradient>
-                            <radialGradient id="seaArchGlow" cx="50%" cy="50%" r="50%">
-                                <stop offset="0%" stop-color="rgba(47, 153, 174, 0.3)" />
+                            <!-- Central aperture subtle glow -->
+                            <radialGradient id="seaApertureGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="rgba(47, 153, 174, 0.35)" />
                                 <stop offset="100%" stop-color="transparent" />
                             </radialGradient>
                         </defs>
 
-                        <!-- Surveyor compass housing ring -->
-                        <circle class="sea-arch-housing" cx="32" cy="32" r="30" />
+                        <!-- Outer Set Square Body (Precision 45° Drafting Triangle) -->
+                        <polygon class="sea-tri-body" points="32,7 57,53 7,53" />
 
-                        <!-- Subtle radial glow behind dial -->
-                        <circle class="sea-arch-back-glow" cx="32" cy="32" r="26" fill="url(#seaArchGlow)" />
+                        <!-- Inner Drafting Bevel Line -->
+                        <polygon class="sea-tri-bevel" points="32,11 53,49 11,49" />
 
-                        <!-- Circular blueprint guide track (dashed hairline) -->
-                        <circle class="sea-arch-track" cx="32" cy="32" r="26" />
-
-                        <!-- Circular dynamic elevation progress arc -->
-                        <circle class="sea-arch-progress" cx="32" cy="32" r="26" stroke="url(#seaArchGradient)" />
-
-                        <!-- Inner concentric surveyor ring -->
-                        <circle class="sea-arch-inner-ring" cx="32" cy="32" r="20" />
-
-                        <!-- Azimuth graduation ticks (every 30 deg, major on 90 deg axes) -->
-                        <g class="sea-arch-ticks">
-                            <line x1="32" y1="3" x2="32" y2="7.5" class="sea-tick-major" />
-                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(30 32 32)" />
-                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(60 32 32)" />
-                            <line x1="32" y1="3" x2="32" y2="7.5" transform="rotate(90 32 32)" class="sea-tick-major" />
-                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(120 32 32)" />
-                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(150 32 32)" />
-                            <line x1="32" y1="3" x2="32" y2="7.5" transform="rotate(180 32 32)" class="sea-tick-major" />
-                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(210 32 32)" />
-                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(240 32 32)" />
-                            <line x1="32" y1="3" x2="32" y2="7.5" transform="rotate(270 32 32)" class="sea-tick-major" />
-                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(300 32 32)" />
-                            <line x1="32" y1="3" x2="32" y2="6.5" transform="rotate(330 32 32)" />
+                        <!-- Architectural Scale Engravings (Ruler Edge Ticks) -->
+                        <!-- Bottom Edge Scale Graduations (Baseline) -->
+                        <g class="sea-tri-ticks sea-ticks-bottom">
+                            <line x1="14" y1="53" x2="14" y2="49.5" />
+                            <line x1="18" y1="53" x2="18" y2="47.5" />
+                            <line x1="22" y1="53" x2="22" y2="49.5" />
+                            <line x1="26" y1="53" x2="26" y2="46.5" class="sea-tick-major" />
+                            <line x1="30" y1="53" x2="30" y2="49.5" />
+                            <line x1="32" y1="53" x2="32" y2="44.5" class="sea-tick-major sea-tick-center" />
+                            <line x1="34" y1="53" x2="34" y2="49.5" />
+                            <line x1="38" y1="53" x2="38" y2="46.5" class="sea-tick-major" />
+                            <line x1="42" y1="53" x2="42" y2="49.5" />
+                            <line x1="46" y1="53" x2="46" y2="47.5" />
+                            <line x1="50" y1="53" x2="50" y2="49.5" />
                         </g>
 
-                        <!-- Drafting crosshairs (plumb line & horizontal datum) -->
-                        <g class="sea-arch-crosshairs">
-                            <line x1="32" y1="9" x2="32" y2="14" />
-                            <line x1="32" y1="50" x2="32" y2="55" />
-                            <line x1="9" y1="32" x2="14" y2="32" />
-                            <line x1="50" y1="32" x2="55" y2="32" />
-                            <circle class="sea-reticle-center" cx="32" cy="32" r="1.2" />
+                        <!-- Left Hypotenuse Scale Graduations (Rotated along left edge) -->
+                        <g class="sea-tri-ticks sea-ticks-left" transform="translate(7, 53) rotate(-61.56)">
+                            <line x1="8" y1="0" x2="8" y2="3" />
+                            <line x1="14" y1="0" x2="14" y2="4.5" />
+                            <line x1="20" y1="0" x2="20" y2="3" />
+                            <line x1="26" y1="0" x2="26" y2="6" class="sea-tick-major" />
+                            <line x1="32" y1="0" x2="32" y2="3" />
+                            <line x1="38" y1="0" x2="38" y2="5" />
+                            <line x1="44" y1="0" x2="44" y2="3" />
                         </g>
 
-                        <!-- North indicator at apex -->
-                        <text x="32" y="11.5" class="sea-arch-north" text-anchor="middle">N</text>
-
-                        <!-- Architectural Benchmark Elevation Datum Marker (Upward arrow + ground datum lines) -->
-                        <g class="sea-arch-datum-symbol">
-                            <!-- Precision upward elevation chevron / triangle -->
-                            <polygon class="sea-datum-arrow" points="32,16 40,25 35,25 35,34 29,34 29,25 24,25" />
-                            <!-- Ground Datum baseline and stepped sub-lines (Iconic architectural datum mark ±0.00) -->
-                            <line class="sea-datum-ground g1" x1="20" y1="38" x2="44" y2="38" />
-                            <line class="sea-datum-ground g2" x1="24" y1="41" x2="40" y2="41" />
-                            <line class="sea-datum-ground g3" x1="28" y1="44" x2="36" y2="44" />
+                        <!-- Right Hypotenuse Scale Graduations (Rotated along right edge) -->
+                        <g class="sea-tri-ticks sea-ticks-right" transform="translate(57, 53) rotate(-118.44)">
+                            <line x1="8" y1="0" x2="8" y2="-3" />
+                            <line x1="14" y1="0" x2="14" y2="-4.5" />
+                            <line x1="20" y1="0" x2="20" y2="-3" />
+                            <line x1="26" y1="0" x2="26" y2="-6" class="sea-tick-major" />
+                            <line x1="32" y1="0" x2="32" y2="-3" />
+                            <line x1="38" y1="0" x2="38" y2="-5" />
+                            <line x1="44" y1="0" x2="44" y2="-3" />
                         </g>
+
+                        <!-- Engraved Scale Ratio & Angle Markers -->
+                        <text x="32" y="19" class="sea-tri-text sea-tri-scale" text-anchor="middle">1:100</text>
+                        <text x="17" y="47" class="sea-tri-text sea-tri-deg">45°</text>
+                        <text x="47" y="47" class="sea-tri-text sea-tri-deg" text-anchor="end">45°</text>
+
+                        <!-- Central Circular Stencil Aperture (Cutout Hole in Triangle) -->
+                        <!-- Aperture Background -->
+                        <circle class="sea-aperture-bg" cx="32" cy="35" r="13" />
+                        <circle class="sea-aperture-glow" cx="32" cy="35" r="13" fill="url(#seaApertureGlow)" />
+
+                        <!-- Dashed Blueprint Guide Track -->
+                        <circle class="sea-aperture-track" cx="32" cy="35" r="13" />
+
+                        <!-- Dynamic Elevation Progress Arc (Circumference: 81.68) -->
+                        <circle class="sea-aperture-progress" cx="32" cy="35" r="13" stroke="url(#seaTriProgressGrad)" />
+
+                        <!-- Drafting Plumb Reticle Crosshairs -->
+                        <g class="sea-aperture-crosshairs">
+                            <line x1="32" y1="22" x2="32" y2="25" />
+                            <line x1="32" y1="45" x2="32" y2="48" />
+                            <line x1="19" y1="35" x2="22" y2="35" />
+                            <line x1="42" y1="35" x2="45" y2="35" />
+                        </g>
+
+                        <!-- Architectural Elevation Datum Symbol (Upward Arrow & Ground Datum Lines) -->
+                        <g class="sea-datum-symbol">
+                            <!-- Elevation Target Arrow -->
+                            <polygon class="sea-datum-arrow" points="32,24 38,30 35,30 35,35 29,35 29,30 26,30" />
+                            <!-- Ground Datum Horizontal Lines (±0.00 Level) -->
+                            <line class="sea-datum-line d-l1" x1="25" y1="38" x2="39" y2="38" />
+                            <line class="sea-datum-line d-l2" x1="27.5" y1="40.5" x2="36.5" y2="40.5" />
+                            <line class="sea-datum-line d-l3" x1="30" y1="42.5" x2="34" y2="42.5" />
+                        </g>
+
+                        <!-- Corner Drafting Precision Dots -->
+                        <circle class="sea-tri-dot" cx="32" cy="10" r="0.8" />
+                        <circle class="sea-tri-dot" cx="11" cy="50" r="0.8" />
+                        <circle class="sea-tri-dot" cx="53" cy="50" r="0.8" />
                     </svg>
                 </div>
             </div>
