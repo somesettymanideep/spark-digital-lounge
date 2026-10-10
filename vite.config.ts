@@ -12,4 +12,31 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    plugins: [
+      {
+        // Dev-only: /__l5e/assets-v1/* is served by Lovable's hosting, not Vite,
+        // so proxy those requests to the published site when running locally.
+        name: "l5e-assets-proxy",
+        apply: "serve",
+        configureServer(server) {
+          const target = "https://website-unpacker-magic.lovable.app";
+          server.middlewares.use((req, res, next) => {
+            if (!req.url?.startsWith("/__l5e/")) return next();
+            fetch(target + req.url)
+              .then(async (upstream) => {
+                res.statusCode = upstream.status;
+                const type = upstream.headers.get("content-type");
+                if (type) res.setHeader("content-type", type);
+                res.end(Buffer.from(await upstream.arrayBuffer()));
+              })
+              .catch(() => {
+                res.statusCode = 502;
+                res.end();
+              });
+          });
+        },
+      },
+    ],
+  },
 });
