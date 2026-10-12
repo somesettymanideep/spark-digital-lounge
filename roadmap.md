@@ -70,4 +70,4 @@
 
 - [x] Scroll-to-top redesigned: the Architect's Drafting Set Square instrument was removed and replaced by a lift call plate — recessed floor indicator (RF at the top of the page, G at the bottom, 01-11 between), hoistway with floor ticks and a travelling car marker, engraved up-call button that fills teal while the lift is called, and a hover capsule "ROOF LEVEL / Take the lift back to the top". Playwright-verified: indicator tracks RF/09/06/01, click returns to the top with the count ticking to RF, phone layout compact, no console errors.
 
-- [ ] Improve Home 6 initial loading and replace hero door reveals with smooth crossfades; verify hero, video controls, and contact effect.
+- [x] Improve Home 6 initial loading: prioritize the first hero photo, lazy-load 56 below-fold images, remove the blocking preloader, initialize page-local hero crossfades immediately, and defer video/contact ripple until needed. Browser-verified fades, video pause/play, contact canvas, and no runtime errors or overflow.
