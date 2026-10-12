@@ -1058,17 +1058,10 @@
             .bs-services-4-item-single:nth-child(3) .title-2 {
                 color: #081f2c;
             }
-            /* the small folded photo is greyed out in the template; on the
-               pale folds it goes a touch darker so it holds its own */
-            .bs-services-4-item-single:nth-child(1) .img-2 img,
-            .bs-services-4-item-single:nth-child(2) .img-2 img,
-            .bs-services-4-item-single:nth-child(3) .img-2 img {
-                filter: grayscale(1) brightness(0.82);
-            }
-            /* the open card is the one you are looking at, so its photo drops
-               the greyscale — the template's own grey belongs to the folds */
-            .bs-services-4-item-single:is(.active) .img-2,
-            .bs-services-4-item-single:is(.active) .img-2 img {
+            /* remove greyscale filter so service card images display in full
+               natural color in both inactive (folded) and active states */
+            .bs-services-4-item-single .img-2,
+            .bs-services-4-item-single .img-2 img {
                 filter: none;
             }
 
