@@ -1630,6 +1630,7 @@
             line-height: 1.3;
         }
         .sea-contact-form input,
+        .sea-contact-form select,
         .sea-contact-form textarea {
             width: 100%;
             background: #ffffff;
@@ -1642,12 +1643,49 @@
             transition: border-color 0.25s ease, box-shadow 0.25s ease;
             box-sizing: border-box;
         }
+        .sea-contact-form select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding-right: 36px;
+            cursor: pointer;
+            background-color: #ffffff;
+        }
+        .sea-select-wrap {
+            position: relative;
+            width: 100%;
+        }
+        .sea-select-wrap::after {
+            content: "\f107";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 14px;
+            pointer-events: none;
+            transition: color 0.2s ease;
+        }
+        .sea-select-wrap:focus-within::after {
+            color: #1398a6;
+        }
         .sea-contact-form input::placeholder,
         .sea-contact-form textarea::placeholder {
             color: #94a3b8;
             font-weight: 400;
         }
+        .sea-contact-form select:invalid,
+        .sea-contact-form select option[value=""] {
+            color: #94a3b8;
+        }
+        .sea-contact-form select option {
+            color: #081f2c;
+            background: #ffffff;
+        }
         .sea-contact-form input:focus,
+        .sea-contact-form select:focus,
         .sea-contact-form textarea:focus {
             outline: none;
             border-color: #1398a6;
@@ -3164,14 +3202,6 @@
                                 </p>
                             </div>
 
-                            <div class="sea-contact-socials">
-                                <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                                <span class="sea-social-sep">|</span>
-                                <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                                <span class="sea-social-sep">|</span>
-                                <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <span class="sea-social-sep">|</span>
-                                <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
                             </div>
                         </div>
 
@@ -3187,13 +3217,30 @@
                                             <input id="contact-name" name="name" type="text" placeholder="Your name" required>
                                         </div>
                                         <div class="sea-form-group">
-                                            <label for="contact-phone">Phone</label>
-                                            <input id="contact-phone" name="phone" type="tel" placeholder="Your phone number">
+                                            <label for="contact-email">Email</label>
+                                            <input id="contact-email" name="email" type="email" placeholder="you@example.com" required>
                                         </div>
                                     </div>
-                                    <div class="sea-form-group">
-                                        <label for="contact-email">Email</label>
-                                        <input id="contact-email" name="email" type="email" placeholder="you@example.com" required>
+                                    <div class="sea-form-row">
+                                        <div class="sea-form-group">
+                                            <label for="contact-phone">Phone Number</label>
+                                            <input id="contact-phone" name="phone" type="tel" placeholder="Your phone number">
+                                        </div>
+                                        <div class="sea-form-group">
+                                            <label for="contact-service">Services</label>
+                                            <div class="sea-select-wrap">
+                                                <select id="contact-service" name="service" required>
+                                                    <option value="" disabled selected>Select a service</option>
+                                                    <option value="architectural-design">Architectural Design</option>
+                                                    <option value="interior-design">Interior Design</option>
+                                                    <option value="landscape-design">Landscape Design</option>
+                                                    <option value="structural-design">Structural Design</option>
+                                                    <option value="project-management">Project Management</option>
+                                                    <option value="bim-services">BIM Services</option>
+                                                    <option value="vastu-consultation">Vastu Consultation</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="sea-form-group">
                                         <label for="contact-message">Message</label>
