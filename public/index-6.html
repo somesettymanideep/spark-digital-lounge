@@ -12,7 +12,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" type="image/png" href="/favicon.png">
-        <!-- Place favicon.ico in the root directory -->
+        <link rel="preload" as="image" href="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" fetchpriority="high">
 
 		<!-- all-CSS-link-here -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -26,19 +26,12 @@
         <link rel="stylesheet" href="assets/css/sea-cursor.css">
         <!-- SEA brand logo sizing, this page only -->
         <style>
-            /* Hero slider bi-parting sliding door transition seams */
-            .sea-sliding-door-seam {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                width: 2px;
-                background: linear-gradient(180deg, rgba(0, 140, 158, 0.2) 0%, rgba(0, 140, 158, 0.95) 20%, #ffffff 50%, rgba(0, 140, 158, 0.95) 80%, rgba(0, 140, 158, 0.2) 100%);
-                box-shadow: 0 0 14px rgba(0, 140, 158, 0.8), 0 0 3px #ffffff;
-                pointer-events: none;
-                z-index: 10;
-                opacity: 0;
-                transform: translateX(-50%);
-                will-change: left, opacity;
+            /* Home 6 hero: GPU-friendly opacity fades, no clipping or door effects. */
+            .sea-hero-img-active:not(.swiper-initialized) .swiper-slide:not(:first-child) {
+                visibility: hidden;
+            }
+            .sea-hero-img-active .swiper-slide {
+                will-change: opacity;
             }
             /* Home 6 only: transparent overlay becomes a white sticky header. */
             .bs-header-2-area.sea-header {
@@ -420,7 +413,7 @@
             .bs-hero-4-bg {
                 display: none;
             }
-            /* Replace Home 4's upward slide with Home 3's strip reveal and zoom. */
+            /* Keep images still while Swiper crossfades the complete slides. */
             .bs-home-4 .bs-hero-4-slider-img .swiper-container .swiper-slide .bs-hero-4-slider-img-item .main-img img {
                 transform: none;
                 transform-origin: left;
@@ -2026,7 +2019,19 @@
                     video.muted = !video.muted;
                     updateControls();
                 });
+                var videoLoaded = false;
+                var userPaused = false;
+                function loadVideo() {
+                    if (videoLoaded) return;
+                    video.querySelectorAll('source[data-src]').forEach(function (source) {
+                        source.src = source.dataset.src;
+                    });
+                    video.load();
+                    videoLoaded = true;
+                }
                 playback.addEventListener('click', function () {
+                    loadVideo();
+                    userPaused = !video.paused;
                     if (video.paused) video.play().catch(updateControls);
                     else video.pause();
                 });
@@ -2034,7 +2039,22 @@
                 video.addEventListener('play', updateControls);
                 video.addEventListener('pause', updateControls);
                 updateControls();
-                video.play().catch(updateControls);
+                if ('IntersectionObserver' in window) {
+                    new IntersectionObserver(function (entries) {
+                        entries.forEach(function (entry) {
+                            if (entry.isIntersecting && !document.hidden) {
+                                loadVideo();
+                                if (!userPaused) video.play().catch(updateControls);
+                            } else video.pause();
+                        });
+                    }, { threshold: 0.1 }).observe(video);
+                    document.addEventListener('visibilitychange', function () {
+                        if (document.hidden) video.pause();
+                    });
+                } else {
+                    loadVideo();
+                    video.play().catch(updateControls);
+                }
             });
 
             /* =========================================================
@@ -2134,15 +2154,7 @@
     <body class="bs-home-4">
         <div class="main-wrapper wa-fix">
 
-            <!-- start preloader -->
-            <div class="lw-preloader">
-                <div class="lw-preloader-content">
-                    <div class="bs-preloader-logo">
-                        <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture">
-                    </div>
-                </div>
-            </div>
-            <!-- end preloader -->
+
 
             <!-- header-start -->
             <header class="bs-header-2-area sea-header">
@@ -2150,7 +2162,7 @@
 
                     <!-- logo -->
                     <a href="index-6.html" aria-label="SEA - Studio for Eclectic Architecture" class="bs-header-logo-1">
-                        <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture">
+                        <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture" decoding="async">
                     </a>
 
                     <nav class="bs-main-navigation  d-none d-lg-block" aria-label="Main navigation">
@@ -2200,14 +2212,14 @@
                 <div class="bs-hero-4-slider">
 
                     <div class="bs-hero-4-slider-img">
-                        <div class="swiper-container bs-h4-img-active wa-fix">
+                        <div class="swiper-container sea-hero-img-active wa-fix">
                             <div class="swiper-wrapper">
 
                                 <!-- single-slide -->
                                 <div class="swiper-slide">
                                     <div class="bs-hero-4-slider-img-item ">
                                         <div class="main-img wa-img-cover">
-                                            <img src="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" alt="Vedanta grand entrance gate">
+                                            <img src="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" alt="Vedanta grand entrance gate" loading="eager" fetchpriority="high" decoding="async">
                                         </div>
                                     </div>
                                 </div>
@@ -2216,7 +2228,7 @@
                                 <div class="swiper-slide">
                                     <div class="bs-hero-4-slider-img-item ">
                                         <div class="main-img wa-img-cover">
-                                            <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Garden villa landscape">
+                                            <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Garden villa landscape" decoding="async">
                                         </div>
                                     </div>
                                 </div>
@@ -2225,7 +2237,7 @@
                                 <div class="swiper-slide">
                                     <div class="bs-hero-4-slider-img-item ">
                                         <div class="main-img wa-img-cover">
-                                            <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Modern residential tower">
+                                            <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Modern residential tower" decoding="async">
                                         </div>
                                     </div>
                                 </div>
@@ -2235,27 +2247,27 @@
                     </div>
 
                     <div class="bs-hero-4-slider-thum">
-                        <div class="swiper-container bs-h4-thum-active wa-fix">
+                        <div class="swiper-container sea-hero-thum-active wa-fix">
                             <div class="swiper-wrapper">
 
                                 <!-- single-slide -->
                                 <div class="swiper-slide">
                                     <div class="bs-hero-4-slider-thum-item wa-img-cover wa-fix">
-                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="">
+                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="" decoding="async">
                                     </div>
                                 </div>
 
                                 <!-- single-slide -->
                                 <div class="swiper-slide">
                                     <div class="bs-hero-4-slider-thum-item wa-img-cover wa-fix">
-                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="">
+                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="" decoding="async">
                                     </div>
                                 </div>
 
                                 <!-- single-slide -->
                                 <div class="swiper-slide">
                                     <div class="bs-hero-4-slider-thum-item wa-img-cover wa-fix">
-                                        <img src="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" alt="">
+                                        <img src="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" alt="" decoding="async">
                                     </div>
                                 </div>
                             </div>
@@ -2293,7 +2305,7 @@
                     <h5 class="bs-subtitle-4 ">
                         <span class="text">about us</span>
                         <span class="icon">
-                            <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="">
+                            <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="" loading="lazy" decoding="async">
                         </span>
                     </h5>
 
@@ -2310,7 +2322,7 @@
                             <div class="sea-about-awards wa-fadeInUp">
                                 <div class="sea-award">
                                     <div class="sea-award-icon">
-                                        <img src="assets/img/award/sea-award-trophy.png" alt="Award trophy icon" class="sea-award-img">
+                                        <img src="assets/img/award/sea-award-trophy.png" alt="Award trophy icon" class="sea-award-img" loading="lazy" decoding="async">
                                     </div>
                                     <div class="sea-award-body">
                                         <h3 class="sea-award-title">Awards</h3>
@@ -2325,9 +2337,9 @@
                         <div class="bs-about-4-right sea-about-media">
                             <div class="sea-about-video-frame">
                                 <div class="sea-about-video-wrap">
-                                    <video id="sea-about-video" autoplay muted loop playsinline preload="metadata" poster="/__l5e/assets-v1/842a08cc-d750-4657-b955-19a99697baee/sea-about-poster.jpg" aria-label="Studio for Eclectic Architecture video">
-                                        <source src="/__l5e/assets-v1/4f4d5bef-3fde-428e-a411-ee61b9648f6d/sea-about.mp4" type="video/mp4">
-                                        <source src="/__l5e/assets-v1/e94db62c-5af6-4a18-b958-95523319777e/sea-about.webm" type="video/webm">
+                                    <video id="sea-about-video" muted loop playsinline preload="none" poster="/__l5e/assets-v1/842a08cc-d750-4657-b955-19a99697baee/sea-about-poster.jpg" aria-label="Studio for Eclectic Architecture video">
+                                        <source data-src="/__l5e/assets-v1/4f4d5bef-3fde-428e-a411-ee61b9648f6d/sea-about.mp4" type="video/mp4">
+                                        <source data-src="/__l5e/assets-v1/e94db62c-5af6-4a18-b958-95523319777e/sea-about.webm" type="video/webm">
                                         Your browser does not support video playback.
                                     </video>
                                     <div class="sea-video-controls">
@@ -2361,7 +2373,7 @@
                     <h5 class="bs-subtitle-4 bs-services-4-subtitle">
                         <span class="text">services</span>
                         <span class="icon">
-                            <img src="assets/img/illus/sea-subtitle-4-icon-2.svg" alt="">
+                            <img src="assets/img/illus/sea-subtitle-4-icon-2.svg" alt="" loading="lazy" decoding="async">
                         </span>
                     </h5>
 
@@ -2385,7 +2397,7 @@
                                         <a href="services-details.html" aria-label="ARCHITECTURAL DESIGN" class="wa-line-limit has-line-2">ARCHITECTURAL DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Architectural design">
+                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Architectural design" loading="lazy" decoding="async">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-4">Our experts will prepare preliminary design sketches and concepts based on the client’s requirements and budget which help explore and illustrate possible options.</p>
                                     <div class="service-btn-wrap">
@@ -2402,7 +2414,7 @@
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="">
+                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="" loading="lazy" decoding="async">
                                     </div>
                                     <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
                                         ARCHITECTURAL DESIGN
@@ -2417,7 +2429,7 @@
                                         <a href="services-details.html" aria-label="INTERIOR DESIGN" class="wa-line-limit has-line-2">INTERIOR DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="Interior design">
+                                        <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="Interior design" loading="lazy" decoding="async">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-4">Our designers plans, researches, coordinates and enhances the interiors of the building to achieve a healthier and more aesthetically pleasing environment</p>
                                     <div class="service-btn-wrap">
@@ -2434,7 +2446,7 @@
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="">
+                                        <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="" loading="lazy" decoding="async">
                                     </div>
                                     <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
                                         INTERIOR DESIGN
@@ -2449,7 +2461,7 @@
                                         <a href="services-details.html" aria-label="LANDSCAPE DESIGN" class="wa-line-limit has-line-2">LANDSCAPE DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Landscape design">
+                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Landscape design" loading="lazy" decoding="async">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-4">Our team uses their creativity and understanding of outside environments to create well designed outdoor spaces that are functional and visually appealing.</p>
                                     <div class="service-btn-wrap">
@@ -2466,7 +2478,7 @@
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="">
+                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="" loading="lazy" decoding="async">
                                     </div>
                                     <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
                                         LANDSCAPE DESIGN
@@ -2481,7 +2493,7 @@
                                         <a href="services-details.html" aria-label="STRUCTURAL DESIGN" class="wa-line-limit has-line-2">STRUCTURAL DESIGN</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-structural-design.jpg" alt="Structural design">
+                                        <img src="assets/img/services/service-structural-design.jpg" alt="Structural design" loading="lazy" decoding="async">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-4">our team provides the best general solution for the structure by considering the various requirements such as function of the structure</p>
                                     <div class="service-btn-wrap">
@@ -2498,7 +2510,7 @@
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-structural-design.jpg" alt="">
+                                        <img src="assets/img/services/service-structural-design.jpg" alt="" loading="lazy" decoding="async">
                                     </div>
                                     <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
                                         STRUCTURAL DESIGN
@@ -2513,7 +2525,7 @@
                                         <a href="services-details.html" aria-label="PROJECT MANAGEMENT" class="wa-line-limit has-line-2">PROJECT MANAGEMENT</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-project-management.webp" alt="Project management">
+                                        <img src="assets/img/services/service-project-management.webp" alt="Project management" loading="lazy" decoding="async">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-4">Our professionals create initial plans, drafts and designs that fulfill the needs of a client complying with established stand and safety regulations.</p>
                                     <div class="service-btn-wrap">
@@ -2530,7 +2542,7 @@
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-project-management.webp" alt="">
+                                        <img src="assets/img/services/service-project-management.webp" alt="" loading="lazy" decoding="async">
                                     </div>
                                     <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
                                         PROJECT MANAGEMENT
@@ -2545,7 +2557,7 @@
                                         <a href="services-details.html" aria-label="BIM SERVICES" class="wa-line-limit has-line-2">BIM SERVICES</a>
                                     </h4>
                                     <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-bim.webp" alt="BIM services">
+                                        <img src="assets/img/services/service-bim.webp" alt="BIM services" loading="lazy" decoding="async">
                                     </div>
                                     <p class="bs-p-4 disc wa-line-limit has-line-4">Our professional team has expertise in the use of required tools, international standards, and software are required for every BIM (Building Information Modelling )</p>
                                     <div class="service-btn-wrap">
@@ -2562,7 +2574,7 @@
                                 </div>
                                 <div class="default-content">
                                     <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-bim.webp" alt="">
+                                        <img src="assets/img/services/service-bim.webp" alt="" loading="lazy" decoding="async">
                                     </div>
                                     <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
                                         BIM SERVICES
@@ -2584,7 +2596,7 @@
                     <h5 class="bs-subtitle-4 bs-team-4-subtitle">
                         <span class="text">vastu shastra</span>
                         <span class="icon">
-                            <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="">
+                            <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="" loading="lazy" decoding="async">
                         </span>
                     </h5>
 
@@ -2614,7 +2626,7 @@
 
                         <!-- right-img -->
                         <div class="bs-team-4-img wa-fix wa-img-cover wa-clip-left-right">
-                            <img src="/__l5e/assets-v1/6c60986f-7be4-4b0d-9931-c75b94cad614/vastu-mandala-ordered.jpg" alt="Complete Vastu Shastra mandala assembled from nine tiles in the supplied row order">
+                            <img src="/__l5e/assets-v1/6c60986f-7be4-4b0d-9931-c75b94cad614/vastu-mandala-ordered.jpg" alt="Complete Vastu Shastra mandala assembled from nine tiles in the supplied row order" loading="lazy" decoding="async">
                             <div class="sea-vastu-flip" aria-hidden="true">
                                 <div class="sea-vastu-flip-inner">
                                     <div class="sea-vastu-flip-face sea-vastu-flip-front"></div>
@@ -2748,7 +2760,7 @@
                                     <h5 class="bs-subtitle-4 bs-choose-4-subtitle">
                                         <span class="text">Why choose us</span>
                                         <span class="icon">
-                                            <img src="assets/img/illus/sea-subtitle-4-icon-2.svg" alt="">
+                                            <img src="assets/img/illus/sea-subtitle-4-icon-2.svg" alt="" loading="lazy" decoding="async">
                                         </span>
                                     </h5>
         
@@ -2840,7 +2852,7 @@
                     <h5 class="bs-subtitle-4 bs-project-4-subtitle">
                         <span class="text">projects</span>
                         <span class="icon">
-                            <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="">
+                            <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="" loading="lazy" decoding="async">
                         </span>
                     </h5>
 
@@ -2861,7 +2873,7 @@
                                 <div class="bs-project-4-card-single has-card-1">
                                     <div class="card-img wa-fix wa-img-cover">
                                         <a href="project-details.html" aria-label="Gangadhar Estate" data-cursor-text="View">
-                                            <img src="assets/img/projects/gangadhar-estate.jpg" alt="Gangadhar Estate architecture in Vijayawada">
+                                            <img src="assets/img/projects/gangadhar-estate.jpg" alt="Gangadhar Estate architecture in Vijayawada" loading="lazy" decoding="async">
                                         </a>
                                     </div>
                                     <div class="content">
@@ -2885,7 +2897,7 @@
                                 <div class="bs-project-4-card-single has-card-2">
                                     <div class="card-img wa-fix wa-img-cover">
                                         <a href="project-details.html" aria-label="Chandramouli Residence" data-cursor-text="View">
-                                            <img src="assets/img/projects/chandramouli-residence.jpg" alt="Chandramouli Residence landscape in Chimakurthy">
+                                            <img src="assets/img/projects/chandramouli-residence.jpg" alt="Chandramouli Residence landscape in Chimakurthy" loading="lazy" decoding="async">
                                         </a>
                                     </div>
                                     <div class="content">
@@ -2909,7 +2921,7 @@
                                 <div class="bs-project-4-card-single has-card-3">
                                     <div class="card-img wa-fix wa-img-cover">
                                         <a href="project-details.html" aria-label="Pavani Prasad" data-cursor-text="View">
-                                            <img src="/__l5e/assets-v1/763c6fc1-ccbc-44a0-b0c3-5bcb1c940cb5/project-pavani-prasad.jpg" alt="Pavani Prasad interior">
+                                            <img src="/__l5e/assets-v1/763c6fc1-ccbc-44a0-b0c3-5bcb1c940cb5/project-pavani-prasad.jpg" alt="Pavani Prasad interior" loading="lazy" decoding="async">
                                         </a>
                                     </div>
                                     <div class="content">
@@ -2943,17 +2955,17 @@
             <section class="bs-testimonial-4-area sea-testimonial-section wa-fix wa-p-relative">
                 <!-- Background sketch overlays: 1st image on left, 2nd image on right -->
                 <div class="sea-testi-bg-shape sea-testi-bg-left" aria-hidden="true">
-                    <img src="assets/img/testimonial/bg-overlay7.png" alt="">
+                    <img src="assets/img/testimonial/bg-overlay7.png" alt="" loading="lazy" decoding="async">
                 </div>
                 <div class="sea-testi-bg-shape sea-testi-bg-right" aria-hidden="true">
-                    <img src="assets/img/testimonial/bg-overlay6.png" alt="">
+                    <img src="assets/img/testimonial/bg-overlay6.png" alt="" loading="lazy" decoding="async">
                 </div>
 
                 <div class="container bs-container-2">
                     <h5 class="bs-subtitle-4">
                         <span class="text">testimonials</span>
                         <span class="icon">
-                            <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="">
+                            <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="" loading="lazy" decoding="async">
                         </span>
                     </h5>
 
@@ -2971,7 +2983,7 @@
                                 <div class="swiper-slide">
                                     <div class="sea-testimonial-card">
                                         <div class="sea-card-media">
-                                            <img src="/__l5e/assets-v1/228b2715-be14-4c62-99a6-8ecfeb623af4/testimonial-profile-1.png" alt="Kristin Watson profile">
+                                            <img src="/__l5e/assets-v1/228b2715-be14-4c62-99a6-8ecfeb623af4/testimonial-profile-1.png" alt="Kristin Watson profile" loading="lazy" decoding="async">
                                         </div>
                                         <div class="sea-card-body">
                                             <div class="sea-card-stars">
@@ -2992,7 +3004,7 @@
                                 <div class="swiper-slide">
                                     <div class="sea-testimonial-card">
                                         <div class="sea-card-media">
-                                            <img src="/__l5e/assets-v1/292d0799-284a-4380-8d72-8f0f02697007/testimonial-profile-2.png" alt="Ralph Edwards profile">
+                                            <img src="/__l5e/assets-v1/292d0799-284a-4380-8d72-8f0f02697007/testimonial-profile-2.png" alt="Ralph Edwards profile" loading="lazy" decoding="async">
                                         </div>
                                         <div class="sea-card-body">
                                             <div class="sea-card-stars">
@@ -3013,7 +3025,7 @@
                                 <div class="swiper-slide">
                                     <div class="sea-testimonial-card">
                                         <div class="sea-card-media">
-                                            <img src="/__l5e/assets-v1/1d271247-824d-403c-91ce-ed66082aaba5/testimonial-profile-3.png" alt="Albert Flores profile">
+                                            <img src="/__l5e/assets-v1/1d271247-824d-403c-91ce-ed66082aaba5/testimonial-profile-3.png" alt="Albert Flores profile" loading="lazy" decoding="async">
                                         </div>
                                         <div class="sea-card-body">
                                             <div class="sea-card-stars">
@@ -3034,7 +3046,7 @@
                                 <div class="swiper-slide">
                                     <div class="sea-testimonial-card">
                                         <div class="sea-card-media">
-                                            <img src="/__l5e/assets-v1/fe4af7fd-247d-478a-b870-c5b9ae4a5f02/testimonial-profile-4.png" alt="Darrell Steward profile">
+                                            <img src="/__l5e/assets-v1/fe4af7fd-247d-478a-b870-c5b9ae4a5f02/testimonial-profile-4.png" alt="Darrell Steward profile" loading="lazy" decoding="async">
                                         </div>
                                         <div class="sea-card-body">
                                             <div class="sea-card-stars">
@@ -3078,7 +3090,7 @@
                 <canvas id="seaCrosshairCanvas" class="sea-crosshair-canvas" aria-hidden="true"></canvas>
                 <div class="sea-contact-bg-wrap">
                     <div id="seaContactRipple" class="sea-contact-ripple"></div>
-                    <img class="sea-contact-bg-img" src="/__l5e/assets-v1/97e81362-51d0-4983-8b11-52680426b08b/contact-dome-3.jpg" alt="SEA architectural dome pavilion">
+                    <img class="sea-contact-bg-img" src="/__l5e/assets-v1/97e81362-51d0-4983-8b11-52680426b08b/contact-dome-3.jpg" alt="SEA architectural dome pavilion" loading="lazy" decoding="async">
                     <div class="sea-contact-gradient-overlay"></div>
                 </div>
                 <div class="container bs-container-2 sea-contact-container">
@@ -3091,7 +3103,7 @@
                                     <span class="sea-subtitle-line"></span>
                                     <span class="text">start a conversation</span>
                                     <span class="icon">
-                                        <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="">
+                                        <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="" loading="lazy" decoding="async">
                                     </span>
                                 </h5>
                                 <h2 class="bs-sec-title-4 sea-contact-title wa-split-right" data-cursor="-opaque" data-crosshair-target>
@@ -3168,31 +3180,31 @@
                 <div class="bs-brand-4-marquee-active">
                     <div class="bs-brand-4-wrap wa-fix">
                         <div class="bs-brand-4-item">
-                            <img src="assets/img/brand/b4-logo-1.svg" alt="">
+                            <img src="assets/img/brand/b4-logo-1.svg" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="bs-brand-4-item">
-                            <img src="assets/img/brand/b4-logo-2.svg" alt="">
+                            <img src="assets/img/brand/b4-logo-2.svg" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="bs-brand-4-item">
-                            <img src="assets/img/brand/b4-logo-3.svg" alt="">
+                            <img src="assets/img/brand/b4-logo-3.svg" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="bs-brand-4-item">
-                            <img src="assets/img/brand/b4-logo-4.svg" alt="">
+                            <img src="assets/img/brand/b4-logo-4.svg" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="bs-brand-4-item">
-                            <img src="assets/img/brand/b4-logo-5.svg" alt="">
+                            <img src="assets/img/brand/b4-logo-5.svg" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="bs-brand-4-item">
-                            <img src="assets/img/brand/b4-logo-6.svg" alt="">
+                            <img src="assets/img/brand/b4-logo-6.svg" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="bs-brand-4-item">
-                            <img src="assets/img/brand/b4-logo-7.svg" alt="">
+                            <img src="assets/img/brand/b4-logo-7.svg" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="bs-brand-4-item">
-                            <img src="assets/img/brand/b4-logo-8.svg" alt="">
+                            <img src="assets/img/brand/b4-logo-8.svg" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="bs-brand-4-item">
-                            <img src="assets/img/brand/b4-logo-9.svg" alt="">
+                            <img src="assets/img/brand/b4-logo-9.svg" alt="" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -3203,7 +3215,7 @@
             <footer class="bs-footer-2-area wa-p-relative wa-fix" >
 
                 <div class="bs-footer-2-bg-img wa-fix wa-img-cover">
-                    <img src="assets/img/footer/f2-bg-1.png" alt="">
+                    <img src="assets/img/footer/f2-bg-1.png" alt="" loading="lazy" decoding="async">
                 </div>
 
                 <!-- footer-line -->
@@ -3246,7 +3258,7 @@
                             <!-- brand -->
                             <div class="bs-footer-2-top-content bs-footer-2-brand">
                                 <a href="index-6.html" aria-label="SEA - Studio for Eclectic Architecture" class="bs-footer-2-logo" data-cursor="-opaque">
-                                    <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture">
+                                    <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture" loading="lazy" decoding="async">
                                 </a>
                                 <h5 class="bs-h-2 title" data-cursor="-opaque">Inspiring Presence of Design 
                                     Thanks to Indoor Plants</h5>
@@ -3431,7 +3443,7 @@
 
                         <!-- logo -->
                         <a href="index-6.html" aria-label="SEA - Studio for Eclectic Architecture" class="wa-offcanvas-top-logo">
-                            <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture">
+                            <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture" loading="lazy" decoding="async">
                         </a>
 
                         <!-- close-btn -->
@@ -3458,16 +3470,16 @@
 
                         <div class="wa-offcanvas-gallery-grid">
                             <a href="assets/img/gallery/g2-img-1.png" aria-label="name" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                                <img src="assets/img/gallery/g2-img-1.png" alt="">
+                                <img src="assets/img/gallery/g2-img-1.png" alt="" loading="lazy" decoding="async">
                             </a>
                             <a href="assets/img/gallery/g2-img-2.png" aria-label="name" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                                <img src="assets/img/gallery/g2-img-2.png" alt="">
+                                <img src="assets/img/gallery/g2-img-2.png" alt="" loading="lazy" decoding="async">
                             </a>
                             <a href="assets/img/gallery/g2-img-3.png" aria-label="name" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                                <img src="assets/img/gallery/g2-img-3.png" alt="">
+                                <img src="assets/img/gallery/g2-img-3.png" alt="" loading="lazy" decoding="async">
                             </a>
                             <a href="assets/img/gallery/g2-img-4.png" aria-label="name" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                                <img src="assets/img/gallery/g2-img-4.png" alt="">
+                                <img src="assets/img/gallery/g2-img-4.png" alt="" loading="lazy" decoding="async">
                             </a>
                         </div>
                     </div>
@@ -3634,87 +3646,49 @@
             }
             window.addEventListener('load', initSeaTestimonials);
 
-            // Start after the template creates its Swiper and dismisses the preloader.
-            window.addEventListener('load', function () {
-                window.setTimeout(function () {
-                    var element = document.querySelector('.bs-h4-img-active');
-                    var slider = element && element.swiper;
-                    if (!slider || !window.gsap) return;
-                    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-                    var animation;
-
-                    // Ensure bi-parting sliding door seams exist inside the slider element
-                    var seamLeft = element.querySelector('.sea-sliding-door-seam.is-left');
-                    var seamRight = element.querySelector('.sea-sliding-door-seam.is-right');
-                    if (!seamLeft) {
-                        seamLeft = document.createElement('div');
-                        seamLeft.className = 'sea-sliding-door-seam is-left';
-                        element.appendChild(seamLeft);
+            // Own this page's slider: start immediately, independently of window.load.
+            (function () {
+                var element = document.querySelector('.sea-hero-img-active');
+                var thumbsElement = document.querySelector('.sea-hero-thum-active');
+                if (!element || typeof Swiper === 'undefined') return;
+                var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+                var thumbs = thumbsElement ? new Swiper(thumbsElement, {
+                    loop: true,
+                    spaceBetween: 16,
+                    speed: 600,
+                    breakpoints: {
+                        0: { slidesPerView: 1 },
+                        576: { slidesPerView: 2 },
+                        1200: { slidesPerView: 3 }
                     }
-                    if (!seamRight) {
-                        seamRight = document.createElement('div');
-                        seamRight.className = 'sea-sliding-door-seam is-right';
-                        element.appendChild(seamRight);
+                }) : null;
+                var slider = new Swiper(element, {
+                    loop: true,
+                    speed: reducedMotion.matches ? 0 : 1100,
+                    effect: 'fade',
+                    fadeEffect: { crossFade: true },
+                    autoplay: reducedMotion.matches ? false : {
+                        delay: 4500,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true
+                    },
+                    pagination: { el: '.bs-t1-pagi', clickable: true },
+                    thumbs: thumbs ? { swiper: thumbs } : undefined
+                });
+                function syncMotion() {
+                    slider.params.speed = reducedMotion.matches ? 0 : 1100;
+                    if (reducedMotion.matches) slider.autoplay.stop();
+                    else {
+                        slider.params.autoplay = { delay: 4500, disableOnInteraction: false, pauseOnMouseEnter: true };
+                        slider.autoplay.start();
                     }
-
-                    function revealImage(delay) {
-                        if (animation) animation.kill();
-                        var frames = element.querySelectorAll('.main-img');
-                        var images = element.querySelectorAll('.main-img img');
-                        gsap.set(frames, { clearProps: 'clipPath' });
-                        gsap.set(images, { clearProps: 'transform' });
-                        gsap.set([seamLeft, seamRight], { opacity: 0 });
-
-                        if (reducedMotion.matches) return;
-                        var slide = slider.slides[slider.activeIndex];
-                        var frame = slide && slide.querySelector('.main-img');
-                        var image = frame && frame.querySelector('img');
-                        if (!frame || !image) return;
-
-                        // Architectural bi-parting sliding door transition
-                        animation = gsap.timeline({ defaults: { ease: 'ease1' }, delay: delay });
-
-                        // Start with doors meeting at center line (50%)
-                        gsap.set([seamLeft, seamRight], { left: '50%', opacity: 1 });
-
-                        // Part doors from center (50%) outward to 0% and 100%
-                        animation.fromTo(frame,
-                            { clipPath: 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)' },
-                            { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', duration: 1.35, clearProps: 'clipPath' }
-                        );
-
-                        // Left door seam glides from 50% to 0%
-                        animation.fromTo(seamLeft,
-                            { left: '50%' },
-                            { left: '0%', duration: 1.35 },
-                            '<'
-                        );
-
-                        // Right door seam glides from 50% to 100%
-                        animation.fromTo(seamRight,
-                            { left: '50%' },
-                            { left: '100%', duration: 1.35 },
-                            '<'
-                        );
-
-                        // Seams smoothly fade away as doors reach the frame pockets
-                        animation.to([seamLeft, seamRight],
-                            { opacity: 0, duration: 0.28, ease: 'power1.out' },
-                            '-=0.28'
-                        );
-
-                        // Architectural push/settle into the space
-                        animation.fromTo(image,
-                            { scale: 1.12 },
-                            { scale: 1, duration: 1.8, clearProps: 'transform' },
-                            '<'
-                        );
-                    }
-                    revealImage(0.4);
-                    slider.on('slideChangeTransitionStart', function () { revealImage(0); });
-                    reducedMotion.addEventListener('change', function () { revealImage(0); });
-                }, 1100);
-            });
+                }
+                reducedMotion.addEventListener('change', syncMotion);
+                document.addEventListener('visibilitychange', function () {
+                    if (document.hidden) slider.autoplay.stop();
+                    else if (!reducedMotion.matches) slider.autoplay.start();
+                });
+            })();
         </script>
         <!-- React Bits Crosshair Engine for Contact Section -->
         <script>
@@ -4042,7 +4016,6 @@
             })();
         </script>
         <!-- React Bits RippleDistortion Engine for Contact Background -->
-        <script src="assets/js/ripple-distortion.js"></script>
         <script>
             (function () {
                 function initContactRipple() {
@@ -4070,11 +4043,22 @@
                         interactiveScope: host
                     });
                 }
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', initContactRipple);
-                } else {
-                    initContactRipple();
+                var host = document.getElementById('contact');
+                if (!host || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                function loadContactRipple() {
+                    var script = document.createElement('script');
+                    script.src = 'assets/js/ripple-distortion.js';
+                    script.onload = initContactRipple;
+                    document.body.appendChild(script);
                 }
+                if ('IntersectionObserver' in window) {
+                    var observer = new IntersectionObserver(function (entries) {
+                        if (!entries.some(function (entry) { return entry.isIntersecting; })) return;
+                        observer.disconnect();
+                        loadContactRipple();
+                    }, { rootMargin: '300px' });
+                    observer.observe(host);
+                } else loadContactRipple();
             })();
         </script>
     </body>
