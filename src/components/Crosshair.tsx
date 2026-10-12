@@ -38,7 +38,7 @@ const toRgb = (ctx: CanvasRenderingContext2D, color: string) => {
     return { r: (hex >> 16) & 255, g: (hex >> 8) & 255, b: hex & 255, a: 1 };
   }
   const parts = value.match(/[\d.]+/g)?.map(Number) ?? [255, 255, 255, 1];
-  return { r: parts[0], g: parts[1], b: parts[2], a: parts[3] ?? 1 };
+  return { r: parts[0] ?? 255, g: parts[1] ?? 255, b: parts[2] ?? 255, a: parts[3] ?? 1 };
 };
 
 export const Crosshair: React.FC<CrosshairProps> = ({
