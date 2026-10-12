@@ -66,6 +66,14 @@
             .sea-header .bs-header-2-action-link .bs-offcanvas-btn-1 .line {
                 background: var(--sea-header-foreground);
             }
+            /* the header menu items are display-only for now: no dropdowns,
+               no navigation and no keyboard focus */
+            .sea-nav-disabled > li > a {
+                pointer-events: none;
+                cursor: default;
+                -webkit-user-select: none;
+                user-select: none;
+            }
             @media (prefers-reduced-motion: reduce) {
                 .bs-header-2-area.sea-header {
                     transition: none;
