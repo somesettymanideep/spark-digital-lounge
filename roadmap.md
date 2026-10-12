@@ -67,3 +67,5 @@
 
 
 - [x] Home 6 is the home page: "/" now serves the Home 6 page itself (src/server.ts returns public/index-6.html for GET /), so the address bar reads "/" with no redirect hop. The template's original home page is preserved at public/template-home-1.html and public/index.html now sends visitors to "/". Router route kept as a 301 safety net.
+
+- [x] Scroll-to-top redesigned: the Architect's Drafting Set Square instrument was removed and replaced by a lift call plate — recessed floor indicator (RF at the top of the page, G at the bottom, 01-11 between), hoistway with floor ticks and a travelling car marker, engraved up-call button that fills teal while the lift is called, and a hover capsule "ROOF LEVEL / Take the lift back to the top". Playwright-verified: indicator tracks RF/09/06/01, click returns to the top with the count ticking to RF, phone layout compact, no console errors.
