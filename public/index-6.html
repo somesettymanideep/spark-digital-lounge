@@ -1405,8 +1405,8 @@
            ========================================================= */
         .bs-contact-4-area.sea-contact-showcase {
             position: relative;
-            padding-top: 60px;
-            padding-bottom: 55px;
+            padding-top: 36px;
+            padding-bottom: 32px;
             min-height: auto;
             display: flex;
             align-items: center;
@@ -1415,8 +1415,8 @@
         }
         @media (max-width: 991px) {
             .bs-contact-4-area.sea-contact-showcase {
-                padding-top: 50px;
-                padding-bottom: 45px;
+                padding-top: 28px;
+                padding-bottom: 26px;
                 min-height: auto;
             }
         }
@@ -1430,12 +1430,31 @@
             overflow: hidden;
             pointer-events: none;
         }
+        .sea-contact-ripple {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            background: #061824;
+        }
+        .sea-contact-ripple canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         .sea-contact-bg-img {
             width: 100%;
             height: 125%;
             object-fit: cover;
             object-position: center 60%;
             display: block;
+            transition: opacity 0.4s ease;
+        }
+        .sea-contact-ripple.has-ripple-loaded ~ .sea-contact-bg-img {
+            opacity: 0;
         }
         .sea-contact-gradient-overlay {
             position: absolute;
@@ -1443,6 +1462,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 2;
             background: linear-gradient(90deg, rgba(5, 23, 33, 0.94) 0%, rgba(5, 23, 33, 0.82) 35%, rgba(5, 23, 33, 0.28) 65%, rgba(5, 23, 33, 0.52) 100%);
         }
         @media (max-width: 991px) {
@@ -1464,19 +1484,19 @@
             display: grid;
             grid-template-columns: 1.1fr 1fr;
             align-items: center;
-            gap: 40px;
+            gap: 28px;
             min-height: auto;
         }
         @media (max-width: 1199px) {
             .sea-contact-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 32px;
+                gap: 24px;
             }
         }
         @media (max-width: 991px) {
             .sea-contact-grid {
                 grid-template-columns: 1fr;
-                gap: 32px;
+                gap: 22px;
                 min-height: auto;
             }
         }
@@ -1491,28 +1511,28 @@
             .sea-contact-left {
                 min-height: auto;
                 padding: 0;
-                gap: 16px;
+                gap: 12px;
             }
         }
         .sea-contact-subtitle {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             border-bottom: none;
             padding-bottom: 0;
-            margin-bottom: 12px;
+            margin-bottom: 6px;
             width: auto;
         }
         .sea-contact-subtitle .sea-subtitle-line {
-            width: 32px;
+            width: 28px;
             height: 2px;
             background-color: #00bcd4;
             display: inline-block;
         }
         .sea-contact-subtitle .text {
             color: #ffffff;
-            font-size: 13px;
-            letter-spacing: 2.2px;
+            font-size: 12px;
+            letter-spacing: 2px;
             font-weight: 600;
             text-transform: uppercase;
             font-family: var(--bs-font-1);
@@ -1525,11 +1545,11 @@
         .sea-contact-title {
             font-family: var(--bs-font-1);
             color: #ffffff;
-            font-size: clamp(34px, 3.8vw, 54px);
+            font-size: clamp(26px, 3vw, 40px);
             font-weight: 700;
-            line-height: 1.08;
+            line-height: 1.1;
             letter-spacing: -0.025em;
-            margin-bottom: 14px;
+            margin-bottom: 8px;
             text-transform: none;
         }
         .sea-contact-title .sea-accent-word {
@@ -1538,8 +1558,8 @@
         }
         .sea-contact-desc {
             color: rgba(255, 255, 255, 0.92);
-            font-size: clamp(15px, 1.15vw, 17px);
-            line-height: 1.5;
+            font-size: clamp(13px, 1vw, 15px);
+            line-height: 1.45;
             font-weight: 400;
             margin-bottom: 0;
             font-family: var(--bs-font-1);
@@ -1557,33 +1577,33 @@
         }
         .sea-contact-card {
             background: #ffffff;
-            border-radius: 16px;
+            border-radius: 14px;
             border-top: 3px solid #00bcd4;
-            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28), 0 4px 14px rgba(0, 0, 0, 0.08);
-            padding: 26px 30px 22px;
-            max-width: 480px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.26), 0 3px 12px rgba(0, 0, 0, 0.08);
+            padding: 18px 22px 16px;
+            max-width: 440px;
             width: 100%;
             position: relative;
         }
         @media (max-width: 575px) {
             .sea-contact-card {
-                padding: 22px 18px 18px;
-                border-radius: 14px;
+                padding: 16px 14px 14px;
+                border-radius: 12px;
             }
         }
         .sea-contact-card-title {
             font-family: var(--bs-font-1);
             color: #081f2c;
-            font-size: clamp(20px, 1.7vw, 24px);
+            font-size: clamp(17px, 1.4vw, 20px);
             font-weight: 700;
             letter-spacing: -0.02em;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             line-height: 1.2;
         }
         .sea-contact-form .sea-form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
         }
         @media (max-width: 575px) {
             .sea-contact-form .sea-form-row {
@@ -1592,15 +1612,15 @@
             }
         }
         .sea-contact-form .sea-form-group {
-            margin-bottom: 11px;
+            margin-bottom: 7px;
         }
         .sea-contact-form label {
             display: block;
             font-family: var(--bs-font-1);
-            font-size: 12.5px;
+            font-size: 11.5px;
             font-weight: 700;
             color: #081f2c;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             text-transform: none;
             line-height: 1.3;
         }
@@ -1610,9 +1630,9 @@
             width: 100%;
             background: #ffffff;
             border: 1.5px solid #dbe2ea;
-            border-radius: 7px;
-            padding: 8px 12px;
-            font-size: 13px;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 12px;
             color: #081f2c;
             font-family: var(--bs-font-1);
             transition: border-color 0.25s ease, box-shadow 0.25s ease;
@@ -1622,7 +1642,7 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            padding-right: 32px;
+            padding-right: 28px;
             cursor: pointer;
             background-color: #ffffff;
         }
@@ -1635,11 +1655,11 @@
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             position: absolute;
-            right: 12px;
+            right: 10px;
             top: 50%;
             transform: translateY(-50%);
             color: #64748b;
-            font-size: 13px;
+            font-size: 12px;
             pointer-events: none;
             transition: color 0.2s ease;
         }
@@ -1667,24 +1687,24 @@
             box-shadow: 0 0 0 3px rgba(19, 152, 166, 0.16);
         }
         .sea-contact-form textarea {
-            min-height: 68px;
+            min-height: 50px;
             resize: vertical;
         }
         .sea-contact-submit-btn {
             width: 100%;
-            margin-top: 3px;
+            margin-top: 2px;
             background: #1398a6;
             color: #ffffff;
             border: none;
-            border-radius: 7px;
-            padding: 10px 18px;
-            font-size: 14.5px;
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-size: 13.5px;
             font-weight: 600;
             font-family: var(--bs-font-1);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             cursor: pointer;
             transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
         }
@@ -3163,6 +3183,7 @@
             <section class="bs-contact-4-area sea-contact-showcase wa-fix wa-p-relative" id="contact">
                 <canvas id="seaCrosshairCanvas" class="sea-crosshair-canvas" aria-hidden="true"></canvas>
                 <div class="sea-contact-bg-wrap">
+                    <div id="seaContactRipple" class="sea-contact-ripple"></div>
                     <img class="sea-contact-bg-img" src="/__l5e/assets-v1/97e81362-51d0-4983-8b11-52680426b08b/contact-dome-3.jpg" alt="SEA architectural dome pavilion">
                     <div class="sea-contact-gradient-overlay"></div>
                 </div>
@@ -4291,6 +4312,42 @@
                     document.addEventListener('DOMContentLoaded', setup);
                 } else {
                     setup();
+                }
+            })();
+        </script>
+        <!-- React Bits RippleDistortion Engine for Contact Background -->
+        <script src="assets/js/ripple-distortion.js"></script>
+        <script>
+            (function () {
+                function initContactRipple() {
+                    var mount = document.getElementById('seaContactRipple');
+                    var host = document.getElementById('contact');
+                    if (!mount || !window.createRippleDistortion) return;
+                    window.createRippleDistortion(mount, {
+                        src: '/__l5e/assets-v1/97e81362-51d0-4983-8b11-52680426b08b/contact-dome-3.jpg',
+                        brushSize: 150,
+                        strength: 0.22,
+                        swirl: 1,
+                        rings: 4,
+                        spread: 5,
+                        fade: 3,
+                        spacing: 12,
+                        dispersion: 0.04,
+                        glint: 0.08,
+                        tint: '#00bcd4',
+                        tintAmount: 0.12,
+                        grayscale: false,
+                        highlightColor: '#ffffff',
+                        trigger: 'both',
+                        clickStrength: 2.2,
+                        quality: 'medium',
+                        interactiveScope: host
+                    });
+                }
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initContactRipple);
+                } else {
+                    initContactRipple();
                 }
             })();
         </script>
