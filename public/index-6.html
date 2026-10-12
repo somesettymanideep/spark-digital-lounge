@@ -1400,44 +1400,292 @@
                     transition: none !important;
                 }
             }
-          /* contact form panel: pale teal backdrop */
-        .bs-contact-4-form {
-            background-color: #e9f3f4;
+        /* =========================================================
+           CONTACT SHOWCASE SECTION (Hero Dome Panorama + Floating Form Card)
+           ========================================================= */
+        .bs-contact-4-area.sea-contact-showcase {
+            position: relative;
+            padding-top: 130px;
+            padding-bottom: 120px;
+            min-height: 840px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background-color: #061824;
         }
-
-        /* contact section: wide dome render beside the form */
-        @media (min-width: 992px) {
-            .bs-contact-4-wrap {
-                grid-template-columns: 1fr 1.4fr;
-                gap: 60px;
-            }
-            .bs-contact-4-form {
-                grid-row: 1 / span 2;
-            }
-            .bs-contact-4-title {
-                grid-column: 2;
-                grid-row: 1;
-                margin-left: 0;
-                margin-bottom: 30px;
-                align-self: end;
-            }
-            .bs-contact-4-img {
-                grid-column: 2;
-                grid-row: 2;
-                width: 100%;
-                aspect-ratio: 1920 / 1400;
-                height: auto;
+        @media (max-width: 991px) {
+            .bs-contact-4-area.sea-contact-showcase {
+                padding-top: 90px;
+                padding-bottom: 80px;
+                min-height: auto;
             }
         }
-        @media (min-width: 576px) and (max-width: 991px) {
-            .bs-contact-4-img {
-                height: 340px;
+        .sea-contact-bg-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .sea-contact-bg-img {
+            width: 100%;
+            height: 125%;
+            object-fit: cover;
+            object-position: center 60%;
+            display: block;
+        }
+        .sea-contact-gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(5, 23, 33, 0.94) 0%, rgba(5, 23, 33, 0.82) 35%, rgba(5, 23, 33, 0.28) 65%, rgba(5, 23, 33, 0.52) 100%);
+        }
+        @media (max-width: 991px) {
+            .sea-contact-gradient-overlay {
+                background: linear-gradient(180deg, rgba(5, 23, 33, 0.95) 0%, rgba(5, 23, 33, 0.85) 50%, rgba(5, 23, 33, 0.96) 100%);
             }
+        }
+        .sea-contact-container {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+        }
+        @media (min-width: 576px) and (max-width: 1199px) {
+            .sea-contact-container {
+                padding-left: 62px;
+            }
+        }
+        .sea-contact-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            align-items: center;
+            gap: 60px;
+            min-height: 620px;
+        }
+        @media (max-width: 1199px) {
+            .sea-contact-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+        @media (max-width: 991px) {
+            .sea-contact-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                min-height: auto;
+            }
+        }
+        .sea-contact-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 520px;
+            padding: 20px 0;
+        }
+        @media (max-width: 991px) {
+            .sea-contact-left {
+                min-height: auto;
+                padding: 0;
+                gap: 32px;
+            }
+        }
+        .sea-contact-subtitle {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 22px;
+            width: auto;
+        }
+        .sea-contact-subtitle .sea-subtitle-line {
+            width: 36px;
+            height: 2px;
+            background-color: #00bcd4;
+            display: inline-block;
+        }
+        .sea-contact-subtitle .text {
+            color: #ffffff;
+            font-size: 14px;
+            letter-spacing: 2.2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-family: var(--bs-font-1);
+        }
+        .sea-contact-subtitle .icon {
+            position: static;
+            display: inline-flex;
+            align-items: center;
+        }
+        .sea-contact-title {
+            font-family: var(--bs-font-1);
+            color: #ffffff;
+            font-size: clamp(40px, 4.6vw, 68px);
+            font-weight: 700;
+            line-height: 1.06;
+            letter-spacing: -0.025em;
+            margin-bottom: 22px;
+            text-transform: none;
+        }
+        .sea-contact-title .sea-accent-word {
+            color: #00bcd4;
+            display: inline;
+        }
+        .sea-contact-desc {
+            color: rgba(255, 255, 255, 0.92);
+            font-size: clamp(16px, 1.3vw, 19px);
+            line-height: 1.5;
+            font-weight: 400;
+            margin-bottom: 0;
+            font-family: var(--bs-font-1);
+        }
+        .sea-contact-socials {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding-top: 36px;
+        }
+        .sea-contact-socials a {
+            color: #ffffff;
+            font-size: 16px;
+            transition: color 0.25s ease, transform 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+        }
+        .sea-contact-socials a:hover {
+            color: #00bcd4;
+            transform: translateY(-2px);
+        }
+        .sea-contact-socials .sea-social-sep {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            user-select: none;
+        }
+        /* Right Form Card */
+        .sea-contact-right {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+        @media (max-width: 991px) {
+            .sea-contact-right {
+                justify-content: center;
+            }
+        }
+        .sea-contact-card {
+            background: #ffffff;
+            border-radius: 20px;
+            border-top: 3px solid #00bcd4;
+            box-shadow: 0 30px 65px rgba(0, 0, 0, 0.32), 0 6px 20px rgba(0, 0, 0, 0.08);
+            padding: 44px 40px 40px;
+            max-width: 530px;
+            width: 100%;
+            position: relative;
         }
         @media (max-width: 575px) {
-            .bs-contact-4-img {
-                height: 240px;
+            .sea-contact-card {
+                padding: 30px 22px 28px;
+                border-radius: 16px;
             }
+        }
+        .sea-contact-card-title {
+            font-family: var(--bs-font-1);
+            color: #081f2c;
+            font-size: clamp(24px, 2.3vw, 32px);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        .sea-contact-form .sea-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 575px) {
+            .sea-contact-form .sea-form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+        .sea-contact-form .sea-form-group {
+            margin-bottom: 18px;
+        }
+        .sea-contact-form label {
+            display: block;
+            font-family: var(--bs-font-1);
+            font-size: 14px;
+            font-weight: 700;
+            color: #081f2c;
+            margin-bottom: 7px;
+            text-transform: none;
+            line-height: 1.3;
+        }
+        .sea-contact-form input,
+        .sea-contact-form textarea {
+            width: 100%;
+            background: #ffffff;
+            border: 1.5px solid #dbe2ea;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 14px;
+            color: #081f2c;
+            font-family: var(--bs-font-1);
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            box-sizing: border-box;
+        }
+        .sea-contact-form input::placeholder,
+        .sea-contact-form textarea::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+        .sea-contact-form input:focus,
+        .sea-contact-form textarea:focus {
+            outline: none;
+            border-color: #1398a6;
+            box-shadow: 0 0 0 3px rgba(19, 152, 166, 0.16);
+        }
+        .sea-contact-form textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+        .sea-contact-submit-btn {
+            width: 100%;
+            margin-top: 6px;
+            background: #1398a6;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: var(--bs-font-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+        }
+        .sea-contact-submit-btn:hover {
+            background: #0d828f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(19, 152, 166, 0.38);
+            color: #ffffff;
+        }
+        .sea-contact-submit-btn i {
+            transition: transform 0.25s ease;
+        }
+        .sea-contact-submit-btn:hover i {
+            transform: translateX(4px);
         }
 
 
@@ -2890,56 +3138,75 @@
             <!-- testimonial-end -->
 
 
-            <section class="bs-contact-4-area wa-fix wa-p-relative">
-                <div class="bs-contact-4-bg wa-fix wa-img-cover wa-p-relative">
-                    <img class="wa-parallax-img" src="/__l5e/assets-v1/97e81362-51d0-4983-8b11-52680426b08b/contact-dome-3.jpg" alt="">
-                    <img src="assets/img/contact/c4-grow-1.png" alt="" class="glow-1">
+            <section class="bs-contact-4-area sea-contact-showcase wa-fix wa-p-relative" id="contact">
+                <div class="sea-contact-bg-wrap">
+                    <img class="sea-contact-bg-img" src="/__l5e/assets-v1/97e81362-51d0-4983-8b11-52680426b08b/contact-dome-3.jpg" alt="SEA architectural dome pavilion">
+                    <div class="sea-contact-gradient-overlay"></div>
                 </div>
-                <div class="container bs-container-2">
-                    <div class="bs-contact-4-wrap">
+                <div class="container bs-container-2 sea-contact-container">
+                    <div class="sea-contact-grid">
 
-                        <!-- left-form -->
-                        <div class="bs-contact-4-form">
-                            <h5 class="bs-h-1 title">Get In Touch With Us Today!</h5>
+                        <!-- Left Column: Heading, Subtitle & Socials -->
+                        <div class="sea-contact-left">
+                            <div class="sea-contact-heading-group">
+                                <h5 class="bs-subtitle-4 sea-contact-subtitle">
+                                    <span class="sea-subtitle-line"></span>
+                                    <span class="text">start a conversation</span>
+                                    <span class="icon">
+                                        <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="">
+                                    </span>
+                                </h5>
+                                <h2 class="bs-sec-title-4 sea-contact-title wa-split-right" data-cursor="-opaque">
+                                    Let’s Build<br>Something<br><span class="sea-accent-word">Extraordinary.</span>
+                                </h2>
+                                <p class="sea-contact-desc">
+                                    Share your vision. Let’s shape your space.
+                                </p>
+                            </div>
 
-                            <form action="#" class="bs-form-1 ">
-
-                                <div class="bs-form-1-item wa-clip-left-right">
-                                    <label class="bs-form-1-item-label" for="name">name</label>
-                                    <input id="name" class="bs-form-1-item-input " type="text" aria-label="name" placeholder="e.g. Oliver Spiteri  |" >
-                                </div>
-
-                                <div class="bs-form-1-item wa-clip-left-right">
-                                    <label class="bs-form-1-item-label" for="phone">phone</label>
-                                    <input id="phone" class="bs-form-1-item-input " type="number" aria-label="name" placeholder="e.g. +1 877 217 8371" >
-                                </div>
-                                
-                                <div class="bs-form-1-item wa-clip-left-right">
-                                    <label class="bs-form-1-item-label" for="email">email</label>
-                                    <input id="email" class="bs-form-1-item-input " type="email" aria-label="name" placeholder="example@email.com" >
-                                </div>
-                                <div class="bs-form-1-item  wa-clip-left-right">
-                                    <label class="bs-form-1-item-label" for="message">message</label>
-                                    <textarea class="bs-form-1-item-input " name="message" id="message" placeholder="write your message here"></textarea>
-                                </div>
-                                <div class="bs-form-1-item  wa-clip-left-right ">
-                                    <button type="submit" class="bs-pr-btn-2">
-                                        <span class="text" data-back="submit now" data-front="submit now"></span>
-                                        <span class="line-1"></span>
-                                        <span class="line-2"></span>
-                                        <span class="box box-1"></span>
-                                        <span class="box box-2"></span>
-                                        <span class="box box-3"></span>
-                                        <span class="box box-4"></span>
-                                    </button>
-                                </div>
-
-                            </form>
+                            <div class="sea-contact-socials">
+                                <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                                <span class="sea-social-sep">|</span>
+                                <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                <span class="sea-social-sep">|</span>
+                                <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <span class="sea-social-sep">|</span>
+                                <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                            </div>
                         </div>
 
-                      
+                        <!-- Right Column: White Floating Contact Form Card -->
+                        <div class="sea-contact-right">
+                            <div class="sea-contact-card">
+                                <h3 class="sea-contact-card-title">Get In Touch With Us Today!</h3>
 
-                       
+                                <form action="#" class="sea-contact-form" id="seaContactForm">
+                                    <div class="sea-form-row">
+                                        <div class="sea-form-group">
+                                            <label for="contact-name">Name</label>
+                                            <input id="contact-name" name="name" type="text" placeholder="Your name" required>
+                                        </div>
+                                        <div class="sea-form-group">
+                                            <label for="contact-phone">Phone</label>
+                                            <input id="contact-phone" name="phone" type="tel" placeholder="Your phone number">
+                                        </div>
+                                    </div>
+                                    <div class="sea-form-group">
+                                        <label for="contact-email">Email</label>
+                                        <input id="contact-email" name="email" type="email" placeholder="you@example.com" required>
+                                    </div>
+                                    <div class="sea-form-group">
+                                        <label for="contact-message">Message</label>
+                                        <textarea id="contact-message" name="message" rows="4" placeholder="Tell us about your project" required></textarea>
+                                    </div>
+                                    <button type="submit" class="sea-contact-submit-btn" data-cursor="-opaque">
+                                        <span>Submit Now</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
