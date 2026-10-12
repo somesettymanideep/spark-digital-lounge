@@ -1587,7 +1587,7 @@
         }
         @media (max-width: 575px) {
             .sea-contact-card {
-                padding: 16px 14px 14px;
+                padding: 18px 20px 20px;
                 border-radius: 12px;
             }
         }
@@ -1690,29 +1690,30 @@
             min-height: 60px;
             resize: vertical;
         }
+        /* the send button now wears the same design as the Vastu "read more"
+           button: a white box with a thin dark outline, teal drafting corner
+           marks outside its corners, and a teal fill that sweeps in as the
+           words flip from dark to white */
         .sea-contact-submit-btn {
             width: 100%;
             margin-top: 2px;
-            background: #1398a6;
-            color: #ffffff;
-            border: none;
-            border-radius: 6px;
+            margin-left: 0;
+            border-radius: 0;
             padding: 10px 14px;
             font-size: 13.5px;
             font-weight: 600;
-            font-family: var(--bs-font-1);
-            display: flex;
+            letter-spacing: 0.02em;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
             cursor: pointer;
-            transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
         }
-        .sea-contact-submit-btn:hover {
-            background: #0d828f;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(19, 152, 166, 0.38);
-            color: #ffffff;
+        .sea-contact-submit-btn .text {
+            margin-bottom: -2px;
+        }
+        .sea-contact-submit-btn:focus-visible {
+            outline: 2px solid #2f99ae;
+            outline-offset: 3px;
         }
         .sea-crosshair-canvas {
             position: absolute;
@@ -1722,12 +1723,6 @@
             pointer-events: none;
             z-index: 10;
             mix-blend-mode: normal;
-        }
-        .sea-contact-submit-btn i {
-            transition: transform 0.25s ease;
-        }
-        .sea-contact-submit-btn:hover i {
-            transform: translateX(4px);
         }
 
 
@@ -3250,9 +3245,14 @@
                                         <label for="contact-message">Message</label>
                                         <textarea id="contact-message" name="message" rows="3" placeholder="Tell us about your project" required></textarea>
                                     </div>
-                                    <button type="submit" class="sea-contact-submit-btn" data-cursor="-opaque">
-                                        <span>Submit Now</span>
-                                        <i class="fa-solid fa-arrow-right"></i>
+                                    <button type="submit" class="bs-pr-btn-2 sea-contact-submit-btn" data-cursor="-opaque">
+                                        <span class="text" data-back="Submit Now" data-front="Submit Now"></span>
+                                        <span class="line-1"></span>
+                                        <span class="line-2"></span>
+                                        <span class="box box-1"></span>
+                                        <span class="box box-2"></span>
+                                        <span class="box box-3"></span>
+                                        <span class="box box-4"></span>
                                     </button>
                                 </form>
                             </div>
