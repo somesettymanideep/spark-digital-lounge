@@ -3,6 +3,22 @@ import "./lib/error-capture";
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
 
+// Home 6 is the site's home page: served straight from "/" (no redirect hop).
+import homePageHtml from "../public/index-6.html?raw";
+
+function homePageResponse(request: Request): Response | undefined {
+  if (request.method !== "GET" && request.method !== "HEAD") return undefined;
+  if (new URL(request.url).pathname !== "/") return undefined;
+  return new Response(homePageHtml, {
+    status: 200,
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "no-cache",
+    },
+  });
+}
+
+
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
 };
