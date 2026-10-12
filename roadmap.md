@@ -65,3 +65,5 @@
 - [x] Header menu made display-only: every item (home, about me, project, contact) is non-clickable and unfocusable in both the desktop bar and the phone slide-in panel, all dropdown sub-menus and their toggles removed, "pages" and "news" dropped as dropdown-only labels, and the slide-in panel's logo now points at index-6.html instead of index-4.html. Playwright-verified at 1280 and 390: zero dropdown menus, pointer-events none, clicking a label leaves the page unchanged, no console errors.
 - [x] Fixed preview typecheck errors in `src/components/Crosshair.tsx` (toRgb channel fallbacks) and `src/components/RippleDistortion.tsx` (quality-scale lookup, wave array guards, bracket access for instanced geometry attributes); `tsgo --noEmit` clean and contact ripple/crosshair effects still render.
 
+
+- [x] Home 6 is the home page: "/" now serves the Home 6 page itself (src/server.ts returns public/index-6.html for GET /), so the address bar reads "/" with no redirect hop. The template's original home page is preserved at public/template-home-1.html and public/index.html now sends visitors to "/". Router route kept as a 301 safety net.
