@@ -1406,77 +1406,38 @@
             background-color: #e9f3f4;
         }
 
-        /* contact section: heading colour */
-        .bs-contact-4-form .title {
-            color: #007890;
-        }
-
-        /* contact section: the dome render scales with the screen instead of
-           being cropped by a fixed-height background layer */
-        .bs-contact-4-area {
-            padding-top: 80px;
-            padding-bottom: 90px;
-        }
-        .bs-contact-4-bg {
-            position: relative;
-            z-index: 0;
-            height: auto;
-        }
-        .bs-contact-4-bg > img.wa-parallax-img {
-            display: block;
-            width: 100% !important;
-            height: auto !important;
-            object-fit: contain;
-        }
-        .bs-contact-4-bg .glow-1 {
-            display: none;
-        }
-        .bs-contact-4-wrap {
-            position: relative;
-            z-index: 2;
-            margin-top: -40px;
-        }
-        .bs-contact-4-form {
-            margin-top: 0;
-        }
-        /* the panel runs the full width under the render, fields in two columns */
+        /* contact section: wide dome render beside the form */
         @media (min-width: 992px) {
             .bs-contact-4-wrap {
-                grid-template-columns: minmax(0, 1fr);
-                margin-right: 0;
+                grid-template-columns: 1fr 1.4fr;
+                gap: 60px;
             }
             .bs-contact-4-form {
-                padding: 58px 60px 48px;
+                grid-row: 1 / span 2;
             }
-            .bs-contact-4-form .bs-form-1 {
-                grid-template-columns: 1fr 1fr;
-                gap: 38px 46px;
+            .bs-contact-4-title {
+                grid-column: 2;
+                grid-row: 1;
+                margin-left: 0;
+                margin-bottom: 30px;
+                align-self: end;
             }
-            .bs-contact-4-form .bs-form-1-item:nth-child(3),
-            .bs-contact-4-form .bs-form-1-item:nth-child(4),
-            .bs-contact-4-form .bs-form-1-item:last-child {
-                grid-column: 1 / -1;
-            }
-        }
-        @media (max-width: 991px) {
-            .bs-contact-4-area {
-                padding-top: 60px;
-                padding-bottom: 60px;
-            }
-            .bs-contact-4-wrap {
-                margin-top: 14px;
+            .bs-contact-4-img {
+                grid-column: 2;
+                grid-row: 2;
+                width: 100%;
+                aspect-ratio: 1920 / 1400;
+                height: auto;
             }
         }
-        /* keep the pale panel clear of the sticky social rail, and centred */
-        @media (min-width: 576px) and (max-width: 1199px) {
-            .bs-contact-4-area .container.bs-container-2 {
-                padding-left: 62px;
-                padding-right: 62px;
+        @media (min-width: 576px) and (max-width: 991px) {
+            .bs-contact-4-img {
+                height: 340px;
             }
         }
         @media (max-width: 575px) {
-            .bs-contact-4-area .container.bs-container-2 {
-                padding-right: 46px;
+            .bs-contact-4-img {
+                height: 240px;
             }
         }
 
