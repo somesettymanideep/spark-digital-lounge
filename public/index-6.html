@@ -1405,9 +1405,9 @@
            ========================================================= */
         .bs-contact-4-area.sea-contact-showcase {
             position: relative;
-            padding-top: 36px;
-            padding-bottom: 32px;
-            min-height: auto;
+            padding-top: 68px;
+            padding-bottom: 64px;
+            min-height: 660px;
             display: flex;
             align-items: center;
             overflow: hidden;
@@ -1415,8 +1415,8 @@
         }
         @media (max-width: 991px) {
             .bs-contact-4-area.sea-contact-showcase {
-                padding-top: 28px;
-                padding-bottom: 26px;
+                padding-top: 48px;
+                padding-bottom: 46px;
                 min-height: auto;
             }
         }
@@ -1580,8 +1580,8 @@
             border-radius: 14px;
             border-top: 3px solid #00bcd4;
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.26), 0 3px 12px rgba(0, 0, 0, 0.08);
-            padding: 22px 22px 20px;
-            max-width: 440px;
+            padding: 30px 30px 28px;
+            max-width: 460px;
             width: 100%;
             position: relative;
         }
@@ -1603,7 +1603,7 @@
         .sea-contact-form .sea-form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 12px;
         }
         @media (max-width: 575px) {
             .sea-contact-form .sea-form-row {
@@ -1612,7 +1612,7 @@
             }
         }
         .sea-contact-form .sea-form-group {
-            margin-bottom: 9px;
+            margin-bottom: 13px;
         }
         .sea-contact-form label {
             display: block;
@@ -1687,7 +1687,7 @@
             box-shadow: 0 0 0 3px rgba(19, 152, 166, 0.16);
         }
         .sea-contact-form textarea {
-            min-height: 60px;
+            min-height: 98px;
             resize: vertical;
         }
         /* the send button now wears the same design as the Vastu "read more"
@@ -1714,6 +1714,22 @@
         .sea-contact-submit-btn:focus-visible {
             outline: 2px solid #2f99ae;
             outline-offset: 3px;
+        }
+        /* the send button wears its active (filled) state at all times:
+           teal background, white words, teal drafting corner marks */
+        .sea-contact-submit-btn {
+            border-color: #2f99ae;
+        }
+        .sea-contact-submit-btn .box {
+            transform: scale(1);
+        }
+        .sea-contact-submit-btn .text::before {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+        .sea-contact-submit-btn .text::after {
+            opacity: 1;
+            transform: translateY(0);
         }
         .sea-crosshair-canvas {
             position: absolute;
