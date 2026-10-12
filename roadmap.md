@@ -1,7 +1,5 @@
 # Homepage updates
 
-- [x] Preserve the current parrot cursor across the website and allow mouse use on touchscreen laptops without disabling it solely for touch capability.
-
 - [x] Add the supplied wardrobe, master-bedroom and kitchen photos to third-row flip faces; ensure only one of all nine tiles is active at a time.
 
 - [x] Add the uploaded living-room and pooja photos to top-row tiles two and three, flipping tiles one after another.
