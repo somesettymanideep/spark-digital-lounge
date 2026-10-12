@@ -335,7 +335,7 @@ export const RippleDistortion: React.FC<RippleDistortionProps> = ({
       renderer.setSize(width, height);
       compositeUniforms.uResolution.value = [width, height];
 
-      const scale = QUALITY_SCALE[quality] || QUALITY_SCALE.high;
+      const scale = QUALITY_SCALE[quality] ?? QUALITY_SCALE['high'] ?? 1;
       const fieldW = Math.max(2, Math.round(width * scale));
       const fieldH = Math.max(2, Math.round(height * scale));
       displacementTarget.setSize(fieldW, fieldH);
@@ -350,6 +350,7 @@ export const RippleDistortion: React.FC<RippleDistortionProps> = ({
       const cfg = configRef.current;
       const wave = waves[current];
       current = (current + 1) % MAX_WAVES;
+      if (!wave) return;
       wave.x = x;
       wave.y = y;
       wave.scale = START_SCALE * power;
@@ -408,7 +409,7 @@ export const RippleDistortion: React.FC<RippleDistortionProps> = ({
 
       for (let i = 0; i < MAX_WAVES; i += 1) {
         const wave = waves[i];
-        if (wave.opacity <= 0) {
+        if (!wave || wave.opacity <= 0) {
           opacities[i] = 0;
           continue;
         }
@@ -430,9 +431,12 @@ export const RippleDistortion: React.FC<RippleDistortionProps> = ({
         opacities[i] = wave.opacity;
       }
 
-      geometry.attributes.iOffset.needsUpdate = true;
-      geometry.attributes.iScale.needsUpdate = true;
-      geometry.attributes.iOpacity.needsUpdate = true;
+      const offsetAttr = geometry.attributes['iOffset'];
+      const scaleAttr = geometry.attributes['iScale'];
+      const opacityAttr = geometry.attributes['iOpacity'];
+      if (offsetAttr) offsetAttr.needsUpdate = true;
+      if (scaleAttr) scaleAttr.needsUpdate = true;
+      if (opacityAttr) opacityAttr.needsUpdate = true;
 
       renderer.render({ scene: waveMesh, target: displacementTarget, clear: true });
       renderer.render({ scene: compositeMesh });
