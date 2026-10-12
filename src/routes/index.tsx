@@ -14,6 +14,7 @@ export const Route = createFileRoute("/")({
     ],
   }),
   beforeLoad: () => {
-    throw redirect({ href: "/index-6.html" });
+    // Safety net only: src/server.ts already answers "/" with the Home 6 page.
+    throw redirect({ href: "/index-6.html", code: 301 });
   },
 });
