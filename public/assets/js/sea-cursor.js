@@ -22,9 +22,7 @@
     const isTouchOrCoarse = () => {
         return (
             window.matchMedia('(pointer: coarse)').matches ||
-            window.matchMedia('(hover: none)').matches ||
-            'ontouchstart' in window ||
-            navigator.maxTouchPoints > 0
+            window.matchMedia('(hover: none)').matches
         );
     };
 
@@ -262,7 +260,7 @@
             document.addEventListener('mouseenter', this.onMouseEnter, { passive: true });
             document.addEventListener('mouseleave', this.onMouseLeave, { passive: true });
             window.addEventListener('resize', this.onResize, { passive: true });
-            window.addEventListener('touchstart', this.onTouchStart, { passive: true, once: true });
+            window.addEventListener('touchstart', this.onTouchStart, { passive: true });
             document.addEventListener('visibilitychange', this.onVisibilityChange, { passive: true });
 
             document.addEventListener('mouseover', (e) => this.handleElementHover(e), { passive: true });
@@ -270,7 +268,8 @@
         }
 
         onTouchStart() {
-            this.destroy();
+            // Touchscreen laptops can still use a mouse; restore on mouse movement.
+            this.hide();
         }
 
         onVisibilityChange() {
@@ -576,6 +575,7 @@
             window.removeEventListener('mousemove', this.onMouseMove);
             window.removeEventListener('mousedown', this.onMouseDown);
             window.removeEventListener('mouseup', this.onMouseUp);
+            window.removeEventListener('touchstart', this.onTouchStart);
             document.removeEventListener('mouseenter', this.onMouseEnter);
             document.removeEventListener('mouseleave', this.onMouseLeave);
             window.removeEventListener('resize', this.onResize);
