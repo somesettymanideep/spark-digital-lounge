@@ -1065,6 +1065,12 @@
             .bs-services-4-item-single:nth-child(3) .img-2 img {
                 filter: grayscale(1) brightness(0.82);
             }
+            /* the open card is the one you are looking at, so its photo drops
+               the greyscale — the template's own grey belongs to the folds */
+            .bs-services-4-item-single:is(.active) .img-2,
+            .bs-services-4-item-single:is(.active) .img-2 img {
+                filter: none;
+            }
 
             /* the section's own near-black backdrop becomes the brand's deep
                navy; the template's faint texture sits on top of it untouched */
