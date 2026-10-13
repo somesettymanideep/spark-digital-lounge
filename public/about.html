@@ -4,8 +4,12 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Barsi - About Page</title>
-        <meta name="description" content="">
+        <title>About SEA — Studio for Eclectic Architecture</title>
+        <meta name="description" content="Meet SEA — Studio for Eclectic Architecture, our team and approach to architecture, interiors and landscape design.">
+        <meta property="og:title" content="About SEA — Studio for Eclectic Architecture">
+        <meta property="og:description" content="Meet our team and explore our approach to architecture, interiors and landscape design.">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary_large_image">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
         <!-- Place favicon.ico in the root directory -->
@@ -20,11 +24,227 @@
         <link rel="stylesheet" href="assets/css/magnific-popup.css">
         <link rel="stylesheet" href="assets/css/main.css">
         <style>
+            :root { --bs-clr-pr-1: #2f99ae; }
+            /* SEA header: transparent overlay becomes a white sticky header. */
+            .bs-header-2-area.sea-header {
+                --sea-header-foreground: var(--bs-clr-white-1);
+                --sea-header-top-space: 15px;
+                --sea-header-bottom-space: 0px;
+                position: fixed;
+                top: 0;
+                z-index: 100;
+                background: transparent;
+                padding-top: var(--sea-header-top-space);
+                padding-bottom: var(--sea-header-bottom-space);
+                transition: background-color 0.25s ease;
+            }
+            .bs-header-2-area.sea-header.is-scrolled {
+                --sea-header-foreground: var(--bs-clr-black-1);
+                --sea-header-top-space: 7px;
+                --sea-header-bottom-space: 7px;
+                background: var(--bs-clr-white-1);
+            }
+            .sea-header .bs-main-navigation .navbar-nav > li > a,
+            .sea-header .bs-social-1 .link {
+                color: var(--sea-header-foreground);
+            }
+            .sea-header .bs-header-2-action-link .bs-offcanvas-btn-1 .line {
+                background: var(--sea-header-foreground);
+            }
+            /* the header menu items are display-only for now: no dropdowns,
+               no navigation and no keyboard focus */
+            .sea-nav-disabled > li[aria-disabled="true"] > a {
+                pointer-events: none;
+                cursor: default;
+                -webkit-user-select: none;
+                user-select: none;
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .bs-header-2-area.sea-header {
+                    transition: none;
+                }
+            }
+            .bs-header-logo-1 img {
+                display: block;
+                width: auto;
+                max-width: 100%;
+                height: auto;
+                max-height: 64px;
+                padding: 4px 0;
+            }
+            .bs-preloader-logo img {
+                display: block;
+                width: auto;
+                max-width: 100%;
+                height: auto;
+                max-height: 66px;
+            }
+            .wa-offcanvas-top-logo img {
+                display: block;
+                width: auto;
+                max-width: 100%;
+                height: auto;
+                max-height: 58px;
+            }
+            .bs-footer-2-logo img {
+                display: block;
+                width: auto;
+                max-width: 100%;
+                height: auto;
+                max-height: 64px;
+            }
+            /* the terms strip gradient is hard-coded orange in the shared CSS */
+            .bs-footer-2-top-content-link .bg-color {
+                background: linear-gradient(90deg, #2f99ae 0%, #2f99ae 86%, rgba(47, 153, 174, 0) 100%);
+            }
+            /* the footer keeps its links and text only: no gallery, no form */
+            .bs-footer-2-top {
+                grid-template-columns: 1fr;
+            }
+            /* the brand block (logo, heading, intro, socials) leads the footer columns */
+            /* 12-part grid: the logo block takes 4 parts, quick links and
+               services take 2 each, corporate office takes the last 4 */
+            .bs-footer-2-widgets {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                align-items: flex-start;
+                gap: 28px;
+            }
+            .bs-footer-2-brand {
+                grid-column: span 4;
+            }
+            .bs-footer-2-widgets .bs-footer-1-widget {
+                grid-column: span 2;
+                min-width: 0;
+                max-width: none;
+            }
+            .bs-footer-2-widgets .bs-footer-1-widget.sea-footer-office {
+                grid-column: span 4;
+            }
+            @media only screen and (max-width: 991px) {
+                .bs-footer-2-widgets {
+                    gap: 30px 24px;
+                }
+                .bs-footer-2-brand {
+                    grid-column: span 12;
+                }
+                .bs-footer-2-widgets .bs-footer-1-widget {
+                    grid-column: span 6;
+                }
+                .bs-footer-2-widgets .bs-footer-1-widget.sea-footer-office {
+                    grid-column: span 12;
+                }
+            }
+            @media only screen and (max-width: 575px) {
+                .bs-footer-2-widgets .bs-footer-1-widget {
+                    grid-column: span 12;
+                }
+            }
+            .bs-footer-2-brand .bs-footer-2-logo {
+                display: inline-block;
+                margin-top: 0;
+                margin-bottom: 26px;
+                /* the original teal mark sits on a small white rounded chip */
+                background: #ffffff;
+                border-radius: 5px;
+                padding: 10px 16px;
+            }
+            .bs-footer-2-brand .bs-footer-2-logo img {
+                filter: none;
+            }
+            /* the contact info / offices block: addresses formatted with clear hierarchy */
+            .bs-footer-1-menu.sea-office-list li {
+                margin-bottom: 16px;
+            }
+            .bs-footer-1-menu.sea-office-list li:last-child {
+                margin-bottom: 0;
+            }
+            .bs-footer-1-menu.sea-office-list li a {
+                align-items: flex-start;
+                display: flex;
+                gap: 12px;
+                line-height: 1.5;
+            }
+            .bs-footer-1-menu.sea-office-list li a i {
+                margin-top: 4px;
+                color: #2f99ae;
+                flex-shrink: 0;
+                font-size: 14px;
+            }
+            .bs-footer-1-menu.sea-office-list .office-text {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+            .bs-footer-1-menu.sea-office-list .office-heading {
+                font-size: 12px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: #5eead4;
+            }
+            .bs-footer-1-menu.sea-office-list .office-desc {
+                color: rgba(255, 255, 255, 0.75);
+                font-size: 13.5px;
+                line-height: 1.5;
+                transition: color 0.25s ease;
+            }
+            .bs-footer-1-menu.sea-office-list li a:hover .office-desc {
+                color: #ffffff;
+            }
+            .bs-footer-2-copyright-mail {
+                word-break: break-word;
+            }
+            @media only screen and (max-width: 991px) {
+                .bs-footer-1-menu.sea-office-list li a {
+                    padding-right: 14px;
+                }
+            }
+            .bs-footer-2-brand .title {
+                font-size: 28px;
+                line-height: 1.25;
+                margin-bottom: 14px;
+                max-width: 340px;
+            }
+            .bs-footer-2-brand .disc {
+                line-height: 23px;
+                margin-bottom: 26px;
+                max-width: 340px;
+            }
+            .bs-footer-2-brand .bs-footer-2-top-content-social {
+                gap: 14px 26px;
+                margin-bottom: 0;
+            }
+            .bs-footer-2-brand .bs-footer-2-top-content-social .link {
+                font-size: 17px;
+            }
+            .bs-footer-2-brand .bs-footer-2-top-content-social .link i {
+                font-size: 14px;
+                margin-top: 0;
+            }
+            .bs-footer-2-brand .title,
+            .bs-footer-2-brand .disc {
+                max-width: none;
+            }
+
+
             .bs-choose-4-feature-single .icon {
                 background: #007890 !important;
                 color: #ffffff !important;
             }
         </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var header = document.querySelector('.sea-header');
+                if (!header) return;
+                function updateHeader() {
+                    header.classList.toggle('is-scrolled', window.scrollY > 24);
+                }
+                updateHeader();
+                window.addEventListener('scroll', updateHeader, { passive: true });
+                window.addEventListener('pageshow', updateHeader);
+            });
+        </script>
     </head>
 
     <body >
@@ -41,36 +261,47 @@
             <!-- end preloader -->
 
             <!-- header-start -->
-            <header class="bs-header-1-area ">
-                <div class="bs-header-1-row d-flex align-items-center justify-content-between">
+            <header class="bs-header-2-area sea-header">
+                <div class="bs-header-2-row d-flex align-items-center justify-content-between">
 
                     <!-- logo -->
-                    <a href="index.html" aria-label="name" class="bs-header-logo-1">
-                        <img src="assets/img/logo/logo-1.svg" alt="">
+                    <a href="index-6.html" aria-label="SEA - Studio for Eclectic Architecture" class="bs-header-logo-1">
+                        <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture" decoding="async">
                     </a>
 
+                    <nav class="bs-main-navigation  d-none d-lg-block" aria-label="Main navigation">
+                        <ul id="main-nav" class="nav navbar-nav sea-nav-disabled">
+                            <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">home</a></li>
+                            <li><a href="about.html">about me</a></li>
+                            <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">project</a></li>
+                            <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">contact</a></li>
+                        </ul>
+                    </nav>
+
+
                     <!-- action-link -->
-                    <div class="bs-header-1-action-link d-flex align-items-center ">
+                    <div class="bs-header-2-action-link d-flex align-items-center ">
 
-                        <!-- phone-btn -->
-                        <a href="#" aria-label="name" class="bs-h-1 bs-elm-phone">
-                            <i class="fa-solid fa-phone"></i>
-                            Call Us: (+88) 169 787 5256
-                        </a>
+                        <div class="bs-social-1">
+                            <a href="#" aria-label="name" class="link wa-magnetic-btn">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" aria-label="name" class="link wa-magnetic-btn">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="#" aria-label="name" class="link wa-magnetic-btn">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="#" aria-label="name" class="link wa-magnetic-btn">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div>
 
-                        <!-- pr-btn -->
-                        <a href="#" aria-label="name" class="bs-btn-1 header-btn">
-                            <span class="text">
-                                contact us
-                            </span>
-                            <span class="shape"></span>
-                        </a>
-                        
                         <!-- offcanvas-btn -->
-                        <button type="button" aria-label="name" class="bs-offcanvas-btn-1 btn-span offcanvas_toggle">
+                        <button type="button" aria-label="Open menu" class="bs-offcanvas-btn-1  offcanvas_toggle">
                             <span class="line"></span>
                             <span class="line"></span>
-                            <span class="shape"></span>
+                            <span class="line"></span>
                         </button>
 
                     </div>
@@ -1004,210 +1235,238 @@
             <!-- office-end -->
 
             <!-- footer-start -->
-            <footer class="bs-footer-1-area wa-fix wa-p-relative pt-80">
-                <div class="bs-footer-1-bg-img">
-                    <img src="assets/img/footer/f1-img-1.png" alt="">
+            <footer class="bs-footer-2-area wa-p-relative wa-fix" >
+
+                <div class="bs-footer-2-bg-img wa-fix wa-img-cover">
+                    <img src="assets/img/footer/f2-bg-1.png" alt="" loading="lazy" decoding="async">
                 </div>
-                <div class="container bs-container-1">
-                    <div class="bs-footer-1-wrap mb-40">
 
-                        <!-- single-widget -->
-                        <div class="bs-footer-1-widget">
-                            <a href="index.html" aria-label="name" class="bs-footer-1-logo" data-cursor="-opaque">
-                                <img src="assets/img/logo/logo-2.svg" alt="">
-                            </a>
-                            <p class="bs-p-1 bs-footer-1-disc">A profound design process eventually makes the patron, the architect, and every occasiona
-                                process eventually makes the patron</p>
-                        </div>
-
-                        <!-- single-widget -->
-                        <div class="bs-footer-1-widget">
-                            <h5 class="bs-footer-1-widget-title">about</h5>
-                            <ul class="bs-footer-1-menu wa-list-style-none">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        who we are
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        what we do
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        After Care
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Sustainability
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Welbeng
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Delivery and Aftersales policy
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- single-widget -->
-                        <div class="bs-footer-1-widget">
-                            <h5 class="bs-footer-1-widget-title">products</h5>
-                            <ul class="bs-footer-1-menu wa-list-style-none">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        All Products
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        New designs
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        CAD Blocks
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Moodboards
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Finishes
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- single-widget -->
-                        <div class="bs-footer-1-widget">
-                            <h5 class="bs-footer-1-widget-title">inspiration</h5>
-                            <ul class="bs-footer-1-menu wa-list-style-none">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Projects
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Blog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Videos
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Specification Guide
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Bamboo Configurator
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Colony Configurator
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- single-widget -->
-                        <div class="bs-footer-1-widget">
-                            <h5 class="bs-footer-1-widget-title">contact</h5>
-                            <ul class="bs-footer-1-menu wa-list-style-none">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        United Kingdom
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        North America
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Frovi Showeooms
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                        Careers
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-
+                <!-- footer-line -->
+                <div class="bs-footer-2-marquee wa-fix">
+                    <div class="bs-footer-2-line">
+                        <span></span>
+                        <span></span>
                     </div>
+                </div>
 
+                <div class="container bs-container-1">
+                    <div class="bs-footer-2-wrap pt-60">
 
-                    <!-- copyright -->
-                    <div class="bs-footer-1-copyright">
-                        <p class="bs-p-1 bs-footer-1-copyright-text">copyright <span class="copyright-year" ></span> barsi</p>
+                        <!-- footer-top -->
+                        <div class="bs-footer-2-top mb-40">
 
-                        <ul class="bs-footer-1-copyright-menu wa-list-style-none">
-                            <li>
-                                <a href="#" aria-label="name">uk terms & conditions</a>
-                            </li>
-                            <li>
-                                <a href="#" aria-label="name">North America Terms & Conditions</a>
-                            </li>
-                            <li>
-                                <a href="#" aria-label="name">Privacy Policy</a>
-                            </li>
-                        </ul>
+                            <!-- left-content -->
+                            <div class="bs-footer-2-top-content">
+
+                                <ul class="bs-footer-2-top-content-link wa-list-style-none">
+                                    <li class="bg-color wa-clip-left-right"></li>
+
+                                    <li>
+                                        <a href="#" aria-label="Terms & Conditions">terms & conditions</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Privacy Policy">privacy policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Refund Policy">refund policy</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <!-- footer-widgets -->
+                        <div class="bs-footer-2-widgets mb-50 ">
+
+                            <!-- brand -->
+                            <div class="bs-footer-2-top-content bs-footer-2-brand">
+                                <a href="index-6.html" aria-label="SEA - Studio for Eclectic Architecture" class="bs-footer-2-logo" data-cursor="-opaque">
+                                    <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture" loading="lazy" decoding="async">
+                                </a>
+                                <h5 class="bs-h-2 title" data-cursor="-opaque">Inspiring Presence of Design 
+                                    Thanks to Indoor Plants</h5>
+                                <p class="bs-p-1 disc">A profound design process eventually makes the patron, the architect, and every occasional visitor in the building a slightly better human being.</p>
+
+                                <div class="bs-footer-2-top-content-social">
+                                    <a href="#" aria-label="name" class="link bs-h-2">
+                                        instagram <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                    <a href="#" aria-label="name" class="link bs-h-2">
+                                        linkedin <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                    <a href="#" aria-label="name" class="link bs-h-2">
+                                        twitter <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                    <a href="#" aria-label="name" class="link bs-h-2">
+                                        facebook <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- single-widget -->
+                            <div class="bs-footer-1-widget">
+                                <h5 class="bs-footer-1-widget-title">quick links<span>.</span></h5>
+                                <ul class="bs-footer-1-menu has-footer-2 wa-list-style-none">
+                                    <li>
+                                        <a href="index-6.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="about.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            about
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index-6.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            vastu shastra
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index-6.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            projects
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index-6.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            contact
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+    
+                            <!-- single-widget -->
+                            <div class="bs-footer-1-widget">
+                                <h5 class="bs-footer-1-widget-title">services<span>.</span></h5>
+                                <ul class="bs-footer-1-menu has-footer-2 wa-list-style-none">
+                                    <li>
+                                        <a href="services-details.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            architectural design
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="services-details.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            interior design
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="services-details.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            landscape design
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="services-details.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            structural design
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="services-details.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            project management
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="services-details.html">
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            bim services
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+    
+    
+                            <!-- single-widget -->
+                            <div class="bs-footer-1-widget sea-footer-office">
+                                <h5 class="bs-footer-1-widget-title">contact info<span>.</span></h5>
+                                <ul class="bs-footer-1-menu has-footer-2 wa-list-style-none sea-office-list">
+                                    <li>
+                                        <a href="https://maps.google.com/?q=Vasavi+MPM+Grand,+Ameerpet,+Hyderabad" target="_blank" rel="noopener">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <span class="office-text">
+                                                <span class="office-heading">Corporate Office</span>
+                                                <span class="office-desc">#1215, 11th Floor, Vasavi MPM Grand, Yellareddy Guda, Ameerpet, Hyderabad, Telangana - 500 073</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://maps.google.com/?q=Sri+Sai+Nilayam,+Chandramoulipuram,+BENZ+Circle,+Vijayawada" target="_blank" rel="noopener">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <span class="office-text">
+                                                <span class="office-heading">Branch Office</span>
+                                                <span class="office-desc">Flat No: 101, Sri Sai Nilayam, Chandramoulipuram, ADJ. HDFC Bank, BENZ Circle, Vijayawada, Andhra Pradesh 520 010</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://maps.google.com/?q=Sri+Sai+Ram+Nilayam,+Chandramoulipuram,+Adj+Hdfc+Bank,+Benz+Circle,+Vijayawada" target="_blank" rel="noopener">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <span class="office-text">
+                                                <span class="office-heading">Bangalore</span>
+                                                <span class="office-desc">NO 40-14-5/2, Flat No - 101, Sri Sai Ram Nilayam, Chandramoulipuram, Adj Hdfc Bank, Benz Circle, Vijayawada -520010</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="tel:+919000299600">
+                                            <i class="fa-solid fa-phone"></i>
+                                            <span class="office-text">
+                                                <span class="office-heading">Phone</span>
+                                                <span class="office-desc">+91 9000299600</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+
+                            
+
+        
+                        </div>        
+                        
+                        <div class="bs-footer-2-copyright mb-40">
+                            <a href="mailto:naresh@s4eaindia.com" aria-label="naresh@s4eaindia.com" class="bs-footer-2-copyright-mail bs-h-1">
+                                naresh<span>@</span>s4eaindia.com
+                            </a>
+
+                            <p class="bs-footer-2-copyright-text bs-p-1">
+                                © <span class="copyright-year"></span> SEA — Studio for Eclectic Architecture. All Rights Reserved.
+                                <span class="bg-color wa-clip-right-left"></span>
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+            
+                <!-- footer-line -->
+                <div class="bs-footer-2-marquee-2 wa-fix">
+                    <div class="bs-footer-2-line">
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </footer>
             <!-- footer-end -->
 
             <!-- offcanvas-start -->
-            <div class="wa-offcanvas-area  offcanvas_box_active lenis lenis-smooth">
+            <div class="wa-offcanvas-area has-home-2  offcanvas_box_active lenis lenis-smooth">
                 <div class="wa-offcanvas-wrap ">
 
                     <!-- top -->
                     <div class="wa-offcanvas-top">
 
                         <!-- logo -->
-                        <a href="index.html" aria-label="name" class="wa-offcanvas-top-logo">
-                            <img src="assets/img/logo/logo-2.svg" alt="">
+                        <a href="index-6.html" aria-label="SEA - Studio for Eclectic Architecture" class="wa-offcanvas-top-logo">
+                            <img src="/__l5e/assets-v1/e1072620-8df8-42f6-8fc3-c756e9d60b31/sea-logo.png" alt="SEA - Studio for Eclectic Architecture" loading="lazy" decoding="async">
                         </a>
 
                         <!-- close-btn -->
@@ -1220,89 +1479,33 @@
 
 
                     <!-- mobile-menu-list -->
-                    <nav class="mobile-main-navigation mb-50">
-                        <ul  class="navbar-nav">
-                            <li class="dropdown">
-                                <a href="#">home</a>
-                                <ul class="dropdown-menu clearfix">
-                                    <li><a href="index.html">home One</a></li>
-                                    <li><a href="index-2.html">home Two</a></li>
-                                    <li><a href="index-3.html">home three</a></li>
-                                    <li><a href="index-4.html">home four</a></li>
-                                    <li><a href="index-5.html">home five</a></li>
-                                </ul>
-                            </li>
-
+                    <nav class="mobile-main-navigation mb-50 d-block d-lg-none" aria-label="Mobile navigation">
+                        <ul  class="navbar-nav sea-nav-disabled">
+                            <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">home</a></li>
                             <li><a href="about.html">about me</a></li>
-
-                            <li class="dropdown">
-                                <a href="projects.html">project</a>
-                                <ul class="dropdown-menu clearfix">
-                                    <li><a href="projects.html">projects one</a></li>
-                                    <li><a href="projects-2.html">projects two</a></li>
-                                    <li><a href="projects-3.html">projects three</a></li>
-                                    <li><a href="project-details.html">project details</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown">
-                                <a href="#">pages</a>
-                                <ul class="dropdown-menu clearfix">
-
-                                    <li class="dropdown">
-                                        <a href="services.html">services</a>
-                                        <ul class="dropdown-menu clearfix">
-                                            <li><a href="services.html">services one</a></li>
-                                            <li><a href="services-2.html">services two</a></li>
-                                            <li><a href="services-3.html">services three</a></li>
-                                            <li><a href="services-4.html">services four</a></li>
-                                            <li><a href="services-details.html">service details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="team.html">team</a>
-                                        <ul class="dropdown-menu clearfix">
-                                            <li><a href="team.html">team one</a></li>
-                                            <li><a href="team-2.html">team two</a></li>
-                                            <li><a href="team-3.html">team three</a></li>
-                                            <li><a href="team-4.html">team four</a></li>
-                                            <li><a href="team-details.html">team details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="career-page.html">career page</a>
-                                        <ul class="dropdown-menu clearfix">
-                                            <li><a href="career-page.html">career page</a></li>
-                                            <li><a href="career-single.html">career single</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href="price.html">price page</a></li>
-                                    <li><a href="choose-us.html">choose us</a></li>
-                                    <li><a href="testimonial.html">testimonial</a></li>
-                                    <li><a href="work-process.html">work process</a></li>
-                                    <li><a href="faqs.html">FAQs page</a></li>
-                                    <li><a href="404.html">404</a></li>
-                                   
-                                </ul>
-                            </li>
-
-                            <li class="dropdown">
-                                <a href="blog.html">news</a>
-                                <ul class="dropdown-menu clearfix">
-                                    <li><a href="blog.html">blog one</a></li>
-                                    <li><a href="blog-2.html">blog two</a></li>
-                                    <li><a href="blog-3.html">blog three</a></li>
-                                    <li><a href="blog-details.html">blog details</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a href="contact-us.html">Contact </a></li>
+                            <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">project</a></li>
+                            <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">contact</a></li>
                         </ul>
                     </nav>
 
+                    <div class="wa-offcanvas-gallery">
+                        <h6 class="wa-offcanvas-gallery-title bs-h-1 ">Stay Inspired with Instagram</h6>
+
+                        <div class="wa-offcanvas-gallery-grid">
+                            <a href="assets/img/gallery/g2-img-1.png" aria-label="name" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
+                                <img src="assets/img/gallery/g2-img-1.png" alt="" loading="lazy" decoding="async">
+                            </a>
+                            <a href="assets/img/gallery/g2-img-2.png" aria-label="name" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
+                                <img src="assets/img/gallery/g2-img-2.png" alt="" loading="lazy" decoding="async">
+                            </a>
+                            <a href="assets/img/gallery/g2-img-3.png" aria-label="name" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
+                                <img src="assets/img/gallery/g2-img-3.png" alt="" loading="lazy" decoding="async">
+                            </a>
+                            <a href="assets/img/gallery/g2-img-4.png" aria-label="name" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
+                                <img src="assets/img/gallery/g2-img-4.png" alt="" loading="lazy" decoding="async">
+                            </a>
+                        </div>
+                    </div>
 
                     <!-- social -->
                     <div class="wa-offcanvas-social">
@@ -1329,7 +1532,7 @@
 
             </div>
             <div class="wa-overly"></div>
-            <!-- offcanvas-start-end -->
+            <!-- offcanvas-end -->
 
             <!-- back-to-top-start -->
             <div class="wa-back-to-top ">
