@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "9c9b9a65-4ee2-4748-afb0-c3726e82ef6f",
-  "project_id": "a14b14ae-a623-4911-b40d-de098e937e0b",
-  "url": "/__l5e/assets-v1/9c9b9a65-4ee2-4748-afb0-c3726e82ef6f/vastu-flip-bedroom.jpg",
-  "r2_key": "a/v1/a14b14ae-a623-4911-b40d-de098e937e0b/9c9b9a65-4ee2-4748-afb0-c3726e82ef6f/vastu-flip-bedroom.jpg",
-  "original_filename": "vastu-flip-bedroom.jpg",
-  "size": 110881,
   "content_type": "image/jpeg",
-  "created_at": "2026-10-09T09:37:34Z"
+  "created_at": "2026-10-09T09:37:34Z",
+  "original_filename": "vastu-flip-bedroom.jpg",
+  "project_id": "6fa04bec-f506-4419-ae15-ac7ebe700a5c",
+  "r2_key": "a/v1/6fa04bec-f506-4419-ae15-ac7ebe700a5c/9c9b9a65-4ee2-4748-afb0-c3726e82ef6f/vastu-flip-bedroom.jpg",
+  "size": 110881,
+  "url": "/__l5e/assets-v1/9c9b9a65-4ee2-4748-afb0-c3726e82ef6f/vastu-flip-bedroom.jpg",
+  "version": 1
 }

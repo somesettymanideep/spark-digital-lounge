@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "9363d996-4d40-41db-9ac7-9dc2c2b8f966",
-  "project_id": "a14b14ae-a623-4911-b40d-de098e937e0b",
-  "url": "/__l5e/assets-v1/9363d996-4d40-41db-9ac7-9dc2c2b8f966/video-luxury-architecture.jpg",
-  "r2_key": "a/v1/a14b14ae-a623-4911-b40d-de098e937e0b/9363d996-4d40-41db-9ac7-9dc2c2b8f966/video-luxury-architecture.jpg",
-  "original_filename": "video-luxury-architecture.jpg",
-  "size": 250960,
   "content_type": "image/jpeg",
-  "created_at": "2026-10-08T13:33:35Z"
+  "created_at": "2026-10-08T13:33:35Z",
+  "original_filename": "video-luxury-architecture.jpg",
+  "project_id": "6fa04bec-f506-4419-ae15-ac7ebe700a5c",
+  "r2_key": "a/v1/6fa04bec-f506-4419-ae15-ac7ebe700a5c/9363d996-4d40-41db-9ac7-9dc2c2b8f966/video-luxury-architecture.jpg",
+  "size": 250960,
+  "url": "/__l5e/assets-v1/9363d996-4d40-41db-9ac7-9dc2c2b8f966/video-luxury-architecture.jpg",
+  "version": 1
 }

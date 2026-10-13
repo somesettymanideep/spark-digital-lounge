@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "763c6fc1-ccbc-44a0-b0c3-5bcb1c940cb5",
-  "project_id": "a14b14ae-a623-4911-b40d-de098e937e0b",
-  "url": "/__l5e/assets-v1/763c6fc1-ccbc-44a0-b0c3-5bcb1c940cb5/project-pavani-prasad.jpg",
-  "r2_key": "a/v1/a14b14ae-a623-4911-b40d-de098e937e0b/763c6fc1-ccbc-44a0-b0c3-5bcb1c940cb5/project-pavani-prasad.jpg",
-  "original_filename": "project-pavani-prasad.jpg",
-  "size": 273128,
   "content_type": "image/jpeg",
-  "created_at": "2026-10-08T12:42:14Z"
+  "created_at": "2026-10-08T12:42:14Z",
+  "original_filename": "project-pavani-prasad.jpg",
+  "project_id": "6fa04bec-f506-4419-ae15-ac7ebe700a5c",
+  "r2_key": "a/v1/6fa04bec-f506-4419-ae15-ac7ebe700a5c/763c6fc1-ccbc-44a0-b0c3-5bcb1c940cb5/project-pavani-prasad.jpg",
+  "size": 273128,
+  "url": "/__l5e/assets-v1/763c6fc1-ccbc-44a0-b0c3-5bcb1c940cb5/project-pavani-prasad.jpg",
+  "version": 1
 }

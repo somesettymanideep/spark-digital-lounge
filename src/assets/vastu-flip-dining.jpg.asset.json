@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "289e1131-c4b5-43ed-a20e-7d66d24c131b",
-  "project_id": "a14b14ae-a623-4911-b40d-de098e937e0b",
-  "url": "/__l5e/assets-v1/289e1131-c4b5-43ed-a20e-7d66d24c131b/vastu-flip-dining.jpg",
-  "r2_key": "a/v1/a14b14ae-a623-4911-b40d-de098e937e0b/289e1131-c4b5-43ed-a20e-7d66d24c131b/vastu-flip-dining.jpg",
-  "original_filename": "vastu-flip-dining.jpg",
-  "size": 106401,
   "content_type": "image/jpeg",
-  "created_at": "2026-10-09T07:58:21Z"
+  "created_at": "2026-10-09T07:58:21Z",
+  "original_filename": "vastu-flip-dining.jpg",
+  "project_id": "6fa04bec-f506-4419-ae15-ac7ebe700a5c",
+  "r2_key": "a/v1/6fa04bec-f506-4419-ae15-ac7ebe700a5c/289e1131-c4b5-43ed-a20e-7d66d24c131b/vastu-flip-dining.jpg",
+  "size": 106401,
+  "url": "/__l5e/assets-v1/289e1131-c4b5-43ed-a20e-7d66d24c131b/vastu-flip-dining.jpg",
+  "version": 1
 }
