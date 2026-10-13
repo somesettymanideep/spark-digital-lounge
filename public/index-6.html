@@ -4061,6 +4061,18 @@
                 } else loadContactRipple();
             })();
         </script>
+        <script>
+            // Home 6 is a single-page showcase: every link is display-only.
+            // Clicks on buttons, images, or menu items never navigate away.
+            (function () {
+                document.addEventListener('click', function (event) {
+                    var link = event.target.closest('a[href]');
+                    if (!link) return;
+                    event.preventDefault();
+                    event.stopPropagation();
+                }, true);
+            })();
+        </script>
     </body>
 </html>
 
