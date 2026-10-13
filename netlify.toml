@@ -1,0 +1,18 @@
+[build]
+  command = "bun run build || npm run build"
+  publish = ".output/public"
+
+[[redirects]]
+  from = "/"
+  to = "/index-6.html"
+  status = 200
+
+[[redirects]]
+  from = "/index.html"
+  to = "/index-6.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
