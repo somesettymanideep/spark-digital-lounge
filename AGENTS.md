@@ -25,3 +25,5 @@
 - Home 6 prioritizes its first hero image, lazy-loads below-fold images and video, and loads the contact ripple engine near the viewport to keep initial media and rendering work small.
 
 - The static About page mirrors Home 6 header, offcanvas menu, footer markup and their page-local styling/state listener; keep these copies aligned when modifying shared navigation so both pages remain self-contained static deployments.
+
+- GitHub Pages is built by `.github/workflows/deploy-pages.yml` from `public/` (Home 6 copied to index.html, Lovable asset URLs pointed at the published Lovable site), because the repo root has no static index and Pages would otherwise render README.
