@@ -61,7 +61,7 @@
             }
             /* the header menu items are display-only for now: no dropdowns,
                no navigation and no keyboard focus */
-            .sea-nav-disabled > li > a {
+            .sea-nav-disabled > li[aria-disabled="true"] > a {
                 pointer-events: none;
                 cursor: default;
                 -webkit-user-select: none;
@@ -2168,7 +2168,7 @@
                     <nav class="bs-main-navigation  d-none d-lg-block" aria-label="Main navigation">
                         <ul id="main-nav" class="nav navbar-nav sea-nav-disabled">
                             <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">home</a></li>
-                            <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">about me</a></li>
+                            <li><a href="about.html">about me</a></li>
                             <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">project</a></li>
                             <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">contact</a></li>
                         </ul>
@@ -3459,7 +3459,7 @@
                     <nav class="mobile-main-navigation mb-50 d-block d-lg-none" aria-label="Mobile navigation">
                         <ul  class="navbar-nav sea-nav-disabled">
                             <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">home</a></li>
-                            <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">about me</a></li>
+                            <li><a href="about.html">about me</a></li>
                             <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">project</a></li>
                             <li aria-disabled="true"><a href="#" tabindex="-1" aria-disabled="true">contact</a></li>
                         </ul>
