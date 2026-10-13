@@ -1,0 +1,46 @@
+name: Deploy static site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build static site from public/
+        run: |
+          rm -rf _site
+          cp -r public _site
+          rm -f _site/contact.php
+          # Home 6 is the home page
+          cp _site/index-6.html _site/index.html
+          # Lovable-hosted media: point at the published Lovable site
+          find _site -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print0 | \
+            xargs -0 sed -i -E "s#([\"'( ])/__l5e/#\1https://spark-digital-lounge.lovable.app/__l5e/#g"
+          # Root-absolute favicon / assets -> relative (site lives under /<repo>/)
+          find _site -type f -name '*.html' -print0 | \
+            xargs -0 sed -i -E "s#(href|src)=\"/(favicon\.png|assets/)#\1=\"\2#g; s#href=\"/\"#href=\"index.html\"#g"
+          touch _site/.nojekyll
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
