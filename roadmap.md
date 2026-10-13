@@ -73,3 +73,5 @@
 - [x] Improve Home 6 initial loading: prioritize the first hero photo, lazy-load 56 below-fold images, remove the blocking preloader, initialize page-local hero crossfades immediately, and defer video/contact ripple until needed. Browser-verified fades, video pause/play, contact canvas, and no runtime errors or overflow.
 
 - [x] Enable homepage About navigation and match the About page header, mobile menu and footer; verified desktop and phone About links, sticky header, footer columns, no overflow and no runtime errors.
+- [x] About page: removed Why Choose Us section and Luxury Architectural video section, normalizing section flow and spacing.
+- [x] About page: updated preloader logo to SEA homepage logo, set subpage banner image to uploaded interior render, removed decorative arrow mark over the banner, and cleaned up breadcrumb divider.
