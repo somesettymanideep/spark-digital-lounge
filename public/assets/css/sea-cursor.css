@@ -14,7 +14,7 @@
     html.sea-cursor-enabled .bs-btn-2,
     html.sea-cursor-enabled .bs-offcanvas-btn-1,
     html.sea-cursor-enabled .card-img a {
-        cursor: none !important;
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'%3E%3Cpath d='M2 2 L2 18 L6.5 13.8 L9.6 20 L12.4 18.7 L9.4 12.6 L15.5 12.6 Z' fill='%23eef8f9' stroke='%2300869b' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, default !important;
     }
 
     /* Preserve native text selection cursor for inputs and text areas */

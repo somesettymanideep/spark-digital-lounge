@@ -296,12 +296,12 @@
 
             // Smooth fluid lerp tracking with zero lag (0.35 factor)
             if (reduced) {
-                this.pos.x = this.mouse.x;
-                this.pos.y = this.mouse.y;
+                this.pos.x = this.mouse.x + 24;
+                this.pos.y = this.mouse.y + 16;
             } else {
-                const lerpFactor = this.isHover ? 0.30 : 0.36;
-                this.pos.x += (this.mouse.x - this.pos.x) * lerpFactor;
-                this.pos.y += (this.mouse.y - this.pos.y) * lerpFactor;
+                const lerpFactor = this.isHover ? 0.2 : 0.16;
+                this.pos.x += (this.mouse.x + 24 - this.pos.x) * lerpFactor;
+                this.pos.y += (this.mouse.y + 16 - this.pos.y) * lerpFactor;
             }
 
             // Smooth momentum decay
@@ -310,7 +310,7 @@
             this.vel.speed *= 0.82;
 
             // Hover Scale & Glow Interpolation
-            const targetScale = this.isMouseDown ? 0.92 : (this.isHover ? 1.18 : 1.0);
+            const targetScale = this.isMouseDown ? 0.62 : (this.isHover ? 0.82 : 0.68);
             this.scale += (targetScale - this.scale) * 0.16;
 
             const targetGlow = this.isHover ? 1.0 : 0.0;
@@ -340,7 +340,8 @@
                 this.yaw += (targetYaw - this.yaw) * 0.15;
             }
 
-            const drawX = this.pos.x;
+            if (!reduced) this.yaw += this.isHover ? 0.05 : 0.012;
+      const drawX = this.pos.x;
             const drawY = this.pos.y + floatY;
 
             // Render Click Pulse Rings
