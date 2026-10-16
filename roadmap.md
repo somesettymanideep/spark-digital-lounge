@@ -80,3 +80,4 @@
 
 - [x] Home page hero: reference-inspired image-left/text-right slides for Interior, Architecture and Landscape, with working discipline selection, crossfades and stacked phone layout.
 - [x] Home page projects section shown as a scroll stack: three full-width project cards pin under the header and stack, the cards behind shrinking and dimming.
+- [x] Home page sections (not hero): each small label moved into its heading, labels removed.
