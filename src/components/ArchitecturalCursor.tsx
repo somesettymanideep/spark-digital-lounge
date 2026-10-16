@@ -256,19 +256,19 @@ export const ArchitecturalCursor: React.FC = () => {
       const reduced = prefersReducedMotion();
 
       if (reduced) {
-        pos.x = mouse.x + 24;
-        pos.y = mouse.y + 16;
+        pos.x = mouse.x + 30;
+        pos.y = mouse.y + 20;
       } else {
         const lerpFactor = isHover ? 0.2 : 0.16;
-        pos.x += (mouse.x + 24 - pos.x) * lerpFactor;
-        pos.y += (mouse.y + 16 - pos.y) * lerpFactor;
+        pos.x += (mouse.x + 30 - pos.x) * lerpFactor;
+        pos.y += (mouse.y + 20 - pos.y) * lerpFactor;
       }
 
       vel.x *= 0.82;
       vel.y *= 0.82;
       vel.speed *= 0.82;
 
-      const targetScale = isMouseDown ? 0.62 : isHover ? 0.82 : 0.68;
+      const targetScale = isMouseDown ? 0.92 : isHover ? 1.2 : 1.0;
       scale += (targetScale - scale) * 0.16;
 
       const targetGlow = isHover ? 1.0 : 0.0;
