@@ -1609,15 +1609,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .sea-crosshair-canvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 10;
-            mix-blend-mode: normal;
-        }
 
         /* Bottom logos slider section top spacing */
         .bs-brand-4-area {
@@ -2913,7 +2904,6 @@
 
 
             <section class="bs-contact-4-area sea-contact-showcase wa-fix wa-p-relative" id="contact">
-                <canvas id="seaCrosshairCanvas" class="sea-crosshair-canvas" aria-hidden="true"></canvas>
                 <div class="sea-contact-bg-wrap">
                     <div id="seaContactRipple" class="sea-contact-ripple"></div>
                     <img class="sea-contact-bg-img" src="/__l5e/assets-v1/97e81362-51d0-4983-8b11-52680426b08b/contact-dome-3.jpg" alt="SEA architectural dome pavilion" loading="lazy" decoding="async">
@@ -2932,7 +2922,7 @@
                                         <img src="assets/img/illus/sea-subtitle-4-icon.svg" alt="" loading="lazy" decoding="async">
                                     </span>
                                 </h5>
-                                <h2 class="bs-sec-title-4 sea-contact-title wa-split-right" data-cursor="-opaque" data-crosshair-target>
+                                <h2 class="bs-sec-title-4 sea-contact-title wa-split-right" data-cursor="-opaque">
                                     Let’s Build<br>Something<br><span class="sea-accent-word">Extraordinary.</span>
                                 </h2>
                                 <p class="sea-contact-desc">
@@ -2943,7 +2933,7 @@
 
                         <!-- Right Column: White Floating Contact Form Card -->
                         <div class="sea-contact-right">
-                            <div class="sea-contact-card" data-crosshair-target>
+                            <div class="sea-contact-card">
                                 <h3 class="sea-contact-card-title">Get In Touch With Us Today!</h3>
 
                                 <form action="#" class="sea-contact-form" id="seaContactForm">
