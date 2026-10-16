@@ -81,3 +81,4 @@
 - [x] Home page hero: reference-inspired image-left/text-right slides for Interior, Architecture and Landscape, with working discipline selection, crossfades and stacked phone layout.
 - [x] Home page projects section shown as a scroll stack: three full-width project cards pin under the header and stack, the cards behind shrinking and dimming.
 - [x] Home page sections (not hero): each small label moved into its heading, labels removed.
+- [x] Services section redesigned to the reference editorial layout: light backdrop, "Our Services" heading with rule, intro paragraph with divider, wide Architectural Design feature card, and five slim numbered cards (Landscape 01, Structural 02, Project Management 03, BIM 04, Interior 05) with line icons. Playwright-verified desktop + phone, all six images load, no overflow, no errors.
