@@ -296,12 +296,12 @@
 
             // Smooth fluid lerp tracking with zero lag (0.35 factor)
             if (reduced) {
-                this.pos.x = this.mouse.x + 30;
-                this.pos.y = this.mouse.y + 20;
+                this.pos.x = this.mouse.x + 34;
+                this.pos.y = this.mouse.y + 22;
             } else {
                 const lerpFactor = this.isHover ? 0.2 : 0.16;
-                this.pos.x += (this.mouse.x + 30 - this.pos.x) * lerpFactor;
-                this.pos.y += (this.mouse.y + 20 - this.pos.y) * lerpFactor;
+                this.pos.x += (this.mouse.x + 34 - this.pos.x) * lerpFactor;
+                this.pos.y += (this.mouse.y + 22 - this.pos.y) * lerpFactor;
             }
 
             // Smooth momentum decay
@@ -310,7 +310,7 @@
             this.vel.speed *= 0.82;
 
             // Hover Scale & Glow Interpolation
-            const targetScale = this.isMouseDown ? 0.92 : (this.isHover ? 1.2 : 1.0);
+            const targetScale = this.isMouseDown ? 1.15 : (this.isHover ? 1.5 : 1.3);
             this.scale += (targetScale - this.scale) * 0.16;
 
             const targetGlow = this.isHover ? 1.0 : 0.0;
