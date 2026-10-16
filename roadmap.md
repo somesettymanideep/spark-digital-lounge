@@ -77,3 +77,5 @@
 - [x] About page: updated preloader logo to SEA homepage logo, set subpage banner image to uploaded interior render, removed decorative arrow mark over the banner, and cleaned up breadcrumb divider.
 
 - [x] GitHub Pages: added a deploy workflow that publishes the static site (Home 6 as home) instead of the README; user must set Settings > Pages > Source to "GitHub Actions".
+
+- [x] Home page hero: reference-inspired image-left/text-right slides for Interior, Architecture and Landscape, with working discipline selection, crossfades and stacked phone layout.

@@ -12,7 +12,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" type="image/png" href="/favicon.png">
-        <link rel="preload" as="image" href="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" fetchpriority="high">
+        <link rel="preload" as="image" href="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" fetchpriority="high">
 
 		<!-- all-CSS-link-here -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -1907,6 +1907,54 @@
             background: #2f99ae !important;
             border-radius: 3px;
         }
+
+            /* Reference-inspired split editorial hero; isolated to Home 6. */
+            :root {
+                --sea-hero-surface: oklch(0.975 0.005 210);
+                --sea-hero-image-surface: oklch(0.94 0.009 210);
+                --sea-hero-ink: oklch(0.27 0.035 220);
+                --sea-hero-muted: oklch(0.52 0.023 220);
+                --sea-hero-rule: oklch(0.85 0.015 210);
+            }
+            .bs-header-2-area.sea-header { --sea-header-foreground: var(--sea-hero-ink); background: var(--bs-clr-white-1); }
+            .sea-editorial-hero { position: relative; padding: 104px 0 0; background: var(--sea-hero-surface); }
+            .sea-editorial-hero > .swiper-container { width: 100%; overflow: hidden; }
+            .sea-editorial-hero .swiper-slide { height: auto; background: var(--sea-hero-surface); }
+            .sea-hero-layout { display: grid; grid-template-columns: 1fr 1fr; min-height: min(680px, calc(100svh - 164px)); }
+            .sea-hero-media { min-width: 0; background: var(--sea-hero-image-surface); overflow: hidden; }
+            .sea-hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+            .sea-hero-copy { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 64px 70px; overflow: hidden; color: var(--sea-hero-ink); }
+            .sea-hero-copy::before { content: ''; position: absolute; left: 38px; top: 70px; width: 34px; height: 34px; border-top: 5px solid var(--bs-clr-pr-1); border-left: 5px solid var(--bs-clr-pr-1); }
+            .sea-hero-studio { font-family: var(--bs-font-1); font-size: 12px; line-height: 1.6; color: var(--sea-hero-muted); margin-bottom: 42px; }
+            .sea-hero-category { text-transform: uppercase; font-size: 13px; letter-spacing: 0; color: var(--bs-clr-pr-1); margin-bottom: 22px; }
+            .sea-hero-copy h1, .sea-hero-copy h2 { font-family: var(--bs-font-1); font-size: 58px; font-weight: 500; letter-spacing: 0; line-height: 1.12; max-width: 490px; color: var(--sea-hero-ink); margin: 0 0 24px; }
+            .sea-hero-copy p { font-family: var(--bs-font-2); font-size: 16px; line-height: 1.6; color: var(--sea-hero-muted); margin: 0 0 32px; }
+            .sea-hero-read.bs-pr-btn-2 { background: var(--bs-clr-pr-1); color: var(--bs-clr-white-1); border: 1px solid var(--bs-clr-pr-1); padding: 15px 22px; display: inline-flex; align-items: center; gap: 24px; font-size: 13px; }
+            .sea-hero-read:hover { background: var(--sea-hero-ink); }
+            .sea-hero-number { position: absolute; bottom: -24px; right: 30px; font-size: 150px; font-weight: 500; line-height: 1; color: var(--sea-hero-rule); opacity: .5; pointer-events: none; }
+            .sea-hero-navigation { display: flex; justify-content: center; gap: 46px; height: 60px; border-bottom: 1px solid var(--sea-hero-rule); background: var(--bs-clr-white-1); }
+            .sea-hero-navigation button { position: relative; border: 0; background: transparent; padding: 0 5px; font-family: var(--bs-font-1); font-size: 13px; color: var(--sea-hero-muted); }
+            .sea-hero-navigation button[aria-pressed="true"] { color: var(--bs-clr-pr-1); }
+            .sea-hero-navigation button[aria-pressed="true"]::after { content: ''; height: 3px; position: absolute; bottom: 0; left: 0; right: 0; background: var(--bs-clr-pr-1); }
+            .sea-editorial-hero button:focus-visible { outline: 2px solid var(--bs-clr-pr-1); outline-offset: -4px; }
+            @media (max-width: 1199px) {
+                .sea-hero-copy { padding: 50px 38px; }
+                .sea-hero-copy::before { left: 18px; top: 30px; width: 24px; height: 24px; }
+                .sea-hero-copy h1, .sea-hero-copy h2 { font-size: 44px; }
+            }
+            @media (max-width: 767px) {
+                .sea-editorial-hero { padding-top: 90px; }
+                .sea-hero-layout { grid-template-columns: 1fr; min-height: 0; }
+                .sea-hero-media { height: 260px; }
+                .sea-hero-copy { min-height: 350px; padding: 32px 26px 38px; }
+                .sea-hero-copy::before { display: none; }
+                .sea-hero-studio { margin-bottom: 20px; font-size: 11px; }
+                .sea-hero-category { margin-bottom: 12px; }
+                .sea-hero-copy h1, .sea-hero-copy h2 { font-size: 36px; margin-bottom: 16px; max-width: 340px; }
+                .sea-hero-copy p { font-size: 14px; margin-bottom: 22px; }
+                .sea-hero-number { font-size: 105px; }
+                .sea-hero-navigation { gap: 20px; height: 54px; }
+            }
         </style>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -2163,78 +2211,55 @@
             <!-- header-end -->
 
             <!-- hero-start -->
-            <section class="bs-hero-4-area wa-p-relative pt-90 wa-fix">
-
-                <!-- slider -->
-                <div class="bs-hero-4-slider">
-
-                    <div class="bs-hero-4-slider-img">
-                        <div class="swiper-container sea-hero-img-active wa-fix">
-                            <div class="swiper-wrapper">
-
-                                <!-- single-slide -->
-                                <div class="swiper-slide">
-                                    <div class="bs-hero-4-slider-img-item ">
-                                        <div class="main-img wa-img-cover">
-                                            <img src="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" alt="Vedanta grand entrance gate" loading="eager" fetchpriority="high" decoding="async">
-                                        </div>
-                                    </div>
+            <section class="bs-hero-4-area sea-editorial-hero" aria-label="SEA design disciplines">
+                <div class="swiper-container sea-hero-img-active">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="sea-hero-layout">
+                                <div class="sea-hero-media"><img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="Light-filled contemporary living room" loading="eager" fetchpriority="high" decoding="async"></div>
+                                <div class="sea-hero-copy">
+                                    <span class="sea-hero-studio">SEA — Studio for Eclectic Architecture</span>
+                                    <span class="sea-hero-category">Interior</span>
+                                    <h1>Spaces to live beautifully.</h1>
+                                    <p>Thoughtful interiors, shaped around you.</p>
+                                    <button type="button" class="bs-pr-btn-2 sea-hero-read" onclick="document.querySelector('.bs-about-4-area').scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'})"><span class="text">Read More</span><i class="fa-solid fa-arrow-up-right" aria-hidden="true"></i></button>
+                                    <span class="sea-hero-number" aria-hidden="true">01</span>
                                 </div>
-
-                                <!-- single-slide -->
-                                <div class="swiper-slide">
-                                    <div class="bs-hero-4-slider-img-item ">
-                                        <div class="main-img wa-img-cover">
-                                            <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Garden villa landscape" decoding="async">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- single-slide -->
-                                <div class="swiper-slide">
-                                    <div class="bs-hero-4-slider-img-item ">
-                                        <div class="main-img wa-img-cover">
-                                            <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Modern residential tower" decoding="async">
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
-                    </div>
-
-                    <div class="bs-hero-4-slider-thum">
-                        <div class="swiper-container sea-hero-thum-active wa-fix">
-                            <div class="swiper-wrapper">
-
-                                <!-- single-slide -->
-                                <div class="swiper-slide">
-                                    <div class="bs-hero-4-slider-thum-item wa-img-cover wa-fix">
-                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="" decoding="async">
-                                    </div>
+                        <div class="swiper-slide">
+                            <div class="sea-hero-layout">
+                                <div class="sea-hero-media"><img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Modern residential architecture" loading="lazy" decoding="async"></div>
+                                <div class="sea-hero-copy">
+                                    <span class="sea-hero-studio">SEA — Studio for Eclectic Architecture</span>
+                                    <span class="sea-hero-category">Architecture</span>
+                                    <h2>Distinctive by design.</h2>
+                                    <p>Architecture that brings vision to life.</p>
+                                    <button type="button" class="bs-pr-btn-2 sea-hero-read" onclick="document.querySelector('.bs-about-4-area').scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'})"><span class="text">Read More</span><i class="fa-solid fa-arrow-up-right" aria-hidden="true"></i></button>
+                                    <span class="sea-hero-number" aria-hidden="true">02</span>
                                 </div>
-
-                                <!-- single-slide -->
-                                <div class="swiper-slide">
-                                    <div class="bs-hero-4-slider-thum-item wa-img-cover wa-fix">
-                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="" decoding="async">
-                                    </div>
-                                </div>
-
-                                <!-- single-slide -->
-                                <div class="swiper-slide">
-                                    <div class="bs-hero-4-slider-thum-item wa-img-cover wa-fix">
-                                        <img src="/__l5e/assets-v1/198e3956-dc95-4dab-8b06-2fa9910d81cc/hero-vedanta-gate.jpg" alt="" decoding="async">
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="sea-hero-layout">
+                                <div class="sea-hero-media"><img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Garden villa with landscaped grounds" loading="lazy" decoding="async"></div>
+                                <div class="sea-hero-copy">
+                                    <span class="sea-hero-studio">SEA — Studio for Eclectic Architecture</span>
+                                    <span class="sea-hero-category">Landscape</span>
+                                    <h2>Nature, thoughtfully framed.</h2>
+                                    <p>Landscapes that connect life and nature.</p>
+                                    <button type="button" class="bs-pr-btn-2 sea-hero-read" onclick="document.querySelector('.bs-about-4-area').scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'})"><span class="text">Read More</span><i class="fa-solid fa-arrow-up-right" aria-hidden="true"></i></button>
+                                    <span class="sea-hero-number" aria-hidden="true">03</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <h2 class="bs-hero-4-big-title bs-h-4 wa-split-up" data-split-delay="1.5s">Architecture</h2>
                 </div>
-
-                
+                <div class="sea-hero-navigation" aria-label="Design disciplines">
+                    <button type="button" data-hero-slide="0" aria-pressed="true">Interior</button>
+                    <button type="button" data-hero-slide="1" aria-pressed="false">Architecture</button>
+                    <button type="button" data-hero-slide="2" aria-pressed="false">Landscape</button>
+                </div>
             </section>
             <!-- hero-end -->
 
@@ -3450,21 +3475,19 @@
             // Own this page's slider: start immediately, independently of window.load.
             (function () {
                 var element = document.querySelector('.sea-hero-img-active');
-                var thumbsElement = document.querySelector('.sea-hero-thum-active');
                 if (!element || typeof Swiper === 'undefined') return;
                 var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-                var thumbs = thumbsElement ? new Swiper(thumbsElement, {
-                    loop: true,
-                    spaceBetween: 16,
-                    speed: 600,
-                    breakpoints: {
-                        0: { slidesPerView: 1 },
-                        576: { slidesPerView: 2 },
-                        1200: { slidesPerView: 3 }
-                    }
-                }) : null;
+                var controls = document.querySelectorAll('[data-hero-slide]');
+                function updateControls(swiper) {
+                    controls.forEach(function (control, index) {
+                        control.setAttribute('aria-pressed', String(index === swiper.activeIndex));
+                    });
+                    swiper.slides.forEach(function (slide, index) {
+                        slide.inert = index !== swiper.activeIndex;
+                    });
+                }
                 var slider = new Swiper(element, {
-                    loop: true,
+                    rewind: true,
                     speed: reducedMotion.matches ? 0 : 1100,
                     effect: 'fade',
                     fadeEffect: { crossFade: true },
@@ -3473,9 +3496,15 @@
                         disableOnInteraction: false,
                         pauseOnMouseEnter: true
                     },
-                    pagination: { el: '.bs-t1-pagi', clickable: true },
-                    thumbs: thumbs ? { swiper: thumbs } : undefined
+                    on: { init: updateControls, slideChange: updateControls }
                 });
+                controls.forEach(function (control) {
+                    control.addEventListener('click', function () {
+                        slider.slideTo(Number(control.dataset.heroSlide));
+                    });
+                });
+                element.addEventListener('focusin', function () { slider.autoplay.stop(); });
+                element.addEventListener('focusout', function () { if (!reducedMotion.matches) slider.autoplay.start(); });
                 function syncMotion() {
                     slider.params.speed = reducedMotion.matches ? 0 : 1100;
                     if (reducedMotion.matches) slider.autoplay.stop();
