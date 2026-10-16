@@ -79,3 +79,4 @@
 - [x] GitHub Pages: added a deploy workflow that publishes the static site (Home 6 as home) instead of the README; user must set Settings > Pages > Source to "GitHub Actions".
 
 - [x] Home page hero: reference-inspired image-left/text-right slides for Interior, Architecture and Landscape, with working discipline selection, crossfades and stacked phone layout.
+- [x] Home page projects section shown as a scroll stack: three full-width project cards pin under the header and stack, the cards behind shrinking and dimming.
