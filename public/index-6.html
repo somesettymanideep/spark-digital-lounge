@@ -873,106 +873,229 @@
                     padding-left: 46px;
                 }
             }
-            /* the services strip now carries six services, so the heading
-               block sits above a full-width row of folded cards: the open
-               card takes a share of the width and the five closed ones split
-               whatever is left, so nothing runs off the edge */
-            .bs-services-4-wrap {
-                display: block;
+            /* =========================================================
+               SERVICES — editorial split layout (reference design)
+               Light backdrop, "Our Services" heading with a small rule,
+               intro paragraph with a vertical divider, one wide featured
+               card and five slim numbered cards.
+               ========================================================= */
+            .bs-services-4-area.sea-services {
+                background-color: #f5f3ee;
+                background-image: none;
+                padding: 96px 0 104px;
             }
-            .bs-services-4-content {
+            .sea-services-head {
                 display: flex;
                 flex-wrap: wrap;
-                align-items: flex-end;
-                gap: 22px 60px;
-                margin-bottom: 46px;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 26px 64px;
+                margin-bottom: 54px;
             }
-            .bs-services-4-content .title {
-                flex: 1 1 460px;
-                margin-bottom: 0;
-            }
-            .bs-services-4-content .disc {
-                flex: 1 1 360px;
-                margin-bottom: 0;
-            }
-            @media (min-width: 992px) {
-                .bs-services-4-item {
-                    --sea-svc-open: clamp(320px, 38vw, 560px);
-                }
-                .bs-services-4-item-single {
-                    width: calc((100% - var(--sea-svc-open)) / 5);
-                    min-width: 56px;
-                    padding: 60px 12px;
-                }
-                .bs-services-4-item-single.active {
-                    width: var(--sea-svc-open);
-                    padding: 48px 32px 40px;
-                }
-            }
-            .bs-services-4-item-single .title {
-                font-size: 26px;
-                line-height: 1.25;
-                margin-bottom: 16px;
-            }
-            .bs-services-4-item-single .title a {
+            .sea-services-title {
+                position: relative;
+                margin: 0;
+                padding-top: 20px;
+                font-size: clamp(44px, 5vw, 70px);
+                line-height: 1.04;
+                font-weight: 400;
+                letter-spacing: 0.01em;
                 color: #081f2c;
-                transition: color 0.3s ease;
             }
-            .bs-services-4-item-single .title a:hover {
+            .sea-services-title::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 2px;
+                width: 58px;
+                height: 2px;
+                background: #01707f;
+            }
+            .sea-services-title .eyebrow {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 14px;
+                font-weight: 500;
+                letter-spacing: 0.38em;
+                text-transform: uppercase;
                 color: #01707f;
             }
-            .bs-services-4-item-single .main-img {
-                height: 210px;
-                margin-bottom: 16px;
-                border-radius: 4px;
+            .sea-services-intro {
+                max-width: 430px;
+                margin: 0;
+                padding-left: 28px;
+                border-left: 1px solid #cfc9bd;
+                color: #4b5563;
+                font-size: 16px;
+                line-height: 1.72;
             }
-            .bs-services-4-item-single .disc {
-                margin-bottom: 0;
-                line-height: 1.6;
+            .sea-services-grid {
+                display: grid;
+                grid-template-columns: minmax(0, 1.35fr) repeat(5, minmax(0, 1fr));
+                gap: 16px;
+                align-items: stretch;
+            }
+            .sea-services-feature {
+                display: flex;
+                flex-direction: column;
+                background: #ffffff;
+                padding: 30px 30px 28px;
+                box-shadow: 0 22px 44px -30px rgba(8, 31, 44, 0.35);
+            }
+            .sea-services-feature .feature-name {
+                margin: 0 0 14px;
                 font-size: 15px;
-                color: #4b5563 !important;
+                font-weight: 600;
+                letter-spacing: 0.3em;
+                text-transform: uppercase;
+                color: #081f2c;
             }
-            .bs-services-4-item-single.active .active-content,
-            .bs-services-4-item-single:is(.active) .active-content {
-                opacity: 1 !important;
+            .sea-services-feature .feature-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 18px;
+                margin: 0 0 22px;
+                padding: 0 0 0 14px;
+                list-style: none;
+                border-left: 2px solid #01707f;
             }
-            .bs-services-4-item-single.active .title,
-            .bs-services-4-item-single:is(.active) .title {
-                opacity: 1 !important;
-                transform: translateY(0) !important;
-                transition-delay: 0s !important;
+            .sea-services-feature .feature-tags li {
+                font-size: 12px;
+                font-weight: 500;
+                letter-spacing: 0.22em;
+                text-transform: uppercase;
+                color: #6b7280;
             }
-            .bs-services-4-item-single.active .disc,
-            .bs-services-4-item-single:is(.active) .disc {
-                opacity: 1 !important;
-                transform: translateY(0) !important;
-                transition-delay: 0.1s !important;
-                color: #4b5563 !important;
+            .sea-services-feature .feature-media {
+                margin: 0 0 20px;
+                overflow: hidden;
             }
-            .bs-services-4-item-single .service-btn-wrap {
-                margin-top: 24px;
-                opacity: 0;
-                transform: translateY(6px);
-                transition: opacity 0.35s ease, transform 0.35s ease;
+            .sea-services-feature .feature-media img {
+                width: 100%;
+                height: 100%;
+                aspect-ratio: 16 / 10;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.3, 1);
             }
-            .bs-services-4-item-single.active .service-btn-wrap,
-            .bs-services-4-item-single:is(.active) .service-btn-wrap {
-                opacity: 1 !important;
-                transform: translateY(0) !important;
-                transition-delay: 0.15s !important;
+            .sea-services-feature:hover .feature-media img {
+                transform: scale(1.05);
+            }
+            .sea-services-feature .feature-disc {
+                margin: 0 0 22px;
+                color: #4b5563;
+                font-size: 15px;
+                line-height: 1.68;
+            }
+            .sea-services-feature .feature-link {
+                margin-top: auto;
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: 0.26em;
+                text-transform: uppercase;
+                color: #081f2c;
+                text-decoration: none;
+            }
+            .sea-services-feature .feature-link::after {
+                content: "";
+                width: 34px;
+                height: 1px;
+                background: #01707f;
+                transition: width 0.35s ease;
+            }
+            .sea-services-feature .feature-link:hover {
+                color: #01707f;
+            }
+            .sea-services-feature .feature-link:hover::after {
+                width: 52px;
+            }
+            .sea-services-card {
+                display: flex;
+                flex-direction: column;
+                background: #ffffff;
+                padding: 14px 14px 20px;
+                box-shadow: 0 18px 36px -30px rgba(8, 31, 44, 0.3);
+                transition: transform 0.4s ease, box-shadow 0.4s ease;
+            }
+            .sea-services-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 26px 44px -28px rgba(1, 112, 127, 0.45);
+            }
+            .sea-services-card .card-media {
+                overflow: hidden;
+                margin-bottom: 20px;
+            }
+            .sea-services-card .card-media img {
+                width: 100%;
+                aspect-ratio: 4 / 3.4;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.3, 1);
+            }
+            .sea-services-card:hover .card-media img {
+                transform: scale(1.07);
+            }
+            .sea-services-card .card-icon {
+                width: 40px;
+                height: 40px;
+                margin: 0 0 14px 6px;
+                color: #081f2c;
+            }
+            .sea-services-card .card-icon svg {
+                width: 100%;
+                height: 100%;
+                stroke: currentColor;
+                fill: none;
+                stroke-width: 1.4;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+            .sea-services-card .card-name {
+                margin: 0 0 12px 6px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                line-height: 1.45;
+                color: #081f2c;
+            }
+            .sea-services-card .card-rule {
+                width: 26px;
+                height: 2px;
+                margin: 0 0 18px 6px;
+                background: #01707f;
+            }
+            .sea-services-card .card-num {
+                margin: auto 0 0 6px;
+                font-size: 13px;
+                letter-spacing: 0.12em;
+                color: #9aa3ab;
+            }
+            @media (max-width: 1399px) {
+                .sea-services-grid {
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                }
+                .sea-services-feature {
+                    grid-column: 1 / -1;
+                }
             }
             @media (max-width: 991px) {
-                .bs-services-4-item-single {
-                    padding: 36px 24px;
+                .bs-services-4-area.sea-services {
+                    padding: 72px 0 80px;
                 }
-                .bs-services-4-item-single .active-content {
-                    opacity: 1 !important;
+                .sea-services-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
                 }
-                .bs-services-4-item-single .title,
-                .bs-services-4-item-single .disc,
-                .bs-services-4-item-single .service-btn-wrap {
-                    opacity: 1 !important;
-                    transform: translateY(0) !important;
+            }
+            @media (max-width: 575px) {
+                .sea-services-grid {
+                    grid-template-columns: minmax(0, 1fr);
+                }
+                .sea-services-intro {
+                    padding-left: 20px;
                 }
             }
             /* the sticky social rail is 46px wide, so wherever the page's own
@@ -981,59 +1104,6 @@
             @media (min-width: 576px) and (max-width: 1199px) {
                 .bs-services-4-area .container.bs-container-2 {
                     padding-left: 62px;
-                }
-            }
-            @media (min-width: 1800px) {
-                .bs-services-4-wrap {
-                    margin-right: 0;
-                }
-            }
-            /* the folded cards wear the brand's teal ladder, pale to deep,
-               in the order the services appear */
-            .bs-services-4-item-single:nth-child(1) .default-content {
-                background-color: #b4d5da;
-            }
-            .bs-services-4-item-single:nth-child(2) .default-content {
-                background-color: #82bac1;
-            }
-            .bs-services-4-item-single:nth-child(3) .default-content {
-                background-color: #509ea8;
-            }
-            .bs-services-4-item-single:nth-child(4) .default-content {
-                background-color: #1e8290;
-            }
-            .bs-services-4-item-single:nth-child(5) .default-content {
-                background-color: #046976;
-            }
-            .bs-services-4-item-single:nth-child(6) .default-content {
-                background-color: #03515c;
-            }
-            /* the sideways service names are white in the template, which
-               disappears on the three pale folds — those read in the brand's
-               deep navy instead, the deep folds keep white */
-            .bs-services-4-item-single:nth-child(1) .title-2,
-            .bs-services-4-item-single:nth-child(2) .title-2,
-            .bs-services-4-item-single:nth-child(3) .title-2 {
-                color: #081f2c;
-            }
-            /* remove greyscale filter so service card images display in full
-               natural color in both inactive (folded) and active states */
-            .bs-services-4-item-single .img-2,
-            .bs-services-4-item-single .img-2 img {
-                filter: none;
-            }
-
-            /* the section's own near-black backdrop becomes the brand's deep
-               navy; the template's faint texture sits on top of it untouched */
-            .bs-services-4-area {
-                background-color: #081f2c;
-            }
-            /* the decorative frame beside the cards is drawn in the section's
-               backdrop colour, so it follows the same change on wide screens */
-            @media (min-width: 1400px) {
-                .bs-services-4-img {
-                    border-right-color: #081f2c;
-                    border-top-color: #081f2c;
                 }
             }
 
@@ -2334,214 +2404,100 @@
 
 
             <!-- services-start -->
-            <section class="bs-services-4-area pt-100 wa-fix " data-background="assets/img/services/s4-bg.png">
+            <section class="bs-services-4-area sea-services wa-fix">
                 <div class="container bs-container-2">
-                    <div class="bs-services-4-wrap">
 
-                        <!-- heading block -->
-                        <div class="bs-services-4-content">
+                    <!-- heading block -->
+                    <div class="sea-services-head">
+                        <h2 class="sea-services-title wa-split-right" data-cursor="-opaque"><span class="eyebrow">Our</span>Services</h2>
+                        <p class="sea-services-intro wa-fadeInUp">At SEA, we design spaces that blend innovation, functionality, and timeless aesthetics, creating environments that inspire and elevate daily living.</p>
+                    </div>
 
-                            <h2 class="bs-sec-title-4 title wa-split-right wa-capitalize" data-cursor="-opaque">services</h2>
+                    <div class="sea-services-grid">
 
-                            <p class="bs-p-4 disc wa-fadeInUp">At Barsi, we design spaces that blend innovation, functionality, and timeless aesthetics, creating environments that inspire and elevate daily living.</p>
-                        </div>
-
-                        <!-- service cards -->
-                        <div class="bs-services-4-item">
-
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default active " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="ARCHITECTURAL DESIGN" class="wa-line-limit has-line-2">ARCHITECTURAL DESIGN</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Architectural design" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">Our experts will prepare preliminary design sketches and concepts based on the client’s requirements and budget which help explore and illustrate possible options.</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about ARCHITECTURAL DESIGN" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        ARCHITECTURAL DESIGN
-                                    </h4>
-                                </div>
+                        <!-- featured service -->
+                        <article class="sea-services-feature wa-fadeInUp">
+                            <h3 class="feature-name">Architectural Design</h3>
+                            <ul class="feature-tags">
+                                <li>Planning</li>
+                                <li>Designing</li>
+                                <li>Spaces</li>
+                                <li>For a</li>
+                                <li>Better</li>
+                                <li>Tomorrow</li>
+                            </ul>
+                            <div class="feature-media">
+                                <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Architectural design" loading="lazy" decoding="async">
                             </div>
+                            <p class="feature-disc">Our experts prepare preliminary design sketches and concepts based on the client's requirements and budget, helping explore and illustrate every possible option before construction begins.</p>
+                            <a class="feature-link" href="services-details.html" aria-label="Explore architectural design services">Explore Services</a>
+                        </article>
 
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="INTERIOR DESIGN" class="wa-line-limit has-line-2">INTERIOR DESIGN</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="Interior design" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">Our designers plans, researches, coordinates and enhances the interiors of the building to achieve a healthier and more aesthetically pleasing environment</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about INTERIOR DESIGN" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        INTERIOR DESIGN
-                                    </h4>
-                                </div>
+                        <!-- 01 landscape -->
+                        <article class="sea-services-card wa-fadeInUp">
+                            <div class="card-media">
+                                <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Landscape design" loading="lazy" decoding="async">
                             </div>
+                            <span class="card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 40 40"><path d="M20 33 V16"/><path d="M20 16 C20 9 14 6 8 7 C8 14 13 17 20 16 Z"/><path d="M20 20 C20 13 26 10 32 11 C32 18 27 21 20 20 Z"/><path d="M12 33 h16"/></svg>
+                            </span>
+                            <h4 class="card-name">Landscape Design</h4>
+                            <span class="card-rule"></span>
+                            <span class="card-num">01</span>
+                        </article>
 
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="LANDSCAPE DESIGN" class="wa-line-limit has-line-2">LANDSCAPE DESIGN</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Landscape design" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">Our team uses their creativity and understanding of outside environments to create well designed outdoor spaces that are functional and visually appealing.</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about LANDSCAPE DESIGN" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        LANDSCAPE DESIGN
-                                    </h4>
-                                </div>
+                        <!-- 02 structural -->
+                        <article class="sea-services-card wa-fadeInUp">
+                            <div class="card-media">
+                                <img src="assets/img/services/service-structural-design.jpg" alt="Structural design" loading="lazy" decoding="async">
                             </div>
+                            <span class="card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 40 40"><path d="M6 34 V10 l10 -5 v29"/><path d="M16 34 h18 V14 l-10 -4"/><path d="M21 18 h3 M21 24 h3 M28 18 h3 M28 24 h3 M10 12 h2 M10 18 h2 M10 24 h2"/><path d="M4 34 h32"/></svg>
+                            </span>
+                            <h4 class="card-name">Structural Design</h4>
+                            <span class="card-rule"></span>
+                            <span class="card-num">02</span>
+                        </article>
 
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="STRUCTURAL DESIGN" class="wa-line-limit has-line-2">STRUCTURAL DESIGN</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-structural-design.jpg" alt="Structural design" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">our team provides the best general solution for the structure by considering the various requirements such as function of the structure</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about STRUCTURAL DESIGN" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-structural-design.jpg" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        STRUCTURAL DESIGN
-                                    </h4>
-                                </div>
+                        <!-- 03 project management -->
+                        <article class="sea-services-card wa-fadeInUp">
+                            <div class="card-media">
+                                <img src="assets/img/services/service-project-management.webp" alt="Project management" loading="lazy" decoding="async">
                             </div>
+                            <span class="card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 40 40"><path d="M8 26 a12 12 0 0 1 24 0"/><path d="M4 26 h32 v4 H4 Z"/><path d="M20 14 v-4 h6"/></svg>
+                            </span>
+                            <h4 class="card-name">Project Management</h4>
+                            <span class="card-rule"></span>
+                            <span class="card-num">03</span>
+                        </article>
 
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="PROJECT MANAGEMENT" class="wa-line-limit has-line-2">PROJECT MANAGEMENT</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-project-management.webp" alt="Project management" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">Our professionals create initial plans, drafts and designs that fulfill the needs of a client complying with established stand and safety regulations.</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about PROJECT MANAGEMENT" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-project-management.webp" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        PROJECT MANAGEMENT
-                                    </h4>
-                                </div>
+                        <!-- 04 bim -->
+                        <article class="sea-services-card wa-fadeInUp">
+                            <div class="card-media">
+                                <img src="assets/img/services/service-bim.webp" alt="BIM services" loading="lazy" decoding="async">
                             </div>
+                            <span class="card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 40 40"><rect x="6" y="6" width="28" height="28"/><path d="M6 18 h12 V6"/><path d="M18 18 v16"/><path d="M18 26 h16"/></svg>
+                            </span>
+                            <h4 class="card-name">BIM Services</h4>
+                            <span class="card-rule"></span>
+                            <span class="card-num">04</span>
+                        </article>
 
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="BIM SERVICES" class="wa-line-limit has-line-2">BIM SERVICES</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-bim.webp" alt="BIM services" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">Our professional team has expertise in the use of required tools, international standards, and software are required for every BIM (Building Information Modelling )</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about BIM SERVICES" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-bim.webp" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        BIM SERVICES
-                                    </h4>
-                                </div>
+                        <!-- 05 interior -->
+                        <article class="sea-services-card wa-fadeInUp">
+                            <div class="card-media">
+                                <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="Interior design" loading="lazy" decoding="async">
                             </div>
+                            <span class="card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 40 40"><path d="M10 18 v-6 a4 4 0 0 1 4 -4 h12 a4 4 0 0 1 4 4 v6"/><path d="M6 22 a4 4 0 0 1 8 0 v2 h12 v-2 a4 4 0 0 1 8 0 v6 a4 4 0 0 1 -4 4 H10 a4 4 0 0 1 -4 -4 Z"/><path d="M12 32 v3 M28 32 v3"/></svg>
+                            </span>
+                            <h4 class="card-name">Interior Design</h4>
+                            <span class="card-rule"></span>
+                            <span class="card-num">05</span>
+                        </article>
 
-                        </div>
                     </div>
                 </div>
             </section>
