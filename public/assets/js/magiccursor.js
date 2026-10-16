@@ -1,5 +1,5 @@
 /**
- * SEA Animated Flying Parrot Custom Cursor Loader
+ * SEA Premium 3D Architectural Pyramid Custom Cursor Loader
  * Automatically attaches sea-cursor stylesheet and controller to any template page.
  */
 (function () {

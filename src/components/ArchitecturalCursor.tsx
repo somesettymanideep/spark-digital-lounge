@@ -3,12 +3,17 @@ import React, { useEffect, useRef } from "react";
 /**
  * ArchitecturalCursor — React Component
  *
- * Implements the SEA animated flying parrot custom cursor for React routes.
- * Uses direct DOM manipulation & HTML5 Canvas to eliminate React re-renders (0 re-renders during motion).
+ * Implements the SEA Premium 3D Architectural Pyramid Custom Cursor for React routes.
+ * Accurately reproduces the reference design board:
+ * 1. Default State: Clean, minimal, elegant 3D faceted tetrahedron (#eef8f9 & #00869b)
+ * 2. Moving: Fluid 3D velocity tilt with subtle trailing geometric triangular micro-shards
+ * 3. Hover Effect: Smooth scale-up and luminous ground halo ring under the pyramid
+ * 4. Click Animation: Concentric architectural pulse rings with 4 cardinal tick marks
+ * 5. Idle State: Sinusoidal floating elevation with continuous 360° crystalline rotation
+ *
+ * Direct DOM canvas rendering: 0 React re-renders during motion.
  */
 export const ArchitecturalCursor: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const parrotWrapperRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -25,154 +30,176 @@ export const ArchitecturalCursor: React.FC = () => {
 
     document.documentElement.classList.add("sea-cursor-enabled");
 
-    const container = containerRef.current;
-    const parrotWrapper = parrotWrapperRef.current;
     const canvas = canvasRef.current;
-    if (!container || !parrotWrapper || !canvas) return;
+    if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const setupCanvasSize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+    };
+
+    setupCanvasSize();
 
     let rafId: number | null = null;
     let isVisible = false;
     let isIdle = false;
     let idleTimer: any = null;
-    let flightTime = 0;
-    let orbitAngle = 0;
-    let facing = 1;
-    let pitch = 0;
-    let currentState = "default";
+    let isHover = false;
+    let isText = false;
+    let isMouseDown = false;
+
+    // 3D Angles
+    let pitch = 0.28;
+    let yaw = 0.45;
+    let roll = 0;
+    let idleTime = 0;
+    let scale = 1.0;
+    let hoverGlow = 0;
 
     const mouse = { x: -100, y: -100 };
     const pos = { x: -100, y: -100 };
-    const trail: Array<{
+    const vel = { x: 0, y: 0, speed: 0 };
+
+    const trailShards: Array<{
       x: number;
       y: number;
       vx: number;
       vy: number;
       size: number;
-      alpha: number;
+      rot: number;
+      vRot: number;
       life: number;
       decay: number;
       color: string;
     }> = [];
 
-    const setupCanvas = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
+    const clickPulses: Array<{
+      x: number;
+      y: number;
+      radius: number;
+      maxRadius: number;
+      life: number;
+      decay: number;
+    }> = [];
 
-    setupCanvas();
+    // 3D Tetrahedron Geometry: 4 vertices, 4 faces
+    // Apex positioned at hotspot (-2px Y) so the tip is the click point!
+    const R = 14;
+    const yApex = -2;
+    const yBase = 20;
 
-    const showCursor = () => {
-      isVisible = true;
-      container.classList.add("is-visible");
-      container.classList.remove("is-hidden");
-    };
+    const vertices = [
+      { x: 0, y: yApex, z: 0 },
+      { x: R * Math.cos(0), y: yBase, z: R * Math.sin(0) },
+      { x: R * Math.cos((2 * Math.PI) / 3), y: yBase, z: R * Math.sin((2 * Math.PI) / 3) },
+      { x: R * Math.cos((4 * Math.PI) / 3), y: yBase, z: R * Math.sin((4 * Math.PI) / 3) },
+      { x: 0, y: 10, z: 0 }
+    ];
 
-    const hideCursor = () => {
-      isVisible = false;
-      container.classList.remove("is-visible");
-      container.classList.add("is-hidden");
-    };
+    const faces = [
+      { indices: [0, 1, 2], name: "right" },
+      { indices: [0, 2, 3], name: "back" },
+      { indices: [0, 3, 1], name: "front" },
+      { indices: [1, 3, 2], name: "base" }
+    ];
 
-    const emitFlightTrail = (x: number, y: number, dx: number, dy: number, dist: number) => {
-      const len = Math.max(0.001, dist);
-      const nx = dx / len;
-      const ny = dy / len;
-      const px = -ny;
-      const py = nx;
-      const count = dist > 20 ? 3 : dist > 8 ? 2 : 1;
+    const Light = { x: -0.55, y: -0.75, z: 0.45 };
+    const L_len = Math.hypot(Light.x, Light.y, Light.z);
+    Light.x /= L_len;
+    Light.y /= L_len;
+    Light.z /= L_len;
 
-      for (let i = 0; i < count; i++) {
-        const spread = (Math.random() - 0.5) * 14;
-        const spawnX = x - nx * 18 + px * spread;
-        const spawnY = y - ny * 18 + py * spread;
-        const colors = ["#00E5FF", "#008C9E", "#006F80", "#FFFFFF", "#FFD166"];
-        const color = colors[Math.floor(Math.random() * colors.length)] ?? "#008C9E";
-
-        trail.push({
-          x: spawnX,
-          y: spawnY,
-          vx: -nx * 0.6 + (Math.random() - 0.5) * 0.5,
-          vy: -ny * 0.6 + (Math.random() - 0.5) * 0.5 + 0.15,
-          size: 1.2 + Math.random() * 2.2,
-          alpha: 0.85,
-          life: 1.0,
-          decay: 0.024 + Math.random() * 0.02,
-          color,
-        });
-      }
-
-      if (trail.length > 75) {
-        trail.splice(0, trail.length - 75);
-      }
-    };
+    const View = { x: 0, y: 0.28, z: -0.96 };
 
     const handleMouseMove = (e: MouseEvent) => {
       const x = e.clientX;
       const y = e.clientY;
 
       if (!isVisible) {
-        showCursor();
+        isVisible = true;
+        mouse.x = x;
+        mouse.y = y;
         pos.x = x;
         pos.y = y;
+        return;
       }
 
-      const dx = x - (mouse.x === -100 ? x : mouse.x);
-      const dy = y - (mouse.y === -100 ? y : mouse.y);
-      const dist = Math.sqrt(dx * dx + dy * dy);
+      const dx = x - mouse.x;
+      const dy = y - mouse.y;
+      const dist = Math.hypot(dx, dy);
 
       mouse.x = x;
       mouse.y = y;
+      vel.x = dx;
+      vel.y = dy;
+      vel.speed = dist;
 
-      if (dx > 1.2) {
-        facing = 1;
-      } else if (dx < -1.2) {
-        facing = -1;
-      }
-
-      if (dist > 1) {
-        const targetPitch = Math.max(-24, Math.min(24, (dy / (dist || 1)) * 22 * facing));
-        pitch += (targetPitch - pitch) * 0.25;
-      } else {
-        pitch += (0 - pitch) * 0.15;
-      }
-
-      if (!prefersReducedMotion() && dist > 1.5) {
-        emitFlightTrail(pos.x, pos.y, dx, dy, dist);
+      if (!prefersReducedMotion() && dist > 2.5 && !isText) {
+        const count = dist > 14 ? 2 : 1;
+        for (let i = 0; i < count; i++) {
+          trailShards.push({
+            x: pos.x + (Math.random() - 0.5) * 6,
+            y: pos.y + 10 + (Math.random() - 0.5) * 6,
+            vx: -dx * 0.12 + (Math.random() - 0.5) * 0.5,
+            vy: -dy * 0.12 + (Math.random() - 0.5) * 0.5,
+            size: 2.2 + Math.random() * 2.8,
+            rot: Math.random() * Math.PI * 2,
+            vRot: (Math.random() - 0.5) * 0.1,
+            life: 1.0,
+            decay: 0.038 + Math.random() * 0.02,
+            color: Math.random() > 0.45 ? "#00869b" : Math.random() > 0.3 ? "#38b2c4" : "#eef8f9"
+          });
+        }
+        if (trailShards.length > 20) {
+          trailShards.splice(0, trailShards.length - 20);
+        }
       }
 
       if (isIdle) {
         isIdle = false;
-        container.classList.remove("is-idle");
       }
       clearTimeout(idleTimer);
       idleTimer = setTimeout(() => {
         isIdle = true;
-        container.classList.add("is-idle");
-      }, 1200);
+      }, 450);
     };
 
     const handleMouseDown = () => {
-      container.classList.add("is-active");
+      isMouseDown = true;
+      if (!prefersReducedMotion() && !isText) {
+        clickPulses.push({
+          x: pos.x,
+          y: pos.y + 10,
+          radius: 12,
+          maxRadius: 38,
+          life: 1.0,
+          decay: 0.045
+        });
+      }
     };
 
     const handleMouseUp = () => {
-      container.classList.remove("is-active");
+      isMouseDown = false;
     };
 
-    const setCursorState = (newState: string) => {
-      if (currentState === newState) return;
-      container.classList.remove("state-nav", "state-button", "state-project", "state-text");
-      if (newState !== "default") {
-        container.classList.add(`state-${newState}`);
+    const handleMouseEnter = (e: MouseEvent) => {
+      isVisible = true;
+      if (e && typeof e.clientX === "number") {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
       }
-      currentState = newState;
+    };
+
+    const handleMouseLeave = () => {
+      isVisible = false;
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -180,130 +207,373 @@ export const ArchitecturalCursor: React.FC = () => {
       if (!target) return;
 
       if (target.closest('input, textarea, select, [contenteditable="true"]')) {
-        setCursorState("text");
+        isText = true;
+        isHover = false;
         return;
       }
-      if (target.closest(".bs-project-4-card-single, .card-img, [data-cursor-text], .bs-project-item")) {
-        setCursorState("project");
-        return;
+
+      const isInteractive = target.closest(
+        'button, .bs-btn-1, .bs-btn-2, .btn, a, [role="button"], .card, .bs-project-4-card-single, .card-img, [data-cursor-project], .sea-project-card'
+      );
+
+      if (isInteractive) {
+        isHover = true;
+        isText = false;
+      } else {
+        isHover = false;
+        isText = false;
       }
-      if (target.closest('button, .btn, .bs-btn-1, .bs-btn-2, a.know-about-btn, [role="button"]')) {
-        setCursorState("button");
-        return;
-      }
-      if (target.closest("nav a, .navbar-nav a, header a, a")) {
-        setCursorState("nav");
-        return;
-      }
-      setCursorState("default");
     };
 
     const handleMouseOut = (e: MouseEvent) => {
       const rel = e.relatedTarget as HTMLElement | null;
-      if (rel) {
+      if (rel && rel.closest) {
         handleMouseOver({ target: rel } as any);
       } else {
-        setCursorState("default");
+        isHover = false;
+        isText = false;
       }
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("mousedown", handleMouseDown, { passive: true });
     window.addEventListener("mouseup", handleMouseUp, { passive: true });
-    document.addEventListener("mouseenter", showCursor, { passive: true });
-    document.addEventListener("mouseleave", hideCursor, { passive: true });
-    window.addEventListener("resize", setupCanvas, { passive: true });
+    document.addEventListener("mouseenter", handleMouseEnter);
+    document.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("resize", setupCanvasSize, { passive: true });
     document.addEventListener("mouseover", handleMouseOver, { passive: true });
     document.addEventListener("mouseout", handleMouseOut, { passive: true });
 
     const update = () => {
       rafId = requestAnimationFrame(update);
-      if (!isVisible) return;
+
+      if (!isVisible || !ctx) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.save();
+      ctx.scale(dpr, dpr);
 
       const reduced = prefersReducedMotion();
-      flightTime += 0.05;
-
-      let targetX = mouse.x;
-      let targetY = mouse.y;
-
-      if (currentState === "project" && !reduced) {
-        orbitAngle += 0.045;
-        const orbitRadius = 26;
-        targetX += Math.cos(orbitAngle) * orbitRadius;
-        targetY += Math.sin(orbitAngle) * (orbitRadius * 0.65);
-        facing = Math.cos(orbitAngle + 0.1) >= 0 ? 1 : -1;
-      }
 
       if (reduced) {
-        pos.x = targetX;
-        pos.y = targetY;
+        pos.x = mouse.x;
+        pos.y = mouse.y;
       } else {
-        const lerpFactor = currentState === "nav" ? 0.12 : currentState === "project" ? 0.16 : 0.18;
-        pos.x += (targetX - pos.x) * lerpFactor;
-        pos.y += (targetY - pos.y) * lerpFactor;
+        const lerpFactor = isHover ? 0.30 : 0.36;
+        pos.x += (mouse.x - pos.x) * lerpFactor;
+        pos.y += (mouse.y - pos.y) * lerpFactor;
       }
 
-      let bobY = 0;
-      if (!reduced) {
-        const bobFreq = isIdle ? 3.2 : 6.5;
-        const bobAmp = isIdle ? 4.5 : 2.5;
-        bobY = Math.sin(flightTime * bobFreq) * bobAmp;
-      }
+      vel.x *= 0.82;
+      vel.y *= 0.82;
+      vel.speed *= 0.82;
 
-      const distFromTarget = Math.hypot(mouse.x - pos.x, mouse.y - pos.y);
-      if (distFromTarget > 18) {
-        container.classList.add("is-speeding");
-        container.classList.remove("is-hovering");
+      const targetScale = isMouseDown ? 0.92 : isHover ? 1.18 : 1.0;
+      scale += (targetScale - scale) * 0.16;
+
+      const targetGlow = isHover ? 1.0 : 0.0;
+      hoverGlow += (targetGlow - hoverGlow) * 0.15;
+
+      idleTime += 0.035;
+      let floatY = 0;
+
+      if (reduced) {
+        pitch = 0.28;
+        yaw = 0.45;
+        roll = 0;
+      } else if (isIdle) {
+        yaw += 0.018;
+        pitch += (0.28 - pitch) * 0.06;
+        roll += (0 - roll) * 0.06;
+        floatY = Math.sin(idleTime * 1.8) * 2.6;
       } else {
-        container.classList.remove("is-speeding");
-        container.classList.add("is-hovering");
+        const targetPitch = Math.max(-0.35, Math.min(0.45, (vel.y / (vel.speed || 1)) * 0.35 + 0.28));
+        const targetRoll = Math.max(-0.35, Math.min(0.35, (vel.x / (vel.speed || 1)) * 0.28));
+        const targetYaw = Math.max(-0.5, Math.min(0.5, (vel.x / (vel.speed || 1)) * 0.45));
+
+        pitch += (targetPitch - pitch) * 0.15;
+        roll += (targetRoll - roll) * 0.15;
+        yaw += (targetYaw - yaw) * 0.15;
       }
 
-      container.style.transform = `translate3d(${pos.x.toFixed(1)}px, ${(pos.y + bobY).toFixed(1)}px, 0)`;
+      const drawX = pos.x;
+      const drawY = pos.y + floatY;
 
-      const scaleX = facing;
-      const pitchRot = reduced ? 0 : pitch;
-      parrotWrapper.style.transform = `translate(-55%, -50%) scaleX(${scaleX}) rotate(${pitchRot.toFixed(1)}deg)`;
-
+      // Render Click Pulses
       if (!reduced) {
-        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        for (let i = clickPulses.length - 1; i >= 0; i--) {
+          const cp = clickPulses[i];
+          cp.radius += (cp.maxRadius - cp.radius) * 0.15;
+          cp.life -= cp.decay;
 
-        for (let i = trail.length - 1; i >= 0; i--) {
-          const p = trail[i];
-          if (!p) continue;
-          p.x += p.vx;
-          p.y += p.vy;
-          p.life -= p.decay;
-
-
-          if (p.life <= 0) {
-            trail.splice(i, 1);
+          if (cp.life <= 0) {
+            clickPulses.splice(i, 1);
             continue;
           }
 
-          const alpha = Math.max(0, p.life * p.alpha).toFixed(3);
+          const alpha = (cp.life * 0.85).toFixed(2);
           ctx.save();
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+          ctx.translate(cp.x, cp.y);
 
-          if (p.color === "#FFFFFF") {
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-            ctx.shadowColor = "#00E5FF";
-            ctx.shadowBlur = 6;
-          } else if (p.color === "#FFD166") {
-            ctx.fillStyle = `rgba(255, 209, 102, ${alpha})`;
-            ctx.shadowColor = "#FFD166";
+          ctx.beginPath();
+          ctx.arc(0, 0, cp.radius, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
+          ctx.lineWidth = 1.2;
+          ctx.shadowColor = "#00869b";
+          ctx.shadowBlur = 6;
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.arc(0, 0, cp.radius * 0.65, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(238, 248, 249, ${(cp.life * 0.6).toFixed(2)})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+
+          const tickLen = 4;
+          const r = cp.radius;
+          ctx.beginPath();
+          ctx.moveTo(r, 0); ctx.lineTo(r + tickLen, 0);
+          ctx.moveTo(-r, 0); ctx.lineTo(-r - tickLen, 0);
+          ctx.moveTo(0, -r); ctx.lineTo(0, -r - tickLen);
+          ctx.moveTo(0, r); ctx.lineTo(0, r + tickLen);
+          ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+
+          ctx.restore();
+        }
+
+        // Render Trail Shards
+        for (let i = trailShards.length - 1; i >= 0; i--) {
+          const p = trailShards[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vRot;
+          p.life -= p.decay;
+
+          if (p.life <= 0) {
+            trailShards.splice(i, 1);
+            continue;
+          }
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+
+          const alpha = (p.life * 0.8).toFixed(2);
+          ctx.beginPath();
+          ctx.moveTo(0, -p.size);
+          ctx.lineTo(p.size * 0.75, p.size * 0.75);
+          ctx.lineTo(-p.size * 0.75, p.size * 0.75);
+          ctx.closePath();
+
+          if (p.color === "#eef8f9") {
+            ctx.fillStyle = `rgba(238, 248, 249, ${alpha})`;
+            ctx.shadowColor = "#ffffff";
             ctx.shadowBlur = 4;
-          } else {
-            ctx.fillStyle = `rgba(0, 140, 158, ${alpha})`;
-            ctx.shadowColor = "#008C9E";
+          } else if (p.color === "#38b2c4") {
+            ctx.fillStyle = `rgba(56, 178, 196, ${alpha})`;
+            ctx.shadowColor = "#00e5ff";
             ctx.shadowBlur = 5;
+          } else {
+            ctx.fillStyle = `rgba(0, 134, 155, ${alpha})`;
+            ctx.shadowColor = "#00869b";
+            ctx.shadowBlur = 4;
           }
 
           ctx.fill();
           ctx.restore();
         }
       }
+
+      if (isText) {
+        ctx.restore();
+        return;
+      }
+
+      // 1. Hover Luminous Halo Ring
+      if (hoverGlow > 0.02 && !reduced) {
+        ctx.save();
+        ctx.translate(drawX, drawY + 22 * scale);
+
+        const ringAlpha = (hoverGlow * 0.85).toFixed(2);
+        const rx = 18 * scale;
+        const ry = 6.5 * scale;
+
+        const radialGlow = ctx.createRadialGradient(0, 0, 2, 0, 0, rx * 1.5);
+        radialGlow.addColorStop(0, `rgba(0, 229, 255, ${(hoverGlow * 0.22).toFixed(2)})`);
+        radialGlow.addColorStop(0.7, `rgba(0, 134, 155, ${(hoverGlow * 0.08).toFixed(2)})`);
+        radialGlow.addColorStop(1, "rgba(0, 134, 155, 0)");
+        ctx.beginPath();
+        ctx.ellipse(0, 0, rx * 1.5, ry * 1.5, 0, 0, Math.PI * 2);
+        ctx.fillStyle = radialGlow;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(0, 229, 255, ${ringAlpha})`;
+        ctx.lineWidth = 1.4;
+        ctx.shadowColor = "#00e5ff";
+        ctx.shadowBlur = 8 * hoverGlow;
+        ctx.stroke();
+
+        ctx.restore();
+      }
+
+      // 2. Soft Ground Contact Shadow
+      ctx.save();
+      ctx.translate(drawX, drawY + 20 * scale);
+      const shadowGrad = ctx.createRadialGradient(0, 0, 1, 0, 0, 14 * scale);
+      shadowGrad.addColorStop(0, "rgba(0, 60, 75, 0.28)");
+      shadowGrad.addColorStop(0.5, "rgba(0, 60, 75, 0.12)");
+      shadowGrad.addColorStop(1, "rgba(0, 60, 75, 0)");
+      ctx.beginPath();
+      ctx.ellipse(0, 0, 14 * scale, 5 * scale, 0, 0, Math.PI * 2);
+      ctx.fillStyle = shadowGrad;
+      ctx.fill();
+      ctx.restore();
+
+      // 3. 3D Tetrahedron Pyramid with Glass Facets
+      ctx.save();
+      ctx.translate(drawX, drawY);
+
+      const cosY = Math.cos(yaw), sinY = Math.sin(yaw);
+      const cosX = Math.cos(pitch), sinX = Math.sin(pitch);
+      const cosZ = Math.cos(roll), sinZ = Math.sin(roll);
+
+      const proj = vertices.map((v) => {
+        const x1 = v.x * cosY + v.z * sinY;
+        const y1 = v.y;
+        const z1 = -v.x * sinY + v.z * cosY;
+
+        const x2 = x1;
+        const y2 = y1 * cosX - z1 * sinX;
+        const z2 = y1 * sinX + z1 * cosX;
+
+        const x3 = x2 * cosZ - y2 * sinZ;
+        const y3 = x2 * sinZ + y2 * cosZ;
+        const z3 = z2;
+
+        const fov = 140;
+        const camDist = 140;
+        const pScale = (fov / (camDist + z3)) * scale;
+
+        return {
+          x: x3, y: y3, z: z3,
+          px: x3 * pScale,
+          py: y3 * pScale
+        };
+      });
+
+      const faceData = faces.map((f) => {
+        const v0 = proj[f.indices[0]];
+        const v1 = proj[f.indices[1]];
+        const v2 = proj[f.indices[2]];
+
+        const u = { x: v1.x - v0.x, y: v1.y - v0.y, z: v1.z - v0.z };
+        const w = { x: v2.x - v0.x, y: v2.y - v0.y, z: v2.z - v0.z };
+
+        const nx = u.y * w.z - u.z * w.y;
+        const ny = u.z * w.x - u.x * w.z;
+        const nz = u.x * w.y - u.y * w.x;
+        const len = Math.hypot(nx, ny, nz) || 1;
+        const norm = { x: nx / len, y: ny / len, z: nz / len };
+
+        const avgZ = (v0.z + v1.z + v2.z) / 3;
+        const isFront = nz < 0;
+
+        const dot = -(norm.x * Light.x + norm.y * Light.y + norm.z * Light.z);
+        const diffuse = Math.max(0.0, Math.min(1.0, dot));
+
+        const nDotL = norm.x * Light.x + norm.y * Light.y + norm.z * Light.z;
+        const rx = 2 * nDotL * norm.x - Light.x;
+        const ry = 2 * nDotL * norm.y - Light.y;
+        const rz = 2 * nDotL * norm.z - Light.z;
+        const rDotV = -(rx * View.x + ry * View.y + rz * View.z);
+        const specular = Math.pow(Math.max(0.0, rDotV), 10);
+
+        return {
+          face: f,
+          v0, v1, v2,
+          avgZ,
+          isFront,
+          diffuse,
+          specular
+        };
+      });
+
+      faceData.sort((a, b) => b.avgZ - a.avgZ);
+
+      // Back-facing translucent facet
+      faceData.filter(fd => !fd.isFront).forEach(fd => {
+        ctx.beginPath();
+        ctx.moveTo(fd.v0.px, fd.v0.py);
+        ctx.lineTo(fd.v1.px, fd.v1.py);
+        ctx.lineTo(fd.v2.px, fd.v2.py);
+        ctx.closePath();
+
+        ctx.fillStyle = "rgba(0, 80, 95, 0.18)";
+        ctx.fill();
+        ctx.strokeStyle = "rgba(0, 134, 155, 0.25)";
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      });
+
+      // Interior datum line
+      const core = proj[4];
+      ctx.beginPath();
+      ctx.moveTo(core.px, core.py);
+      ctx.lineTo(proj[0].px, proj[0].py);
+      ctx.strokeStyle = "rgba(0, 229, 255, 0.35)";
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+
+      // Front-facing glass facets matching reference sequence
+      faceData.filter(fd => fd.isFront).forEach(fd => {
+        ctx.beginPath();
+        ctx.moveTo(fd.v0.px, fd.v0.py);
+        ctx.lineTo(fd.v1.px, fd.v1.py);
+        ctx.lineTo(fd.v2.px, fd.v2.py);
+        ctx.closePath();
+
+        const grad = ctx.createLinearGradient(fd.v0.px, fd.v0.py, (fd.v1.px + fd.v2.px) / 2, (fd.v1.py + fd.v2.py) / 2);
+
+        if (fd.specular > 0.45) {
+          grad.addColorStop(0, "#ffffff");
+          grad.addColorStop(0.4, "rgba(238, 248, 249, 0.95)");
+          grad.addColorStop(0.75, "rgba(56, 178, 196, 0.85)");
+          grad.addColorStop(1, "rgba(0, 134, 155, 0.9)");
+        } else if (fd.diffuse > 0.35) {
+          grad.addColorStop(0, "rgba(238, 248, 249, 0.85)");
+          grad.addColorStop(0.3, "rgba(38, 198, 218, 0.95)");
+          grad.addColorStop(0.8, "#00869b");
+          grad.addColorStop(1, "#005b6a");
+        } else {
+          grad.addColorStop(0, "rgba(0, 168, 181, 0.85)");
+          grad.addColorStop(0.5, "#00869b");
+          grad.addColorStop(1, "#00424d");
+        }
+
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        ctx.strokeStyle = fd.specular > 0.35 ? "rgba(255, 255, 255, 0.95)" : "rgba(238, 248, 249, 0.75)";
+        ctx.lineWidth = 1.1;
+        ctx.stroke();
+      });
+
+      // Apex specular gleam (exact pointer hotspot)
+      const apex = proj[0];
+      ctx.beginPath();
+      ctx.arc(apex.px, apex.py, 1.8 * scale, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff";
+      ctx.shadowColor = "#00e5ff";
+      ctx.shadowBlur = 6;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      ctx.restore();
+      ctx.restore();
     };
 
     rafId = requestAnimationFrame(update);
@@ -313,106 +583,14 @@ export const ArchitecturalCursor: React.FC = () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("mouseenter", showCursor);
-      document.removeEventListener("mouseleave", hideCursor);
-      window.removeEventListener("resize", setupCanvas);
+      document.removeEventListener("mouseenter", handleMouseEnter);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("resize", setupCanvasSize);
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseout", handleMouseOut);
       document.documentElement.classList.remove("sea-cursor-enabled");
     };
   }, []);
 
-  return (
-    <>
-      <canvas id="sea-cursor-trail-canvas" ref={canvasRef} aria-hidden="true" />
-      <div className="sea-cursor-container" ref={containerRef} aria-hidden="true">
-        <div className="sea-cursor-anchor">
-          <div className="sea-parrot-badge-explore">
-            <div className="badge-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 3 21 3 21 9" />
-                <polyline points="9 21 3 21 3 15" />
-                <line x1="21" y1="3" x2="14" y2="10" />
-                <line x1="3" y1="21" x2="10" y2="14" />
-              </svg>
-            </div>
-            <span className="text">EXPLORE</span>
-          </div>
-
-          <div className="sea-parrot-wrapper" ref={parrotWrapperRef}>
-            <svg className="sea-parrot-svg" viewBox="0 0 62 52">
-              <defs>
-                <linearGradient id="seaParrotBodyReact" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#00E5FF" />
-                  <stop offset="30%" stopColor="#00A8B5" />
-                  <stop offset="70%" stopColor="#008C9E" />
-                  <stop offset="100%" stopColor="#005F73" />
-                </linearGradient>
-
-                <linearGradient id="seaParrotWingFarGradReact" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#004652" />
-                  <stop offset="60%" stopColor="#006F80" />
-                  <stop offset="100%" stopColor="#008C9E" />
-                </linearGradient>
-
-                <linearGradient id="seaParrotWingNearGradReact" x1="0%" y1="100%" x2="80%" y2="0%">
-                  <stop offset="0%" stopColor="#005F73" />
-                  <stop offset="35%" stopColor="#008C9E" />
-                  <stop offset="70%" stopColor="#00B4D8" />
-                  <stop offset="100%" stopColor="#00E5FF" />
-                </linearGradient>
-
-                <linearGradient id="seaParrotAccentGradReact" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#FFD166" />
-                  <stop offset="50%" stopColor="#06D6A0" />
-                  <stop offset="100%" stopColor="#008C9E" />
-                </linearGradient>
-
-                <linearGradient id="seaParrotTailGradReact" x1="100%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#008C9E" />
-                  <stop offset="50%" stopColor="#005F73" />
-                  <stop offset="100%" stopColor="#081F2C" />
-                </linearGradient>
-              </defs>
-
-              <g className="sea-parrot-wing-far">
-                <path d="M24,18 C26,11 31,4 39,2 C41,2 41,5 38,9 C35,13 31,17 27,21 Z" fill="url(#seaParrotWingFarGradReact)" />
-                <path d="M25,18 C28,13 34,7 42,5 C43,6 42,8 39,12 C35,16 30,20 27,22 Z" fill="#005060" opacity="0.6" />
-              </g>
-
-              <g className="sea-parrot-tail">
-                <path d="M16,26 C12,32 6,41 2,48 C3,48 7,42 15,31 Z" fill="url(#seaParrotTailGradReact)" />
-                <path d="M17,25 C14,30 9,37 4,43 C6,42 11,35 17,29 Z" fill="#008C9E" opacity="0.85" />
-                <path d="M16,26 C13,31 8,38 4,43" stroke="#FFD166" strokeWidth="0.8" fill="none" opacity="0.75" />
-              </g>
-
-              <g className="sea-parrot-body-group">
-                <path d="M16,24 C18,20 23,17 31,17 C37,17 44,18 48,22 C47,26 42,29 34,29 C25,29 18,28 16,24 Z" fill="url(#seaParrotBodyReact)" />
-                <path d="M31,17 C37,17 43,19 46,23 C44,27 38,29 32,29 C28,29 25,28 24,25 C25,20 28,17 31,17 Z" fill="#00A8B5" />
-                <path d="M42,19 C43,14 47,13 51,15 C54,16 56,18 57,21 C56,24 53,25 48,25 C45,25 43,22 42,19 Z" fill="#00E5FF" />
-                <ellipse cx="49" cy="20" rx="3.5" ry="2.5" fill="#FFFFFF" opacity="0.95" />
-                <circle cx="49.5" cy="19.5" r="1.6" fill="#FFD166" />
-                <circle cx="49.5" cy="19.5" r="1.1" fill="#081F2C" />
-                <circle cx="49.8" cy="19.2" r="0.4" fill="#FFFFFF" />
-                <path d="M54,19 C57,19 60,21 59,25 C58,25 56,23 54,23 Z" fill="#1C2833" />
-                <path d="M55,23 C57,23 58,24 57,25 C55,25 54,24 55,23 Z" fill="#0E171D" />
-                <path d="M54,19 C56,19 58,20 58.5,22" stroke="#FFFFFF" strokeWidth="0.5" fill="none" opacity="0.45" />
-                <path d="M28,28 C29,30 31,31 32,29" stroke="#FFB703" strokeWidth="1.2" strokeLinecap="round" fill="none" />
-              </g>
-
-              <g className="sea-parrot-wing-near">
-                <path d="M27,19 C30,11 36,3 46,1 C48,1 48,4 44,9 C40,14 34,20 29,23 Z" fill="url(#seaParrotWingNearGradReact)" />
-                <path d="M28,19 C31,13 37,7 44,6 C45,7 44,9 41,13 C37,17 32,22 29,23 Z" fill="#008C9E" opacity="0.9" />
-                <path d="M28,19 C31,16 35,13 39,12 C40,14 38,17 35,19 C32,21 30,21 28,19 Z" fill="url(#seaParrotAccentGradReact)" />
-                <path d="M29,19 C35,12 40,7 45,2" stroke="#FFFFFF" strokeWidth="0.5" fill="none" opacity="0.6" />
-                <path d="M30,20 C34,15 38,11 42,7" stroke="#00E5FF" strokeWidth="0.5" fill="none" opacity="0.5" />
-              </g>
-            </svg>
-          </div>
-
-          <div className="sea-cursor-target-dot" />
-        </div>
-      </div>
-    </>
-  );
+  return <canvas id="sea-cursor-trail-canvas" ref={canvasRef} aria-hidden="true" />;
 };
