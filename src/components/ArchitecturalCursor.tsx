@@ -256,19 +256,19 @@ export const ArchitecturalCursor: React.FC = () => {
       const reduced = prefersReducedMotion();
 
       if (reduced) {
-        pos.x = mouse.x;
-        pos.y = mouse.y;
+        pos.x = mouse.x + 24;
+        pos.y = mouse.y + 16;
       } else {
-        const lerpFactor = isHover ? 0.30 : 0.36;
-        pos.x += (mouse.x - pos.x) * lerpFactor;
-        pos.y += (mouse.y - pos.y) * lerpFactor;
+        const lerpFactor = isHover ? 0.2 : 0.16;
+        pos.x += (mouse.x + 24 - pos.x) * lerpFactor;
+        pos.y += (mouse.y + 16 - pos.y) * lerpFactor;
       }
 
       vel.x *= 0.82;
       vel.y *= 0.82;
       vel.speed *= 0.82;
 
-      const targetScale = isMouseDown ? 0.92 : isHover ? 1.18 : 1.0;
+      const targetScale = isMouseDown ? 0.62 : isHover ? 0.82 : 0.68;
       scale += (targetScale - scale) * 0.16;
 
       const targetGlow = isHover ? 1.0 : 0.0;
@@ -296,6 +296,7 @@ export const ArchitecturalCursor: React.FC = () => {
         yaw += (targetYaw - yaw) * 0.15;
       }
 
+      if (!reduced) yaw += isHover ? 0.05 : 0.012;
       const drawX = pos.x;
       const drawY = pos.y + floatY;
 
