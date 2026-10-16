@@ -14,8 +14,8 @@
 */
 
 const lenis = new Lenis({
-	duration: .8,
-	easing: (t) => 1 - Math.pow(1 - t, 4),
+	duration: 1.15,
+	easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 	direction: 'vertical', 
 	smooth: true, 
 	smoothTouch: false, 
