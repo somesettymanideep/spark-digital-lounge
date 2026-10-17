@@ -84,3 +84,4 @@
 - [x] Home page projects section shown as a scroll stack: three full-width project cards pin under the header and stack, the cards behind shrinking and dimming.
 - [x] Home page sections (not hero): each small label moved into its heading, labels removed.
 - [x] Home page projects section: stacked cards centred in the section on desktop and phone, section background set to #e9f3f5.
+- [x] Home page hero: the uploaded pale-teal blueprint wireframe (hero-blueprint-overlay.png, CDN bbe46ab0-13ee-4387-b505-faf17c964fee) now sits in the right panel's bottom-right corner in place of the dark line-drawing plate, sized clamp(210px, 24vw, 300px) and lifted 64px above the discipline bar. Playwright-verified at 1700/1280/1015/768/390: clears heading, paragraph, button, slide number and menu bar, stays put across all three slides, no overflow, no console errors; hidden on phones.
