@@ -1,4 +1,6 @@
 # Homepage updates
+- [x] Home page hero: uploaded architectural line drawing pinned to the right panel's bottom-right corner, clear of the text, button and slide number; hidden on phones.
+
 
 - [x] Add the supplied wardrobe, master-bedroom and kitchen photos to third-row flip faces; ensure only one of all nine tiles is active at a time.
 
