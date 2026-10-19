@@ -11,7 +11,7 @@
 
 ## Static template pages
 
-- Brand/media binaries the site shows are uploaded as Lovable Assets and referenced by their `/__l5e/assets-v1/...` URL from the static pages under `/public`, so the repository keeps no copies of them — keep new brand images on the same pattern.
+- Brand/media binaries the site shows are uploaded as Lovable Assets and referenced by their absolute `https://spark-digital-lounge.lovable.app/__l5e/assets-v1/...` URL (so they also load when the static files are opened locally) from the static pages under `/public`, so the repository keeps no copies of them — keep new brand images on the same pattern.
 - Page-specific styling for one template page goes in a `<style>` block in that page's own `<head>`, not in the shared `assets/css/main.css`, so sibling pages are untouched.
 - Home 6 uses a page-local scroll listener and header state class instead of the shared direction-sensitive sticky plugin, so its header remains visible in both scroll directions without affecting sibling pages.
 - Home 6 uses one page-local hero Swiper containing paired media/copy slides with discipline controls and opacity crossfades, keeping slide content synchronized without affecting sibling pages; the copy panel carries a page-local decorative image pinned to its bottom-right corner (slide number moved to the top-right, decoration hidden below 767px) so the corner accent stays put across slides.
