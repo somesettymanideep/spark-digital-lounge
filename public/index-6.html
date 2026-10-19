@@ -873,167 +873,237 @@
                     padding-left: 46px;
                 }
             }
-            /* the services strip now carries six services, so the heading
-               block sits above a full-width row of folded cards: the open
-               card takes a share of the width and the five closed ones split
-               whatever is left, so nothing runs off the edge */
-            .bs-services-4-wrap {
-                display: block;
+            /* =========================================================
+               SERVICES SECTION — ARCHITECTURAL 3-CARD GRID
+               Matches the clean, minimal aesthetic with custom line-art
+               illustrations, soft cyan backdrop discs, circular action
+               buttons with diagonal arrows, and SEA architectural accents.
+               ========================================================= */
+            .bs-services-4-area {
+                background-color: #ffffff;
+                position: relative;
+                overflow: hidden;
+                padding-top: 100px;
+                padding-bottom: 120px;
             }
-            .bs-services-4-content {
+            /* Decorative architectural diagonal wedge at bottom-left */
+            .bs-services-4-area::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 130px;
+                height: 55px;
+                background: linear-gradient(135deg, #00869b 0%, #03515c 100%);
+                clip-path: polygon(0 100%, 0 0, 100% 100%);
+                opacity: 0.9;
+                pointer-events: none;
+                z-index: 1;
+            }
+            .bs-services-4-subtitle {
+                border-bottom: 1px solid rgba(47, 153, 174, 0.25);
+                margin-bottom: 30px;
+            }
+            .bs-services-4-subtitle .text {
+                color: #2f99ae;
+            }
+            /* Section header */
+            .sea-services-header {
                 display: flex;
                 flex-wrap: wrap;
                 align-items: flex-end;
-                gap: 22px 60px;
-                margin-bottom: 46px;
+                justify-content: space-between;
+                gap: 24px 60px;
+                margin-top: 18px;
+                margin-bottom: 50px;
             }
-            .bs-services-4-content .title {
-                flex: 1 1 460px;
+            .sea-services-header .title {
+                flex: 1 1 500px;
                 margin-bottom: 0;
-            }
-            .bs-services-4-content .disc {
-                flex: 1 1 360px;
-                margin-bottom: 0;
-            }
-            @media (min-width: 992px) {
-                .bs-services-4-item {
-                    --sea-svc-open: clamp(320px, 38vw, 560px);
-                }
-                .bs-services-4-item-single {
-                    width: calc((100% - var(--sea-svc-open)) / 5);
-                    min-width: 56px;
-                    padding: 60px 12px;
-                }
-                .bs-services-4-item-single.active {
-                    width: var(--sea-svc-open);
-                    padding: 48px 32px 40px;
-                }
-            }
-            .bs-services-4-item-single .title {
-                font-size: 26px;
-                line-height: 1.25;
-                margin-bottom: 16px;
-            }
-            .bs-services-4-item-single .title a {
+                font-family: var(--bs-font-1);
                 color: #081f2c;
-                transition: color 0.3s ease;
+                font-size: 52px;
+                font-weight: 600;
+                line-height: 1.15;
+                letter-spacing: -0.02em;
             }
-            .bs-services-4-item-single .title a:hover {
-                color: #01707f;
-            }
-            .bs-services-4-item-single .main-img {
-                height: 210px;
-                margin-bottom: 16px;
-                border-radius: 4px;
-            }
-            .bs-services-4-item-single .disc {
+            .sea-services-header .disc {
+                flex: 1 1 380px;
                 margin-bottom: 0;
-                line-height: 1.6;
-                font-size: 15px;
-                color: #4b5563 !important;
-            }
-            .bs-services-4-item-single.active .active-content,
-            .bs-services-4-item-single:is(.active) .active-content {
-                opacity: 1 !important;
-            }
-            .bs-services-4-item-single.active .title,
-            .bs-services-4-item-single:is(.active) .title {
-                opacity: 1 !important;
-                transform: translateY(0) !important;
-                transition-delay: 0s !important;
-            }
-            .bs-services-4-item-single.active .disc,
-            .bs-services-4-item-single:is(.active) .disc {
-                opacity: 1 !important;
-                transform: translateY(0) !important;
-                transition-delay: 0.1s !important;
-                color: #4b5563 !important;
-            }
-            .bs-services-4-item-single .service-btn-wrap {
-                margin-top: 24px;
-                opacity: 0;
-                transform: translateY(6px);
-                transition: opacity 0.35s ease, transform 0.35s ease;
-            }
-            .bs-services-4-item-single.active .service-btn-wrap,
-            .bs-services-4-item-single:is(.active) .service-btn-wrap {
-                opacity: 1 !important;
-                transform: translateY(0) !important;
-                transition-delay: 0.15s !important;
+                color: #4b5563;
+                font-size: 16px;
+                line-height: 1.7;
             }
             @media (max-width: 991px) {
-                .bs-services-4-item-single {
-                    padding: 36px 24px;
-                }
-                .bs-services-4-item-single .active-content {
-                    opacity: 1 !important;
-                }
-                .bs-services-4-item-single .title,
-                .bs-services-4-item-single .disc,
-                .bs-services-4-item-single .service-btn-wrap {
-                    opacity: 1 !important;
-                    transform: translateY(0) !important;
+                .sea-services-header .title {
+                    font-size: 38px;
                 }
             }
-            /* the sticky social rail is 46px wide, so wherever the page's own
-               side padding is narrower the cards would sit under it — this
-               section gets a matching left gutter instead */
+            @media (max-width: 575px) {
+                .sea-services-header .title {
+                    font-size: 30px;
+                }
+            }
+
+            /* 3-card grid container */
+            .sea-services-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 28px;
+                position: relative;
+                z-index: 2;
+            }
+            @media (max-width: 1024px) {
+                .sea-services-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 24px;
+                }
+            }
+            @media (max-width: 680px) {
+                .sea-services-grid {
+                    grid-template-columns: 1fr;
+                    gap: 20px;
+                }
+            }
+
+            /* Single Service Card */
+            .sea-service-card {
+                background: #edf7f9;
+                border-radius: 8px;
+                padding: 46px 36px 42px 36px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                border: 1px solid rgba(0, 134, 155, 0.14);
+                transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+                            box-shadow 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+                            border-color 0.3s ease,
+                            background-color 0.3s ease;
+                position: relative;
+            }
+            .sea-service-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 42px -12px rgba(0, 134, 155, 0.2);
+                border-color: rgba(0, 134, 155, 0.38);
+                background-color: #e6f4f7;
+            }
+
+            /* Card Header: Icon on left, Round Arrow Button on right */
+            .sea-svc-card-top {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 16px;
+                margin-bottom: 24px;
+            }
+            .sea-svc-icon-box {
+                position: relative;
+                width: 76px;
+                height: 70px;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
+            .sea-svc-icon-svg {
+                display: block;
+                width: 100%;
+                height: 100%;
+                overflow: visible;
+                transition: transform 0.35s ease;
+            }
+            .sea-service-card:hover .sea-svc-icon-svg {
+                transform: scale(1.04);
+            }
+
+            /* Action Button (Top Right) */
+            .sea-svc-card-btn {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                border: 1.5px solid #00869b;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #00869b;
+                background: transparent;
+                flex-shrink: 0;
+                transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+                text-decoration: none;
+            }
+            .sea-svc-card-btn svg {
+                width: 18px;
+                height: 18px;
+                transition: transform 0.3s ease;
+            }
+            .sea-service-card:hover .sea-svc-card-btn {
+                background: #00869b;
+                color: #ffffff;
+                border-color: #00869b;
+                transform: scale(1.08) translate(2px, -2px);
+                box-shadow: 0 8px 18px rgba(0, 134, 155, 0.28);
+            }
+            .sea-service-card:hover .sea-svc-card-btn svg {
+                transform: translate(1px, -1px);
+            }
+
+            /* Teal Accent Divider Dash */
+            .sea-svc-card-dash {
+                width: 32px;
+                height: 3px;
+                background: #00869b;
+                border-radius: 2px;
+                margin-bottom: 22px;
+                transition: width 0.3s ease, background-color 0.3s ease;
+            }
+            .sea-service-card:hover .sea-svc-card-dash {
+                width: 46px;
+                background: #026978;
+            }
+
+            /* Title */
+            .sea-svc-card-title {
+                font-family: var(--bs-font-1);
+                font-size: 26px;
+                font-weight: 600;
+                line-height: 1.25;
+                color: #00869b;
+                margin-bottom: 14px;
+                letter-spacing: -0.015em;
+            }
+            .sea-svc-card-title a {
+                color: inherit;
+                text-decoration: none;
+                transition: color 0.25s ease;
+            }
+            .sea-svc-card-title a:hover {
+                color: #081f2c;
+            }
+
+            /* Description Text */
+            .sea-svc-card-text {
+                font-family: var(--bs-font-1);
+                font-size: 15.5px;
+                line-height: 1.65;
+                color: #4b5563;
+                margin-bottom: 0;
+            }
+            @media (max-width: 767px) {
+                .sea-service-card {
+                    padding: 36px 26px 32px 26px;
+                }
+                .sea-svc-card-title {
+                    font-size: 23px;
+                }
+                .sea-svc-card-text {
+                    font-size: 14.5px;
+                }
+            }
+
+            /* Maintain left gutter for sticky social rail on tablets */
             @media (min-width: 576px) and (max-width: 1199px) {
                 .bs-services-4-area .container.bs-container-2 {
                     padding-left: 62px;
-                }
-            }
-            @media (min-width: 1800px) {
-                .bs-services-4-wrap {
-                    margin-right: 0;
-                }
-            }
-            /* the folded cards wear the brand's teal ladder, pale to deep,
-               in the order the services appear */
-            .bs-services-4-item-single:nth-child(1) .default-content {
-                background-color: #b4d5da;
-            }
-            .bs-services-4-item-single:nth-child(2) .default-content {
-                background-color: #82bac1;
-            }
-            .bs-services-4-item-single:nth-child(3) .default-content {
-                background-color: #509ea8;
-            }
-            .bs-services-4-item-single:nth-child(4) .default-content {
-                background-color: #1e8290;
-            }
-            .bs-services-4-item-single:nth-child(5) .default-content {
-                background-color: #046976;
-            }
-            .bs-services-4-item-single:nth-child(6) .default-content {
-                background-color: #03515c;
-            }
-            /* the sideways service names are white in the template, which
-               disappears on the three pale folds — those read in the brand's
-               deep navy instead, the deep folds keep white */
-            .bs-services-4-item-single:nth-child(1) .title-2,
-            .bs-services-4-item-single:nth-child(2) .title-2,
-            .bs-services-4-item-single:nth-child(3) .title-2 {
-                color: #081f2c;
-            }
-            /* remove greyscale filter so service card images display in full
-               natural color in both inactive (folded) and active states */
-            .bs-services-4-item-single .img-2,
-            .bs-services-4-item-single .img-2 img {
-                filter: none;
-            }
-
-            /* the section's own near-black backdrop becomes the brand's deep
-               navy; the template's faint texture sits on top of it untouched */
-            .bs-services-4-area {
-                background-color: #081f2c;
-            }
-            /* the decorative frame beside the cards is drawn in the section's
-               backdrop colour, so it follows the same change on wide screens */
-            @media (min-width: 1400px) {
-                .bs-services-4-img {
-                    border-right-color: #081f2c;
-                    border-top-color: #081f2c;
                 }
             }
 
@@ -2340,214 +2410,152 @@
 
 
             <!-- services-start -->
-            <section class="bs-services-4-area pt-100 wa-fix " data-background="assets/img/services/s4-bg.png">
+            <section class="bs-services-4-area wa-fix" id="services">
                 <div class="container bs-container-2">
-                    <div class="bs-services-4-wrap">
+                    <div class="sea-services-header">
+                        <h2 class="bs-sec-title-4 title wa-split-right wa-capitalize" data-cursor="-opaque">services</h2>
+                        <p class="bs-p-4 disc wa-fadeInUp">At SEA, we design spaces that blend innovation, functionality, and timeless aesthetics, creating environments that inspire and elevate daily living.</p>
+                    </div>
 
-                        <!-- heading block -->
-                        <div class="bs-services-4-content">
+                    <div class="sea-services-grid">
 
-                            <h2 class="bs-sec-title-4 title wa-split-right wa-capitalize" data-cursor="-opaque">services</h2>
+                        <!-- Card 1: Architecture -->
+                        <div class="sea-service-card wa-fadeInUp">
+                            <div class="sea-svc-card-top">
+                                <div class="sea-svc-icon-box">
+                                    <svg class="sea-svc-icon-svg" width="76" height="70" viewBox="0 0 88 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <!-- Soft translucent cyan disc backdrop -->
+                                        <circle cx="62" cy="24" r="18" fill="#bfe7ec" fill-opacity="0.85" />
+                                        <!-- Ground line -->
+                                        <line x1="8" y1="64" x2="80" y2="64" stroke="#00869b" stroke-width="2.2" stroke-linecap="round" />
+                                        <!-- Outer roof gable -->
+                                        <path d="M16 34L44 14L72 34" stroke="#00869b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <!-- Outer walls -->
+                                        <line x1="20" y1="32" x2="20" y2="64" stroke="#00869b" stroke-width="2.2" />
+                                        <line x1="68" y1="32" x2="68" y2="64" stroke="#00869b" stroke-width="2.2" />
+                                        <!-- Inner roof contour -->
+                                        <path d="M26 34L44 21L62 34" stroke="#00869b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <!-- Facade pillars / window bays -->
+                                        <line x1="32" y1="33" x2="32" y2="64" stroke="#00869b" stroke-width="2" />
+                                        <line x1="44" y1="21" x2="44" y2="64" stroke="#00869b" stroke-width="2" />
+                                        <line x1="56" y1="33" x2="56" y2="64" stroke="#00869b" stroke-width="2" />
+                                        <!-- Right doorway panel -->
+                                        <rect x="58" y="44" width="6" height="20" stroke="#00869b" stroke-width="1.8" />
+                                    </svg>
+                                </div>
+                                <a href="services-details.html" class="sea-svc-card-btn" aria-label="Explore Architecture" data-cursor-text="Explore">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
 
-                            <p class="bs-p-4 disc wa-fadeInUp">At Barsi, we design spaces that blend innovation, functionality, and timeless aesthetics, creating environments that inspire and elevate daily living.</p>
+                            <div class="sea-svc-card-dash" aria-hidden="true"></div>
+
+                            <h3 class="sea-svc-card-title">
+                                <a href="services-details.html">Architecture</a>
+                            </h3>
+
+                            <p class="sea-svc-card-text">
+                                Architectural designs that balance aesthetics, interior, function and innovative thinking.
+                            </p>
                         </div>
 
-                        <!-- service cards -->
-                        <div class="bs-services-4-item">
-
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default active " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="ARCHITECTURAL DESIGN" class="wa-line-limit has-line-2">ARCHITECTURAL DESIGN</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="Architectural design" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">Our experts will prepare preliminary design sketches and concepts based on the client’s requirements and budget which help explore and illustrate possible options.</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about ARCHITECTURAL DESIGN" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
+                        <!-- Card 2: Interior design -->
+                        <div class="sea-service-card wa-fadeInUp" data-split-delay="0.1s">
+                            <div class="sea-svc-card-top">
+                                <div class="sea-svc-icon-box">
+                                    <svg class="sea-svc-icon-svg" width="76" height="70" viewBox="0 0 88 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <!-- Soft translucent cyan disc backdrop -->
+                                        <circle cx="64" cy="26" r="18" fill="#bfe7ec" fill-opacity="0.85" />
+                                        <!-- Ground line -->
+                                        <line x1="8" y1="64" x2="80" y2="64" stroke="#00869b" stroke-width="2.2" stroke-linecap="round" />
+                                        <!-- Floor Lamp on left -->
+                                        <line x1="14" y1="64" x2="22" y2="64" stroke="#00869b" stroke-width="2" stroke-linecap="round" />
+                                        <line x1="18" y1="64" x2="18" y2="28" stroke="#00869b" stroke-width="2" />
+                                        <path d="M14 28L16 19H20L22 28Z" stroke="#00869b" stroke-width="1.8" stroke-linejoin="round" />
+                                        <!-- Wall picture frame in upper center -->
+                                        <rect x="34" y="14" width="20" height="15" rx="1" stroke="#00869b" stroke-width="1.8" />
+                                        <rect x="38" y="17" width="12" height="9" stroke="#00869b" stroke-width="1.5" />
+                                        <!-- Sofa in center -->
+                                        <path d="M30 40C30 37 32 35 36 35H52C56 35 58 37 58 40V55H30Z" stroke="#00869b" stroke-width="1.8" />
+                                        <path d="M26 44C26 42 28 41 30 41V55H26C24.5 55 24 54 24 52.5V46.5C24 45 24.5 44 26 44Z" stroke="#00869b" stroke-width="1.8" />
+                                        <path d="M62 44C62 42 60 41 58 41V55H62C63.5 55 64 54 64 52.5V46.5C64 45 63.5 44 62 44Z" stroke="#00869b" stroke-width="1.8" />
+                                        <line x1="28" y1="49" x2="60" y2="49" stroke="#00869b" stroke-width="1.5" />
+                                        <!-- Sofa legs -->
+                                        <line x1="29" y1="55" x2="27" y2="64" stroke="#00869b" stroke-width="1.8" stroke-linecap="round" />
+                                        <line x1="59" y1="55" x2="61" y2="64" stroke="#00869b" stroke-width="1.8" stroke-linecap="round" />
+                                        <!-- Potted Plant on right -->
+                                        <path d="M70 54L72 64H78L80 54Z" stroke="#00869b" stroke-width="1.8" stroke-linejoin="round" />
+                                        <line x1="75" y1="54" x2="75" y2="34" stroke="#00869b" stroke-width="1.8" stroke-linecap="round" />
+                                        <path d="M75 48C72 46 70 43 72 41C74 43 75 45 75 48Z" stroke="#00869b" stroke-width="1.5" stroke-linejoin="round" />
+                                        <path d="M75 43C78 41 80 38 78 36C76 38 75 40 75 43Z" stroke="#00869b" stroke-width="1.5" stroke-linejoin="round" />
+                                        <path d="M75 38C72 36 71 33 73 31C75 33 75 35 75 38Z" stroke="#00869b" stroke-width="1.5" stroke-linejoin="round" />
+                                        <path d="M75 34C75 31 77 29 78 28C78 30 77 32 75 34Z" stroke="#00869b" stroke-width="1.5" stroke-linejoin="round" />
+                                    </svg>
                                 </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/db7fc481-44ea-4aa2-a3d1-96a089e6400f/hero-modern-tower.jpg" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        ARCHITECTURAL DESIGN
-                                    </h4>
-                                </div>
+                                <a href="services-details.html" class="sea-svc-card-btn" aria-label="Explore Interior design" data-cursor-text="Explore">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </a>
                             </div>
 
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="INTERIOR DESIGN" class="wa-line-limit has-line-2">INTERIOR DESIGN</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="Interior design" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">Our designers plans, researches, coordinates and enhances the interiors of the building to achieve a healthier and more aesthetically pleasing environment</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about INTERIOR DESIGN" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/f418e607-9d30-4756-9e64-7abbb22c7294/vastu-flip-living.jpg" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        INTERIOR DESIGN
-                                    </h4>
-                                </div>
-                            </div>
+                            <div class="sea-svc-card-dash" aria-hidden="true"></div>
 
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="LANDSCAPE DESIGN" class="wa-line-limit has-line-2">LANDSCAPE DESIGN</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="Landscape design" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">Our team uses their creativity and understanding of outside environments to create well designed outdoor spaces that are functional and visually appealing.</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about LANDSCAPE DESIGN" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="/__l5e/assets-v1/4ed236ca-5016-4d4f-a4dd-12acf098ca8c/hero-garden-villa.jpg" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        LANDSCAPE DESIGN
-                                    </h4>
-                                </div>
-                            </div>
+                            <h3 class="sea-svc-card-title">
+                                <a href="services-details.html">Interior design</a>
+                            </h3>
 
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="STRUCTURAL DESIGN" class="wa-line-limit has-line-2">STRUCTURAL DESIGN</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-structural-design.jpg" alt="Structural design" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">our team provides the best general solution for the structure by considering the various requirements such as function of the structure</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about STRUCTURAL DESIGN" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-structural-design.jpg" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        STRUCTURAL DESIGN
-                                    </h4>
-                                </div>
-                            </div>
-
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="PROJECT MANAGEMENT" class="wa-line-limit has-line-2">PROJECT MANAGEMENT</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-project-management.webp" alt="Project management" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">Our professionals create initial plans, drafts and designs that fulfill the needs of a client complying with established stand and safety regulations.</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about PROJECT MANAGEMENT" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-project-management.webp" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        PROJECT MANAGEMENT
-                                    </h4>
-                                </div>
-                            </div>
-
-                            <!-- single-item -->
-                            <div class="bs-services-4-item-single wa-bg-default " data-background="assets/img/services/s4-card-bg.png">
-                                <div class="active-content">
-                                    <h4 class="bs-h-1 title">
-                                        <a href="services-details.html" aria-label="BIM SERVICES" class="wa-line-limit has-line-2">BIM SERVICES</a>
-                                    </h4>
-                                    <div class="main-img wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-bim.webp" alt="BIM services" loading="lazy" decoding="async">
-                                    </div>
-                                    <p class="bs-p-4 disc wa-line-limit has-line-4">Our professional team has expertise in the use of required tools, international standards, and software are required for every BIM (Building Information Modelling )</p>
-                                    <div class="service-btn-wrap">
-                                        <a href="services-details.html" aria-label="Read more about BIM SERVICES" class="bs-pr-btn-2">
-                                            <span class="text" data-back="read more" data-front="read more"></span>
-                                            <span class="line-1"></span>
-                                            <span class="line-2"></span>
-                                            <span class="box box-1"></span>
-                                            <span class="box box-2"></span>
-                                            <span class="box box-3"></span>
-                                            <span class="box box-4"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="default-content">
-                                    <div class="img-2 wa-fix wa-img-cover">
-                                        <img src="assets/img/services/service-bim.webp" alt="" loading="lazy" decoding="async">
-                                    </div>
-                                    <h4 class="bs-h-1 title-2 wa-line-limit has-line-1">
-                                        BIM SERVICES
-                                    </h4>
-                                </div>
-                            </div>
-
+                            <p class="sea-svc-card-text">
+                                We create elegant, functional interiors that reflect your lifestyle and personal taste.
+                            </p>
                         </div>
+
+                        <!-- Card 3: 3D modelling -->
+                        <div class="sea-service-card wa-fadeInUp" data-split-delay="0.2s">
+                            <div class="sea-svc-card-top">
+                                <div class="sea-svc-icon-box">
+                                    <svg class="sea-svc-icon-svg" width="76" height="70" viewBox="0 0 88 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <!-- Soft translucent cyan disc backdrop -->
+                                        <circle cx="62" cy="28" r="19" fill="#bfe7ec" fill-opacity="0.85" />
+                                        <!-- Guideline projection rays from vertices -->
+                                        <line x1="44" y1="14" x2="44" y2="6" stroke="#00869b" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2 2" />
+                                        <line x1="18" y1="28" x2="10" y2="24" stroke="#00869b" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2 2" />
+                                        <line x1="70" y1="28" x2="78" y2="24" stroke="#00869b" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2 2" />
+                                        <line x1="18" y1="56" x2="10" y2="60" stroke="#00869b" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2 2" />
+                                        <line x1="70" y1="56" x2="78" y2="60" stroke="#00869b" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2 2" />
+                                        <line x1="44" y1="70" x2="44" y2="78" stroke="#00869b" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2 2" />
+                                        <!-- Isometric 3D Cube -->
+                                        <!-- Top Face -->
+                                        <path d="M44 14L70 28L44 42L18 28Z" stroke="#00869b" stroke-width="2.2" stroke-linejoin="round" />
+                                        <!-- Left Face -->
+                                        <path d="M18 28V56L44 70V42Z" stroke="#00869b" stroke-width="2.2" stroke-linejoin="round" />
+                                        <!-- Right Face -->
+                                        <path d="M70 28V56L44 70V42Z" stroke="#00869b" stroke-width="2.2" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <a href="services-details.html" class="sea-svc-card-btn" aria-label="Explore 3D modelling" data-cursor-text="Explore">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <div class="sea-svc-card-dash" aria-hidden="true"></div>
+
+                            <h3 class="sea-svc-card-title">
+                                <a href="services-details.html">3D modelling</a>
+                            </h3>
+
+                            <p class="sea-svc-card-text">
+                                High-quality 3D modelling solutions for architecture, interiors, exterior, design and products.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
             </section>
