@@ -20,7 +20,7 @@ export default defineConfig({
         name: "l5e-assets-proxy",
         apply: "serve",
         configureServer(server) {
-          const target = "https://website-unpacker-magic.lovable.app";
+          const target = "https://spark-digital-lounge.lovable.app";
           server.middlewares.use((req, res, next) => {
             if (!req.url?.startsWith("/__l5e/")) return next();
             fetch(target + req.url)
