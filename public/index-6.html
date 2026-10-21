@@ -2241,6 +2241,84 @@
                 paint();
             });
         </script>
+
+        <style>
+            /* SEA portfolio — local tokens keep sibling templates unchanged. */
+            .sea-projects, .sea-project-dialog {
+                --portfolio-surface: #e9f3f5;
+                --portfolio-ink: #081f2c;
+                --portfolio-teal: #00869b;
+                --portfolio-aqua: #9fe0e9;
+                --portfolio-paper: #eef8f9;
+                --portfolio-shade: linear-gradient(180deg, transparent 40%, rgba(8,31,44,.25) 65%, rgba(8,31,44,.92) 100%);
+                --portfolio-backdrop: rgba(8,31,44,.84);
+                --portfolio-ring: #00869b;
+            }
+            .sea-projects {background:var(--portfolio-surface);padding:110px 0 100px;}
+            .sea-projects-inner {width:calc(100% - 112px);max-width:1160px;margin:0 auto;}
+            .sea-projects-heading {display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:58px;}
+            .sea-projects-heading h2 {font-family:var(--bs-font-2);font-size:52px;line-height:1.12;font-weight:500;color:var(--portfolio-ink);margin:0;letter-spacing:0;}
+            .sea-projects-all {display:inline-flex;align-items:center;gap:14px;color:var(--portfolio-teal);font-family:var(--bs-font-2);font-size:15px;border-bottom:1px solid currentColor;padding:10px 0;white-space:nowrap;}
+            .sea-project-grid {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:start;}
+            .sea-project-column {display:flex;flex-direction:column;gap:44px;min-width:0;}
+            .sea-project-column-right {padding-top:160px;}
+            .sea-project-card {display:block;position:relative;isolation:isolate;overflow:hidden;border-radius:8px;aspect-ratio:4/5;color:var(--portfolio-paper);background:var(--portfolio-ink);}
+            .sea-project-card-landscape {aspect-ratio:4/3;}
+            .sea-project-column-right .sea-project-card {aspect-ratio:3/4;}
+            .sea-project-image {position:absolute;inset:-7% 0;width:100%;height:114%;will-change:transform;}
+            .sea-project-image img {width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.65,.3,1);}
+            .sea-project-card::after {content:'';position:absolute;inset:0;background:var(--portfolio-shade);pointer-events:none;}
+            .sea-project-copy {position:absolute;z-index:1;left:30px;right:30px;bottom:30px;}
+            .sea-project-category {display:block;color:var(--portfolio-aqua);font-family:var(--bs-font-2);font-size:12px;line-height:1.5;margin-bottom:10px;letter-spacing:0;text-transform:uppercase;}
+            .sea-project-copy h3 {font-family:var(--bs-font-2);font-size:30px;line-height:1.2;color:var(--portfolio-paper);font-weight:500;margin:0;transition:transform .5s ease;letter-spacing:0;}
+            .sea-project-indicator {display:inline-flex;gap:10px;align-items:center;margin-top:15px;font-size:13px;font-family:var(--bs-font-2);opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s;}
+            .sea-project-card:hover img,.sea-project-card:focus-visible img {transform:scale(1.04);}
+            .sea-project-card:hover h3,.sea-project-card:focus-visible h3 {transform:translateY(-4px);}
+            .sea-project-card:hover .sea-project-indicator,.sea-project-card:focus-visible .sea-project-indicator {opacity:1;transform:translateY(0);}
+            .sea-project-card:focus-visible,.sea-projects-all:focus-visible {outline:3px solid var(--portfolio-ring);outline-offset:5px;}
+            .sea-project-dialog {border:0;padding:0;background:var(--portfolio-surface);color:var(--portfolio-ink);width:min(1000px,calc(100% - 40px));max-height:85vh;overflow:auto;border-radius:8px;}
+            .sea-project-dialog::backdrop {background:var(--portfolio-backdrop);}
+            .sea-project-dialog-header {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 28px;}
+            .sea-project-dialog-header h2 {font-size:24px;font-family:var(--bs-font-2);color:var(--portfolio-ink);margin:0;}
+            .sea-project-dialog-close {display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--portfolio-teal);color:var(--portfolio-teal);font-size:24px;}
+            .sea-project-dialog-content {padding:0 28px 28px;}
+            .sea-project-preview {margin:0;}
+            .sea-project-preview img {display:block;width:100%;max-height:60vh;object-fit:contain;background:var(--portfolio-paper);}
+            .sea-project-preview figcaption {font-family:var(--bs-font-2);margin-top:14px;color:var(--portfolio-teal);}
+            .sea-project-gallery {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+            .sea-project-gallery .sea-project-card {aspect-ratio:3/4;}
+            .sea-project-gallery .sea-project-copy {left:16px;right:16px;bottom:16px;}
+            .sea-project-gallery h3 {font-size:21px;}
+            @media(max-width:991px) {
+                .sea-projects-heading h2 {font-size:40px;}
+                .sea-project-grid,.sea-project-column {gap:28px;}
+                .sea-project-column-right {padding-top:120px;}
+                .sea-project-copy {left:22px;right:22px;bottom:22px;}
+                .sea-project-copy h3 {font-size:26px;}
+            }
+            @media(max-width:767px) {
+                .sea-projects {padding:70px 0;}
+                .sea-projects-inner {width:calc(100% - 92px);}
+                .sea-projects-heading {display:block;margin-bottom:32px;}
+                .sea-projects-heading h2 {font-size:32px;}
+                .sea-projects-all {margin-top:16px;font-size:14px;}
+                .sea-project-grid {display:flex;flex-direction:column;gap:26px;}
+                .sea-project-column {display:contents;}
+                .sea-project-card {width:100%;aspect-ratio:4/5;}
+                .sea-project-card-landscape {aspect-ratio:4/3;order:3;}
+                .sea-project-column-right .sea-project-card {aspect-ratio:4/5;order:2;}
+                .sea-project-copy {left:18px;right:18px;bottom:20px;}
+                .sea-project-copy h3 {font-size:24px;}
+                .sea-project-indicator {opacity:1;transform:none;}
+                .sea-project-gallery {grid-template-columns:1fr;}
+                .sea-project-dialog-header,.sea-project-dialog-content {padding:18px;}
+            }
+            @media(prefers-reduced-motion:reduce) {
+                .sea-project-image {inset:0;height:100%;will-change:auto;}
+                .sea-project-card img,.sea-project-copy h3,.sea-project-indicator {transition:none;}
+                .sea-project-card:hover img,.sea-project-card:focus-visible img,.sea-project-card:hover h3 {transform:none;}
+            }
+        </style>
     </head>
 
     <body class="bs-home-4">
@@ -2895,68 +2973,36 @@
 
 
             <!-- project-start -->
-            <section class="bs-projects-2-area pt-125 pb-160">
-                <div class="container bs-container-1">
-                    <div class="bs-projects-2-sec-title mb-60 text-center">
-                        <h2 class="bs-sec-title-1 wa-split-right wa-capitalize">our projects</h2>
+            <section class="sea-projects" id="sea-projects" aria-labelledby="sea-projects-title">
+                <div class="sea-projects-inner">
+                    <div class="sea-projects-heading">
+                        <h2 id="sea-projects-title">Selected Projects</h2>
+                        <a class="sea-projects-all" href="#sea-project-dialog" data-sea-project-all>View All Projects <span aria-hidden="true">↗</span></a>
                     </div>
-                    <style>
-                        .main-wrapper.wa-fix{overflow:clip !important}
-                        .bs-projects-2-area{background-color:#e9f3f5}
-                        .sea-stack{position:relative;max-width:1100px;margin:0 auto}
-                        .sea-stack-card{display:block;width:100%;position:sticky;top:calc(120px + var(--i)*22px);height:min(70vh,560px);margin-bottom:12vh;border-radius:22px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(8,31,44,.45);transform-origin:center top;will-change:transform;background:#081f2c}
-                        .sea-stack-card:last-child{margin-bottom:0}
-                        .sea-stack-card img{width:100%;height:100%;object-fit:cover;display:block}
-                        .sea-stack-card .sea-stack-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,31,44,.85),rgba(8,31,44,0) 55%);pointer-events:none}
-                        .sea-stack-card .sea-stack-copy{position:absolute;left:36px;right:36px;bottom:32px;color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
-                        .sea-stack-card .sea-stack-copy span{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#9fe0e9;margin-bottom:8px}
-                        .sea-stack-card .sea-stack-copy h4{color:#fff;margin:0;font-size:clamp(26px,3.4vw,46px)}
-                        .sea-stack-card .sea-stack-num{font-size:clamp(40px,6vw,90px);font-weight:700;color:rgba(255,255,255,.18);line-height:1}
-                        @media (max-width:767px){.bs-projects-2-area .container{padding-left:46px;padding-right:46px}.sea-stack-card{top:calc(90px + var(--i)*14px);height:60vh;border-radius:14px}.sea-stack-card .sea-stack-copy{left:18px;right:18px;bottom:18px}}
-                    </style>
-                    <div class="sea-stack" id="seaProjectStack">
-                        <a class="sea-stack-card" style="--i:0" href="project-details.html" data-cursor-text="View">
-                            <img src="assets/img/projects/gangadhar-estate.jpg" alt="Gangadhar Estate architecture in Vijayawada" loading="lazy" decoding="async">
-                            <div class="sea-stack-shade"></div>
-                            <div class="sea-stack-copy"><div><span>Architecture · Vijayawada</span><h4>Gangadhar Estate</h4></div><div class="sea-stack-num">01</div></div>
-                        </a>
-                        <a class="sea-stack-card" style="--i:1" href="project-details.html" data-cursor-text="View">
-                            <img src="https://spark-digital-lounge.lovable.app/__l5e/assets-v1/763c6fc1-ccbc-44a0-b0c3-5bcb1c940cb5/project-pavani-prasad.jpg" alt="Pavani Prasad interior" loading="lazy" decoding="async">
-                            <div class="sea-stack-shade"></div>
-                            <div class="sea-stack-copy"><div><span>Interior · Hyderabad, TG.</span><h4>Pavani Prasad</h4></div><div class="sea-stack-num">02</div></div>
-                        </a>
-                        <a class="sea-stack-card" style="--i:2" href="project-details.html" data-cursor-text="View">
-                            <img src="assets/img/projects/chandramouli-residence.jpg" alt="Chandramouli Residence landscape in Chimakurthy" loading="lazy" decoding="async">
-                            <div class="sea-stack-shade"></div>
-                            <div class="sea-stack-copy"><div><span>Landscape · Chimakurthy</span><h4>Chandramouli Residence</h4></div><div class="sea-stack-num">03</div></div>
-                        </a>
+                    <div class="sea-project-grid">
+                        <div class="sea-project-column sea-project-column-left">
+                            <a class="sea-project-card" href="assets/img/projects/gangadhar-estate.jpg" data-sea-project data-cursor-text="View" aria-label="View Gangadhar Estate project">
+                                <div class="sea-project-image"><img src="assets/img/projects/gangadhar-estate.jpg" alt="Gangadhar Estate architecture in Vijayawada" loading="lazy" decoding="async"></div>
+                                <div class="sea-project-copy"><span class="sea-project-category">Architecture · Vijayawada</span><h3>Gangadhar Estate</h3><span class="sea-project-indicator">View Project <span aria-hidden="true">↗</span></span></div>
+                            </a>
+                            <a class="sea-project-card sea-project-card-landscape" href="assets/img/projects/chandramouli-residence.jpg" data-sea-project data-cursor-text="View" aria-label="View Chandramouli Residence project">
+                                <div class="sea-project-image"><img src="assets/img/projects/chandramouli-residence.jpg" alt="Chandramouli Residence landscape in Chimakurthy" loading="lazy" decoding="async"></div>
+                                <div class="sea-project-copy"><span class="sea-project-category">Landscape · Chimakurthy</span><h3>Chandramouli Residence</h3><span class="sea-project-indicator">View Project <span aria-hidden="true">↗</span></span></div>
+                            </a>
+                        </div>
+                        <div class="sea-project-column sea-project-column-right">
+                            <a class="sea-project-card" href="https://spark-digital-lounge.lovable.app/__l5e/assets-v1/763c6fc1-ccbc-44a0-b0c3-5bcb1c940cb5/project-pavani-prasad.jpg" data-sea-project data-cursor-text="View" aria-label="View Pavani Prasad project">
+                                <div class="sea-project-image"><img src="https://spark-digital-lounge.lovable.app/__l5e/assets-v1/763c6fc1-ccbc-44a0-b0c3-5bcb1c940cb5/project-pavani-prasad.jpg" alt="Pavani Prasad interior in Hyderabad" loading="lazy" decoding="async"></div>
+                                <div class="sea-project-copy"><span class="sea-project-category">Interior · Hyderabad, TG.</span><h3>Pavani Prasad</h3><span class="sea-project-indicator">View Project <span aria-hidden="true">↗</span></span></div>
+                            </a>
+                        </div>
                     </div>
-                    <script>
-                        (function(){
-                            var cards=[].slice.call(document.querySelectorAll('#seaProjectStack .sea-stack-card'));
-                            if(!cards.length||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-                            var ticking=false;
-                            function update(){
-                                ticking=false;
-                                cards.forEach(function(c,i){
-                                    var next=cards[i+1];
-                                    if(!next){c.style.transform='';c.style.filter='';return;}
-                                    var top=c.getBoundingClientRect().top, nt=next.getBoundingClientRect().top;
-                                    var h=c.offsetHeight||1;
-                                    var p=Math.min(1,Math.max(0,1-(nt-top)/h));
-                                    var depth=cards.length-1-i;
-                                    c.style.transform='scale('+(1-p*0.05*depth)+')';
-                                    c.style.filter='brightness('+(1-p*0.3)+')';
-                                });
-                            }
-                            function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(update);}}
-                            addEventListener('scroll',onScroll,{passive:true});
-                            addEventListener('resize',onScroll);
-                            update();
-                        })();
-                    </script>
                 </div>
             </section>
+            <dialog class="sea-project-dialog" id="sea-project-dialog" aria-labelledby="sea-project-dialog-title">
+                <div class="sea-project-dialog-header"><h2 id="sea-project-dialog-title">Selected Projects</h2><a class="sea-project-dialog-close" href="#sea-projects" data-sea-project-close aria-label="Close project preview">×</a></div>
+                <div class="sea-project-dialog-content"></div>
+            </dialog>
             <!-- project-end -->
 
             <!-- testimonial-start -->
@@ -3574,6 +3620,67 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/sea-cursor.js"></script>
         <script>
+            (function () {
+                var section = document.querySelector('.sea-projects');
+                var dialog = document.getElementById('sea-project-dialog');
+                if (!section || !dialog) return;
+                var cards = Array.from(section.querySelectorAll('[data-sea-project]'));
+                var content = dialog.querySelector('.sea-project-dialog-content');
+                var title = document.getElementById('sea-project-dialog-title');
+                var opener;
+                document.addEventListener('click', function (event) {
+                    var link = event.target.closest('[data-sea-project], [data-sea-project-all], [data-sea-project-close]');
+                    if (!link || !content || !title) return;
+                    event.preventDefault();
+                    if (link.hasAttribute('data-sea-project-close')) { dialog.close(); return; }
+                    if (!dialog.open) opener = link;
+                    content.replaceChildren();
+                    if (link.hasAttribute('data-sea-project-all')) {
+                        title.textContent = 'Selected Projects';
+                        var gallery = document.createElement('div');
+                        gallery.className = 'sea-project-gallery';
+                        cards.forEach(function (card) {
+                            var clone = card.cloneNode(true);
+                            clone.removeAttribute('style');
+                            clone.querySelector('.sea-project-image').removeAttribute('style');
+                            gallery.appendChild(clone);
+                        });
+                        content.appendChild(gallery);
+                    } else {
+                        title.textContent = link.querySelector('h3').textContent;
+                        var figure = document.createElement('figure');
+                        figure.className = 'sea-project-preview';
+                        var image = link.querySelector('img').cloneNode(true);
+                        image.loading = 'eager';
+                        var caption = document.createElement('figcaption');
+                        caption.textContent = link.querySelector('.sea-project-category').textContent;
+                        figure.append(image, caption);
+                        content.appendChild(figure);
+                    }
+                    if (!dialog.open) dialog.showModal();
+                });
+                dialog.addEventListener('close', function () { if (opener) opener.focus({preventScroll:true}); });
+                dialog.addEventListener('click', function (event) { if (event.target === dialog) dialog.close(); });
+                if (!window.gsap || !window.ScrollTrigger) return;
+                gsap.registerPlugin(ScrollTrigger);
+                var media = gsap.matchMedia();
+                media.add('(prefers-reduced-motion: no-preference)', function () {
+                    cards.forEach(function (card) {
+                        gsap.fromTo(card, {y:40, opacity:0}, {y:0, opacity:1, ease:'none', scrollTrigger:{trigger:card, start:'top 98%', end:'top 76%', scrub:.55}});
+                    });
+                });
+                media.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', function () {
+                    var right = section.querySelector('.sea-project-column-right');
+                    gsap.fromTo(right, {y:0}, {y:function(){return -Math.min(110, section.offsetWidth * .075);}, ease:'none', scrollTrigger:{trigger:section, start:'top bottom', end:'bottom top', scrub:.65, invalidateOnRefresh:true}});
+                    cards.forEach(function (card) {
+                        gsap.fromTo(card.querySelector('.sea-project-image'), {yPercent:-3}, {yPercent:3, ease:'none', scrollTrigger:{trigger:card, start:'top bottom', end:'bottom top', scrub:.65}});
+                    });
+                });
+                window.addEventListener('load', function () { ScrollTrigger.refresh(); }, {once:true});
+            })();
+        </script>
+
+        <script>
             // Initialize SEA Testimonial Slideshow (2 slides from medium to extra large devices)
             function initSeaTestimonials() {
                 var el = document.querySelector('.sea-t4-active');
@@ -3735,7 +3842,7 @@
             (function () {
                 document.addEventListener('click', function (event) {
                     var link = event.target.closest('a[href]');
-                    if (!link) return;
+                    if (!link || link.matches('[data-sea-project], [data-sea-project-all], [data-sea-project-close]')) return;
                     event.preventDefault();
                     event.stopPropagation();
                 }, true);
