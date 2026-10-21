@@ -24,6 +24,7 @@
 - Home 6 displays a dedicated full image container banner section for "500+ trusted partners all over the world." with the panoramic dome pavilion render (contact-dome-3.jpg) as the background image with GSAP parallax, high-contrast dark architectural overlay, and centered typography immediately preceding the brand marquee.
 
 - Home 6 prioritizes its first hero image, lazy-loads below-fold images and video, and loads the contact ripple engine near the viewport to keep initial media and rendering work small.
+- Home 6 projects use a page-local staggered grid and GSAP matchMedia scroll effects; project links open native dialog photo previews so the showcase stays on-page without redirecting to unrelated template projects.
 
 - The static About page mirrors Home 6 header, offcanvas menu, footer markup and their page-local styling/state listener; keep these copies aligned when modifying shared navigation so both pages remain self-contained static deployments.
 
