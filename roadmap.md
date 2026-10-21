@@ -1,4 +1,5 @@
 # Homepage updates
+- [ ] Redesign projects with existing data as a staggered two-column portfolio, scroll-linked motion, image reveals, accessible project previews and mobile/reduced-motion checks.
 - [x] Home page hero: uploaded architectural line drawing pinned to the right panel's bottom-right corner, clear of the text, button and slide number; hidden on phones.
 
 
